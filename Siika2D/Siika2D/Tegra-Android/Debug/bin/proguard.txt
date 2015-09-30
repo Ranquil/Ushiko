@@ -1,0 +1,6 @@
+# view AndroidManifest.xml #generated:12
+-keep class android.app.NativeActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:21
+-keep class com.nvidia.pentak.LaunchProxy { <init>(...); }
+
