@@ -4,7 +4,7 @@ using namespace graphics;
 Camera::Camera(glm::vec2 window)
 {
 	_displaySize = window;
-	_position = glm::vec3(0, 0, -2);
+	_position = glm::vec3(0, 0, -3);
 }
 
 Camera::~Camera()

@@ -19,8 +19,18 @@ Siika2D* Siika2D::UI()
 
 Siika2D::Siika2D()
 {
+	
 	s2d_info("SIIKA CREATED");
+	_boxWorld = new b2World(b2Vec2(0.f, -5.f));
 	_input = nullptr;
+	_graphicsContext = nullptr;
+	_camera = nullptr;
+	_shaderManager = nullptr;
+	_bufferManager = nullptr;
+	_textureManager = nullptr;
+	_spriteManager = nullptr;
+	_textManager = nullptr;
+	_audioManager = nullptr;
 }
 
 Siika2D::~Siika2D()
@@ -37,6 +47,7 @@ Siika2D::~Siika2D()
 	delete _shaderManager;
 	delete _textManager;
 	delete _audioManager;
+	delete _boxWorld;
 }
 
 void Siika2D::initialize(android_app* app)
@@ -59,14 +70,31 @@ void Siika2D::terminate()
 
 void Siika2D::initializeGraphics()
 {
+	//if (!_graphicsContext)
 	_graphicsContext = new graphics::GraphicsContext(_application);
+	if (!_camera)
 	_camera = new graphics::Camera(_graphicsContext->getDisplaySize());
+	if (!_shaderManager)
 	_shaderManager = new graphics::ShaderManager(&_resourceManager, _graphicsContext->getDisplaySize(),_camera);
+	else
+	{
+		_shaderManager->ReinitializeShaders();;
+	}
+	//if (!_bufferManager)
 	_bufferManager = new graphics::BufferManager();
+	if (!_textureManager)
 	_textureManager = new graphics::TextureManager(&_resourceManager);
+	else
+	{
+		_textureManager->InitializeTextures();
+	}
+	if (!_spriteManager)
 	_spriteManager = new graphics::SpriteManager(_shaderManager,_bufferManager);
+	if (!_textManager)
 	_textManager = new graphics::TextManager(&_resourceManager, _shaderManager, _graphicsContext->getDisplaySize());
+	if (!_audioManager)
 	_audioManager = new audio::AudioManager(&_resourceManager);
+
 	_shaderManager->useShader(true, true);
 
 	_drawReady = true;
