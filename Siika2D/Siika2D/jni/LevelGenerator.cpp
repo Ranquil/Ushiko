@@ -1,7 +1,5 @@
 #include "LevelGenerator.hpp"
 
-//#include <sstream>
-
 LevelGenerator::LevelGenerator(core::Siika2D *siika)
 {
 	tiles.clear();
@@ -9,15 +7,10 @@ LevelGenerator::LevelGenerator(core::Siika2D *siika)
 
 	srand48(time(NULL));
 
-/*	text = siika->_textManager->createText();
-	text->setPosition(-1, 0.8);
-	text->setFont("arial.ttf");
-	text->setText("Tiles: 0");
-*/
+	tileMovement = 0;
 	platformLength = 10;
 	platformSpawned = 0;
 	yLevel = siika->_graphicsContext->getDisplaySize().y / 2 + 72;
-	tileMovement = 0;
 }
 
 LevelGenerator::~LevelGenerator()
@@ -43,14 +36,8 @@ void LevelGenerator::update(core::Siika2D *siika)
 	}
 
 	if (deleteTile)
-	{
 		tiles.erase(tiles.begin());
-	}
 
-/*	std::ostringstream ttt;
-	ttt << "Tiles: " << tileAmount;
-	text->setText(ttt.str());
-*/
 	if (tileMovement >= 15)
 	{
 		tileMovement = 0;

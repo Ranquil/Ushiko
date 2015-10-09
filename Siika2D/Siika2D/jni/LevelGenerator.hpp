@@ -20,13 +20,10 @@ private:
 
 	void spawnTile(core::Siika2D *siika, int xPos, int yPos);
 
-//	graphics::Text *text;
-
+	int tileMovement;
 	int platformLength;
 	int platformSpawned;
 	int yLevel;
-
-	int tileMovement;
 };
 
 #endif // LEVELGENERATOR
