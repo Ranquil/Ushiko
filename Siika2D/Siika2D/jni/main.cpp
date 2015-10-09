@@ -27,11 +27,15 @@ void siika_init()
 
 	siika->_graphicsContext->setClearColor(graphics::Color(0, 255, 255, 255));
 
+<<<<<<< HEAD
 	lt = new LevelTimer;
 	lt->InitTimer(siika, "arial.ttf", 64, 0.5, -0.95);
 
 	lg = new LevelGenerator;
 	lg->initSprites(siika, "tile_grass_left_corner.png", "tile_grass_middle.png", "tile_grass_right_corner.png");
+=======
+	lg = new LevelGenerator(siika);
+>>>>>>> origin/master
 }
 
 void siika_main()
@@ -46,8 +50,12 @@ void siika_main()
 	ushiko.getComponent<misc::TransformComponent>()->setPosition(position);
 	ushiko.update();
 
+<<<<<<< HEAD
 	lg->update();
 	lt->update();
+=======
+	lg->update(siika);
+>>>>>>> origin/master
 
 	siika->_spriteManager->drawSprites();
 	siika->_textManager->drawTexts();

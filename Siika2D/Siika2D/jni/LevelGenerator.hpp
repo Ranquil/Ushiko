@@ -8,16 +8,22 @@
 class LevelGenerator
 {
 public:
-	LevelGenerator();
+	LevelGenerator(core::Siika2D *siika);
 	~LevelGenerator();
 
-	void initSprites(core::Siika2D* siika, std::string texLeft, std::string texMiddle, std::string texRight);
-	void update();
+	void update(core::Siika2D *siika);
 
 private:
 	misc::Timer generatorTimer;
-	misc::SpriteComponent *sprLeft, *sprMiddle, *sprRight;
-	std::vector<misc::GameObject> tiles;
+	std::vector<misc::GameObject*> tiles;
+
+	void spawnTile(core::Siika2D *siika, int xPos, int yPos);
+
+//	graphics::Text *text;
+
+	int platformLength;
+	int platformSpawned;
+	int yLevel;
 };
 
 #endif // LEVELGENERATOR

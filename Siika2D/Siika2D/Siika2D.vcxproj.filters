@@ -230,8 +230,16 @@
     <ClInclude Include="jni\LevelGenerator.hpp">
       <Filter>Ushiko</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="jni\LevelTimer.hpp">
       <Filter>Ushiko</Filter>
+=======
+    <ClInclude Include="engine\misc\CoordTransform.h">
+      <Filter>Siika2D\engine\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\misc\PhysicsComponent.h">
+      <Filter>Siika2D\engine\misc</Filter>
+>>>>>>> origin/master
     </ClInclude>
   </ItemGroup>
 </Project>
