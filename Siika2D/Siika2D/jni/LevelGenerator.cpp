@@ -32,7 +32,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 	for (misc::GameObject *t : tiles)
 	{
 		glm::vec2 tPos = t->getComponent<misc::TransformComponent>()->getPosition();
-		t->getComponent<misc::TransformComponent>()->setPosition(glm::vec2(tPos.x - 5, tPos.y));
+		t->getComponent<misc::TransformComponent>()->setPosition(glm::vec2(tPos.x - 2, tPos.y));
 		t->update();
 
 		tileAmount += 1;
