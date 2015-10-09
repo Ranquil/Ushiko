@@ -79,11 +79,14 @@ void LevelGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
 		textureName = "tile_grass_right_corner.png";
 
 	misc::SpriteComponent *spriteComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(glm::vec2(-100, 0), glm::vec2(64, 64), glm::vec2(32, 32), siika->_textureManager->createTexture(textureName), glm::vec2(0, 0), glm::vec2(1, 1))));
-	misc::TransformComponent *transComp = new misc::TransformComponent();
+	misc::TransformComponent *transComp = new misc::TransformComponent;
 	transComp->setPosition(glm::vec2(xPos, yPos));
+
+	//misc::PhysicsComponent *physComp = new misc::PhysicsComponent(glm::vec2(0, 0), glm::vec2(64, 64), 1, 0, 1);
 
 	t->addComponent(spriteComp);
 	t->addComponent(transComp);
+	//t->addComponent(physComp);
 
 	tiles.push_back(t);
 }
