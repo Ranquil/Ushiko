@@ -227,5 +227,11 @@
     <ClInclude Include="jni\LevelGenerator.hpp">
       <Filter>Ushiko</Filter>
     </ClInclude>
+    <ClInclude Include="engine\misc\CoordTransform.h">
+      <Filter>Siika2D\engine\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\misc\PhysicsComponent.h">
+      <Filter>Siika2D\engine\misc</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
