@@ -17,6 +17,7 @@ LevelGenerator::LevelGenerator(core::Siika2D *siika)
 	platformLength = 10;
 	platformSpawned = 0;
 	yLevel = siika->_graphicsContext->getDisplaySize().y / 2 + 72;
+	tileMovement = 0;
 }
 
 LevelGenerator::~LevelGenerator()
@@ -29,10 +30,11 @@ void LevelGenerator::update(core::Siika2D *siika)
 	int tileAmount = 0;
 	bool deleteTile = false;
 
+	tileMovement += 1;
 	for (misc::GameObject *t : tiles)
 	{
 		glm::vec2 tPos = t->getComponent<misc::TransformComponent>()->getPosition();
-		t->getComponent<misc::TransformComponent>()->setPosition(glm::vec2(tPos.x - 2, tPos.y));
+		t->getComponent<misc::TransformComponent>()->setPosition(glm::vec2(tPos.x - 4, tPos.y));
 		t->update();
 
 		tileAmount += 1;
@@ -49,14 +51,14 @@ void LevelGenerator::update(core::Siika2D *siika)
 	ttt << "Tiles: " << tileAmount;
 	text->setText(ttt.str());
 */
-	if (generatorTimer.getElapsedTime(TIME::SECONDS) > 0.18f)
+	if (tileMovement >= 15)
 	{
-		generatorTimer.reset();
+		tileMovement = 0;
 
 		glm::vec2 screenSize = siika->_graphicsContext->getDisplaySize();
 		if (platformSpawned < platformLength)
 		{
-			int x = screenSize.x;
+			int x = screenSize.x + 64;
 			spawnTile(siika, x, yLevel);
 			platformSpawned += 1;
 		}

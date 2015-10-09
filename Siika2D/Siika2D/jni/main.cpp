@@ -11,8 +11,8 @@ core::Siika2D *siika = core::Siika2D::UI();
 misc::GameObject ushiko;
 glm::vec2 position;
 
-LevelGenerator* lg;
-LevelTimer* lt;
+LevelGenerator *lg;
+LevelTimer *lt;
 
 void siika_init()
 {
@@ -45,10 +45,13 @@ void siika_main()
 	ushiko.getComponent<misc::TransformComponent>()->setPosition(position);
 	ushiko.update();
 
-	lg->update(siika);
-	lt->update();
+	if (lg->generatorTimer.getElapsedTime(MILLISECONDS) > 10)
+	{
+		lg->generatorTimer.reset();
+		lg->update(siika);
+	}
 
-	lg->update(siika);
+	lt->update();
 
 	siika->_spriteManager->drawSprites();
 	siika->_textManager->drawTexts();

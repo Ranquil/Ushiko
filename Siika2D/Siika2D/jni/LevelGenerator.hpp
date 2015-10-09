@@ -13,8 +13,9 @@ public:
 
 	void update(core::Siika2D *siika);
 
-private:
 	misc::Timer generatorTimer;
+
+private:
 	std::vector<misc::GameObject*> tiles;
 
 	void spawnTile(core::Siika2D *siika, int xPos, int yPos);
@@ -24,6 +25,8 @@ private:
 	int platformLength;
 	int platformSpawned;
 	int yLevel;
+
+	int tileMovement;
 };
 
 #endif // LEVELGENERATOR
