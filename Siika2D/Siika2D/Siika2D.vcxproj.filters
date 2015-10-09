@@ -132,6 +132,9 @@
     <ClCompile Include="jni\LevelGenerator.cpp">
       <Filter>Ushiko</Filter>
     </ClCompile>
+    <ClCompile Include="jni\LevelTimer.cpp">
+      <Filter>Ushiko</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="native_app_glue\android_native_app_glue.h">
@@ -225,6 +228,9 @@
       <Filter>Siika2D\engine\misc</Filter>
     </ClInclude>
     <ClInclude Include="jni\LevelGenerator.hpp">
+      <Filter>Ushiko</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\LevelTimer.hpp">
       <Filter>Ushiko</Filter>
     </ClInclude>
   </ItemGroup>

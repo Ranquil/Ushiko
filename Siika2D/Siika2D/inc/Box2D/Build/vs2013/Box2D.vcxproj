@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="NsightTegraProject">
-    <NsightTegraProjectRevisionNumber>9</NsightTegraProjectRevisionNumber>
+    <NsightTegraProjectRevisionNumber>11</NsightTegraProjectRevisionNumber>
   </PropertyGroup>
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Tegra-Android">
@@ -74,8 +74,7 @@
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionSettings"></ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -121,8 +120,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader></PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ProgramDataBaseFileName>$(OutDir)Box2D.pdb</ProgramDataBaseFileName>
@@ -150,8 +148,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader></PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ProgramDataBaseFileName>$(OutDir)Box2D.pdb</ProgramDataBaseFileName>
@@ -180,8 +177,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader></PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ProgramDataBaseFileName>$(OutDir)Box2D.pdb</ProgramDataBaseFileName>
@@ -209,8 +205,7 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader></PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ProgramDataBaseFileName>$(OutDir)Box2D.pdb</ProgramDataBaseFileName>
@@ -239,8 +234,7 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader></PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ProgramDataBaseFileName>$(OutDir)Box2D.pdb</ProgramDataBaseFileName>
@@ -270,8 +264,7 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader></PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>false</ExceptionHandling>
@@ -343,97 +336,52 @@
     <ClInclude Include="..\..\Box2D\Dynamics\Joints\b2WheelJoint.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Box2D\Collision\b2BroadPhase.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Collision\b2CollideCircle.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Collision\b2CollideEdge.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Collision\b2CollidePolygon.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Collision\b2Collision.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Collision\b2Distance.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Collision\b2DynamicTree.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Collision\b2TimeOfImpact.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Collision\Shapes\b2ChainShape.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Collision\Shapes\b2CircleShape.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Collision\Shapes\b2EdgeShape.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Collision\Shapes\b2PolygonShape.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Common\b2BlockAllocator.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Common\b2Draw.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Common\b2Math.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Common\b2Settings.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Common\b2StackAllocator.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Common\b2Timer.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\b2Body.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\b2ContactManager.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\b2Fixture.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\b2Island.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\b2World.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\b2WorldCallbacks.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Contacts\b2ChainAndCircleContact.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Contacts\b2ChainAndPolygonContact.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Contacts\b2CircleContact.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Contacts\b2Contact.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Contacts\b2ContactSolver.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Contacts\b2EdgeAndCircleContact.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Contacts\b2EdgeAndPolygonContact.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Contacts\b2PolygonContact.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2DistanceJoint.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2FrictionJoint.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2GearJoint.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2Joint.cpp">
-    </ClCompile>
+    <ClCompile Include="..\..\Box2D\Collision\b2BroadPhase.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Collision\b2CollideCircle.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Collision\b2CollideEdge.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Collision\b2CollidePolygon.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Collision\b2Collision.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Collision\b2Distance.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Collision\b2DynamicTree.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Collision\b2TimeOfImpact.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Collision\Shapes\b2ChainShape.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Collision\Shapes\b2CircleShape.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Collision\Shapes\b2EdgeShape.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Collision\Shapes\b2PolygonShape.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Common\b2BlockAllocator.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Common\b2Draw.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Common\b2Math.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Common\b2Settings.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Common\b2StackAllocator.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Common\b2Timer.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\b2Body.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\b2ContactManager.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\b2Fixture.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\b2Island.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\b2World.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\b2WorldCallbacks.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Contacts\b2ChainAndCircleContact.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Contacts\b2ChainAndPolygonContact.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Contacts\b2CircleContact.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Contacts\b2Contact.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Contacts\b2ContactSolver.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Contacts\b2EdgeAndCircleContact.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Contacts\b2EdgeAndPolygonContact.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Contacts\b2PolygonContact.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2DistanceJoint.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2FrictionJoint.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2GearJoint.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2Joint.cpp"></ClCompile>
     <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2MotorJoint.cpp" />
-    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2MouseJoint.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2PrismaticJoint.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2PulleyJoint.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2RevoluteJoint.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2RopeJoint.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2WeldJoint.cpp">
-    </ClCompile>
-    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2WheelJoint.cpp">
-    </ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2MouseJoint.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2PrismaticJoint.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2PulleyJoint.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2RevoluteJoint.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2RopeJoint.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2WeldJoint.cpp"></ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2WheelJoint.cpp"></ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets"></ImportGroup>
 </Project>

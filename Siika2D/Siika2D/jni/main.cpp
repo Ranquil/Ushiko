@@ -5,12 +5,14 @@
 #include "../engine/misc/GameObject.h"
 
 #include "LevelGenerator.hpp"
+#include "LevelTimer.hpp"
 
 core::Siika2D *siika = core::Siika2D::UI();
 misc::GameObject ushiko;
 glm::vec2 position;
 
 LevelGenerator* lg;
+LevelTimer* lt;
 
 void siika_init()
 {
@@ -24,6 +26,9 @@ void siika_init()
 	ushiko.addComponent(sprtComp);
 
 	siika->_graphicsContext->setClearColor(graphics::Color(0, 255, 255, 255));
+
+	lt = new LevelTimer;
+	lt->InitTimer(siika, "arial.ttf", 64, 0.5, -0.95);
 
 	lg = new LevelGenerator;
 	lg->initSprites(siika, "tile_grass_left_corner.png", "tile_grass_middle.png", "tile_grass_right_corner.png");
@@ -42,6 +47,7 @@ void siika_main()
 	ushiko.update();
 
 	lg->update();
+	lt->update();
 
 	siika->_spriteManager->drawSprites();
 	siika->_textManager->drawTexts();
