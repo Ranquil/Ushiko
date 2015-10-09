@@ -35,7 +35,7 @@
       <UniqueIdentifier>{436cfc25-136c-44a2-9f6d-67d8081a93ac}</UniqueIdentifier>
     </Filter>
     <Filter Include="Ushiko">
-      <UniqueIdentifier>{d0c73225-3038-47d8-be41-2c2ccbcfad5d}</UniqueIdentifier>
+      <UniqueIdentifier>{d4e4f492-7521-4694-a565-6cb811b521ea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +127,9 @@
       <Filter>Siika2D\engine\misc</Filter>
     </ClCompile>
     <ClCompile Include="engine\misc\TransformComponent.cpp">
+      <Filter>Siika2D\engine\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\misc\PhysicsComponent.cpp">
       <Filter>Siika2D\engine\misc</Filter>
     </ClCompile>
     <ClCompile Include="jni\LevelGenerator.cpp">
