@@ -45,6 +45,7 @@
     <ClCompile Include="engine\misc\Timer.cpp" />
     <ClCompile Include="engine\misc\TransformComponent.cpp" />
     <ClCompile Include="inc\lodepng\lodepng.cpp" />
+    <ClCompile Include="jni\LevelGenerator.cpp" />
     <ClCompile Include="jni\main.cpp" />
     <ClCompile Include="native_app_glue\android_native_app_glue.c" />
     <ClCompile Include="Siika_main.cpp" />
@@ -81,6 +82,7 @@
     <ClInclude Include="engine\misc\Timer.h" />
     <ClInclude Include="engine\misc\TransformComponent.h" />
     <ClInclude Include="inc\lodepng\lodepng.h" />
+    <ClInclude Include="jni\LevelGenerator.hpp" />
     <ClInclude Include="native_app_glue\android_native_app_glue.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -34,6 +34,9 @@
     <Filter Include="Siika2D\engine\audio">
       <UniqueIdentifier>{436cfc25-136c-44a2-9f6d-67d8081a93ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Ushiko">
+      <UniqueIdentifier>{ec78f04d-c213-42df-abdb-c232f35c51a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <AndroidBuild Include="AndroidManifest.xml" />
@@ -126,6 +129,9 @@
     <ClCompile Include="engine\misc\TransformComponent.cpp">
       <Filter>Siika2D\engine\misc</Filter>
     </ClCompile>
+    <ClCompile Include="jni\LevelGenerator.cpp">
+      <Filter>Ushiko</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="native_app_glue\android_native_app_glue.h">
@@ -217,6 +223,9 @@
     </ClInclude>
     <ClInclude Include="engine\misc\TransformComponent.h">
       <Filter>Siika2D\engine\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\LevelGenerator.hpp">
+      <Filter>Ushiko</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
