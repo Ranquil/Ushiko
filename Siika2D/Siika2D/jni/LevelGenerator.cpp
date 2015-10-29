@@ -12,6 +12,20 @@ LevelGenerator::LevelGenerator(core::Siika2D *siika)
 	platformSpawned = 0;
 
 	yLevel = siika->_graphicsContext->getDisplaySize().y * 2 + 400;
+
+	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
+
+	/*
+	bg = siika->_spriteManager->createSprite(
+		glm::vec2(0, 0),
+		glm::vec2(scrSize.x, scrSize.y),
+		glm::vec2(0, 0),
+		siika->_textureManager->createTexture("background_castle.png"),
+		glm::vec2(0, 0),
+		glm::vec2(1, 1));
+	bg->setSize(glm::vec2(scrSize.x, scrSize.y));
+	bg->setZ(0);
+	//*/
 }
 
 LevelGenerator::~LevelGenerator()
@@ -60,7 +74,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 				switch (yLevel)
 				{
 					case 0: yLevel = 400; break;
-					case 1: yLevel = screenSize.y * 2 - 400; break;
+					case 1: yLevel = screenSize.y * 2 - 300; break;
 					default: yLevel = screenSize.y * 2 + 400; break;
 				}
 			}
@@ -70,23 +84,25 @@ void LevelGenerator::update(core::Siika2D *siika)
 
 void LevelGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
 {
-	std::string textureName = "tile_grass_middle.png";
+	std::string textureName = "tile_castle_middle.png";
 	if (platformSpawned == 0)
-		textureName = "tile_grass_left_corner.png";
+		textureName = "tile_castle_left.png";
 	else if (platformSpawned == platformLength - 1)
-		textureName = "tile_grass_right_corner.png";
+		textureName = "tile_castle_right.png";
 
 	glm::vec2 pos = glm::vec2(xPos, yPos);
 
 	misc::GameObject *t = new misc::GameObject(pos, siika->_textureManager->createTexture(textureName), glm::vec2(64, 64), glm::vec2(32, 32));
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
-																pos,
-																glm::vec2(64, 64),
-																glm::vec2(32, 32),
-																siika->_textureManager->createTexture(textureName),
-																glm::vec2(0, 0),
-																glm::vec2(1, 1))));
+		pos,
+		glm::vec2(64, 64),
+		glm::vec2(32, 32),
+		siika->_textureManager->createTexture(textureName),
+		glm::vec2(0, 0),
+		glm::vec2(1, 1))));
 	t->removeComponent<misc::SpriteComponent>();
+	sprtComp->setZ(2);
+
 	t->addComponent(sprtComp);
 
 	t->getComponent<misc::PhysicsComponent>()->setSize(glm::vec2(32, 32));
