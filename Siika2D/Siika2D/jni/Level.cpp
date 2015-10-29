@@ -1,4 +1,5 @@
 #include "Level.hpp"
+#include "GlobalVariables.hpp"
 
 Level::Level(core::Siika2D *siika)
 {
@@ -33,7 +34,7 @@ Level::~Level()
 
 }
 
-void Level::update(core::Siika2D *siika)
+int Level::update(core::Siika2D *siika)
 {
 	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
 	{
@@ -57,4 +58,6 @@ void Level::update(core::Siika2D *siika)
 	siika->_spriteManager->drawSprites();
 	siika->_textManager->drawTexts();
 	siika->_graphicsContext->swap();
+
+	return GAME_LEVEL;
 }

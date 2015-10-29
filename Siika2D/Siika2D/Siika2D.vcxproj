@@ -93,6 +93,7 @@
     <ClInclude Include="jni\LevelGenerator.hpp" />
     <ClInclude Include="jni\LevelTimer.hpp" />
     <ClInclude Include="jni\MainMenu.hpp" />
+    <ClInclude Include="jni\Scene.hpp" />
     <ClInclude Include="native_app_glue\android_native_app_glue.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

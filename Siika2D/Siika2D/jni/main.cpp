@@ -4,37 +4,22 @@
 
 #include "Level.hpp"
 
-enum ScreenState{
-	MAIN_MENU,
-	GAME_LEVEL
-};
 core::Siika2D *siika = core::Siika2D::UI();
-Level *level;
-ScreenState screenState;
+int screenState;
 
 void siika_onPause() {}
 void siika_onResume() {}
 
+Scene scenes[3];
 
 void siika_init()
 {
-	screenState = MAIN_MENU;
+	screenState = GAME_LEVEL;
+
+	scenes[GAME_LEVEL] = new Level(siika);
 }
 
 void siika_main()
 {
-
-	switch (screenState)
-	{
-		case MAIN_MENU:
-
-		break;
-
-		case GAME_LEVEL:
-		level = new Level(siika);
-		level->update(siika);
-		break;
-	}
-
-	
+	screenState = scenes[screenState].update(siika);
 }

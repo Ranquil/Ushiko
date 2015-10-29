@@ -1,263 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="jni">
-      <UniqueIdentifier>9083457d-e370-4b32-834c-99709fda3d68</UniqueIdentifier>
-    </Filter>
-    <Filter Include="res">
-      <UniqueIdentifier>eee69b7c-521f-403e-ab42-6e983484441a</UniqueIdentifier>
-    </Filter>
-    <Filter Include="res\values">
-      <UniqueIdentifier>9cddbe70-7b9f-48e4-bfdc-d9d1fad6d41d</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Siika2D">
-      <UniqueIdentifier>{73075b0d-2ff0-4ed8-8fb2-80068dcfab6c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Siika2D\engine">
-      <UniqueIdentifier>{09c47307-17ea-48ec-9f36-fa3ec5e9dd9e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Siika2D\engine\graphics">
-      <UniqueIdentifier>{b35dc463-f77e-4c1b-a534-8254223e4901}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Siika2D\engine\core">
-      <UniqueIdentifier>{39a200bd-7c6c-4a80-8470-273e3135321b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Siika2D\engine\misc">
-      <UniqueIdentifier>{0f991f9a-6779-4e6a-8d50-451fbe124af9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Siika2D\engine\lodepng">
-      <UniqueIdentifier>{2d11c8a0-ff2a-4907-8f5b-4d1de49f2040}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Siika2D\native_app_glue">
-      <UniqueIdentifier>{c546b489-f93e-4094-83d5-3c3fcb1055c8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Siika2D\engine\audio">
-      <UniqueIdentifier>{436cfc25-136c-44a2-9f6d-67d8081a93ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Ushiko">
-      <UniqueIdentifier>{6adbe465-d66c-439f-b93b-b7d5b19c2a92}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidBuild Include="AndroidManifest.xml" />
-    <AndroidBuild Include="res\values\strings.xml">
-      <Filter>res\values</Filter>
-    </AndroidBuild>
+    <AndroidBuild Include="res\values\strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="native_app_glue\android_native_app_glue.c">
-      <Filter>Siika2D\native_app_glue</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\graphics\Buffer.cpp">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\graphics\GraphicsContext.cpp">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\graphics\Shader.cpp">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\graphics\ShaderManager.cpp">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\graphics\Sprite.cpp">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\graphics\Texture.cpp">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\graphics\TextureManager.cpp">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\misc\Color.cpp">
-      <Filter>Siika2D\engine\misc</Filter>
-    </ClCompile>
-    <ClCompile Include="inc\lodepng\lodepng.cpp">
-      <Filter>Siika2D\engine\lodepng</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\core\ErrorHandler.cpp">
-      <Filter>Siika2D\engine\core</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\core\ResourceManager.cpp">
-      <Filter>Siika2D\engine\core</Filter>
-    </ClCompile>
-    <ClCompile Include="jni\main.cpp">
-      <Filter>Siika2D</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\graphics\Camera.cpp">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\graphics\SpriteManager.cpp">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\graphics\Text.cpp">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\misc\Input.cpp">
-      <Filter>Siika2D\engine\misc</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\misc\Timer.cpp">
-      <Filter>Siika2D\engine\misc</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\graphics\BufferManager.cpp">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\graphics\TextManager.cpp">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\core\Siika2D.cpp">
-      <Filter>Siika2D\engine\core</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\audio\Audio.cpp">
-      <Filter>Siika2D\engine\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\audio\AudioInitializer.cpp">
-      <Filter>Siika2D\engine\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\audio\AudioManager.cpp">
-      <Filter>Siika2D\engine\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\audio\AudioPlayer.cpp">
-      <Filter>Siika2D\engine\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="Siika_main.cpp">
-      <Filter>Siika2D\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\misc\TransformComponent.cpp">
-      <Filter>Siika2D\engine\misc</Filter>
-    </ClCompile>
-    <ClCompile Include="jni\Level.cpp">
-      <Filter>Ushiko</Filter>
-    </ClCompile>
-    <ClCompile Include="jni\LevelGenerator.cpp">
-      <Filter>Ushiko</Filter>
-    </ClCompile>
-    <ClCompile Include="jni\LevelTimer.cpp">
-      <Filter>Ushiko</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="jni\MainMenu.cpp">
-      <Filter>Ushiko</Filter>
-=======
-    <ClCompile Include="engine\misc\PhysicsComponent.cpp">
-      <Filter>Siika2D\engine\misc</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\misc\GameObject.cpp">
-      <Filter>Siika2D\engine\misc</Filter>
->>>>>>> origin/master
-    </ClCompile>
+    <ClCompile Include="engine\audio\Audio.cpp" />
+    <ClCompile Include="engine\audio\AudioInitializer.cpp" />
+    <ClCompile Include="engine\audio\AudioManager.cpp" />
+    <ClCompile Include="engine\audio\AudioPlayer.cpp" />
+    <ClCompile Include="engine\core\ErrorHandler.cpp" />
+    <ClCompile Include="engine\core\ResourceManager.cpp" />
+    <ClCompile Include="engine\core\Siika2D.cpp" />
+    <ClCompile Include="engine\graphics\Buffer.cpp" />
+    <ClCompile Include="engine\graphics\BufferManager.cpp" />
+    <ClCompile Include="engine\graphics\Camera.cpp" />
+    <ClCompile Include="engine\graphics\GraphicsContext.cpp" />
+    <ClCompile Include="engine\graphics\Shader.cpp" />
+    <ClCompile Include="engine\graphics\ShaderManager.cpp" />
+    <ClCompile Include="engine\graphics\Sprite.cpp" />
+    <ClCompile Include="engine\graphics\SpriteManager.cpp" />
+    <ClCompile Include="engine\graphics\Text.cpp" />
+    <ClCompile Include="engine\graphics\TextManager.cpp" />
+    <ClCompile Include="engine\graphics\Texture.cpp" />
+    <ClCompile Include="engine\graphics\TextureManager.cpp" />
+    <ClCompile Include="engine\misc\Color.cpp" />
+    <ClCompile Include="engine\misc\GameObject.cpp" />
+    <ClCompile Include="engine\misc\Input.cpp" />
+    <ClCompile Include="engine\misc\PhysicsComponent.cpp" />
+    <ClCompile Include="engine\misc\Timer.cpp" />
+    <ClCompile Include="engine\misc\TransformComponent.cpp" />
+    <ClCompile Include="inc\lodepng\lodepng.cpp" />
+    <ClCompile Include="jni\Level.cpp" />
+    <ClCompile Include="jni\LevelGenerator.cpp" />
+    <ClCompile Include="jni\LevelTimer.cpp" />
+    <ClCompile Include="jni\main.cpp" />
+    <ClCompile Include="jni\MainMenu.cpp" />
+    <ClCompile Include="native_app_glue\android_native_app_glue.c" />
+    <ClCompile Include="Siika_main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="native_app_glue\android_native_app_glue.h">
-      <Filter>Siika2D\native_app_glue</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\graphics\Buffer.h">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\graphics\GraphicsContext.h">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\graphics\Shader.h">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\graphics\ShaderManager.h">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\graphics\Sprite.h">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\graphics\Texture.h">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\graphics\TextureManager.h">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\misc\Color.h">
-      <Filter>Siika2D\engine\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\lodepng\lodepng.h">
-      <Filter>Siika2D\engine\lodepng</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\core\ErrorHandler.h">
-      <Filter>Siika2D\engine\core</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\core\MemoryManager.h">
-      <Filter>Siika2D\engine\core</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\core\ResourceManager.h">
-      <Filter>Siika2D\engine\core</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\graphics\Camera.h">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\graphics\Shaders.h">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\graphics\SpriteManager.h">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\graphics\Text.h">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\misc\Component.h">
-      <Filter>Siika2D\engine\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\misc\GameObject.h">
-      <Filter>Siika2D\engine\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\misc\Input.h">
-      <Filter>Siika2D\engine\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\misc\Timer.h">
-      <Filter>Siika2D\engine\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\audio\Audio.h">
-      <Filter>Siika2D\engine\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\graphics\BufferManager.h">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\graphics\TextManager.h">
-      <Filter>Siika2D\engine\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\core\Siika2D.h">
-      <Filter>Siika2D\engine\core</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\audio\AudioPlayer.h">
-      <Filter>Siika2D\engine\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\audio\AudioInitializer.h">
-      <Filter>Siika2D\engine\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\audio\AudioManager.h">
-      <Filter>Siika2D\engine\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\misc\SpriteComponent.h">
-      <Filter>Siika2D\engine\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\misc\TransformComponent.h">
-      <Filter>Siika2D\engine\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\misc\CoordTransform.h">
-      <Filter>Siika2D\engine\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\misc\ColListener.h">
-      <Filter>Siika2D\engine\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\misc\PhysicsComponent.h">
-      <Filter>Siika2D\engine\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="jni\Level.hpp">
-      <Filter>Ushiko</Filter>
-    </ClInclude>
-    <ClInclude Include="jni\LevelGenerator.hpp">
-      <Filter>Ushiko</Filter>
-    </ClInclude>
-    <ClInclude Include="jni\LevelTimer.hpp">
-      <Filter>Ushiko</Filter>
-    </ClInclude>
-    <ClInclude Include="jni\MainMenu.hpp">
-      <Filter>Ushiko</Filter>
-    </ClInclude>
+    <ClInclude Include="engine\audio\Audio.h" />
+    <ClInclude Include="engine\audio\AudioInitializer.h" />
+    <ClInclude Include="engine\audio\AudioManager.h" />
+    <ClInclude Include="engine\audio\AudioPlayer.h" />
+    <ClInclude Include="engine\core\ErrorHandler.h" />
+    <ClInclude Include="engine\core\MemoryManager.h" />
+    <ClInclude Include="engine\core\ResourceManager.h" />
+    <ClInclude Include="engine\core\Siika2D.h" />
+    <ClInclude Include="engine\graphics\Buffer.h" />
+    <ClInclude Include="engine\graphics\BufferManager.h" />
+    <ClInclude Include="engine\graphics\Camera.h" />
+    <ClInclude Include="engine\graphics\GraphicsContext.h" />
+    <ClInclude Include="engine\graphics\Shader.h" />
+    <ClInclude Include="engine\graphics\ShaderManager.h" />
+    <ClInclude Include="engine\graphics\Shaders.h" />
+    <ClInclude Include="engine\graphics\Sprite.h" />
+    <ClInclude Include="engine\graphics\SpriteManager.h" />
+    <ClInclude Include="engine\graphics\Text.h" />
+    <ClInclude Include="engine\graphics\TextManager.h" />
+    <ClInclude Include="engine\graphics\Texture.h" />
+    <ClInclude Include="engine\graphics\TextureManager.h" />
+    <ClInclude Include="engine\misc\Color.h" />
+    <ClInclude Include="engine\misc\Component.h" />
+    <ClInclude Include="engine\misc\CoordTransform.h" />
+    <ClInclude Include="engine\misc\GameObject.h" />
+    <ClInclude Include="engine\misc\Input.h" />
+    <ClInclude Include="engine\misc\PhysicsComponent.h" />
+    <ClInclude Include="engine\misc\SpriteComponent.h" />
+    <ClInclude Include="engine\misc\ColListener.h" />
+    <ClInclude Include="engine\misc\Timer.h" />
+    <ClInclude Include="engine\misc\TransformComponent.h" />
+    <ClInclude Include="inc\lodepng\lodepng.h" />
+    <ClInclude Include="jni\Level.hpp" />
+    <ClInclude Include="jni\LevelGenerator.hpp" />
+    <ClInclude Include="jni\LevelTimer.hpp" />
+    <ClInclude Include="jni\MainMenu.hpp" />
+    <ClInclude Include="native_app_glue\android_native_app_glue.h" />
+    <ClInclude Include="jni\Scene.hpp" />
   </ItemGroup>
 </Project>
