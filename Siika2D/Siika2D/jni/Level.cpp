@@ -1,5 +1,4 @@
 #include "Level.hpp"
-#include "GlobalVariables.hpp"
 
 Level::Level(core::Siika2D *siika)
 {

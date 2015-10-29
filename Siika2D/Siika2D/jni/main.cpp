@@ -5,21 +5,20 @@
 #include "Level.hpp"
 
 core::Siika2D *siika = core::Siika2D::UI();
-int screenState;
 
 void siika_onPause() {}
 void siika_onResume() {}
 
-Scene scenes[3];
+Scene* scenes[3];
+int screenState;
 
 void siika_init()
 {
 	screenState = GAME_LEVEL;
-
 	scenes[GAME_LEVEL] = new Level(siika);
 }
 
 void siika_main()
 {
-	screenState = scenes[screenState].update(siika);
+	screenState = scenes[screenState]->update(siika);
 }
