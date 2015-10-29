@@ -46,6 +46,7 @@
     <ClCompile Include="engine\misc\Timer.cpp" />
     <ClCompile Include="engine\misc\TransformComponent.cpp" />
     <ClCompile Include="inc\lodepng\lodepng.cpp" />
+    <ClCompile Include="jni\Level.cpp" />
     <ClCompile Include="jni\LevelGenerator.cpp" />
     <ClCompile Include="jni\LevelTimer.cpp" />
     <ClCompile Include="jni\main.cpp" />
@@ -84,6 +85,7 @@
     <ClInclude Include="engine\misc\Timer.h" />
     <ClInclude Include="engine\misc\TransformComponent.h" />
     <ClInclude Include="inc\lodepng\lodepng.h" />
+    <ClInclude Include="jni\Level.hpp" />
     <ClInclude Include="jni\LevelGenerator.hpp" />
     <ClInclude Include="jni\LevelTimer.hpp" />
     <ClInclude Include="native_app_glue\android_native_app_glue.h" />
