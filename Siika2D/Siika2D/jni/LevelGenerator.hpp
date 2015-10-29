@@ -5,6 +5,14 @@
 #include "../engine/misc/GameObject.h"
 #include "../engine/misc/timer.h"
 
+struct Tile {
+	Tile(misc::GameObject *t, int yPos) :
+		tile(t), yLevel(yPos) {
+	}
+	misc::GameObject *tile;
+	int yLevel;
+};
+
 class LevelGenerator
 {
 public:
@@ -16,7 +24,7 @@ public:
 	misc::Timer generatorTimer;
 
 private:
-	std::vector<misc::GameObject*> tiles;
+	std::vector<Tile*> tiles;
 
 	void spawnTile(core::Siika2D *siika, int xPos, int yPos);
 

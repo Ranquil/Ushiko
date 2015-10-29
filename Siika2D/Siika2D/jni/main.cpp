@@ -1,7 +1,4 @@
 #include "../engine/core/Siika2D.h"
-#include "../engine/audio/Audio.h"
-#include "../engine/misc/timer.h"
-#include "../engine/misc/GameObject.h"
 
 #include <Box2D/Box2D.h>
 

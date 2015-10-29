@@ -123,13 +123,7 @@
     <ClCompile Include="Siika_main.cpp">
       <Filter>Siika2D\engine</Filter>
     </ClCompile>
-    <ClCompile Include="engine\misc\GameObject.cpp">
-      <Filter>Siika2D\engine\misc</Filter>
-    </ClCompile>
     <ClCompile Include="engine\misc\TransformComponent.cpp">
-      <Filter>Siika2D\engine\misc</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\misc\PhysicsComponent.cpp">
       <Filter>Siika2D\engine\misc</Filter>
     </ClCompile>
     <ClCompile Include="jni\Level.cpp">
@@ -140,6 +134,12 @@
     </ClCompile>
     <ClCompile Include="jni\LevelTimer.cpp">
       <Filter>Ushiko</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\misc\PhysicsComponent.cpp">
+      <Filter>Siika2D\engine\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\misc\GameObject.cpp">
+      <Filter>Siika2D\engine\misc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
