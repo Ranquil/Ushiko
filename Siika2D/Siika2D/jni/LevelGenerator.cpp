@@ -27,8 +27,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 	tileMovement += 1;
 	for (Tile *t : tiles)
 	{
-		glm::vec2 tPos = t->tile->getComponent<misc::TransformComponent>()->getPosition();
-		t->tile->move(glm::vec2(tPos.x - 4, t->yLevel));
+		t->go->move(glm::vec2(t->xPos -= 4, t->yPos));
 
 		tileAmount += 1;
 		if (tileAmount > 42)
@@ -70,25 +69,28 @@ void LevelGenerator::update(core::Siika2D *siika)
 
 void LevelGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
 {
-	misc::GameObject *t = new misc::GameObject;
-
 	std::string textureName = "tile_grass_middle.png";
 	if (platformSpawned == 0)
 		textureName = "tile_grass_left_corner.png";
 	else if (platformSpawned == platformLength - 1)
 		textureName = "tile_grass_right_corner.png";
 
-	misc::SpriteComponent *spriteComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(glm::vec2(-100, 0), glm::vec2(64, 64), glm::vec2(32, 32), siika->_textureManager->createTexture(textureName), glm::vec2(0, 0), glm::vec2(1, 1))));
-	misc::TransformComponent *transComp = new misc::TransformComponent;
-	misc::PhysicsComponent *physComp = new misc::PhysicsComponent;
-	physComp->setGravityScale(0);
+	glm::vec2 pos = glm::vec2(xPos, yPos);
 
-	t->addComponent(spriteComp);
-	t->addComponent(transComp);
-	t->addComponent(physComp);
+	misc::GameObject *t = new misc::GameObject(pos, siika->_textureManager->createTexture(textureName), glm::vec2(64, 64), glm::vec2(32, 32));
+	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
+																pos,
+																glm::vec2(64, 64),
+																glm::vec2(32, 32),
+																siika->_textureManager->createTexture(textureName),
+																glm::vec2(0, 0),
+																glm::vec2(1, 1))));
+	t->removeComponent<misc::SpriteComponent>();
+	t->addComponent(sprtComp);
 
-	t->move(glm::vec2(xPos, yPos));
+	t->getComponent<misc::PhysicsComponent>()->setGravityScale(0);
+	t->move(pos);
 
-	Tile *newTile = new Tile(t, yPos);
+	Tile *newTile = new Tile(t, xPos, yPos);
 	tiles.push_back(newTile);
 }
