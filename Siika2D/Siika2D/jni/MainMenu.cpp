@@ -32,6 +32,11 @@ void MainMenu::Init(core::Siika2D *siika)
 	startGameButton.move(glm::vec2(screenSize.x / 2, screenSize.y / 2));
 }
 
+void MainMenu::DeInit(core::Siika2D *siika)
+{
+
+}
+
 int MainMenu::update(core::Siika2D *siika)
 {
 	if (!hasBeenInit)

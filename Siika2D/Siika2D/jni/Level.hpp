@@ -23,6 +23,10 @@ private:
 	glm::vec2 position;
 	LevelGenerator *lg;
 	LevelTimer *lt;
+	colListener collisionListener;
+
+	misc::Timer tempTimer;
+	bool canJump;
 };
 
 #endif // LEVEL

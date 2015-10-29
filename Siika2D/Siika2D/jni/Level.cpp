@@ -38,6 +38,12 @@ void Level::Init(core::Siika2D *siika)
 	lg = new LevelGenerator(siika);
 
 	hasBeenInit = true;
+	canJump = true;
+}
+
+void Level::DeInit(core::Siika2D *siika)
+{
+
 }
 
 int Level::update(core::Siika2D *siika)
@@ -50,9 +56,30 @@ int Level::update(core::Siika2D *siika)
 	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
 	{
 		position = siika->_input->touchPosition(i)._positionCurrent;
+
+		if (canJump) {
+			ushiko.getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
+			ushiko.getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 40), false);
+			tempTimer.reset();
+			canJump = false;
+		}
 	}
 
-	siika->_boxWorld->Step(1.f / 60.f, 6, 2);
+	if (!canJump && tempTimer.getElapsedTime(MILLISECONDS) > 600) {
+		canJump = true;
+	}
+
+	std::vector<misc::GameObject*> *cols = nullptr;
+	if (cols = collisionListener.getCollisionsFor(&ushiko))
+	{
+		if (!cols->empty())
+		{
+			ushiko.getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
+			cols->clear();
+		}
+	}
+
+	siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
 	siika->_graphicsContext->clear();
 
 	ushiko.update();

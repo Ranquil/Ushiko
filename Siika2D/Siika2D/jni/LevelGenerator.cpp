@@ -11,7 +11,7 @@ LevelGenerator::LevelGenerator(core::Siika2D *siika)
 	platformLength = 10;
 	platformSpawned = 0;
 
-	yLevel = siika->_graphicsContext->getDisplaySize().y / 2 + 72;
+	yLevel = siika->_graphicsContext->getDisplaySize().y * 2 + 400;
 }
 
 LevelGenerator::~LevelGenerator()
@@ -27,6 +27,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 	tileMovement += 1;
 	for (Tile *t : tiles)
 	{
+		t->go->update();
 		t->go->move(glm::vec2(t->xPos -= 4, t->yPos));
 
 		tileAmount += 1;
@@ -37,14 +38,14 @@ void LevelGenerator::update(core::Siika2D *siika)
 	if (deleteTile)
 		tiles.erase(tiles.begin());
 
-	if (tileMovement >= 15)
+	if (tileMovement >= 16)
 	{
 		tileMovement = 0;
 
 		glm::vec2 screenSize = siika->_graphicsContext->getDisplaySize();
 		if (platformSpawned < platformLength)
 		{
-			int x = screenSize.x + 64;
+			int x = screenSize.x * 2;
 			spawnTile(siika, x, -yLevel);
 			platformSpawned += 1;
 		}
@@ -58,9 +59,9 @@ void LevelGenerator::update(core::Siika2D *siika)
 				yLevel = mrand48() % 3;
 				switch (yLevel)
 				{
-					case 0: yLevel = 196; break;
-					case 1: yLevel = screenSize.y - 32; break;
-					default: yLevel = screenSize.y / 2 + 72; break;
+					case 0: yLevel = 400; break;
+					case 1: yLevel = screenSize.y * 2 - 400; break;
+					default: yLevel = screenSize.y * 2 + 400; break;
 				}
 			}
 		}
@@ -88,6 +89,7 @@ void LevelGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
 	t->removeComponent<misc::SpriteComponent>();
 	t->addComponent(sprtComp);
 
+	t->getComponent<misc::PhysicsComponent>()->setSize(glm::vec2(32, 32));
 	t->getComponent<misc::PhysicsComponent>()->setGravityScale(0);
 	t->move(pos);
 
