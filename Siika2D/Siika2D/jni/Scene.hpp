@@ -3,7 +3,8 @@
 
 #include "../engine/core/Siika2D.h"
 
-enum ScreenState{
+enum ScreenState
+{
 	DEFAULT,
 	MAIN_MENU,
 	GAME_LEVEL
@@ -12,7 +13,8 @@ enum ScreenState{
 class Scene
 {
 public:
-	virtual int update(core::Siika2D *siika) {
+	virtual int update(core::Siika2D *siika)
+	{
 		return DEFAULT;
 	}
 };

@@ -5,10 +5,10 @@
 #include "../engine/misc/GameObject.h"
 #include "../engine/misc/timer.h"
 
-struct Tile {
+struct Tile
+{
 	Tile(misc::GameObject *t, int yPos) :
-		tile(t), yLevel(yPos) {
-	}
+		tile(t), yLevel(yPos) {}
 	misc::GameObject *tile;
 	int yLevel;
 };

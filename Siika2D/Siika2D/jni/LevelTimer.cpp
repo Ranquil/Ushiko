@@ -33,7 +33,7 @@ void LevelTimer::update()
 	
 	if (levelTimer.getElapsedTime(SECONDS) < 10)
 	{
-		timerOstring << timerMinutes << ":" << "0" << (int)levelTimer.getElapsedTime(SECONDS) << "/" << "2:00";
+		timerOstring << timerMinutes << ":0" << (int)levelTimer.getElapsedTime(SECONDS) << "/" << "2:00";
 	}
 	else
 	{
@@ -41,5 +41,4 @@ void LevelTimer::update()
 	}
 	
 	levelTimerText->setText(timerOstring.str());
-
 }

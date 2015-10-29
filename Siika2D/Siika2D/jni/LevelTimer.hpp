@@ -10,13 +10,13 @@ public:
 	LevelTimer();
 	~LevelTimer();
 
+	void update();
 	void InitTimer(core::Siika2D *siika, std::string fontName, int fontSize, float xPosition, float yPosition);
 
-	void update();
-
 private:
-	misc::Timer levelTimer;
 	int timerMinutes;
+
+	misc::Timer levelTimer;
 	graphics::Text *levelTimerText;
 };
 
