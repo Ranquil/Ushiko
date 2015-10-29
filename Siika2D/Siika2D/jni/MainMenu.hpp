@@ -1,18 +1,18 @@
 #ifndef MAINMENU_H
 #define MAINMENU_H
 
-#include "../engine/core/Siika2D.h"
+#include "Scene.hpp"
 
-class MainMenu
+class MainMenu : public Scene
 {
 public: 
 	MainMenu(core::Siika2D *siika);
 	~MainMenu();
 
-	void update(core::Siika2D *siika);
+	virtual int update(core::Siika2D *siika);
 
 private:
 	misc::GameObject startGameButton;
 };
 
-#endif
+#endif // MAINMENU

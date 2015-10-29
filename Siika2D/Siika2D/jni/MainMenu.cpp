@@ -24,7 +24,7 @@ MainMenu::~MainMenu()
 }
 
 
-void update(core::Siika2D *siika)
+int MainMenu::update(core::Siika2D *siika)
 {
-	
+	return MAIN_MENU;
 }
