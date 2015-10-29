@@ -16,12 +16,13 @@ LevelGenerator::LevelGenerator(core::Siika2D *siika)
 	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
 
 	/*
-	bg = siika->_spriteManager->createSprite(glm::vec2(0, 0),
-											 glm::vec2(scrSize.x, scrSize.y),
-											 glm::vec2(0, 0),
-											 siika->_textureManager->createTexture("background_castle.png"),
-											 glm::vec2(0, 0),
-											 glm::vec2(1, 1));
+	bg = siika->_spriteManager->createSprite(
+		glm::vec2(0, 0),
+		glm::vec2(scrSize.x, scrSize.y),
+		glm::vec2(0, 0),
+		siika->_textureManager->createTexture("background_castle.png"),
+		glm::vec2(0, 0),
+		glm::vec2(1, 1));
 	bg->setSize(glm::vec2(scrSize.x, scrSize.y));
 	bg->setZ(0);
 	//*/
@@ -93,12 +94,12 @@ void LevelGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
 
 	misc::GameObject *t = new misc::GameObject(pos, siika->_textureManager->createTexture(textureName), glm::vec2(64, 64), glm::vec2(32, 32));
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
-																pos,
-																glm::vec2(64, 64),
-																glm::vec2(32, 32),
-																siika->_textureManager->createTexture(textureName),
-																glm::vec2(0, 0),
-																glm::vec2(1, 1))));
+		pos,
+		glm::vec2(64, 64),
+		glm::vec2(32, 32),
+		siika->_textureManager->createTexture(textureName),
+		glm::vec2(0, 0),
+		glm::vec2(1, 1))));
 	t->removeComponent<misc::SpriteComponent>();
 	sprtComp->setZ(2);
 
