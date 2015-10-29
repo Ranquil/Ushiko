@@ -50,6 +50,7 @@
     <ClCompile Include="jni\LevelGenerator.cpp" />
     <ClCompile Include="jni\LevelTimer.cpp" />
     <ClCompile Include="jni\main.cpp" />
+    <ClCompile Include="jni\MainMenu.cpp" />
     <ClCompile Include="native_app_glue\android_native_app_glue.c" />
     <ClCompile Include="Siika_main.cpp" />
   </ItemGroup>
@@ -91,6 +92,7 @@
     <ClInclude Include="jni\Level.hpp" />
     <ClInclude Include="jni\LevelGenerator.hpp" />
     <ClInclude Include="jni\LevelTimer.hpp" />
+    <ClInclude Include="jni\MainMenu.hpp" />
     <ClInclude Include="native_app_glue\android_native_app_glue.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

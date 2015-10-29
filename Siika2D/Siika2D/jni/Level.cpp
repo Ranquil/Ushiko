@@ -4,7 +4,13 @@ Level::Level(core::Siika2D *siika)
 {
 	graphics::Texture *ushikoTexture = siika->_textureManager->createTexture("erg.png");
 
-	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(glm::vec2(0, 0), glm::vec2(128, 128), glm::vec2(64, 64), ushikoTexture, glm::vec2(0, 0), glm::vec2(1, 1))));
+	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
+																glm::vec2(0, 0), 
+																glm::vec2(128, 128), 
+																glm::vec2(64, 64), 
+																ushikoTexture, 
+																glm::vec2(0, 0), 
+																glm::vec2(1, 1))));
 	misc::TransformComponent *transComp = new misc::TransformComponent;
 	//	misc::PhysicsComponent *physComp = new misc::PhysicsComponent;
 	transComp->setPosition(glm::vec2(0, 0));
