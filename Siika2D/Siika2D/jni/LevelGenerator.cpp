@@ -73,7 +73,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 				switch (yLevel)
 				{
 					case 0: yLevel = 400; break;
-					case 1: yLevel = screenSize.y * 2 - 400; break;
+					case 1: yLevel = screenSize.y * 2 - 300; break;
 					default: yLevel = screenSize.y * 2 + 400; break;
 				}
 			}
