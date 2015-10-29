@@ -1,8 +1,6 @@
 #ifndef LEVEL
 #define LEVEL
 
-#include "../engine/misc/GameObject.h"
-
 #include "Scene.hpp"
 #include "LevelGenerator.hpp"
 #include "LevelTimer.hpp"

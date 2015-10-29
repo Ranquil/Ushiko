@@ -19,7 +19,7 @@ void PhysicsComponent::init()
 void PhysicsComponent::applyForce(glm::vec2 _force, bool wake)
 {
 	b2Vec2 force = b2Vec2(_force.x, _force.y);
-	_body->ApplyForce(force, _body->GetWorldCenter(), wake);
+	_body->ApplyForce(force,_body->GetWorldCenter(), wake);
 }
 
 void PhysicsComponent::applyForce(glm::vec2 _force, glm::vec2 _point, bool wake)
