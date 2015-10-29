@@ -38,7 +38,6 @@ int Level::update(core::Siika2D *siika)
 	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
 	{
 		position = siika->_input->touchPosition(i)._positionCurrent;
-		ushiko.move(position);
 	}
 
 	siika->_boxWorld->Step(1.f / 60.f, 6, 2);

@@ -7,8 +7,11 @@
 
 struct Tile
 {
-	Tile(misc::GameObject *t, int yPos) :
-		tile(t), yLevel(yPos) {}
+	Tile(misc::GameObject *t, int yPos)
+	{
+		this->tile = t;
+		this->yLevel = yPos;
+	}
 	misc::GameObject *tile;
 	int yLevel;
 };

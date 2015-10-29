@@ -11,7 +11,7 @@ void siika_onResume() {}
 
 //Scene* scenes[3];
 //int screenState;
-Level *test;
+Scene *test;
 
 void siika_init()
 {
