@@ -24,6 +24,8 @@ void Level::Init(core::Siika2D *siika)
 	misc::TransformComponent *transComp = new misc::TransformComponent;
 	misc::PhysicsComponent *physicsComp = new misc::PhysicsComponent;
 
+	sprtComp->setZ(10);
+
 	ushiko.addComponent(transComp);
 	ushiko.addComponent(sprtComp);
 	ushiko.addComponent(physicsComp);
@@ -50,6 +52,7 @@ int Level::update(core::Siika2D *siika)
 {
 	if (!hasBeenInit)
 	{
+		ushiko.move(glm::vec2(200, 200));
 		Init(siika);
 	}
 
@@ -82,14 +85,13 @@ int Level::update(core::Siika2D *siika)
 	siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
 	siika->_graphicsContext->clear();
 
-	ushiko.update();
-
 	if (lg->generatorTimer.getElapsedTime(MILLISECONDS) > 10)
 	{
 		lg->generatorTimer.reset();
 		lg->update(siika);
 	}
 
+	ushiko.update();
 	lt->update();
 
 	siika->_spriteManager->drawSprites();
