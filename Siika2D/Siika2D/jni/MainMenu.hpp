@@ -6,12 +6,17 @@
 class MainMenu : public Scene
 {
 public: 
-	MainMenu(core::Siika2D *siika);
+	MainMenu();
 	~MainMenu();
 
 	virtual int update(core::Siika2D *siika);
 
+	virtual void Init(core::Siika2D *siika);
+
+	virtual void DeInit(core::Siika2D *siika);
+
 private:
+	bool hasBeenInit;
 	misc::GameObject startGameButton;
 };
 

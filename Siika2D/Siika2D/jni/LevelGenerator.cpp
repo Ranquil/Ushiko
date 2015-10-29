@@ -46,7 +46,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 		if (platformSpawned < platformLength)
 		{
 			int x = screenSize.x + 64;
-			spawnTile(siika, x, yLevel);
+			spawnTile(siika, x, -yLevel);
 			platformSpawned += 1;
 		}
 		else

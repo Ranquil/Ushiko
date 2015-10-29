@@ -5,7 +5,6 @@
 
 enum ScreenState
 {
-	DEFAULT,
 	MAIN_MENU,
 	GAME_LEVEL
 };
@@ -15,8 +14,13 @@ class Scene
 public:
 	virtual int update(core::Siika2D *siika)
 	{
-		return DEFAULT;
+		return 0;
 	}
+
+	virtual void Init(core::Siika2D *siika){}
+
+	virtual void DeInit(core::Siika2D *siika){}
+
 };
 
 #endif // SCENE
