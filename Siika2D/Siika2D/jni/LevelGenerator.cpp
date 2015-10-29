@@ -10,6 +10,7 @@ LevelGenerator::LevelGenerator(core::Siika2D *siika)
 	tileMovement = 0;
 	platformLength = 10;
 	platformSpawned = 0;
+
 	yLevel = siika->_graphicsContext->getDisplaySize().y / 2 + 72;
 }
 
@@ -24,11 +25,10 @@ void LevelGenerator::update(core::Siika2D *siika)
 	bool deleteTile = false;
 
 	tileMovement += 1;
-	for (misc::GameObject *t : tiles)
+	for (Tile *t : tiles)
 	{
-		glm::vec2 tPos = t->getComponent<misc::TransformComponent>()->getPosition();
-		t->getComponent<misc::TransformComponent>()->setPosition(glm::vec2(tPos.x - 4, tPos.y));
-		t->update();
+		glm::vec2 tPos = t->tile->getComponent<misc::TransformComponent>()->getPosition();
+		t->tile->move(glm::vec2(tPos.x - 4, t->yLevel));
 
 		tileAmount += 1;
 		if (tileAmount > 42)
@@ -80,13 +80,15 @@ void LevelGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
 
 	misc::SpriteComponent *spriteComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(glm::vec2(-100, 0), glm::vec2(64, 64), glm::vec2(32, 32), siika->_textureManager->createTexture(textureName), glm::vec2(0, 0), glm::vec2(1, 1))));
 	misc::TransformComponent *transComp = new misc::TransformComponent;
-	transComp->setPosition(glm::vec2(xPos, yPos));
-
-	//misc::PhysicsComponent *physComp = new misc::PhysicsComponent(glm::vec2(0, 0), glm::vec2(64, 64), 1, 0, 1);
+	misc::PhysicsComponent *physComp = new misc::PhysicsComponent;
+	physComp->setGravityScale(0);
 
 	t->addComponent(spriteComp);
 	t->addComponent(transComp);
-	//t->addComponent(physComp);
+	t->addComponent(physComp);
 
-	tiles.push_back(t);
+	t->move(glm::vec2(xPos, yPos));
+
+	Tile *newTile = new Tile(t, yPos);
+	tiles.push_back(newTile);
 }
