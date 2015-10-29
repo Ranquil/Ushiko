@@ -37,7 +37,6 @@ namespace graphics
 		/**
 		Constructor takes vec2 window size
 		*/
-		glm::vec2 getPosition(){ return glm::vec2(_position.x, _position.y); }
 		Camera(glm::vec2 window);
 		Camera(void){};
 		~Camera();

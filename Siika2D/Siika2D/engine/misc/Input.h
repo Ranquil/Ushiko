@@ -115,23 +115,8 @@ namespace misc
 			else if (sensor == GYROSCOPE)
 				return _gyroscopeData;
 		}
-		glm::vec2 getReleaseVec(void)
-		{
 
-			return _releaseVec;
-			_fingerUp = false;
-		}
-
-		/**
-		Returns if finger is touching screen or not
-		*/
-		bool fingerUp();
 	protected:
-
-		/**
-		Bool if finger is touching screen, access through fingerUp();
-		*/
-		bool _fingerUp;
 
 		/**
 			Given sensor's data
@@ -201,8 +186,6 @@ namespace misc
 		const ASensor* _gyroscopeSensor;
 		ASensorVector *_accelerometerData;
 		ASensorVector *_gyroscopeData;
-		glm::vec2 _releaseVec;
-	
 	};
 
 }
