@@ -1,4 +1,5 @@
 #pragma once
+
 #include "../../native_app_glue/android_native_app_glue.h" //TODO: includeen projektiin siististi tämän jossain vaiheessa
 #include "ResourceManager.h"
 #include "../graphics/ShaderManager.h"
@@ -11,13 +12,30 @@
 #include "Box2D\Box2D.h"
 #include <android/sensor.h>
 #include "../misc/Input.h"
-#include "../misc/CollisionListener.h"
 #include "../misc/CoordTransform.h"
+#include "../misc/ColListener.h"
 
 //#include "..\core\MemoryManager.h"
 
 namespace core
 {
+	/**
+		enum for tracking app events
+	*/
+	enum SIIKA_STATE{
+		NOT_SET = -1,
+		CLEAR,
+		PAUSED,
+		RESUMED
+	};
+	/**
+		Struct for tracking the app lifecycle stage
+	*/
+	struct SIIKA_FLAGS{
+		bool APP_RESUME;
+		bool APP_FOCUS;
+		bool APP_SURFACEREADY;
+	};
 
 	struct saved_state {
 		float angle;
@@ -44,11 +62,11 @@ namespace core
 		saved_state* _savedState;
 
 		/**
-			Tells when graphics has been initialized
-			*/
-		bool drawReady()
+			Tells what the stage of the app is
+		*/
+		const SIIKA_FLAGS getFlags()
 		{
-			return _drawReady;
+			return _siikaFlags;
 		}
 		b2World* getB2World(){ return _boxWorld; }
 		misc::Input *_input;
@@ -60,7 +78,7 @@ namespace core
 		graphics::Camera *_camera;
 		audio::AudioManager* _audioManager;
 		b2World * _boxWorld;
-		misc::collisionListener _collisionListener;
+		//misc::collisionListener _collisionListener;
 		misc::CoordTransform* transfCrds(){return _coordTransf;}
 	protected:
 		virtual ~Siika2D();
@@ -68,6 +86,10 @@ namespace core
 		Siika2D(const Siika2D& s2d);
 		Siika2D& operator=(const Siika2D& s2d);
 		static Siika2D* _instance;
+
+		SIIKA_FLAGS _siikaFlags;
+		SIIKA_STATE _currentState;
+
 		misc::CoordTransform * _coordTransf;
 	
 		graphics::BufferManager *_bufferManager;
@@ -106,7 +128,6 @@ namespace core
 			Gets the saved application if there is one.
 		*/
 		void loadState(android_app *app);
-		bool _drawReady;
 
 		void run(android_app* app);
 

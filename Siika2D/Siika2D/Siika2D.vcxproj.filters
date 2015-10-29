@@ -35,7 +35,7 @@
       <UniqueIdentifier>{436cfc25-136c-44a2-9f6d-67d8081a93ac}</UniqueIdentifier>
     </Filter>
     <Filter Include="Ushiko">
-      <UniqueIdentifier>{d4e4f492-7521-4694-a565-6cb811b521ea}</UniqueIdentifier>
+      <UniqueIdentifier>{6adbe465-d66c-439f-b93b-b7d5b19c2a92}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -132,13 +132,13 @@
     <ClCompile Include="engine\misc\PhysicsComponent.cpp">
       <Filter>Siika2D\engine\misc</Filter>
     </ClCompile>
+    <ClCompile Include="jni\Level.cpp">
+      <Filter>Ushiko</Filter>
+    </ClCompile>
     <ClCompile Include="jni\LevelGenerator.cpp">
       <Filter>Ushiko</Filter>
     </ClCompile>
     <ClCompile Include="jni\LevelTimer.cpp">
-      <Filter>Ushiko</Filter>
-    </ClCompile>
-    <ClCompile Include="jni\Level.cpp">
       <Filter>Ushiko</Filter>
     </ClCompile>
   </ItemGroup>
@@ -233,13 +233,22 @@
     <ClInclude Include="engine\misc\TransformComponent.h">
       <Filter>Siika2D\engine\misc</Filter>
     </ClInclude>
+    <ClInclude Include="engine\misc\CoordTransform.h">
+      <Filter>Siika2D\engine\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\misc\ColListener.h">
+      <Filter>Siika2D\engine\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\misc\PhysicsComponent.h">
+      <Filter>Siika2D\engine\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\Level.hpp">
+      <Filter>Ushiko</Filter>
+    </ClInclude>
     <ClInclude Include="jni\LevelGenerator.hpp">
       <Filter>Ushiko</Filter>
     </ClInclude>
     <ClInclude Include="jni\LevelTimer.hpp">
-      <Filter>Ushiko</Filter>
-    </ClInclude>
-    <ClInclude Include="jni\Level.hpp">
       <Filter>Ushiko</Filter>
     </ClInclude>
   </ItemGroup>

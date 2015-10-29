@@ -21,6 +21,9 @@ LevelGenerator *lg;
 LevelTimer *lt;
 */
 
+void siika_onPause() {}
+void siika_onResume() {}
+
 void siika_init()
 {
 	/*
@@ -28,12 +31,12 @@ void siika_init()
 
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(glm::vec2(0, 0), glm::vec2(128, 128), glm::vec2(64, 64), ushikoTexture, glm::vec2(0, 0), glm::vec2(1, 1))));
 	misc::TransformComponent *transComp = new misc::TransformComponent;
-//	misc::PhysicsComponent *physComp = new misc::PhysicsComponent;
+	//	misc::PhysicsComponent *physComp = new misc::PhysicsComponent;
 	transComp->setPosition(glm::vec2(0, 0));
 
 	ushiko.addComponent(transComp);
 	ushiko.addComponent(sprtComp);
-//	ushiko.addComponent(physComp);
+	//	ushiko.addComponent(physComp);
 
 	siika->_graphicsContext->setClearColor(graphics::Color(0, 255, 255, 255));
 
@@ -51,7 +54,7 @@ void siika_main()
 	/*
 	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
 	{
-		position = siika->_input->touchPosition(i)._positionCurrent;
+	position = siika->_input->touchPosition(i)._positionCurrent;
 	}
 
 	siika->_boxWorld->Step(1.f / 60.f, 6, 2);
@@ -59,14 +62,14 @@ void siika_main()
 	siika->_graphicsContext->clear();
 
 	ushiko.getComponent<misc::TransformComponent>()->setPosition(position);
-//	ushiko.getComponent<misc::PhysicsComponent>()->setPosition(position);
+	//	ushiko.getComponent<misc::PhysicsComponent>()->setPosition(position);
 
 	ushiko.update();
 
 	if (lg->generatorTimer.getElapsedTime(MILLISECONDS) > 10)
 	{
-		lg->generatorTimer.reset();
-		lg->update(siika);
+	lg->generatorTimer.reset();
+	lg->update(siika);
 	}
 
 	lt->update();
