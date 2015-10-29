@@ -7,13 +7,10 @@
 
 struct Tile
 {
-	Tile(misc::GameObject *t, int yPos)
-	{
-		this->tile = t;
-		this->yLevel = yPos;
-	}
-	misc::GameObject *tile;
-	int yLevel;
+	Tile(misc::GameObject *t, int x, int y) :
+		go(t), xPos(x), yPos(y) {}
+	misc::GameObject *go;
+	int xPos, yPos;
 };
 
 class LevelGenerator
