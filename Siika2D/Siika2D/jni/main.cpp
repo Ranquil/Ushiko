@@ -15,7 +15,7 @@ int screenState;
 
 void siika_init()
 {
-	screenState = GAME_LEVEL;
+	screenState = MAIN_MENU;
 	scenes[MAIN_MENU] = new MainMenu;
 	scenes[GAME_LEVEL] = new Level;
 

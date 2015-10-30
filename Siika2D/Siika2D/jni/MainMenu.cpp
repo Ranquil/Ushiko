@@ -41,5 +41,13 @@ void MainMenu::deInit(core::Siika2D *siika)
 
 int MainMenu::update(core::Siika2D *siika)
 {
+	siika->_graphicsContext->clear();
+
+	startGameButton.update();
+
+	siika->_spriteManager->drawSprites();
+	siika->_textManager->drawTexts();
+	siika->_graphicsContext->swap();
+
 	return MAIN_MENU;
 }
