@@ -1,6 +1,8 @@
 #ifndef CASTLE
 #define CASTLE
 
+#include "../engine/audio/Audio.h"
+
 #include "Scene.hpp"
 #include "CastleGenerator.hpp"
 #include "LevelTimer.hpp"
@@ -16,9 +18,14 @@ public:
 	virtual void init(core::Siika2D *siika);
 	virtual void deInit(core::Siika2D *siika);
 
+	virtual void pause();
+	virtual void resume();
+
 private:
 	CastleGenerator *lg;
 	LevelTimer *lt;
+
+	audio::Audio *theme;
 
 	colListener collisionListener;
 };

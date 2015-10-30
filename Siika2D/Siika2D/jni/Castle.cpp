@@ -32,11 +32,15 @@ void Castle::init(core::Siika2D *siika)
 		glm::vec2(1, 1));
 	bg->setSize(glm::vec2(scrSize.x, scrSize.y));
 	bg->setZ(100);
+
+	theme = siika->_audioManager->createAudio("castle_theme.ogg");
+	theme->setLooping(true);
+	theme->play();
 }
 
 void Castle::deInit(core::Siika2D *siika)
 {
-	delete lt, lg;
+	delete lt, lg, theme;
 }
 
 int Castle::update(core::Siika2D *siika)
@@ -58,4 +62,14 @@ int Castle::update(core::Siika2D *siika)
 	siika->_graphicsContext->swap();
 
 	return CASTLE_LEVEL;
+}
+
+void Castle::pause()
+{
+	theme->pause();
+}
+
+void Castle::resume()
+{
+	theme->play();
 }
