@@ -18,9 +18,17 @@ void siika_init()
 	screenState = GAME_LEVEL;
 	scenes[GAME_LEVEL] = new Level;
 	scenes[MAIN_MENU] = new MainMenu;
+
+	scenes[screenState]->init(siika);
 }
 
 void siika_main()
 {
+	int prevScene = screenState;
 	screenState = scenes[screenState]->update(siika);
+
+	if (screenState != prevScene) {
+		scenes[prevScene]->deInit(siika);
+		scenes[screenState]->init(siika);
+	}
 }

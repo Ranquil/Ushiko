@@ -10,7 +10,7 @@ MainMenu::~MainMenu()
 
 }
 
-void MainMenu::Init(core::Siika2D *siika)
+void MainMenu::init(core::Siika2D *siika)
 {
 	graphics::Texture *startGameTexture = siika->_textureManager->createTexture("Temp_Menu_button.png");
 
@@ -32,17 +32,12 @@ void MainMenu::Init(core::Siika2D *siika)
 	startGameButton.move(glm::vec2(screenSize.x / 2, screenSize.y / 2));
 }
 
-void MainMenu::DeInit(core::Siika2D *siika)
+void MainMenu::deInit(core::Siika2D *siika)
 {
 
 }
 
 int MainMenu::update(core::Siika2D *siika)
 {
-	if (!hasBeenInit)
-	{
-		Init(siika);
-	}
-
 	return MAIN_MENU;
 }

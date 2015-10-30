@@ -10,7 +10,7 @@ Level::~Level()
 
 }
 
-void Level::Init(core::Siika2D *siika)
+void Level::init(core::Siika2D *siika)
 {
 	graphics::Texture *ushikoTexture = siika->_textureManager->createTexture("erg.png");
 
@@ -38,24 +38,18 @@ void Level::Init(core::Siika2D *siika)
 	lt->InitTimer(siika, "arial.ttf", 64, 0.5, -0.95);
 
 	lg = new LevelGenerator(siika);
-	canJump = true;
 
-	hasBeenInit = true;
+	canJump = true;
+	ushiko.getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(5, 0));
 }
 
-void Level::DeInit(core::Siika2D *siika)
+void Level::deInit(core::Siika2D *siika)
 {
 
 }
 
 int Level::update(core::Siika2D *siika)
 {
-	if (!hasBeenInit)
-	{
-		Init(siika);
-		ushiko.getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(5, 0));
-	}
-
 	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
 	{
 		position = siika->_input->touchPosition(i)._positionCurrent;

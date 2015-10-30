@@ -11,12 +11,10 @@ public:
 
 	virtual int update(core::Siika2D *siika);
 
-	virtual void Init(core::Siika2D *siika);
-
-	virtual void DeInit(core::Siika2D *siika);
+	virtual void init(core::Siika2D *siika);
+	virtual void deInit(core::Siika2D *siika);
 
 private:
-	bool hasBeenInit;
 	misc::GameObject startGameButton;
 };
 
