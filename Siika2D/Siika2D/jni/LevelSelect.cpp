@@ -17,11 +17,11 @@ void LevelSelect::init(core::Siika2D *siika)
 	int boxSizex = screenSize.x / 5;
 	int boxSizey = screenSize.y / 5; 
 
-	graphics::Texture *lvlSelectTexture = siika->_textureManager->createTexture("background_plains");
+	graphics::Texture *lvlSelectTexture = siika->_textureManager->createTexture("background_plains.png");
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
 		glm::vec2(boxSizex, boxSizey),
-		glm::vec2(256, 256),
+		glm::vec2(boxSizex / 2, boxSizey / 2),
 		lvlSelectTexture,
 		glm::vec2(0, 0),
 		glm::vec2(1, 1))));

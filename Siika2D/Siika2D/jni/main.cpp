@@ -27,8 +27,8 @@ void siika_init()
 	ushiko.init(siika);
 
 	//currentScene = CASTLE_LEVEL;
-	currentScene = MAIN_MENU;
-	//currentScene = LEVEL_SELECT;
+	//currentScene = MAIN_MENU;
+	currentScene = LEVEL_SELECT;
 	scenes[MAIN_MENU] = new MainMenu;
 	scenes[LEVEL_SELECT] = new LevelSelect;
 	scenes[CASTLE_LEVEL] = new Castle;
