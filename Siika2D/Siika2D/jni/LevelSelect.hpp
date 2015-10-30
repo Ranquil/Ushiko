@@ -13,9 +13,9 @@ public:
 
 	virtual int update(core::Siika2D *siika);
 
-	misc::GameObject plainsLevel;
-	misc::GameObject forestLevel;
-	misc::GameObject castleLevel;
+	misc::GameObject *plainsLevel;
+	misc::GameObject *forestLevel;
+	misc::GameObject *castleLevel;
 };
 
 
