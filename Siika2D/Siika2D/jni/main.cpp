@@ -6,6 +6,8 @@
 #include "MainMenu.hpp"
 #include "LevelSelect.hpp"
 
+#include "Ushiko.hpp"
+
 core::Siika2D *siika = core::Siika2D::UI();
 
 void siika_onPause() {}
@@ -16,6 +18,8 @@ int screenState;
 
 void siika_init()
 {
+	ushiko.init(siika);
+
 	screenState = CASTLE_LEVEL;
 	scenes[MAIN_MENU] = new MainMenu;
 	scenes[CASTLE_LEVEL] = new Castle;

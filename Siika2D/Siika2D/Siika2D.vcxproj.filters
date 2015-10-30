@@ -153,6 +153,9 @@
     <ClCompile Include="jni\LevelTimer.cpp">
       <Filter>Ushiko\Levels</Filter>
     </ClCompile>
+    <ClCompile Include="jni\Ushiko.cpp">
+      <Filter>Ushiko</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="native_app_glue\android_native_app_glue.h">
@@ -271,6 +274,9 @@
     </ClInclude>
     <ClInclude Include="jni\LevelTimer.hpp">
       <Filter>Ushiko\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\Ushiko.hpp">
+      <Filter>Ushiko</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
