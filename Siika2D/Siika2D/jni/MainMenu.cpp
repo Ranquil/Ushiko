@@ -16,8 +16,8 @@ void MainMenu::init(core::Siika2D *siika)
 
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
-		glm::vec2(64, 64),
 		glm::vec2(32, 32),
+		glm::vec2(16, 16),
 		startGameTexture,
 		glm::vec2(0, 0),
 		glm::vec2(1, 1))));
