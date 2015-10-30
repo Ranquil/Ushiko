@@ -12,6 +12,7 @@ Level::~Level()
 
 void Level::init(core::Siika2D *siika)
 {
+
 	graphics::Texture *ushikoTexture = siika->_textureManager->createTexture("erg.png");
 
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(

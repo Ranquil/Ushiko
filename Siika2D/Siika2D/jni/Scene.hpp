@@ -13,6 +13,7 @@ class Scene
 {
 public:
 	virtual int update(core::Siika2D *siika) { return 0; }
+
 	virtual void init(core::Siika2D *siika) {}
 	virtual void deInit(core::Siika2D *siika) {}
 };
