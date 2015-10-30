@@ -41,18 +41,6 @@ void Castle::deInit(core::Siika2D *siika)
 
 int Castle::update(core::Siika2D *siika)
 {
-	/*
-	std::vector<misc::GameObject*> *cols = nullptr;
-	if (cols = collisionListener.getCollisionsFor(ushiko.go))
-	{
-		if (!cols->empty())
-		{
-			ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
-			cols->clear();
-		}
-	}
-	//*/
-
 	siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
 	siika->_graphicsContext->clear();
 

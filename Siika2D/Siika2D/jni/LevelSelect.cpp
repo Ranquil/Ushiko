@@ -68,13 +68,12 @@ void LevelSelect::init(core::Siika2D *siika)
 
 void LevelSelect::deInit(core::Siika2D *siika)
 {
-	delete plainsLevel;
+	delete plainsLevel, forestLevel, castleLevel;
 }
 
 
 int LevelSelect::update(core::Siika2D *siika)
 {
-
 	siika->_graphicsContext->clear();
 
 	plainsLevel->update();
