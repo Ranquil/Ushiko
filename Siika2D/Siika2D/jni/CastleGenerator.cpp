@@ -87,7 +87,7 @@ void CastleGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
 		glm::vec2(0, 0),
 		glm::vec2(1, 1))));
 	t->removeComponent<misc::SpriteComponent>();
-	sprtComp->setZ(2);
+	sprtComp->setZ(80);
 
 	t->addComponent(sprtComp);
 

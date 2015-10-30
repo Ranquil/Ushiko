@@ -22,7 +22,6 @@ void Castle::init(core::Siika2D *siika)
 
 	ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(5, 0));
 
-	/*
 	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
 	bg = siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
@@ -32,8 +31,7 @@ void Castle::init(core::Siika2D *siika)
 		glm::vec2(0, 0),
 		glm::vec2(1, 1));
 	bg->setSize(glm::vec2(scrSize.x, scrSize.y));
-	bg->setZ(0);
-	//*/
+	bg->setZ(100);
 }
 
 void Castle::deInit(core::Siika2D *siika)
