@@ -92,7 +92,7 @@ void CastleGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
 	t->addComponent(sprtComp);
 
 	t->getComponent<misc::PhysicsComponent>()->setSize(glm::vec2(32, 32));
-	t->getComponent<misc::PhysicsComponent>()->setGravityScale(0);
+//	t->getComponent<misc::PhysicsComponent>()->setGravityScale(0);
 	t->move(pos);
 
 	Tile *newTile = new Tile(t, xPos, yPos);
