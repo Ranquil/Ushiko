@@ -20,6 +20,7 @@ private:
 	CastleGenerator *lg;
 	LevelTimer *lt;
 
+	graphics::Sprite *bg;
 	colListener collisionListener;
 };
 

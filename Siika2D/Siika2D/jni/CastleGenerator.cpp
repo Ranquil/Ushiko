@@ -12,20 +12,6 @@ CastleGenerator::CastleGenerator(core::Siika2D *siika)
 	platformSpawned = 0;
 
 	yLevel = siika->_graphicsContext->getDisplaySize().y * 2 + 400;
-
-	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
-
-	/*
-	bg = siika->_spriteManager->createSprite(
-		glm::vec2(0, 0),
-		glm::vec2(scrSize.x, scrSize.y),
-		glm::vec2(0, 0),
-		siika->_textureManager->createTexture("background_castle.png"),
-		glm::vec2(0, 0),
-		glm::vec2(1, 1));
-	bg->setSize(glm::vec2(scrSize.x, scrSize.y));
-	bg->setZ(0);
-	//*/
 }
 
 CastleGenerator::~CastleGenerator()

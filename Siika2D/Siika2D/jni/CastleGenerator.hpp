@@ -26,8 +26,6 @@ public:
 private:
 	std::vector<Tile*> tiles;
 
-	graphics::Sprite *bg;
-
 	void spawnTile(core::Siika2D *siika, int xPos, int yPos);
 
 	int tileMovement;

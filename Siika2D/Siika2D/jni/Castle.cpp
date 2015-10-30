@@ -21,6 +21,19 @@ void Castle::init(core::Siika2D *siika)
 	lg = new CastleGenerator(siika);
 
 	ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(5, 0));
+
+	/*
+	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
+	bg = siika->_spriteManager->createSprite(
+		glm::vec2(0, 0),
+		glm::vec2(scrSize.x, scrSize.y),
+		glm::vec2(0, 0),
+		siika->_textureManager->createTexture("background_castle.png"),
+		glm::vec2(0, 0),
+		glm::vec2(1, 1));
+	bg->setSize(glm::vec2(scrSize.x, scrSize.y));
+	bg->setZ(0);
+	//*/
 }
 
 void Castle::deInit(core::Siika2D *siika)
