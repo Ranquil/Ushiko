@@ -1,5 +1,5 @@
-#ifndef LEVELGENERATOR
-#define LEVELGENERATOR
+#ifndef CASTLEGENERATOR
+#define CASTLEGENERATOR
 
 #include "../engine/core/Siika2D.h"
 #include "../engine/misc/GameObject.h"
@@ -13,11 +13,11 @@ struct Tile
 	int xPos, yPos;
 };
 
-class LevelGenerator
+class CastleGenerator
 {
 public:
-	LevelGenerator(core::Siika2D *siika);
-	~LevelGenerator();
+	CastleGenerator(core::Siika2D *siika);
+	~CastleGenerator();
 
 	void update(core::Siika2D *siika);
 
@@ -36,4 +36,4 @@ private:
 	int yLevel;
 };
 
-#endif // LEVELGENERATOR
+#endif // CASTLEGENERATOR

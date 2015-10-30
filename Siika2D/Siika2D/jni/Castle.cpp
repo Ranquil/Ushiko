@@ -1,16 +1,16 @@
-#include "Level.hpp"
+#include "Castle.hpp"
 
-Level::Level()
+Castle::Castle()
 {
 
 }
 
-Level::~Level()
+Castle::~Castle()
 {
 
 }
 
-void Level::init(core::Siika2D *siika)
+void Castle::init(core::Siika2D *siika)
 {
 	graphics::Texture *ushikoTexture = siika->_textureManager->createTexture("erg.png");
 
@@ -37,18 +37,18 @@ void Level::init(core::Siika2D *siika)
 	lt = new LevelTimer;
 	lt->InitTimer(siika, "arial.ttf", 64, 0.5, -0.95);
 
-	lg = new LevelGenerator(siika);
+	lg = new CastleGenerator(siika);
 
 	canJump = true;
 	ushiko.getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(5, 0));
 }
 
-void Level::deInit(core::Siika2D *siika)
+void Castle::deInit(core::Siika2D *siika)
 {
-	//ushiko.removeComponent<misc::TransformComponent>()
+
 }
 
-int Level::update(core::Siika2D *siika)
+int Castle::update(core::Siika2D *siika)
 {
 	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
 	{
@@ -92,5 +92,5 @@ int Level::update(core::Siika2D *siika)
 	siika->_textManager->drawTexts();
 	siika->_graphicsContext->swap();
 
-	return GAME_LEVEL;
+	return CASTLE_LEVEL;
 }

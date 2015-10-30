@@ -2,7 +2,7 @@
 
 #include <Box2D/Box2D.h>
 
-#include "Level.hpp"
+#include "Castle.hpp"
 #include "MainMenu.hpp"
 #include "LevelSelect.hpp"
 
@@ -16,10 +16,10 @@ int screenState;
 
 void siika_init()
 {
-	screenState = GAME_LEVEL;
+	screenState = CASTLE_LEVEL;
 	scenes[MAIN_MENU] = new MainMenu;
-	scenes[GAME_LEVEL] = new Level;
-	//scenes[LEVEL_SELECT] = new LevelSelect;
+	scenes[CASTLE_LEVEL] = new Castle;
+	scenes[LEVEL_SELECT] = new LevelSelect;
 
 	scenes[screenState]->init(siika);
 }
