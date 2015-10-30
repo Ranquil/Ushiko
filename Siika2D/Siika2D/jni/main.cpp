@@ -10,7 +10,7 @@ core::Siika2D *siika = core::Siika2D::UI();
 void siika_onPause() {}
 void siika_onResume() {}
 
-Scene* scenes[3];
+Scene* scenes[2];
 int screenState;
 
 void siika_init()
