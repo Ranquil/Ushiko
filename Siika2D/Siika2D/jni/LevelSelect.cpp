@@ -31,7 +31,7 @@ void LevelSelect::init(core::Siika2D *siika)
 	plainsLevel->addComponent(sprtComp);
 	plainsLevel->addComponent(transComp);
 
-	plainsLevel->move(glm::vec2(screenSize.x / 2, screenSize.y / 2))
+	plainsLevel->move(glm::vec2(screenSize.x / 2, screenSize.y / 2));
 
 
 
