@@ -1,5 +1,5 @@
-#ifndef MAINMENU_H
-#define MAINMENU_H
+#ifndef MAINMENU
+#define MAINMENU
 
 #include "Scene.hpp"
 

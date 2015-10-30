@@ -6,6 +6,7 @@
 enum ScreenState
 {
 	MAIN_MENU,
+	LEVEL_SELECT,
 	GAME_LEVEL
 };
 
@@ -16,6 +17,9 @@ public:
 
 	virtual void init(core::Siika2D *siika) {}
 	virtual void deInit(core::Siika2D *siika) {}
+
+	bool lvl2Unlocked;
+	bool lvl3Unlocked;
 };
 
 #endif // SCENE

@@ -4,13 +4,14 @@
 
 #include "Level.hpp"
 #include "MainMenu.hpp"
+#include "LevelSelect.hpp"
 
 core::Siika2D *siika = core::Siika2D::UI();
 
 void siika_onPause() {}
 void siika_onResume() {}
 
-Scene* scenes[2];
+Scene* scenes[3];
 int screenState;
 
 void siika_init()
@@ -18,6 +19,7 @@ void siika_init()
 	screenState = MAIN_MENU;
 	scenes[MAIN_MENU] = new MainMenu;
 	scenes[GAME_LEVEL] = new Level;
+	//scenes[LEVEL_SELECT] = new LevelSelect;
 
 	scenes[screenState]->init(siika);
 }

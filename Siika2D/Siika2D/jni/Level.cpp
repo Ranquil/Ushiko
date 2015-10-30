@@ -46,7 +46,7 @@ void Level::init(core::Siika2D *siika)
 
 void Level::deInit(core::Siika2D *siika)
 {
-
+	//ushiko.removeComponent<misc::TransformComponent>()
 }
 
 int Level::update(core::Siika2D *siika)

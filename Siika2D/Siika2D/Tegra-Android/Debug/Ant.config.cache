@@ -6,12 +6,12 @@ ToolRootPath=C:\NVPACK\apache-ant-1.8.2
 JdkRootPath=C:\NVPACK\jdk1.7.0_45
 ToolchainPlugin=android
 ToolchainRootPath=C:\NVPACK\android-ndk-r10c
-OutputDir=C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\Tegra-Android\Debug\
-ProjectRoot=C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\
+OutputDir=C:\Users\JarnoLaa\Documents\GitHub\Ushiko\Siika2D\Siika2D\Tegra-Android\Debug\
+ProjectRoot=C:\Users\JarnoLaa\Documents\GitHub\Ushiko\Siika2D\Siika2D\
 ProjectName=Siika2D
 BuildTarget=Debug
-JavaSourceDir=C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\src
-AndroidManifestLocation=C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\AndroidManifest.xml
+JavaSourceDir=C:\Users\JarnoLaa\Documents\GitHub\Ushiko\Siika2D\Siika2D\src
+AndroidManifestLocation=C:\Users\JarnoLaa\Documents\GitHub\Ushiko\Siika2D\Siika2D\AndroidManifest.xml
 JarDirectories=
 JarDependencies=
 NativeLibDirectories=
@@ -32,8 +32,8 @@ AdditionalOptions=
 JavaSources:
 
 AndroidBuildSources:
-C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\AndroidManifest.xml
-C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\res\values\strings.xml
+C:\Users\JarnoLaa\Documents\GitHub\Ushiko\Siika2D\Siika2D\AndroidManifest.xml
+C:\Users\JarnoLaa\Documents\GitHub\Ushiko\Siika2D\Siika2D\res\values\strings.xml
 
 Sources:
-C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Tegra-Android\Debug\libSiika2D.so
+C:\Users\JarnoLaa\Documents\GitHub\Ushiko\Siika2D\Tegra-Android\Debug\libSiika2D.so

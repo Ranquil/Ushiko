@@ -144,6 +144,9 @@
     <ClCompile Include="jni\MainMenu.cpp">
       <Filter>Ushiko</Filter>
     </ClCompile>
+    <ClCompile Include="jni\LevelSelect.cpp">
+      <Filter>Ushiko</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="native_app_glue\android_native_app_glue.h">
@@ -258,6 +261,9 @@
       <Filter>Ushiko</Filter>
     </ClInclude>
     <ClInclude Include="jni\Scene.hpp">
+      <Filter>Ushiko</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\LevelSelect.hpp">
       <Filter>Ushiko</Filter>
     </ClInclude>
   </ItemGroup>
