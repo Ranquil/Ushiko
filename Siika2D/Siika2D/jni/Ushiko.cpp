@@ -44,7 +44,7 @@ void Ushiko::update(core::Siika2D *siika)
 	{
 		if (canJump) {
 			ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
-			ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 40), false);
+			ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 35), false);
 			tempTimer.reset();
 			canJump = false;
 		}
