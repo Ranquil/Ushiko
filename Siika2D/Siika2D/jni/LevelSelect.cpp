@@ -65,15 +65,18 @@ void LevelSelect::deInit(core::Siika2D *siika)
 int LevelSelect::update(core::Siika2D *siika)
 {
 	siika->_graphicsContext->clear();
-	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
-	{
-		touchPosition = siika->_input->touchPosition(i)._positionCurrent + siika->_camera->getPosition();
-	}
+		for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
+		{
+			touchPosition = siika->_input->touchPosition(i)._positionCurrent + siika->_camera->getPosition();
+		}
 
-	/*if (touchPosition == plainsLevel->getComponent<misc::TransformComponent>()->getPosition());
+	if (siika->_input->fingerUp())
 	{
-		return CASTLE_LEVEL;
-	}*/
+		if (touchPosition == plainsLevel->getComponent<misc::TransformComponent>()->getPosition());
+		{
+			return CASTLE_LEVEL;
+		}
+	}
 
 	plainsLevel->update();
 	forestLevel->update();
