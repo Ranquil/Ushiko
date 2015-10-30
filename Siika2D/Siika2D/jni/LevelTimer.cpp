@@ -30,15 +30,6 @@ void LevelTimer::update()
 	}
 
 	std::ostringstream timerOstring;
-	
-	if (levelTimer.getElapsedTime(SECONDS) < 10)
-	{
-		timerOstring << timerMinutes << ":0" << (int)levelTimer.getElapsedTime(SECONDS) << "/" << "2:00";
-	}
-	else
-	{
-		timerOstring << timerMinutes << ":" << (int)levelTimer.getElapsedTime(SECONDS) << "/" << "2:00";
-	}
-	
+	timerOstring << timerMinutes << (levelTimer.getElapsedTime(SECONDS) < 10 ? ":0" : ":") << (int)levelTimer.getElapsedTime(SECONDS) << "/" << "2:00";
 	levelTimerText->setText(timerOstring.str());
 }
