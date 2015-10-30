@@ -16,7 +16,7 @@ CastleGenerator::CastleGenerator(core::Siika2D *siika)
 
 CastleGenerator::~CastleGenerator()
 {
-
+	tiles.clear();
 }
 
 void CastleGenerator::update(core::Siika2D *siika)
