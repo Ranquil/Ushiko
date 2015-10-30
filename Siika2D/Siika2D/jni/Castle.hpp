@@ -18,7 +18,7 @@ public:
 
 private:
 	misc::GameObject ushiko;
-	glm::vec2 position;
+	//glm::vec2 position;
 	CastleGenerator *lg;
 	LevelTimer *lt;
 	colListener collisionListener;

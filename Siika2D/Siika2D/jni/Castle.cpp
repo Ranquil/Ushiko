@@ -52,7 +52,7 @@ int Castle::update(core::Siika2D *siika)
 {
 	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
 	{
-		position = siika->_input->touchPosition(i)._positionCurrent;
+		//position = siika->_input->touchPosition(i)._positionCurrent;
 
 		if (canJump) {
 			ushiko.getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
