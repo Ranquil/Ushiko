@@ -7,7 +7,7 @@ enum ScreenState
 {
 	MAIN_MENU,
 	LEVEL_SELECT,
-	GAME_LEVEL
+	CASTLE_LEVEL
 };
 
 class Scene

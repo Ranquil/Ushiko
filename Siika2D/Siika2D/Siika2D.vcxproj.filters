@@ -37,6 +37,12 @@
     <Filter Include="Ushiko">
       <UniqueIdentifier>{bfe43c8b-0a4a-490a-b86e-ae6938dd6ebc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Ushiko\Levels">
+      <UniqueIdentifier>{2ebcfaeb-3f58-4aac-8902-3b2ba025c755}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ushiko\Levels\Castle">
+      <UniqueIdentifier>{ab1403ce-ee49-4094-b9f0-dbea8ad3e660}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <AndroidBuild Include="AndroidManifest.xml" />
@@ -132,12 +138,6 @@
     <ClCompile Include="engine\misc\PhysicsComponent.cpp">
       <Filter>Siika2D\engine\misc</Filter>
     </ClCompile>
-    <ClCompile Include="jni\Level.cpp">
-      <Filter>Ushiko</Filter>
-    </ClCompile>
-    <ClCompile Include="jni\LevelGenerator.cpp">
-      <Filter>Ushiko</Filter>
-    </ClCompile>
     <ClCompile Include="jni\LevelTimer.cpp">
       <Filter>Ushiko</Filter>
     </ClCompile>
@@ -146,6 +146,12 @@
     </ClCompile>
     <ClCompile Include="jni\LevelSelect.cpp">
       <Filter>Ushiko</Filter>
+    </ClCompile>
+    <ClCompile Include="jni\Castle.cpp">
+      <Filter>Ushiko\Levels\Castle</Filter>
+    </ClCompile>
+    <ClCompile Include="jni\CastleGenerator.cpp">
+      <Filter>Ushiko\Levels\Castle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -248,12 +254,6 @@
     <ClInclude Include="engine\misc\PhysicsComponent.h">
       <Filter>Siika2D\engine\misc</Filter>
     </ClInclude>
-    <ClInclude Include="jni\Level.hpp">
-      <Filter>Ushiko</Filter>
-    </ClInclude>
-    <ClInclude Include="jni\LevelGenerator.hpp">
-      <Filter>Ushiko</Filter>
-    </ClInclude>
     <ClInclude Include="jni\LevelTimer.hpp">
       <Filter>Ushiko</Filter>
     </ClInclude>
@@ -265,6 +265,12 @@
     </ClInclude>
     <ClInclude Include="jni\LevelSelect.hpp">
       <Filter>Ushiko</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\Castle.hpp">
+      <Filter>Ushiko\Levels\Castle</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\CastleGenerator.hpp">
+      <Filter>Ushiko\Levels\Castle</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
-#include "LevelGenerator.hpp"
+#include "CastleGenerator.hpp"
 
-LevelGenerator::LevelGenerator(core::Siika2D *siika)
+CastleGenerator::CastleGenerator(core::Siika2D *siika)
 {
 	tiles.clear();
 	generatorTimer.start();
@@ -28,12 +28,12 @@ LevelGenerator::LevelGenerator(core::Siika2D *siika)
 	//*/
 }
 
-LevelGenerator::~LevelGenerator()
+CastleGenerator::~CastleGenerator()
 {
 
 }
 
-void LevelGenerator::update(core::Siika2D *siika)
+void CastleGenerator::update(core::Siika2D *siika)
 {
 	int tileAmount = 0;
 	bool deleteTile = false;
@@ -82,7 +82,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 	}
 }
 
-void LevelGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
+void CastleGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
 {
 	std::string textureName = "tile_castle_middle.png";
 	if (platformSpawned == 0)

@@ -1,15 +1,15 @@
-#ifndef LEVEL
-#define LEVEL
+#ifndef CASTLE
+#define CASTLE
 
 #include "Scene.hpp"
-#include "LevelGenerator.hpp"
+#include "CastleGenerator.hpp"
 #include "LevelTimer.hpp"
 
-class Level : public Scene
+class Castle : public Scene
 {
 public:
-	Level();
-	~Level();
+	Castle();
+	~Castle();
 
 	virtual int update(core::Siika2D *siika);
 
@@ -19,7 +19,7 @@ public:
 private:
 	misc::GameObject ushiko;
 	glm::vec2 position;
-	LevelGenerator *lg;
+	CastleGenerator *lg;
 	LevelTimer *lt;
 	colListener collisionListener;
 
@@ -27,4 +27,4 @@ private:
 	bool canJump;
 };
 
-#endif // LEVEL
+#endif // CASTLE
