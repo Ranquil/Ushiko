@@ -19,6 +19,7 @@ public:
 private:
 	CastleGenerator *lg;
 	LevelTimer *lt;
+
 	colListener collisionListener;
 };
 

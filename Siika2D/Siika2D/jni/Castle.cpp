@@ -25,11 +25,12 @@ void Castle::init(core::Siika2D *siika)
 
 void Castle::deInit(core::Siika2D *siika)
 {
-
+	delete lt, lg;
 }
 
 int Castle::update(core::Siika2D *siika)
 {
+	/*
 	std::vector<misc::GameObject*> *cols = nullptr;
 	if (cols = collisionListener.getCollisionsFor(ushiko.go))
 	{
@@ -39,6 +40,7 @@ int Castle::update(core::Siika2D *siika)
 			cols->clear();
 		}
 	}
+	//*/
 
 	siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
 	siika->_graphicsContext->clear();

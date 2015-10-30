@@ -9,6 +9,9 @@
 
 core::Siika2D *siika = core::Siika2D::UI();
 
+Scene* scenes[3];
+int currentScene;
+
 void siika_onPause()
 {
 	scenes[currentScene]->pause();
@@ -18,9 +21,6 @@ void siika_onResume()
 {
 	scenes[currentScene]->resume();
 }
-
-Scene* scenes[3];
-int currentScene;
 
 void siika_init()
 {
