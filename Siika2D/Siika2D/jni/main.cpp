@@ -5,36 +5,43 @@
 #include "Castle.hpp"
 #include "MainMenu.hpp"
 #include "LevelSelect.hpp"
-
 #include "Ushiko.hpp"
 
 core::Siika2D *siika = core::Siika2D::UI();
 
-void siika_onPause() {}
-void siika_onResume() {}
+void siika_onPause()
+{
+	scenes[currentScene]->pause();
+}
+
+void siika_onResume()
+{
+	scenes[currentScene]->resume();
+}
 
 Scene* scenes[3];
-int screenState;
+int currentScene;
 
 void siika_init()
 {
 	ushiko.init(siika);
 
-	screenState = CASTLE_LEVEL;
+	currentScene = CASTLE_LEVEL;
 	scenes[MAIN_MENU] = new MainMenu;
-	scenes[CASTLE_LEVEL] = new Castle;
 	scenes[LEVEL_SELECT] = new LevelSelect;
+	scenes[CASTLE_LEVEL] = new Castle;
 
-	scenes[screenState]->init(siika);
+	scenes[currentScene]->init(siika);
 }
 
 void siika_main()
 {
-	int prevScene = screenState;
-	screenState = scenes[screenState]->update(siika);
+	int prevScene = currentScene;
+	currentScene = scenes[currentScene]->update(siika);
 
-	if (screenState != prevScene) {
+	if (currentScene != prevScene)
+	{
 		scenes[prevScene]->deInit(siika);
-		scenes[screenState]->init(siika);
+		scenes[currentScene]->init(siika);
 	}
 }
