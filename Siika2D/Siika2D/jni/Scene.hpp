@@ -23,6 +23,7 @@ public:
 
 	bool lvl2Unlocked;
 	bool lvl3Unlocked;
+	glm::vec2 touchPosition;
 };
 
 #endif // SCENE
