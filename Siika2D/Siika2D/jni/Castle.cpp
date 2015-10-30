@@ -13,8 +13,6 @@ Castle::~Castle()
 
 void Castle::init(core::Siika2D *siika)
 {
-	siika->_graphicsContext->setClearColor(graphics::Color(0, 255, 255, 255));
-
 	lt = new LevelTimer;
 	lt->InitTimer(siika, "arial.ttf", 64, 0.5, -0.95);
 
