@@ -42,7 +42,8 @@ void Ushiko::update(core::Siika2D *siika)
 {
 	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
 	{
-		if (canJump) {
+		if (canJump)
+		{
 			ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
 			ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 35), false);
 			tempTimer.reset();
@@ -50,9 +51,8 @@ void Ushiko::update(core::Siika2D *siika)
 		}
 	}
 
-	if (!canJump && tempTimer.getElapsedTime(MILLISECONDS) > 600) {
+	if (!canJump && tempTimer.getElapsedTime(MILLISECONDS) > 600)
 		canJump = true;
-	}
 
 	go->update();
 }
