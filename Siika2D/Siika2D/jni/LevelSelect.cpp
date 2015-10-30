@@ -70,13 +70,13 @@ int LevelSelect::update(core::Siika2D *siika)
 			touchPosition = siika->_input->touchPosition(i)._positionCurrent + siika->_camera->getPosition();
 		}
 
-	if (siika->_input->fingerUp())
-	{
-		if (touchPosition == plainsLevel->getComponent<misc::TransformComponent>()->getPosition());
-		{
-			return CASTLE_LEVEL;
-		}
-	}
+	//if (siika->_input->fingerUp())
+	//{
+	//	if (touchPosition == plainsLevel->getComponent<misc::TransformComponent>()->getPosition());
+	//	{
+	//		return CASTLE_LEVEL;
+	//	}
+	//}
 
 	plainsLevel->update();
 	forestLevel->update();
