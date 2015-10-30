@@ -138,9 +138,6 @@
     <ClCompile Include="engine\misc\PhysicsComponent.cpp">
       <Filter>Siika2D\engine\misc</Filter>
     </ClCompile>
-    <ClCompile Include="jni\LevelTimer.cpp">
-      <Filter>Ushiko</Filter>
-    </ClCompile>
     <ClCompile Include="jni\MainMenu.cpp">
       <Filter>Ushiko</Filter>
     </ClCompile>
@@ -152,6 +149,12 @@
     </ClCompile>
     <ClCompile Include="jni\CastleGenerator.cpp">
       <Filter>Ushiko\Levels\Castle</Filter>
+    </ClCompile>
+    <ClCompile Include="jni\LevelTimer.cpp">
+      <Filter>Ushiko\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="jni\Ushiko.cpp">
+      <Filter>Ushiko</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -254,9 +257,6 @@
     <ClInclude Include="engine\misc\PhysicsComponent.h">
       <Filter>Siika2D\engine\misc</Filter>
     </ClInclude>
-    <ClInclude Include="jni\LevelTimer.hpp">
-      <Filter>Ushiko</Filter>
-    </ClInclude>
     <ClInclude Include="jni\MainMenu.hpp">
       <Filter>Ushiko</Filter>
     </ClInclude>
@@ -271,6 +271,12 @@
     </ClInclude>
     <ClInclude Include="jni\CastleGenerator.hpp">
       <Filter>Ushiko\Levels\Castle</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\LevelTimer.hpp">
+      <Filter>Ushiko\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\Ushiko.hpp">
+      <Filter>Ushiko</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

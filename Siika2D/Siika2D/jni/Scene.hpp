@@ -18,6 +18,9 @@ public:
 	virtual void init(core::Siika2D *siika) {}
 	virtual void deInit(core::Siika2D *siika) {}
 
+	virtual void pause() {}
+	virtual void resume() {}
+
 	bool lvl2Unlocked;
 	bool lvl3Unlocked;
 };

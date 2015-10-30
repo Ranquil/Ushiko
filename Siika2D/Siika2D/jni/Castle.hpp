@@ -17,14 +17,10 @@ public:
 	virtual void deInit(core::Siika2D *siika);
 
 private:
-	misc::GameObject ushiko;
-	glm::vec2 position;
 	CastleGenerator *lg;
 	LevelTimer *lt;
-	colListener collisionListener;
 
-	misc::Timer tempTimer;
-	bool canJump;
+	colListener collisionListener;
 };
 
 #endif // CASTLE
