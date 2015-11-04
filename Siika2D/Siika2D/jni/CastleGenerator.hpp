@@ -1,5 +1,5 @@
-#ifndef CASTLEGENERATOR
-#define CASTLEGENERATOR
+#ifndef CASTLEGENERATOR_H
+#define CASTLEGENERATOR_H
 
 #include "../engine/core/Siika2D.h"
 #include "../engine/misc/GameObject.h"
@@ -34,4 +34,4 @@ private:
 	int yLevel;
 };
 
-#endif // CASTLEGENERATOR
+#endif // CASTLEGENERATOR_H

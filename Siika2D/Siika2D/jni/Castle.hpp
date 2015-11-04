@@ -1,5 +1,5 @@
-#ifndef CASTLE
-#define CASTLE
+#ifndef CASTLE_H
+#define CASTLE_H
 
 #include "../engine/audio/Audio.h"
 
@@ -30,4 +30,4 @@ private:
 	colListener collisionListener;
 };
 
-#endif // CASTLE
+#endif // CASTLE_H

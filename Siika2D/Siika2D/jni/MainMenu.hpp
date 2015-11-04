@@ -1,5 +1,5 @@
-#ifndef MAINMENU
-#define MAINMENU
+#ifndef MAINMENU_H
+#define MAINMENU_H
 
 #include "Scene.hpp"
 
@@ -18,4 +18,4 @@ private:
 	misc::GameObject startGameButton;
 };
 
-#endif // MAINMENU
+#endif // MAINMENU_H

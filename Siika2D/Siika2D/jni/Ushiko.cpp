@@ -36,6 +36,8 @@ void Ushiko::init(core::Siika2D *siika)
 
 	tempTimer.start();
 	canJump = true;
+
+	go->setId(USHIKO);
 }
 
 void Ushiko::update(core::Siika2D *siika)

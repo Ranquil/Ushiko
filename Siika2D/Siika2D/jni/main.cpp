@@ -7,7 +7,7 @@
 #include "LevelSelect.hpp"
 #include "Ushiko.hpp"
 
-misc::Timer switchTimer;
+//misc::Timer switchTimer;
 
 core::Siika2D *siika = core::Siika2D::UI();
 
@@ -36,7 +36,7 @@ void siika_init()
 
 	scenes[currentScene]->init(siika);
 
-	switchTimer.start();
+	//switchTimer.start();
 }
 
 void siika_main()
@@ -44,7 +44,7 @@ void siika_main()
 	int prevScene = currentScene;
 	currentScene = scenes[currentScene]->update(siika);
 
-	if (switchTimer.getElapsedTime(MILLISECONDS) > 10000)
+	/*if (switchTimer.getElapsedTime(MILLISECONDS) > 10000)
 	{
 		currentScene += 1;
 		int sceneNum = 0;
@@ -56,12 +56,11 @@ void siika_main()
 			currentScene = 0;
 
 		switchTimer.reset();
-	}
+	}*/
 
 	if (currentScene != prevScene)
 	{
 		scenes[prevScene]->deInit(siika);
-		siika->_graphicsContext->clear();
 		scenes[currentScene]->init(siika);
 	}
 }

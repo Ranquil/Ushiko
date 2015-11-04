@@ -1,5 +1,6 @@
-#ifndef LEVELSELECT
-#define LEVELSELECT
+#ifndef LEVELSELECT_H
+#define LEVELSELECT_H
+
 #include "Scene.hpp"
 
 class LevelSelect : public Scene
@@ -19,4 +20,4 @@ public:
 };
 
 
-#endif //LEVELSELECT
+#endif // LEVELSELECT_H

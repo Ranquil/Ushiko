@@ -1,5 +1,5 @@
-#ifndef USHIKO
-#define USHIKO
+#ifndef USHIKO_H
+#define USHIKO_H
 
 #include "../engine/core/Siika2D.h"
 #include "../engine/misc/GameObject.h"
@@ -23,4 +23,4 @@ private:
 
 extern Ushiko ushiko;
 
-#endif // USHIKO
+#endif // USHIKO_H

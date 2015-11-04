@@ -3,6 +3,14 @@
 
 #include "../engine/core/Siika2D.h"
 
+enum CollisionType
+{
+	USHIKO,
+	GROUND,
+	ENEMY,
+	PROJECTILE
+};
+
 enum ScreenState
 {
 	MAIN_MENU,

@@ -1,5 +1,5 @@
-#ifndef LEVELTIMER
-#define LEVELTIMER
+#ifndef LEVELTIMER_H
+#define LEVELTIMER_H
 
 #include "../engine/core/Siika2D.h"
 #include "../engine/misc/timer.h"
@@ -20,4 +20,4 @@ private:
 	graphics::Text *levelTimerText;
 };
 
-#endif // LEVELTIMER
+#endif // LEVELTIMER_H
