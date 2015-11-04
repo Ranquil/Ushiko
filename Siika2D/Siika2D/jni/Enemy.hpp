@@ -14,7 +14,6 @@ public:
 	void update(core::Siika2D *siika, colListener *collisions);
 
 	misc::GameObject *go;
-	
 };
 
 #endif // ENEMY_H

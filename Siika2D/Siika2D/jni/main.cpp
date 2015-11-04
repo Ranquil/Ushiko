@@ -7,9 +7,8 @@
 #include "LevelSelect.hpp"
 #include "Ushiko.hpp"
 
-//misc::Timer switchTimer;
-
 core::Siika2D *siika = core::Siika2D::UI();
+//misc::Timer switchTimer;
 
 Scene* scenes[3];
 int currentScene;
@@ -28,7 +27,7 @@ void siika_init()
 {
 	ushiko.init(siika);
 
-	currentScene = CASTLE_LEVEL;
+	currentScene = LEVEL_SELECT;
 
 	scenes[MAIN_MENU] = new MainMenu;
 	scenes[LEVEL_SELECT] = new LevelSelect;
