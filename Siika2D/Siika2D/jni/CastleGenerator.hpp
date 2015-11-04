@@ -9,6 +9,7 @@ struct Tile
 {
 	Tile(misc::GameObject *t, int x, int y) :
 		go(t), xPos(x), yPos(y) {}
+	~Tile() { delete go; }
 	misc::GameObject *go;
 	int xPos, yPos;
 };

@@ -15,8 +15,11 @@ public:
 	void update(core::Siika2D *siika);
 
 	misc::GameObject *go;
+<<<<<<< HEAD
 	std::string enemyTextureName;
 	
+=======
+>>>>>>> origin/master
 };
 
 #endif // ENEMY_H

@@ -37,11 +37,20 @@
     <Filter Include="Ushiko">
       <UniqueIdentifier>{bfe43c8b-0a4a-490a-b86e-ae6938dd6ebc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Ushiko\Levels">
+    <Filter Include="Ushiko\Scenes">
+      <UniqueIdentifier>{96ecbb3c-e058-49b8-9f34-8282151e3976}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ushiko\Scenes\Levels">
       <UniqueIdentifier>{2ebcfaeb-3f58-4aac-8902-3b2ba025c755}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Ushiko\Levels\Castle">
+    <Filter Include="Ushiko\Scenes\Levels\Castle">
       <UniqueIdentifier>{ab1403ce-ee49-4094-b9f0-dbea8ad3e660}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ushiko\Scenes\Menu">
+      <UniqueIdentifier>{a8ef5b79-64ed-43eb-82f8-6a386c714f6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ushiko\Entities">
+      <UniqueIdentifier>{e7fd5e84-1f5c-4dce-8e5e-6af213bcf9ec}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -138,23 +147,23 @@
     <ClCompile Include="engine\misc\PhysicsComponent.cpp">
       <Filter>Siika2D\engine\misc</Filter>
     </ClCompile>
-    <ClCompile Include="jni\MainMenu.cpp">
-      <Filter>Ushiko</Filter>
-    </ClCompile>
-    <ClCompile Include="jni\LevelSelect.cpp">
-      <Filter>Ushiko</Filter>
-    </ClCompile>
     <ClCompile Include="jni\Castle.cpp">
-      <Filter>Ushiko\Levels\Castle</Filter>
+      <Filter>Ushiko\Scenes\Levels\Castle</Filter>
     </ClCompile>
     <ClCompile Include="jni\CastleGenerator.cpp">
-      <Filter>Ushiko\Levels\Castle</Filter>
+      <Filter>Ushiko\Scenes\Levels\Castle</Filter>
     </ClCompile>
     <ClCompile Include="jni\LevelTimer.cpp">
-      <Filter>Ushiko\Levels</Filter>
+      <Filter>Ushiko\Scenes\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="jni\LevelSelect.cpp">
+      <Filter>Ushiko\Scenes\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="jni\MainMenu.cpp">
+      <Filter>Ushiko\Scenes\Menu</Filter>
     </ClCompile>
     <ClCompile Include="jni\Ushiko.cpp">
-      <Filter>Ushiko</Filter>
+      <Filter>Ushiko\Entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -257,29 +266,29 @@
     <ClInclude Include="engine\misc\PhysicsComponent.h">
       <Filter>Siika2D\engine\misc</Filter>
     </ClInclude>
-    <ClInclude Include="jni\MainMenu.hpp">
-      <Filter>Ushiko</Filter>
-    </ClInclude>
-    <ClInclude Include="jni\Scene.hpp">
-      <Filter>Ushiko</Filter>
-    </ClInclude>
-    <ClInclude Include="jni\LevelSelect.hpp">
-      <Filter>Ushiko</Filter>
-    </ClInclude>
     <ClInclude Include="jni\Castle.hpp">
-      <Filter>Ushiko\Levels\Castle</Filter>
+      <Filter>Ushiko\Scenes\Levels\Castle</Filter>
     </ClInclude>
     <ClInclude Include="jni\CastleGenerator.hpp">
-      <Filter>Ushiko\Levels\Castle</Filter>
+      <Filter>Ushiko\Scenes\Levels\Castle</Filter>
     </ClInclude>
     <ClInclude Include="jni\LevelTimer.hpp">
-      <Filter>Ushiko\Levels</Filter>
+      <Filter>Ushiko\Scenes\Levels</Filter>
     </ClInclude>
-    <ClInclude Include="jni\Ushiko.hpp">
-      <Filter>Ushiko</Filter>
+    <ClInclude Include="jni\LevelSelect.hpp">
+      <Filter>Ushiko\Scenes\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\MainMenu.hpp">
+      <Filter>Ushiko\Scenes\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\Scene.hpp">
+      <Filter>Ushiko\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="jni\Enemy.hpp">
-      <Filter>Ushiko</Filter>
+      <Filter>Ushiko\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\Ushiko.hpp">
+      <Filter>Ushiko\Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

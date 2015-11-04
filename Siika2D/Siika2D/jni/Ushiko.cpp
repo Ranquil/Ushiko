@@ -29,12 +29,13 @@ void Ushiko::init(core::Siika2D *siika)
 	misc::PhysicsComponent *physComp = new misc::PhysicsComponent(glm::vec2(0, 0), glm::vec2(1, 1));
 	misc::TransformComponent *trnsComp = new misc::TransformComponent;
 
-	sprtComp->setZ(10);
-	go->setId(USHIKO);
-
 	go->addComponent(sprtComp);
 	go->addComponent(physComp);
 	go->addComponent(trnsComp);
+
+	sprtComp->setZ(10);
+	go->setId(USHIKO);
+	go->move(glm::vec2(-1000, 0));
 
 	tempTimer.start();
 	canJump = true;
@@ -55,7 +56,7 @@ void Ushiko::update(core::Siika2D *siika, colListener *collisions)
 
 	go->update();
 
-	std::vector<misc::GameObject*> *cols;
+	std::vector<misc::GameObject*> *cols = nullptr;
 	if (cols = collisions->getCollisionsFor(go))
 	{
 		for (misc::GameObject *g : *cols)

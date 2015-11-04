@@ -29,15 +29,19 @@ void CastleGenerator::update(core::Siika2D *siika)
 	for (Tile *t : tiles)
 	{
 		t->go->update();
-		t->go->move(glm::vec2(t->xPos -= 4, t->yPos));
+		t->go->move(glm::vec2(t->xPos -= 5, t->yPos));
 
 		tileAmount += 1;
-		if (tileAmount > 42)
+		if (tileAmount > 24)
 			deleteTile = true;
 	}
 
 	if (deleteTile)
+	{
+		Tile *t = tiles.front();
 		tiles.erase(tiles.begin());
+		delete t;
+	}
 
 	if (tileMovement >= 17)
 	{
@@ -46,7 +50,7 @@ void CastleGenerator::update(core::Siika2D *siika)
 		glm::vec2 screenSize = siika->_graphicsContext->getDisplaySize();
 		if (platformSpawned < platformLength)
 		{
-			int x = screenSize.x * 2;
+			int x = screenSize.x * 1.6f;
 			spawnTile(siika, x, -yLevel);
 			platformSpawned += 1;
 		}
@@ -94,7 +98,6 @@ void CastleGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
 
 	sprtComp->setZ(80);
 	t->setId(GROUND);
-
 	t->move(pos);
 
 	Tile *newTile = new Tile(t, xPos, yPos);
