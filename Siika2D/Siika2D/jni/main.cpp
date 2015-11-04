@@ -10,7 +10,7 @@
 core::Siika2D *siika = core::Siika2D::UI();
 //misc::Timer switchTimer;
 
-Scene* scenes[3];
+Scene* scenes[4];
 int currentScene;
 
 void siika_onPause()
@@ -29,6 +29,7 @@ void siika_init()
 
 	currentScene = MAIN_MENU;
 
+	scenes[QUIT] = new Scene;
 	scenes[MAIN_MENU] = new MainMenu;
 	scenes[LEVEL_SELECT] = new LevelSelect;
 	scenes[CASTLE_LEVEL] = new Castle;

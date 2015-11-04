@@ -16,8 +16,9 @@ public:
 	void init(core::Siika2D *siika);
 	void deInit();
 
-private:
 	misc::GameObject *go;
+
+private:
 	std::string enemyTextureName;
 	misc::Timer animationTimer;
 };
