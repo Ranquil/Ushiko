@@ -11,9 +11,10 @@ public:
 	Enemy(std::string enemyTextureName);
 	~Enemy();
 
-	void init(core::Siika2D *siika);
-	void deInit(core::Siika2D *siika);
 	void update(core::Siika2D *siika);
+
+	void init(core::Siika2D *siika);
+	void deInit();
 
 private:
 	misc::GameObject *go;
