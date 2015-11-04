@@ -27,7 +27,7 @@ void siika_init()
 {
 	ushiko.init(siika);
 
-	currentScene = LEVEL_SELECT;
+	currentScene = MAIN_MENU;
 
 	scenes[MAIN_MENU] = new MainMenu;
 	scenes[LEVEL_SELECT] = new LevelSelect;
