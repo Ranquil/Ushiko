@@ -27,12 +27,14 @@ void Ushiko::init(core::Siika2D *siika)
 		glm::vec2(0, 0),
 		glm::vec2(1, 1))));
 	misc::PhysicsComponent *physComp = new misc::PhysicsComponent(glm::vec2(0, 0), glm::vec2(1, 1));
+	misc::TransformComponent *trnsComp = new misc::TransformComponent;
 
 	sprtComp->setZ(10);
 	go->setId(USHIKO);
 
 	go->addComponent(sprtComp);
 	go->addComponent(physComp);
+	go->addComponent(trnsComp);
 
 	tempTimer.start();
 	canJump = true;
