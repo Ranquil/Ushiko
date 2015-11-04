@@ -29,8 +29,6 @@ public:
 	virtual void pause() {}
 	virtual void resume() {}
 
-	bool lvl2Unlocked;
-	bool lvl3Unlocked;
 	glm::vec2 touchPosition;
 	graphics::Sprite *bg;
 };

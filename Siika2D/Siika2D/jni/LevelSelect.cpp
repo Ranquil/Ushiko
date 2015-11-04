@@ -14,8 +14,8 @@ LevelSelect::~LevelSelect()
 void LevelSelect::init(core::Siika2D *siika)
 {
 	glm::vec2 screenSize = siika->_graphicsContext->getDisplaySize();
-	int boxSizex = screenSize.x / 4;
-	int boxSizey = screenSize.y / 4; 
+	boxSizex = screenSize.x / 4;
+	boxSizey = screenSize.y / 4; 
 	plainsLevel = new misc::GameObject;
 	castleLevel = new misc::GameObject;
 	forestLevel = new misc::GameObject;
@@ -23,11 +23,23 @@ void LevelSelect::init(core::Siika2D *siika)
 	for (int i = 0; i < 3; i++)
 	{
 		graphics::Texture *lvlSelectTexture;
+		
 		switch (i)
 		{
+			
 			case 0:	lvlSelectTexture = siika->_textureManager->createTexture("background_plains.png");	break;
-			case 1:	lvlSelectTexture = siika->_textureManager->createTexture("tile_castle_middle.png");	break;
-			case 2:	lvlSelectTexture = siika->_textureManager->createTexture("background_castle.png");	break;
+			case 1:	
+				if(lvl2Unlocked == false)
+					lvlSelectTexture = siika->_textureManager->createTexture("tile_castle_middle.png");	
+				else
+					//lvlSelectTexture = siika->_textureManager->createTexture("background_forest.png");
+				break;
+			case 2:
+				if (lvl3Unlocked == false)
+					lvlSelectTexture = siika->_textureManager->createTexture("tile_castle_middle.png");	
+				else
+					//lvlSelectTexture = siika->_textureManager->createTexture("backgrond_castle.png");
+				break;
 			default: break;
 		}
 
@@ -39,7 +51,7 @@ void LevelSelect::init(core::Siika2D *siika)
 			glm::vec2(0, 0),
 			glm::vec2(1, 1))));
 		misc::TransformComponent *transComp = new misc::TransformComponent;
-
+		
 		switch (i)
 		{
 			case 0:	plainsLevel->addComponent(sprtComp); plainsLevel->addComponent(transComp);	break;
@@ -58,7 +70,19 @@ void LevelSelect::init(core::Siika2D *siika)
 
 void LevelSelect::deInit(core::Siika2D *siika)
 {
-	delete plainsLevel, forestLevel, castleLevel;
+	delete plainsLevel;
+	delete forestLevel; 
+	delete castleLevel;
+}
+
+bool LevelSelect::isIntersecting(glm::vec2 touchPosition, glm::vec2 box)
+{
+	if ((touchPosition.x > box.x && touchPosition.x < box.x + boxSizex) && 
+		touchPosition.y > box.y && touchPosition.y < box.y + boxSizey)
+	{
+		return true;
+	}
+	return false;
 }
 
 
@@ -67,16 +91,15 @@ int LevelSelect::update(core::Siika2D *siika)
 	siika->_graphicsContext->clear();
 		for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
 		{
-			touchPosition = siika->_input->touchPosition(i)._positionCurrent + siika->_camera->getPosition();
+			touchPosition = siika->_input->touchPosition(i)._positionCurrent;
 		}
-
-	//if (siika->_input->fingerUp())
-	//{
-	//	if (touchPosition == plainsLevel->getComponent<misc::TransformComponent>()->getPosition());
-	//	{
-	//		return CASTLE_LEVEL;
-	//	}
-	//}
+		if (siika->_input->fingerUp() == true)
+		{
+			if (isIntersecting(touchPosition, plainsLevel->getComponent<misc::TransformComponent>()->getPosition()))
+			{
+				return CASTLE_LEVEL;
+			}
+		}
 
 	plainsLevel->update();
 	forestLevel->update();

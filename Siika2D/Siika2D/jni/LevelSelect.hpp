@@ -14,9 +14,15 @@ public:
 
 	virtual int update(core::Siika2D *siika);
 
+	bool isIntersecting(glm::vec2 touchPosition, glm::vec2 box);
+
 	misc::GameObject *plainsLevel;
 	misc::GameObject *forestLevel;
 	misc::GameObject *castleLevel;
+	bool lvl2Unlocked = false;
+	bool lvl3Unlocked = false;
+	int boxSizey;
+	int boxSizex;
 };
 
 
