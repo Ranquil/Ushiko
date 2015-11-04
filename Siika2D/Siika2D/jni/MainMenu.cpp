@@ -7,7 +7,7 @@ MainMenu::MainMenu()
 
 MainMenu::~MainMenu()
 {
-
+	deInit();
 }
 
 void MainMenu::init(core::Siika2D *siika)
@@ -38,7 +38,7 @@ void MainMenu::init(core::Siika2D *siika)
 	siika->_graphicsContext->setClearColor(graphics::Color(255, 0, 255, 255));
 }
 
-void MainMenu::deInit(core::Siika2D *siika)
+void MainMenu::deInit()
 {
 	
 }

@@ -8,7 +8,7 @@ Castle::Castle()
 
 Castle::~Castle()
 {
-
+	deInit();
 }
 
 void Castle::init(core::Siika2D *siika)
@@ -20,7 +20,6 @@ void Castle::init(core::Siika2D *siika)
 
 	ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(5, 0));
 
-	//*
 	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
 	bg = siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
@@ -31,7 +30,6 @@ void Castle::init(core::Siika2D *siika)
 		glm::vec2(1, 1));
 	bg->setSize(glm::vec2(scrSize.x, scrSize.y));
 	bg->setZ(100);
-	//*/
 
 	theme = siika->_audioManager->createAudio("castle_theme.ogg");
 	theme->setLooping(true);
@@ -41,7 +39,7 @@ void Castle::init(core::Siika2D *siika)
 	siika->_boxWorld->SetContactListener(collisionListener);
 }
 
-void Castle::deInit(core::Siika2D *siika)
+void Castle::deInit()
 {
 	delete lt;
 	delete lg;

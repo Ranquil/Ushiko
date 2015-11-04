@@ -50,8 +50,7 @@ void CastleGenerator::update(core::Siika2D *siika)
 		glm::vec2 screenSize = siika->_graphicsContext->getDisplaySize();
 		if (platformSpawned < platformLength)
 		{
-			int x = screenSize.x * 1.6f;
-			spawnTile(siika, x, -yLevel);
+			spawnTile(siika, screenSize.x * 1.6f, -yLevel);
 			platformSpawned += 1;
 		}
 		else

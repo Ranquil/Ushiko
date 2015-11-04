@@ -8,7 +8,7 @@ LevelSelect::LevelSelect()
 
 LevelSelect::~LevelSelect()
 {
-
+	deInit();
 }
 
 void LevelSelect::init(core::Siika2D *siika)
@@ -68,7 +68,7 @@ void LevelSelect::init(core::Siika2D *siika)
 	
 }
 
-void LevelSelect::deInit(core::Siika2D *siika)
+void LevelSelect::deInit()
 {
 	delete plainsLevel;
 	delete forestLevel; 

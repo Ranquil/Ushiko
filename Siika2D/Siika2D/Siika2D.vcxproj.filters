@@ -165,6 +165,9 @@
     <ClCompile Include="jni\Ushiko.cpp">
       <Filter>Ushiko\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="jni\Enemy.cpp">
+      <Filter>Ushiko\Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="native_app_glue\android_native_app_glue.h">

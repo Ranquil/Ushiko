@@ -10,7 +10,7 @@ public:
 	~LevelSelect();
 
 	virtual void init(core::Siika2D *siika);
-	virtual void deInit(core::Siika2D *siika);
+	virtual void deInit();
 
 	virtual int update(core::Siika2D *siika);
 

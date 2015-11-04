@@ -16,18 +16,17 @@ public:
 	virtual int update(core::Siika2D *siika);
 
 	virtual void init(core::Siika2D *siika);
-	virtual void deInit(core::Siika2D *siika);
+	virtual void deInit();
 
 	virtual void pause();
 	virtual void resume();
 
 private:
+	colListener *collisionListener;
 	CastleGenerator *lg;
 	LevelTimer *lt;
 
 	audio::Audio *theme;
-
-	colListener *collisionListener;
 };
 
 #endif // CASTLE_H

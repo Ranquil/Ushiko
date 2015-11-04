@@ -48,6 +48,7 @@
     <ClCompile Include="inc\lodepng\lodepng.cpp" />
     <ClCompile Include="jni\Castle.cpp" />
     <ClCompile Include="jni\CastleGenerator.cpp" />
+    <ClCompile Include="jni\Enemy.cpp" />
     <ClCompile Include="jni\LevelSelect.cpp" />
     <ClCompile Include="jni\LevelTimer.cpp" />
     <ClCompile Include="jni\main.cpp" />

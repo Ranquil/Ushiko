@@ -59,7 +59,12 @@ void siika_main()
 
 	if (currentScene != prevScene)
 	{
-		scenes[prevScene]->deInit(siika);
+		scenes[prevScene]->deInit();
 		scenes[currentScene]->init(siika);
+	}
+
+	if (currentScene == QUIT)
+	{
+		// quit program
 	}
 }

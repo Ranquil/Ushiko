@@ -13,6 +13,7 @@ enum CollisionType
 
 enum ScreenState
 {
+	QUIT,
 	MAIN_MENU,
 	LEVEL_SELECT,
 	CASTLE_LEVEL
@@ -24,7 +25,7 @@ public:
 	virtual int update(core::Siika2D *siika) { return 0; }
 
 	virtual void init(core::Siika2D *siika) {}
-	virtual void deInit(core::Siika2D *siika) {}
+	virtual void deInit() {}
 
 	virtual void pause() {}
 	virtual void resume() {}
