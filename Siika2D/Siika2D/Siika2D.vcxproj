@@ -93,6 +93,7 @@
     <ClInclude Include="inc\lodepng\lodepng.h" />
     <ClInclude Include="jni\Castle.hpp" />
     <ClInclude Include="jni\CastleGenerator.hpp" />
+    <ClInclude Include="jni\Enemy.hpp" />
     <ClInclude Include="jni\LevelSelect.hpp" />
     <ClInclude Include="jni\LevelTimer.hpp" />
     <ClInclude Include="jni\MainMenu.hpp" />

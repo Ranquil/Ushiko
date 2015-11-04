@@ -278,5 +278,8 @@
     <ClInclude Include="jni\Ushiko.hpp">
       <Filter>Ushiko</Filter>
     </ClInclude>
+    <ClInclude Include="jni\Enemy.hpp">
+      <Filter>Ushiko</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
