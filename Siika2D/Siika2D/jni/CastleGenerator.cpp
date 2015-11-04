@@ -1,4 +1,5 @@
 #include "CastleGenerator.hpp"
+#include "Scene.hpp"
 
 CastleGenerator::CastleGenerator(core::Siika2D *siika)
 {
@@ -94,6 +95,8 @@ void CastleGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
 	t->getComponent<misc::PhysicsComponent>()->setSize(glm::vec2(32, 32));
 //	t->getComponent<misc::PhysicsComponent>()->setGravityScale(0);
 	t->move(pos);
+
+	t->setId(GROUND);
 
 	Tile *newTile = new Tile(t, xPos, yPos);
 	tiles.push_back(newTile);

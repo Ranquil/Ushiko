@@ -1,4 +1,5 @@
 #include "Ushiko.hpp"
+#include "Scene.hpp"
 
 Ushiko ushiko;
 
