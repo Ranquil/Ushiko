@@ -27,7 +27,7 @@ private:
 
 	audio::Audio *theme;
 
-	colListener collisionListener;
+	colListener *collisionListener;
 };
 
 #endif // CASTLE_H

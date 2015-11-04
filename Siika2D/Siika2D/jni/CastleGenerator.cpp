@@ -39,7 +39,7 @@ void CastleGenerator::update(core::Siika2D *siika)
 	if (deleteTile)
 		tiles.erase(tiles.begin());
 
-	if (tileMovement >= 16)
+	if (tileMovement >= 17)
 	{
 		tileMovement = 0;
 
@@ -79,7 +79,7 @@ void CastleGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
 
 	glm::vec2 pos = glm::vec2(xPos, yPos);
 
-	misc::GameObject *t = new misc::GameObject(pos, siika->_textureManager->createTexture(textureName), glm::vec2(64, 64), glm::vec2(32, 32));
+	misc::GameObject *t = new misc::GameObject;
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		pos,
 		glm::vec2(64, 64),
@@ -87,16 +87,15 @@ void CastleGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
 		siika->_textureManager->createTexture(textureName),
 		glm::vec2(0, 0),
 		glm::vec2(1, 1))));
-	t->removeComponent<misc::SpriteComponent>();
-	sprtComp->setZ(80);
+	misc::PhysicsComponent *physComp = new misc::PhysicsComponent(pos, glm::vec2(64, 64));
 
 	t->addComponent(sprtComp);
+	t->addComponent(physComp);
 
-	t->getComponent<misc::PhysicsComponent>()->setSize(glm::vec2(32, 32));
-//	t->getComponent<misc::PhysicsComponent>()->setGravityScale(0);
-	t->move(pos);
-
+	sprtComp->setZ(80);
 	t->setId(GROUND);
+
+	t->move(pos);
 
 	Tile *newTile = new Tile(t, xPos, yPos);
 	tiles.push_back(newTile);
