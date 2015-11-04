@@ -2,6 +2,7 @@
 #define MAINMENU_H
 
 #include "Scene.hpp"
+#include "Enemy.hpp"
 
 class MainMenu : public Scene
 {
@@ -13,6 +14,7 @@ public:
 
 	virtual void init(core::Siika2D *siika);
 	virtual void deInit(core::Siika2D *siika);
+	Enemy *test;
 
 private:
 	misc::GameObject startGameButton;
