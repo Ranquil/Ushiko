@@ -39,7 +39,7 @@ void GameUI::init(core::Siika2D *siika)
 	pauseButton->addComponent(sprtComp);
 	pauseButton->addComponent(transComp);
 
-	
+	lastState = RESUME;
 }
 
 void GameUI::deInit()
@@ -73,7 +73,16 @@ int GameUI::update(core::Siika2D *siika)
 	{
 		if (isIntersecting(touchPosition, pauseButton->getComponent<misc::TransformComponent>()->getPosition()))
 		{
-			return PAUSE;
+			if (lastState == RESUME)
+			{
+				lastState = PAUSE;
+				return PAUSE;
+			}
+			else
+			{
+				lastState = RESUME;
+				return RESUME;
+			}
 		}
 	}
 	return DEFAULT;
