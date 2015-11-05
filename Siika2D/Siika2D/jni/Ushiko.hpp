@@ -19,6 +19,8 @@ public:
 	int groundLevel;
 
 private:
+	misc::Timer jumpTimer;
+
 	bool doubleJump;
 	bool canJump;
 };

@@ -22,9 +22,7 @@ public:
 
 private:
 	CastleGenerator *lg;
-
 	colListener *cl;
-
 	audio::Audio *theme;
 };
 

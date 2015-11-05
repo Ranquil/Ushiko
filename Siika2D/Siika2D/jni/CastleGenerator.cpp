@@ -98,12 +98,12 @@ void CastleGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
 		siika->_textureManager->createTexture(textureName),
 		glm::vec2(0, 0),
 		glm::vec2(1, 1))));
-	misc::PhysicsComponent *physComp = new misc::PhysicsComponent(pos, glm::vec2(64, 64));
+//	misc::PhysicsComponent *physComp = new misc::PhysicsComponent(pos, glm::vec2(64, 64));
 	misc::TransformComponent *trnsComp = new misc::TransformComponent;
 
 	t->addComponent(trnsComp);
 	t->addComponent(sprtComp);
-	t->addComponent(physComp);
+//	t->addComponent(physComp);
 
 	sprtComp->setZ(80);
 	t->setId(GROUND);

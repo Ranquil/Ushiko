@@ -37,13 +37,15 @@ void Ushiko::init(core::Siika2D *siika)
 	go->setId(USHIKO);
 	go->move(glm::vec2(-1000, 0));
 
+	jumpTimer.start();
 	doubleJump = false;
 	canJump = true;
 }
 
 void Ushiko::update(core::Siika2D *siika, colListener *collisions)
 {
-	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
+	if (jumpTimer.getElapsedTime(MILLISECONDS) > 200 &&
+		siika->_input->touchPositionsActive() > 0)
 	{
 		if (canJump || !doubleJump)
 		{
@@ -54,6 +56,8 @@ void Ushiko::update(core::Siika2D *siika, colListener *collisions)
 				canJump = false;
 			else if (!doubleJump)
 				doubleJump = true;
+
+			jumpTimer.reset();
 		}
 	}
 	int ushikoLevel = siika->transfCrds()->deviceToUser(go->getComponent<misc::TransformComponent>()->getPosition()).y;
@@ -79,6 +83,5 @@ void Ushiko::update(core::Siika2D *siika, colListener *collisions)
 		}
 	}
 	//*/
-
 	go->update();
 }
