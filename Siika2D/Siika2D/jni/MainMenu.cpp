@@ -24,7 +24,6 @@ void MainMenu::init(core::Siika2D *siika)
 		glm::vec2(1, 1))));
 
 	misc::TransformComponent *transComp = new misc::TransformComponent;
-	transComp->setPosition(glm::vec2(0, 0));
 
 	startGameButton->addComponent(sprtComp);
 	startGameButton->addComponent(transComp);
@@ -53,16 +52,18 @@ bool MainMenu::isIntersecting(glm::vec2 touchPosition, glm::vec2 box)
 int MainMenu::update(core::Siika2D *siika)
 {
 	siika->_graphicsContext->clear();
-	//for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
-	//{
-	//	touchPosition = siika->_input->touchPosition(i)._positionCurrent;
-	//}
-	//if (isIntersecting(touchPosition, startGameButton->getComponent<misc::TransformComponent>()->getPosition()))
-	//{
-	//	return LEVEL_SELECT;
-	//}
-
 	startGameButton->update();
+
+
+	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
+	{
+		touchPosition = siika->_input->touchPosition(i)._positionCurrent;
+	}
+	if (isIntersecting(touchPosition, startGameButton->getComponent<misc::TransformComponent>()->getPosition()))
+	{
+		return LEVEL_SELECT;
+	}
+
 
 	siika->_spriteManager->drawSprites();
 	siika->_textManager->drawTexts();
