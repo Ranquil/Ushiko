@@ -45,7 +45,7 @@ void GameUI::init(core::Siika2D *siika)
 		glm::vec2(0, 0),
 		glm::vec2(1, 1))));
 	misc::TransformComponent *transComp = new misc::TransformComponent;
-	sprtComp->setZ(10);
+	sprtComp->setZ(0);
 
 	pauseButton->addComponent(sprtComp);
 	pauseButton->addComponent(transComp);

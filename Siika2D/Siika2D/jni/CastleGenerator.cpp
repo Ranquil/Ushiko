@@ -6,12 +6,14 @@
 CastleGenerator::CastleGenerator(core::Siika2D *siika)
 {
 	tiles.clear();
+	enemies.clear();
 
 	srand48(time(NULL));
 
 	tileMovement = 0;
 	platformLength = 10;
 	platformSpawned = 0;
+	platformHasEnemy = false;
 
 	yLevel = siika->_graphicsContext->getDisplaySize().y * 2 + 400;
 	ushiko.groundLevel = yLevel;
@@ -23,6 +25,7 @@ CastleGenerator::CastleGenerator(core::Siika2D *siika)
 CastleGenerator::~CastleGenerator()
 {
 	tiles.clear();
+	enemies.clear();
 }
 
 void CastleGenerator::update(core::Siika2D *siika)
@@ -53,6 +56,25 @@ void CastleGenerator::update(core::Siika2D *siika)
 		delete t;
 	}
 
+	bool deleteEnemy = false;
+	for (Enemy *e : enemies)
+	{
+		glm::vec2 enemyPos = siika->transfCrds()->deviceToUser(e->go->getComponent<misc::TransformComponent>()->getPosition());
+
+		e->update(siika);
+		e->go->move(glm::vec2(e->xPos -= 5, enemyPos.y));
+
+		if (enemyPos.x <= 100)
+			deleteEnemy = true;
+	}
+
+	if (deleteEnemy)
+	{
+		Enemy *e = enemies.front();
+		enemies.erase(enemies.begin());
+		delete e;
+	}
+
 	if (tileMovement >= 17)
 	{
 		tileMovement = 0;
@@ -62,11 +84,25 @@ void CastleGenerator::update(core::Siika2D *siika)
 		{
 			spawnTile(siika, screenSize.x * 1.6f, -yLevel);
 			platformSpawned += 1;
+
+			if (!platformHasEnemy && platformSpawned > (int)(platformLength / 2) && mrand48() % 4 == 0)
+			{
+				Enemy *e = new Enemy("sprite_gigapuddi.png");
+
+				e->init(siika, 0, 7);
+				e->xPos = screenSize.x * 1.6f;
+				e->go->move(glm::vec2(e->xPos, -yLevel + 100));
+
+				enemies.push_back(e);
+				platformHasEnemy = true;
+			}
 		}
 		else
 		{
 			platformSpawned = 0;
 			platformLength = mrand48() % 10 + 5;
+			platformHasEnemy = false;
+
 			int previousY = yLevel;
 			while (yLevel == previousY)
 			{

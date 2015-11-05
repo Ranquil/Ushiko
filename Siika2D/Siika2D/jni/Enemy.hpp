@@ -18,6 +18,8 @@ public:
 
 	misc::GameObject *go;
 
+	int xPos;
+
 private:
 	int firstFrame;
 	int lastFrame;

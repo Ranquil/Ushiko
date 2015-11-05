@@ -5,6 +5,8 @@
 #include "../engine/misc/GameObject.h"
 #include "../engine/misc/timer.h"
 
+#include "Enemy.hpp"
+
 struct Tile
 {
 	Tile(misc::GameObject *t, int x, int y) :
@@ -24,8 +26,11 @@ public:
 
 private:
 	std::vector<Tile*> tiles;
+	std::vector<Enemy*> enemies;
 
 	void spawnTile(core::Siika2D *siika, int xPos, int yPos);
+
+	bool platformHasEnemy;
 
 	int tileMovement;
 	int platformLength;
