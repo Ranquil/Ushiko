@@ -49,6 +49,7 @@
     <ClCompile Include="jni\Castle.cpp" />
     <ClCompile Include="jni\CastleGenerator.cpp" />
     <ClCompile Include="jni\Enemy.cpp" />
+    <ClCompile Include="jni\GameUI.cpp" />
     <ClCompile Include="jni\LevelSelect.cpp" />
     <ClCompile Include="jni\LevelTimer.cpp" />
     <ClCompile Include="jni\main.cpp" />
@@ -95,6 +96,7 @@
     <ClInclude Include="jni\Castle.hpp" />
     <ClInclude Include="jni\CastleGenerator.hpp" />
     <ClInclude Include="jni\Enemy.hpp" />
+    <ClInclude Include="jni\GameUI.hpp" />
     <ClInclude Include="jni\LevelSelect.hpp" />
     <ClInclude Include="jni\LevelTimer.hpp" />
     <ClInclude Include="jni\MainMenu.hpp" />

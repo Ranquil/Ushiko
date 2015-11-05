@@ -5,7 +5,6 @@
 
 #include "Scene.hpp"
 #include "CastleGenerator.hpp"
-#include "LevelTimer.hpp"
 
 class Castle : public Scene
 {
@@ -23,7 +22,7 @@ public:
 
 private:
 	CastleGenerator *lg;
-	LevelTimer *lt;
+
 	colListener *cl;
 
 	audio::Audio *theme;

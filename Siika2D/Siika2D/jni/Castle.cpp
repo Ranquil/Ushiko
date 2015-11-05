@@ -13,9 +13,6 @@ Castle::~Castle()
 
 void Castle::init(core::Siika2D *siika)
 {
-	lt = new LevelTimer;
-	lt->InitTimer(siika, "arial.ttf", 64, 0.5, -0.95);
-
 	lg = new CastleGenerator(siika);
 
 	ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(5, 0));
@@ -41,7 +38,6 @@ void Castle::init(core::Siika2D *siika)
 
 void Castle::deInit()
 {
-	delete lt;
 	delete lg;
 	delete theme;
 	delete cl;
@@ -50,19 +46,7 @@ void Castle::deInit()
 int Castle::update(core::Siika2D *siika)
 {
 	siika->_graphicsContext->clear();
-
-	std::vector<misc::GameObject*> *cols = nullptr;
-	if (cols = cl->getCollisionsFor(ushiko.go))
-	{
-		for (misc::GameObject *g : *cols)
-		{
-			if (g->getId() == GROUND)
-			{
-				ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
-				cols->clear();
-			}
-		}
-	}
+	
 	siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
 
 	if (lg->generatorTimer.getElapsedTime(MILLISECONDS) > 10)
@@ -72,7 +56,6 @@ int Castle::update(core::Siika2D *siika)
 	}
 
 	ushiko.update(siika, cl);
-	lt->update();
 
 	siika->_spriteManager->drawSprites();
 	siika->_textManager->drawTexts();

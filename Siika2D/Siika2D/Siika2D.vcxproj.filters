@@ -168,6 +168,9 @@
     <ClCompile Include="jni\Enemy.cpp">
       <Filter>Ushiko\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="jni\GameUI.cpp">
+      <Filter>Ushiko</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="native_app_glue\android_native_app_glue.h">
@@ -292,6 +295,9 @@
     </ClInclude>
     <ClInclude Include="jni\Ushiko.hpp">
       <Filter>Ushiko\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\GameUI.hpp">
+      <Filter>Ushiko</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

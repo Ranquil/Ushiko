@@ -99,6 +99,14 @@ int LevelSelect::update(core::Siika2D *siika)
 			{
 				return CASTLE_LEVEL;
 			}
+			//else if (isIntersecting(touchPosition, forestLevel->getComponent<misc::TransformComponent>()->getPosition()))
+			//{
+			//	return FOREST_LEVEL
+			//}
+			//else if (isIntersecting(touchPosition, castleLevel->getComponent<misc::TransformComponent>()->getPosition()))
+			//{
+			//	return CASTLE_LEVEL
+			//}
 		}
 
 	plainsLevel->update();
