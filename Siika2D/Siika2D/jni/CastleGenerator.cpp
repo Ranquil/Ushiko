@@ -87,9 +87,9 @@ void CastleGenerator::update(core::Siika2D *siika)
 
 			if (!platformHasEnemy && platformSpawned > (int)(platformLength / 2) && mrand48() % 4 == 0)
 			{
-				Enemy *e = new Enemy("sprite_shimapanda.png");
+				Enemy *e = new Enemy("sprite_gigapuddi.png");
 
-				e->init(siika);
+				e->init(siika,0,7);
 				e->xPos = screenSize.x * 1.6f;
 				e->yPos = -yLevel + 200;
 				e->go->move(glm::vec2(e->xPos, e->yPos));
