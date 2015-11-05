@@ -18,7 +18,6 @@ public:
 	int gemCount;
 	const int maxGems = 20;
 	graphics::Text *gemTextUI;
-	std::string gemText;
 private:
 	LevelTimer *lt;
 

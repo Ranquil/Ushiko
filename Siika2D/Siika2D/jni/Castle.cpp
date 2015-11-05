@@ -14,6 +14,9 @@ Castle::~Castle()
 void Castle::init(core::Siika2D *siika)
 {
 	lg = new CastleGenerator(siika);
+	gameUI = new GameUI;
+
+	gameUI->init(siika);
 
 	ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(5, 0));
 
@@ -38,6 +41,7 @@ void Castle::init(core::Siika2D *siika)
 
 void Castle::deInit()
 {
+	delete gameUI;
 	delete lg;
 	delete theme;
 	delete cl;
@@ -50,6 +54,7 @@ int Castle::update(core::Siika2D *siika)
 
 	lg->update(siika);
 	ushiko.update(siika, cl);
+	gameUI->update(siika);
 
 	siika->_spriteManager->drawSprites();
 	siika->_textManager->drawTexts();

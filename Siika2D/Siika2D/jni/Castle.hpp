@@ -5,6 +5,7 @@
 
 #include "Scene.hpp"
 #include "CastleGenerator.hpp"
+#include "GameUI.hpp"
 
 class Castle : public Scene
 {
@@ -24,6 +25,7 @@ private:
 	CastleGenerator *lg;
 	colListener *cl;
 	audio::Audio *theme;
+	GameUI *gameUI;
 };
 
 #endif // CASTLE_H

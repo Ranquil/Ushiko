@@ -1,4 +1,5 @@
 #include "GameUI.hpp"
+#include <sstream>
 
 GameUI::GameUI()
 {
@@ -29,7 +30,10 @@ void GameUI::deInit()
 void GameUI::update(core::Siika2D *siika)
 {
 	lt->update();
-	gemText = gemCount + "/" + maxGems;
-	gemTextUI->setText(gemText);
+
+	std::ostringstream gemText;
+
+	gemText << gemCount << " / " << maxGems;
 	
+	gemTextUI->setText(gemText.str());
 }
