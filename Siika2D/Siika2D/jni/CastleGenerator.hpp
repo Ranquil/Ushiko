@@ -22,8 +22,6 @@ public:
 
 	void update(core::Siika2D *siika);
 
-	misc::Timer generatorTimer;
-
 private:
 	std::vector<Tile*> tiles;
 

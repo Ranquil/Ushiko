@@ -46,15 +46,9 @@ void Castle::deInit()
 int Castle::update(core::Siika2D *siika)
 {
 	siika->_graphicsContext->clear();
-	
 	siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
 
-	if (lg->generatorTimer.getElapsedTime(MILLISECONDS) > 10)
-	{
-		lg->generatorTimer.reset();
-		lg->update(siika);
-	}
-
+	lg->update(siika);
 	ushiko.update(siika, cl);
 
 	siika->_spriteManager->drawSprites();

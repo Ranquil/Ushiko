@@ -6,7 +6,6 @@
 CastleGenerator::CastleGenerator(core::Siika2D *siika)
 {
 	tiles.clear();
-	generatorTimer.start();
 
 	srand48(time(NULL));
 
@@ -16,6 +15,9 @@ CastleGenerator::CastleGenerator(core::Siika2D *siika)
 
 	yLevel = siika->_graphicsContext->getDisplaySize().y * 2 + 400;
 	ushiko.groundLevel = yLevel;
+
+	for (int i = 0; i < 280; i++)
+		update(siika);
 }
 
 CastleGenerator::~CastleGenerator()
