@@ -27,6 +27,7 @@ void LevelTimer::update()
 	{
 		timerMinutes++;
 		levelTimer.reset();
+		
 	}
 
 	std::ostringstream timerOstring;

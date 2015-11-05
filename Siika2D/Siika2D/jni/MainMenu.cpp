@@ -12,8 +12,8 @@ MainMenu::~MainMenu()
 
 void MainMenu::init(core::Siika2D *siika)
 {
-	test = new Enemy("sprite_shimapanda.png");
-	test->init(siika);
+	test = new Enemy("sprite_gigapuddi.png");
+	test->init(siika,0,7);
 
 	graphics::Texture *startGameTexture = siika->_textureManager->createTexture("Temp_Menu_button.png");
 
