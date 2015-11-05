@@ -1,6 +1,7 @@
 #include "GameUI.hpp"
 #include <sstream>
 
+
 GameUI::GameUI()
 {
 
@@ -72,10 +73,10 @@ int GameUI::update(core::Siika2D *siika)
 	{
 		if (isIntersecting(touchPosition, pauseButton->getComponent<misc::TransformComponent>()->getPosition()))
 		{
-			return 1;
+			return PAUSE;
 		}
 	}
-	return 0;
+	return DEFAULT;
 
 
 }

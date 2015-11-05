@@ -3,6 +3,12 @@
 
 #include "LevelTimer.hpp"
 
+enum UIState
+{
+	DEFAULT,
+	PAUSE,
+	RESUME
+};
 class GameUI
 {
 public:
