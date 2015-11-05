@@ -2,7 +2,6 @@
 #define MAINMENU_H
 
 #include "Scene.hpp"
-#include "Enemy.hpp"
 
 class MainMenu : public Scene
 {
@@ -14,10 +13,11 @@ public:
 
 	virtual void init(core::Siika2D *siika);
 	virtual void deInit();
-	Enemy *test;
+
+	bool isIntersecting(glm::vec2 touchPosition, glm::vec2 box);
 
 private:
-	misc::GameObject startGameButton;
+	misc::GameObject *startGameButton;
 };
 
 #endif // MAINMENU_H
