@@ -25,6 +25,16 @@ void GameUI::init(core::Siika2D *siika)
 
 	graphics::Texture *pauseButtonTexture;
 
+	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
+	shade = siika->_spriteManager->createSprite(
+		glm::vec2(0, scrSize.y),
+		glm::vec2(scrSize.x, scrSize.y),
+		glm::vec2(0, 0),
+		siika->_textureManager->createTexture("shade.png"),
+		glm::vec2(0, 0),
+		glm::vec2(1, 1));
+	shade->setZ(-10);
+
 	pauseButtonTexture = siika->_textureManager->createTexture("ui_pausebutton.png");
 
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
@@ -35,11 +45,13 @@ void GameUI::init(core::Siika2D *siika)
 		glm::vec2(0, 0),
 		glm::vec2(1, 1))));
 	misc::TransformComponent *transComp = new misc::TransformComponent;
+	sprtComp->setZ(10);
 
 	pauseButton->addComponent(sprtComp);
 	pauseButton->addComponent(transComp);
 
 	lastState = RESUME;
+	inputTimer.start();
 }
 
 void GameUI::deInit()
@@ -65,21 +77,26 @@ int GameUI::update(core::Siika2D *siika)
 	gemText << gemCount << " / " << maxGems;
 	gemTextUI->setText(gemText.str());
 
-	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
+	touchPosition = glm::vec2(0, 0);
+
+	if (inputTimer.getElapsedTime(SECONDS) > 0.5)
 	{
-		touchPosition = siika->_input->touchPosition(i)._positionCurrent;
-	}
-	if (siika->_input->fingerUp() == true)
-	{
+		for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
+			touchPosition = siika->_input->touchPosition(i)._positionCurrent;
+
 		if (isIntersecting(touchPosition, pauseButton->getComponent<misc::TransformComponent>()->getPosition()))
 		{
+			inputTimer.reset();
+
 			if (lastState == RESUME)
 			{
+				shade->setPosition(glm::vec2(0, 0));
 				lastState = PAUSE;
 				return PAUSE;
 			}
 			else
 			{
+				shade->setPosition(glm::vec2(0, siika->_graphicsContext->getDisplaySize().y));
 				lastState = RESUME;
 				return RESUME;
 			}

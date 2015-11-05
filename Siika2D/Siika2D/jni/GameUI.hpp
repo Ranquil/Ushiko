@@ -15,21 +15,25 @@ public:
 	GameUI();
 	~GameUI();
 
-	void init(core::Siika2D *siika);
-
-	void deInit();
-
 	int update(core::Siika2D *siika);
+
+	void init(core::Siika2D *siika);
+	void deInit();
 
 	int gemCount;
 	const int maxGems = 20;
+
 	graphics::Text *gemTextUI;
+	graphics::Sprite *shade;
+
 	misc::GameObject *pauseButton;
 	glm::vec2 touchPosition;
+
 	UIState lastState;
+
 private:
 	LevelTimer *lt;
-
+	misc::Timer inputTimer;
 };
 
 

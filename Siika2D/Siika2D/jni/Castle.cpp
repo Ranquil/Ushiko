@@ -53,6 +53,12 @@ int Castle::update(core::Siika2D *siika)
 {
 	siika->_graphicsContext->clear();
 
+	int state = gameUI->update(siika);
+	if (state == PAUSE)
+		pause();
+	else if (state == RESUME)
+		resume();
+
 	if (!paused)
 	{
 		siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
@@ -60,12 +66,6 @@ int Castle::update(core::Siika2D *siika)
 		lg->update(siika);
 		ushiko.update(siika, cl);
 	}
-
-	int state = gameUI->update(siika);
-	if (state == PAUSE)
-		pause();
-	else if (state == RESUME)
-		resume();
 
 	siika->_spriteManager->drawSprites();
 	siika->_textManager->drawTexts();
