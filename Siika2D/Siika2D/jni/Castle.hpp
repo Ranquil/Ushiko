@@ -26,6 +26,8 @@ private:
 	colListener *cl;
 	audio::Audio *theme;
 	GameUI *gameUI;
+
+	bool paused;
 };
 
 #endif // CASTLE_H

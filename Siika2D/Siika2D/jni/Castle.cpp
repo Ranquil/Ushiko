@@ -37,6 +37,8 @@ void Castle::init(core::Siika2D *siika)
 
 	cl = new colListener;
 	siika->_boxWorld->SetContactListener(cl);
+
+	paused = false;
 }
 
 void Castle::deInit()
@@ -50,11 +52,20 @@ void Castle::deInit()
 int Castle::update(core::Siika2D *siika)
 {
 	siika->_graphicsContext->clear();
-	siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
 
-	lg->update(siika);
-	ushiko.update(siika, cl);
-	gameUI->update(siika);
+	if (!paused)
+	{
+		siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
+
+		lg->update(siika);
+		ushiko.update(siika, cl);
+	}
+
+	int state = gameUI->update(siika);
+	if (state == PAUSE)
+		pause();
+	else if (state == RESUME)
+		resume();
 
 	siika->_spriteManager->drawSprites();
 	siika->_textManager->drawTexts();
@@ -66,9 +77,11 @@ int Castle::update(core::Siika2D *siika)
 void Castle::pause()
 {
 	theme->pause();
+	paused = true;
 }
 
 void Castle::resume()
 {
 	theme->play();
+	paused = false;
 }
