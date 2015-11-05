@@ -36,7 +36,7 @@ void Enemy::deInit()
 
 void Enemy::update(core::Siika2D *siika)
 {
-	if (animationTimer.getElapsedTime(MILLISECONDS) >= 1000)
+	if (animationTimer.getElapsedTime(MILLISECONDS) >= 500)
 	{
 		go->getComponent<misc::SpriteComponent>()->getSprite()->step();
 		animationTimer.reset();

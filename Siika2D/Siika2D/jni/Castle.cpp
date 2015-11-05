@@ -35,8 +35,8 @@ void Castle::init(core::Siika2D *siika)
 	theme->setLooping(true);
 	theme->play();
 
-	collisionListener = new colListener;
-	siika->_boxWorld->SetContactListener(collisionListener);
+	cl = new colListener;
+	siika->_boxWorld->SetContactListener(cl);
 }
 
 void Castle::deInit()
@@ -44,12 +44,26 @@ void Castle::deInit()
 	delete lt;
 	delete lg;
 	delete theme;
+	delete cl;
 }
 
 int Castle::update(core::Siika2D *siika)
 {
-	siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
 	siika->_graphicsContext->clear();
+
+	std::vector<misc::GameObject*> *cols = nullptr;
+	if (cols = cl->getCollisionsFor(ushiko.go))
+	{
+		for (misc::GameObject *g : *cols)
+		{
+			if (g->getId() == GROUND)
+			{
+				ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
+				cols->clear();
+			}
+		}
+	}
+	siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
 
 	if (lg->generatorTimer.getElapsedTime(MILLISECONDS) > 10)
 	{
@@ -57,7 +71,7 @@ int Castle::update(core::Siika2D *siika)
 		lg->update(siika);
 	}
 
-	ushiko.update(siika, collisionListener);
+	ushiko.update(siika, cl);
 	lt->update();
 
 	siika->_spriteManager->drawSprites();

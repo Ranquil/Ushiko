@@ -22,9 +22,9 @@ public:
 	virtual void resume();
 
 private:
-	colListener *collisionListener;
 	CastleGenerator *lg;
 	LevelTimer *lt;
+	colListener *cl;
 
 	audio::Audio *theme;
 };
