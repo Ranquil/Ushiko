@@ -13,11 +13,13 @@ public:
 
 	void deInit();
 
-	void update(core::Siika2D *siika);
+	int update(core::Siika2D *siika);
 
 	int gemCount;
 	const int maxGems = 20;
 	graphics::Text *gemTextUI;
+	misc::GameObject *pauseButton;
+	glm::vec2 touchPosition;
 private:
 	LevelTimer *lt;
 
