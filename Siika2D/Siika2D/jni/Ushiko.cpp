@@ -37,7 +37,7 @@ void Ushiko::init(core::Siika2D *siika)
 	go->setId(USHIKO);
 	go->move(glm::vec2(-1000, 0));
 
-	tempTimer.start();
+	doubleJump = false;
 	canJump = true;
 }
 
@@ -45,17 +45,40 @@ void Ushiko::update(core::Siika2D *siika, colListener *collisions)
 {
 	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
 	{
-		if (canJump)
+		if (canJump || !doubleJump)
 		{
 			ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
 			ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 35), false);
-			tempTimer.reset();
-			canJump = false;
+
+			if (canJump)
+				canJump = false;
+			else if (!doubleJump)
+				doubleJump = true;
 		}
 	}
+	int ushikoLevel = siika->transfCrds()->deviceToUser(go->getComponent<misc::TransformComponent>()->getPosition()).y;
+	if (ushikoLevel > groundLevel - 250 && ushikoLevel < groundLevel && go->getComponent<misc::PhysicsComponent>()->_body->GetLinearVelocity().y < -1)
+	{
+		ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
+		ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 5), false);
+
+		doubleJump = false;
+		canJump = true;
+	}
+	/*
+	std::vector<misc::GameObject*> *cols = nullptr;
+	if (cols = collisions->getCollisionsFor(ushiko.go))
+	{
+		for (misc::GameObject *g : *cols)
+		{
+			if (g->getId() == GROUND)
+			{
+				ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
+				cols->clear();
+			}
+		}
+	}
+	//*/
 
 	go->update();
-
-	if (!canJump && tempTimer.getElapsedTime(MILLISECONDS) > 600)
-		canJump = true;
 }

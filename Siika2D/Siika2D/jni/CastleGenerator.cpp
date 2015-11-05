@@ -1,6 +1,8 @@
 #include "CastleGenerator.hpp"
 #include "Scene.hpp"
 
+#include "Ushiko.hpp"
+
 CastleGenerator::CastleGenerator(core::Siika2D *siika)
 {
 	tiles.clear();
@@ -13,6 +15,7 @@ CastleGenerator::CastleGenerator(core::Siika2D *siika)
 	platformSpawned = 0;
 
 	yLevel = siika->_graphicsContext->getDisplaySize().y * 2 + 400;
+	ushiko.groundLevel = yLevel;
 }
 
 CastleGenerator::~CastleGenerator()
@@ -25,11 +28,16 @@ void CastleGenerator::update(core::Siika2D *siika)
 	int tileAmount = 0;
 	bool deleteTile = false;
 
+	int ushikoXpos = siika->transfCrds()->deviceToUser(ushiko.go->getComponent<misc::TransformComponent>()->getPosition()).x + 100;
+
 	tileMovement += 1;
 	for (Tile *t : tiles)
 	{
 		t->go->update();
 		t->go->move(glm::vec2(t->xPos -= 5, t->yPos));
+
+		if (t->xPos < ushikoXpos && t->xPos > ushikoXpos - 10)
+			ushiko.groundLevel = -t->yPos;
 
 		tileAmount += 1;
 		if (tileAmount > 24)
@@ -56,14 +64,14 @@ void CastleGenerator::update(core::Siika2D *siika)
 		else
 		{
 			platformSpawned = 0;
-			platformLength = mrand48() % 10 + 7;
+			platformLength = mrand48() % 10 + 5;
 			int previousY = yLevel;
 			while (yLevel == previousY)
 			{
 				yLevel = mrand48() % 3;
 				switch (yLevel)
 				{
-					case 0: yLevel = 400; break;
+					case 0: yLevel = 450; break;
 					case 1: yLevel = screenSize.y * 2 - 300; break;
 					default: yLevel = screenSize.y * 2 + 400; break;
 				}

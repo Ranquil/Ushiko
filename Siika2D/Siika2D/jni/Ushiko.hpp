@@ -16,8 +16,10 @@ public:
 
 	misc::GameObject *go;
 
+	int groundLevel;
+
 private:
-	misc::Timer tempTimer;
+	bool doubleJump;
 	bool canJump;
 };
 
