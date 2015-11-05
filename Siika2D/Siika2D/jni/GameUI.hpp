@@ -26,6 +26,7 @@ public:
 	graphics::Text *gemTextUI;
 	misc::GameObject *pauseButton;
 	glm::vec2 touchPosition;
+	UIState lastState;
 private:
 	LevelTimer *lt;
 
