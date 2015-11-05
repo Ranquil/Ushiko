@@ -1,5 +1,5 @@
-#ifndef GAMEUI
-#define GAMEUI
+#ifndef GAMEUI_H
+#define GAMEUI_H
 
 #include "LevelTimer.hpp"
 
@@ -17,6 +17,8 @@ public:
 
 	int gemCount;
 	const int maxGems = 20;
+	graphics::Text *gemTextUI;
+	std::string gemText;
 private:
 	LevelTimer *lt;
 

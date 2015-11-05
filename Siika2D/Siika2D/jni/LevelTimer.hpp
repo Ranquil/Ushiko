@@ -17,7 +17,7 @@ private:
 	int timerMinutes;
 
 	misc::Timer levelTimer;
-	graphics::Text *levelTimerText;
+	graphics::Text *levelTimerText; 
 };
 
 #endif // LEVELTIMER_H
