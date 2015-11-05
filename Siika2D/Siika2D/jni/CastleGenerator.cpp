@@ -59,12 +59,12 @@ void CastleGenerator::update(core::Siika2D *siika)
 	bool deleteEnemy = false;
 	for (Enemy *e : enemies)
 	{
-		glm::vec2 enemyPos = siika->transfCrds()->deviceToUser(e->go->getComponent<misc::TransformComponent>()->getPosition());
+		int enemyXpos = siika->transfCrds()->deviceToUser(e->go->getComponent<misc::TransformComponent>()->getPosition()).x;
 
 		e->update(siika);
-		e->go->move(glm::vec2(e->xPos -= 5, enemyPos.y));
+		e->go->move(glm::vec2(e->xPos -= 5, e->yPos));
 
-		if (enemyPos.x <= 100)
+		if (enemyXpos <= 100)
 			deleteEnemy = true;
 	}
 
@@ -87,11 +87,12 @@ void CastleGenerator::update(core::Siika2D *siika)
 
 			if (!platformHasEnemy && platformSpawned > (int)(platformLength / 2) && mrand48() % 4 == 0)
 			{
-				Enemy *e = new Enemy("sprite_gigapuddi.png");
+				Enemy *e = new Enemy("sprite_shimapanda.png");
 
-				e->init(siika, 0, 7);
+				e->init(siika);
 				e->xPos = screenSize.x * 1.6f;
-				e->go->move(glm::vec2(e->xPos, -yLevel + 100));
+				e->yPos = -yLevel + 200;
+				e->go->move(glm::vec2(e->xPos, e->yPos));
 
 				enemies.push_back(e);
 				platformHasEnemy = true;
