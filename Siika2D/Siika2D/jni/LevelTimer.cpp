@@ -10,7 +10,7 @@ LevelTimer::LevelTimer()
 
 LevelTimer::~LevelTimer()
 {
-	delete levelTimerText;
+	levelTimerText->setText("");
 }
 
 void LevelTimer::InitTimer(core::Siika2D *siika, std::string fontName, int fontSize, float xPosition, float yPosition)

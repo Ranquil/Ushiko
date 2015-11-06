@@ -91,7 +91,7 @@ void GameUI::deInit()
 {
 	delete lt;
 	delete pauseButton;
-	delete gemTextUI;
+	gemTextUI->setText("");
 	for (int i = 0; i < 3; i++)
 	{
 		delete heartIcons[i];
