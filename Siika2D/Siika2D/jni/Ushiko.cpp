@@ -38,50 +38,76 @@ void Ushiko::init(core::Siika2D *siika)
 	go->move(glm::vec2(-1000, 0));
 
 	jumpTimer.start();
-	doubleJump = false;
-	canJump = true;
+	doubleJump = true;
+	canJump = false;
 
 	dashTimer.start();
 	dashing = false;
 	xOffset = 0;
 }
 
-void Ushiko::update(core::Siika2D *siika, colListener *collisions)
+void Ushiko::update(core::Siika2D *siika)
 {
+	glm::vec2 touchPos = glm::vec2(0, 0);
+	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
+	{
+		touchPos = siika->_input->touchPosition(i)._positionCurrent;
+		touchPos = siika->transfCrds()->deviceToUser(touchPos);
+	}
+
 	if (xOffset > 0)
 	{
-		if (dashTimer.getElapsedTime(MILLISECONDS) > 100)
+		ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
+		if (dashTimer.getElapsedTime(MILLISECONDS) > 30)
 		{
 			if (dashing)
 			{
-				xOffset += 5;
-
-				if (xOffset > 50)
+				xOffset += 20;
+				if (xOffset >= 200)
 					dashing = false;
 			}
 			else
 			{
-				xOffset -= 5;
+				xOffset -= 20;
+				if (xOffset <= 0)
+					xOffset = 0;
 			}
-			go->move(glm::vec2(xOrigin + xOffset, yOrigin));
+			go->move(glm::vec2(originalPos.x + xOffset, -originalPos.y));
+			dashTimer.reset();
 		}
 	}
 	else
 	{
-		if (jumpTimer.getElapsedTime(MILLISECONDS) > 200 &&
-			siika->_input->touchPositionsActive() > 0)
+		go->update();
+
+		if (canJump || !doubleJump)
 		{
-			if (canJump || !doubleJump)
+			if (jumpTimer.getElapsedTime(SECONDS) > 0.2 && touchPos.x > 10 &&
+				touchPos.x < siika->_graphicsContext->getDisplaySize().x / 2)
 			{
-				ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
-				ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 35), false);
+				//if (canJump || !doubleJump)
+				//{
+					ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
+					ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 35), false);
 
-				if (canJump)
-					canJump = false;
-				else if (!doubleJump)
-					doubleJump = true;
+					if (canJump)
+						canJump = false;
+					else if (!doubleJump)
+						doubleJump = true;
 
-				jumpTimer.reset();
+					jumpTimer.reset();
+				//}
+			}
+			else if (xOffset <= 0 && dashTimer.getElapsedTime(SECONDS) > 2 &&
+				touchPos.x > siika->_graphicsContext->getDisplaySize().x / 2)
+			{
+				if (xOffset <= 0)
+				{
+					dashing = true;
+					xOffset = 10;
+					originalPos = siika->transfCrds()->deviceToUser(ushiko.go->getComponent<misc::TransformComponent>()->getPosition());
+				}
+				dashTimer.reset();
 			}
 		}
 		int ushikoLevel = siika->transfCrds()->deviceToUser(go->getComponent<misc::TransformComponent>()->getPosition()).y;
@@ -94,15 +120,4 @@ void Ushiko::update(core::Siika2D *siika, colListener *collisions)
 			canJump = true;
 		}
 	}
-	go->update();
-}
-
-void Ushiko::dash(core::Siika2D *siika)
-{
-	dashTimer.reset();
-	dashing = true;
-	xOffset = 1;
-	glm::vec2 origin = siika->transfCrds()->deviceToUser(ushiko.go->getComponent<misc::TransformComponent>()->getPosition());
-	xOrigin = origin.x;
-	yOrigin = origin.y;
 }

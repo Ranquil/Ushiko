@@ -64,7 +64,7 @@ int Castle::update(core::Siika2D *siika)
 		siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
 
 		lg->update(siika);
-		ushiko.update(siika, cl);
+		ushiko.update(siika);
 	}
 
 	siika->_spriteManager->drawSprites();

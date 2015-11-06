@@ -26,8 +26,8 @@ void Enemy::init(core::Siika2D *siika, int firstFrame, int lastFrame)
 
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
-		glm::vec2(256, 256),
 		glm::vec2(128, 128),
+		glm::vec2(64, 64),
 		enemyTexture,
 		glm::vec2(0, 0),
 		sheetSize)));
