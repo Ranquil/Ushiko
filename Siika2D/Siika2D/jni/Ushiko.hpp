@@ -16,6 +16,9 @@ public:
 
 	misc::GameObject *go;
 
+	bool dashing;
+	int health;
+	int healthMax;
 	int groundLevel;
 
 private:
@@ -25,7 +28,6 @@ private:
 
 	misc::Timer dashTimer;
 	glm::vec2 originalPos;
-	bool dashing;
 	int xOffset;
 };
 

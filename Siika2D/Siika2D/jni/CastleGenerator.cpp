@@ -64,7 +64,17 @@ void CastleGenerator::update(core::Siika2D *siika)
 		e->update(siika);
 		e->go->move(glm::vec2(e->xPos -= 5, e->yPos));
 
-		if (enemyXpos <= 100)
+		if (e->xPos < ushikoXpos && e->xPos > ushikoXpos - 100)
+		{
+			if (ushiko.dashing)
+				deleteEnemy = true;
+			else
+			{
+				ushiko.health -= 1;
+			}
+		}
+
+		if (enemyXpos <= 0)
 			deleteEnemy = true;
 	}
 
