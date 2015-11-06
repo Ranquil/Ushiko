@@ -30,7 +30,7 @@ void GameUI::init(core::Siika2D *siika)
 	pauseButtonTexture = siika->_textureManager->createTexture("ui_pausebutton.png");
 
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
-		glm::vec2(0.5, 0.5),
+		glm::vec2(0, 0),
 		glm::vec2(128, 128),
 		glm::vec2(0, 0),
 		pauseButtonTexture,
@@ -42,14 +42,10 @@ void GameUI::init(core::Siika2D *siika)
 	pauseButton->addComponent(sprtComp);
 	pauseButton->addComponent(transComp);
 
-	shade = siika->_spriteManager->createSprite(
-		glm::vec2(0, scrSize.y),
-		glm::vec2(scrSize.x, scrSize.y),
-		glm::vec2(0, 0),
-		siika->_textureManager->createTexture("shade.png"),
-		glm::vec2(0, 0),
-		glm::vec2(1, 1));
-	shade->setZ(-10);
+	pauseButton->move(glm::vec2(scrSize.x + scrSize.x / 2, 0));
+
+
+
 
 	heartIcons.push_back(new misc::GameObject);
 	heartIcons.push_back(new misc::GameObject);
@@ -58,18 +54,32 @@ void GameUI::init(core::Siika2D *siika)
 	{
 		graphics::Texture *heartTexture;
 		heartTexture = siika->_textureManager->createTexture("ui_heart_full.png");
-		misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
-			glm::vec2(-0.95, 0.5),
+		misc::SpriteComponent *heartsprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
+			glm::vec2(0,0),
 			glm::vec2(128, 128),
 			glm::vec2(0, 0),
 			heartTexture,
 			glm::vec2(0, 0),
 			glm::vec2(1, 1))));
-		misc::TransformComponent *transComp = new misc::TransformComponent;
+		misc::TransformComponent *hearttransComp = new misc::TransformComponent;
 
-		heartIcons[i]->addComponent(sprtComp);
-		heartIcons[i]->addComponent(transComp);
+		heartIcons[i]->addComponent(heartsprtComp);
+		heartIcons[i]->addComponent(hearttransComp);
+
+		
+		heartIcons[i]->move(glm::vec2(0 + scrSize.x * i, 0));
+
 	}
+
+
+	shade = siika->_spriteManager->createSprite(
+		glm::vec2(0, scrSize.y),
+		glm::vec2(scrSize.x, scrSize.y),
+		glm::vec2(0, 0),
+		siika->_textureManager->createTexture("shade.png"),
+		glm::vec2(0, 0),
+		glm::vec2(1, 1));
+	shade->setZ(-10);
 	lastState = RESUME;
 	inputTimer.start();
 }
@@ -86,7 +96,7 @@ void GameUI::deInit()
 bool isIntersecting(glm::vec2 touchPosition, glm::vec2 box)
 {
 	if ((touchPosition.x > box.x && touchPosition.x < box.x + 128) &&
-		touchPosition.y > box.y && touchPosition.y < box.y + 128)
+		(touchPosition.y > box.y && touchPosition.y < box.y + 128))
 	{
 		return true;
 	}
@@ -97,9 +107,9 @@ void GameUI::changeTexture(misc::GameObject *gameObject, core::Siika2D *siika, s
 {
 	gameObject->removeComponent<misc::SpriteComponent>();
 	graphics::Texture *newTexture = siika->_textureManager->createTexture(newTextureName);
-
+	glm::vec2 location = gameObject->getComponent<misc::TransformComponent>()->getPosition();
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
-		glm::vec2(0.5, 0.5),
+		location,
 		glm::vec2(128, 128),
 		glm::vec2(0, 0),
 		newTexture,
@@ -124,7 +134,7 @@ int GameUI::update(core::Siika2D *siika)
 	{
 		for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
 			touchPosition = siika->_input->touchPosition(i)._positionCurrent;
-
+		
 		if (isIntersecting(touchPosition, pauseButton->getComponent<misc::TransformComponent>()->getPosition()))
 		{
 			inputTimer.reset();
