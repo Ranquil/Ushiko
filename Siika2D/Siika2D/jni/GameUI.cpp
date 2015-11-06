@@ -46,29 +46,30 @@ void GameUI::init(core::Siika2D *siika)
 
 
 
+	graphics::Texture *heartTexture;
+	heartTexture = siika->_textureManager->createTexture("ui_heart_full.png");
 
 	heartIcons.push_back(new misc::GameObject);
 	heartIcons.push_back(new misc::GameObject);
 	heartIcons.push_back(new misc::GameObject);
+
 	for (int i = 0; i < 3; i++)
 	{
-		graphics::Texture *heartTexture;
-		heartTexture = siika->_textureManager->createTexture("ui_heart_full.png");
 		misc::SpriteComponent *heartsprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
-			glm::vec2(0,0),
-			glm::vec2(128, 128),
+			glm::vec2(0, 0),
+			glm::vec2(64, 64),
 			glm::vec2(0, 0),
 			heartTexture,
 			glm::vec2(0, 0),
 			glm::vec2(1, 1))));
 		misc::TransformComponent *hearttransComp = new misc::TransformComponent;
+		heartsprtComp->setZ(10);
 
 		heartIcons[i]->addComponent(heartsprtComp);
 		heartIcons[i]->addComponent(hearttransComp);
-
 		
-		heartIcons[i]->move(glm::vec2(0 + scrSize.x * i, 0));
-
+		heartIcons[i]->move(glm::vec2(i * 128, 0));
+		heartIcons[i]->update();
 	}
 
 
@@ -80,6 +81,7 @@ void GameUI::init(core::Siika2D *siika)
 		glm::vec2(0, 0),
 		glm::vec2(1, 1));
 	shade->setZ(-10);
+
 	lastState = RESUME;
 	inputTimer.start();
 }
