@@ -1,4 +1,5 @@
 #include "GameUI.hpp"
+#include "Ushiko.hpp"
 #include <sstream>
 
 
@@ -56,9 +57,9 @@ void GameUI::init(core::Siika2D *siika)
 	for (int i = 0; i < 3; i++)
 	{
 		graphics::Texture *heartTexture;
-		heartTexture = siika->_textureManager->createTexture("ui_heart_full");
+		heartTexture = siika->_textureManager->createTexture("ui_heart_full.png");
 		misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
-			glm::vec2(-0.5, 0.5),
+			glm::vec2(-0.95, 0.5),
 			glm::vec2(128, 128),
 			glm::vec2(0, 0),
 			heartTexture,
@@ -76,6 +77,10 @@ void GameUI::init(core::Siika2D *siika)
 void GameUI::deInit()
 {
 	delete lt;
+	for (int i = 0; i < 3; i++)
+	{
+		delete heartIcons[i];
+	}
 }
 
 bool isIntersecting(glm::vec2 touchPosition, glm::vec2 box)
@@ -88,9 +93,9 @@ bool isIntersecting(glm::vec2 touchPosition, glm::vec2 box)
 	return false;
 }
 
-void GameUI::changeTexture(core::Siika2D *siika, std::string newTextureName)
+void GameUI::changeTexture(misc::GameObject *gameObject, core::Siika2D *siika, std::string newTextureName)
 {
-	pauseButton->removeComponent<misc::SpriteComponent>();
+	gameObject->removeComponent<misc::SpriteComponent>();
 	graphics::Texture *newTexture = siika->_textureManager->createTexture(newTextureName);
 
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
@@ -102,7 +107,7 @@ void GameUI::changeTexture(core::Siika2D *siika, std::string newTextureName)
 		glm::vec2(1, 1))));
 	sprtComp->setZ(0);
 
-	pauseButton->addComponent(sprtComp);
+	gameObject->addComponent(sprtComp);
 
 }
 
@@ -127,14 +132,14 @@ int GameUI::update(core::Siika2D *siika)
 			if (lastState == RESUME)
 			{
 
-				changeTexture(siika,"ui_playbutton.png");
+				changeTexture(pauseButton, siika, "ui_playbutton.png");
 				shade->setPosition(glm::vec2(0, 0));
 				lastState = PAUSE;
 				return PAUSE;
 			}
 			else
 			{
-				changeTexture(siika,"ui_pausebutton.png");
+				changeTexture(pauseButton, siika,"ui_pausebutton.png");
 				shade->setPosition(glm::vec2(0, siika->_graphicsContext->getDisplaySize().y));
 				lastState = RESUME;
 				return RESUME;

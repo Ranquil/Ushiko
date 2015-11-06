@@ -19,7 +19,7 @@ public:
 
 	void init(core::Siika2D *siika);
 	void deInit();
-	void changeTexture(core::Siika2D *siika, std::string newTextureName);
+	void changeTexture(misc::GameObject *gameObject, core::Siika2D *siika, std::string newTextureName);
 
 	int gemCount;
 	const int maxGems = 20;
