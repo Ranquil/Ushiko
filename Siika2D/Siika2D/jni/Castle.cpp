@@ -80,12 +80,14 @@ int Castle::update(core::Siika2D *siika)
 
 void Castle::pause()
 {
+	gameUI->lt->levelTimer.pause();
 	theme->pause();
 	paused = true;
 }
 
 void Castle::resume()
 {
+	gameUI->lt->levelTimer.resume();
 	theme->play();
 	paused = false;
 }

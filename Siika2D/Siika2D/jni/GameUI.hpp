@@ -32,10 +32,10 @@ public:
 	misc::GameObject *pauseButton;
 	glm::vec2 touchPosition;
 
+	LevelTimer *lt;
 	UIState lastState;
 
 private:
-	LevelTimer *lt;
 	misc::Timer inputTimer;
 };
 
