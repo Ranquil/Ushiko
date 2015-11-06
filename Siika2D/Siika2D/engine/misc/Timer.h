@@ -1,7 +1,9 @@
 #pragma once
 #include <ctime>
 enum TIME
-{SECONDS, MILLISECONDS, MICROSECONDS};
+{
+	SECONDS, MILLISECONDS, MICROSECONDS
+};
 
 namespace misc
 {
@@ -20,16 +22,27 @@ namespace misc
 		*/
 		void start();
 		/**
+		Pauses the timer
+		*/
+		void pause();
+		/**
+		Resumes the timer
+		*/
+		void resume();
+
+		/**
 		Gets time in desired units enum TIME{SECONDS, MILLISECONDS, MICROSECONDS};
 		*/
 		double getElapsedTime(TIME time);
 		bool operator==(const Timer rhs)
 		{
-			if(this->_start == rhs._start)
+			if (this->_start == rhs._start)
 				return true;
 			return false;
 		}
 	private:
-		std::clock_t _start;
+		std::clock_t _start, _pause;
+		double _pausedTime, _elapsedTime;
+		bool _paused;
 	};
 }
