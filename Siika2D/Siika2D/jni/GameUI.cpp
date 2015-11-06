@@ -25,7 +25,7 @@ void GameUI::init(core::Siika2D *siika)
 
 	pauseButton = new misc::GameObject;
 	graphics::Texture *pauseButtonTexture;
-	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
+	glm::vec2 scrSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
 
 	pauseButtonTexture = siika->_textureManager->createTexture("ui_pausebutton.png");
 
@@ -42,7 +42,7 @@ void GameUI::init(core::Siika2D *siika)
 	pauseButton->addComponent(sprtComp);
 	pauseButton->addComponent(transComp);
 
-	pauseButton->move(glm::vec2(scrSize.x + scrSize.x / 2, 0));
+	pauseButton->move(glm::vec2(scrSize.x - 256,0));
 
 
 
