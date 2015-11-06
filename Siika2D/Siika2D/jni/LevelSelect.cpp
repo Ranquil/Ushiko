@@ -13,7 +13,7 @@ LevelSelect::~LevelSelect()
 
 void LevelSelect::init(core::Siika2D *siika)
 {
-	glm::vec2 screenSize = siika->_graphicsContext->getDisplaySize();
+	glm::vec2 screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
 	boxSizex = screenSize.x / 4;
 	boxSizey = screenSize.y / 4; 
 	plainsLevel = new misc::GameObject;

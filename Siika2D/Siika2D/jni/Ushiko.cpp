@@ -56,7 +56,7 @@ void Ushiko::update(core::Siika2D *siika)
 	glm::vec2 touchPos = glm::vec2(0, 0);
 	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
 	{
-		touchPos = siika->_input->touchPosition(i)._positionCurrent;
+		touchPos = siika->_input->touchPosition(i)._positionStart;
 		touchPos = siika->transfCrds()->deviceToUser(touchPos);
 	}
 

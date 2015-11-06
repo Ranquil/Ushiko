@@ -143,7 +143,7 @@ int GameUI::update(core::Siika2D *siika)
 	if (inputTimer.getElapsedTime(SECONDS) > 0.5)
 	{
 		for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
-			touchPosition = siika->_input->touchPosition(i)._positionCurrent;
+			touchPosition = siika->_input->touchPosition(i)._positionStart;
 		
 		if (isIntersecting(touchPosition, pauseButton->getComponent<misc::TransformComponent>()->getPosition()))
 		{
