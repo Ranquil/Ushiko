@@ -18,7 +18,7 @@ public:
 
 	bool dashing;
 	int health;
-	int healthMax;
+	const int healthMax = 3;
 	int groundLevel;
 
 private:

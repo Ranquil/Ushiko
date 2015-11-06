@@ -37,7 +37,6 @@ void Ushiko::init(core::Siika2D *siika)
 	go->setId(USHIKO);
 	go->move(glm::vec2(-1000, 0));
 
-	healthMax = 3;
 	health = healthMax;
 
 	jumpTimer.start();
