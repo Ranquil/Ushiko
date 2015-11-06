@@ -93,7 +93,7 @@ int LevelSelect::update(core::Siika2D *siika)
 		{
 			touchPosition = siika->_input->touchPosition(i)._positionCurrent;
 		}
-		if (siika->_input->fingerUp() == true)
+		if (siika->_input->fingerUp())
 		{
 			if (isIntersecting(touchPosition, plainsLevel->getComponent<misc::TransformComponent>()->getPosition()))
 			{
@@ -116,6 +116,6 @@ int LevelSelect::update(core::Siika2D *siika)
 	siika->_spriteManager->drawSprites();
 	siika->_textManager->drawTexts();
 	siika->_graphicsContext->swap();
-
+	 
 	return LEVEL_SELECT;
 }

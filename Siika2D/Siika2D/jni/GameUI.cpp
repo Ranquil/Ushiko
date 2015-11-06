@@ -10,7 +10,7 @@ GameUI::GameUI()
 
 GameUI::~GameUI()
 {
-
+	deInit();
 }
 
 void GameUI::init(core::Siika2D *siika)
@@ -84,11 +84,14 @@ void GameUI::init(core::Siika2D *siika)
 
 	lastState = RESUME;
 	inputTimer.start();
+	heartCount = ushiko.health;
 }
 
 void GameUI::deInit()
 {
 	delete lt;
+	delete pauseButton;
+	delete gemTextUI;
 	for (int i = 0; i < 3; i++)
 	{
 		delete heartIcons[i];
@@ -105,14 +108,14 @@ bool isIntersecting(glm::vec2 touchPosition, glm::vec2 box)
 	return false;
 }
 
-void GameUI::changeTexture(misc::GameObject *gameObject, core::Siika2D *siika, std::string newTextureName)
+void GameUI::changeTexture(misc::GameObject *gameObject, core::Siika2D *siika, std::string newTextureName, glm::vec2 size)
 {
 	gameObject->removeComponent<misc::SpriteComponent>();
 	graphics::Texture *newTexture = siika->_textureManager->createTexture(newTextureName);
 	glm::vec2 location = gameObject->getComponent<misc::TransformComponent>()->getPosition();
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		location,
-		glm::vec2(128, 128),
+		size,
 		glm::vec2(0, 0),
 		newTexture,
 		glm::vec2(0, 0),
@@ -125,6 +128,11 @@ void GameUI::changeTexture(misc::GameObject *gameObject, core::Siika2D *siika, s
 
 int GameUI::update(core::Siika2D *siika)
 {
+	if (ushiko.health != heartCount)
+	{
+		changeTexture(heartIcons[ushiko.health], siika, "ui_heart_hurt.png",glm::vec2(64,64));
+	}
+	heartCount = ushiko.health;
 	lt->update();
 
 	std::ostringstream gemText;
@@ -143,15 +151,14 @@ int GameUI::update(core::Siika2D *siika)
 
 			if (lastState == RESUME)
 			{
-
-				changeTexture(pauseButton, siika, "ui_playbutton.png");
+				changeTexture(pauseButton, siika, "ui_playbutton.png", glm::vec2(128,128));
 				shade->setPosition(glm::vec2(0, 0));
 				lastState = PAUSE;
 				return PAUSE;
 			}
 			else
 			{
-				changeTexture(pauseButton, siika,"ui_pausebutton.png");
+				changeTexture(pauseButton, siika, "ui_pausebutton.png", glm::vec2(128, 128));
 				shade->setPosition(glm::vec2(0, siika->_graphicsContext->getDisplaySize().y));
 				lastState = RESUME;
 				return RESUME;
