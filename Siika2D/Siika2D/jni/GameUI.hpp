@@ -27,6 +27,7 @@ public:
 	graphics::Text *gemTextUI;
 	graphics::Sprite *shade;
 
+	std::vector<misc::GameObject*> heartIcons;
 	misc::GameObject *pauseButton;
 	glm::vec2 touchPosition;
 

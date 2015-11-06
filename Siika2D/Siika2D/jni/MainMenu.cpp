@@ -12,6 +12,7 @@ MainMenu::~MainMenu()
 
 void MainMenu::init(core::Siika2D *siika)
 {
+	startGameButton = new misc::GameObject;
 
 	graphics::Texture *startGameTexture = siika->_textureManager->createTexture("Temp_Menu_button.png");
 
@@ -36,7 +37,7 @@ void MainMenu::init(core::Siika2D *siika)
 
 void MainMenu::deInit()
 {
-	
+	delete startGameButton;
 }
 
 bool MainMenu::isIntersecting(glm::vec2 touchPosition, glm::vec2 box)

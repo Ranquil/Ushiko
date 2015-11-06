@@ -14,9 +14,7 @@ GameUI::~GameUI()
 
 void GameUI::init(core::Siika2D *siika)
 {
-	graphics::Texture *pauseButtonTexture;
 	lt = new LevelTimer;
-	pauseButton = new misc::GameObject;
 	lt->InitTimer(siika, "arial.ttf", 64, 0.5, -0.95);
 	gemCount = 0;
 	gemTextUI = siika->_textManager->createText();
@@ -24,15 +22,9 @@ void GameUI::init(core::Siika2D *siika)
 	gemTextUI->setPosition(-0.95, -0.95);
 	gemTextUI->setFontSize(64);
 
+	pauseButton = new misc::GameObject;
+	graphics::Texture *pauseButtonTexture;
 	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
-	shade = siika->_spriteManager->createSprite(
-		glm::vec2(0, scrSize.y),
-		glm::vec2(scrSize.x, scrSize.y),
-		glm::vec2(0, 0),
-		siika->_textureManager->createTexture("shade.png"),
-		glm::vec2(0, 0),
-		glm::vec2(1, 1));
-	shade->setZ(-10);
 
 	pauseButtonTexture = siika->_textureManager->createTexture("ui_pausebutton.png");
 
@@ -49,6 +41,34 @@ void GameUI::init(core::Siika2D *siika)
 	pauseButton->addComponent(sprtComp);
 	pauseButton->addComponent(transComp);
 
+	shade = siika->_spriteManager->createSprite(
+		glm::vec2(0, scrSize.y),
+		glm::vec2(scrSize.x, scrSize.y),
+		glm::vec2(0, 0),
+		siika->_textureManager->createTexture("shade.png"),
+		glm::vec2(0, 0),
+		glm::vec2(1, 1));
+	shade->setZ(-10);
+
+	heartIcons.push_back(new misc::GameObject);
+	heartIcons.push_back(new misc::GameObject);
+	heartIcons.push_back(new misc::GameObject);
+	for (int i = 0; i < 3; i++)
+	{
+		graphics::Texture *heartTexture;
+		heartTexture = siika->_textureManager->createTexture("ui_heart_full");
+		misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
+			glm::vec2(-0.5, 0.5),
+			glm::vec2(128, 128),
+			glm::vec2(0, 0),
+			heartTexture,
+			glm::vec2(0, 0),
+			glm::vec2(1, 1))));
+		misc::TransformComponent *transComp = new misc::TransformComponent;
+
+		heartIcons[i]->addComponent(sprtComp);
+		heartIcons[i]->addComponent(transComp);
+	}
 	lastState = RESUME;
 	inputTimer.start();
 }
@@ -80,6 +100,7 @@ void GameUI::changeTexture(core::Siika2D *siika, std::string newTextureName)
 		newTexture,
 		glm::vec2(0, 0),
 		glm::vec2(1, 1))));
+	sprtComp->setZ(0);
 
 	pauseButton->addComponent(sprtComp);
 
