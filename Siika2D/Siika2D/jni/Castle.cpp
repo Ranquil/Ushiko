@@ -43,9 +43,11 @@ void Castle::init(core::Siika2D *siika)
 
 void Castle::deInit()
 {
+	theme->stop();
+
 	delete gameUI;
+	//delete theme;
 	delete lg;
-	delete theme;
 	delete cl;
 }
 
@@ -71,6 +73,8 @@ int Castle::update(core::Siika2D *siika)
 	siika->_textManager->drawTexts();
 	siika->_graphicsContext->swap();
 
+	if (ushiko.health <= 0)
+		return LEVEL_SELECT;
 	return CASTLE_LEVEL;
 }
 

@@ -51,6 +51,9 @@ void Ushiko::init(core::Siika2D *siika)
 
 void Ushiko::update(core::Siika2D *siika)
 {
+	if (health > healthMax)
+		health = healthMax;
+
 	glm::vec2 touchPos = glm::vec2(0, 0);
 	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
 	{

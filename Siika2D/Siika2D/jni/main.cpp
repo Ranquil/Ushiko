@@ -22,8 +22,6 @@ void siika_onResume()
 
 void siika_init()
 {
-	ushiko.init(siika);
-
 	currentScene = LEVEL_SELECT;
 
 	scenes[QUIT] = new Scene;
@@ -46,6 +44,9 @@ void siika_main()
 
 	else if (currentScene != prevScene)
 	{
+		if (currentScene > LEVEL_SELECT)
+			ushiko.init(siika);
+
 		scenes[prevScene]->deInit();
 		scenes[currentScene]->init(siika);
 	}

@@ -39,6 +39,7 @@ void Enemy::init(core::Siika2D *siika, int firstFrame, int lastFrame)
 	go->setId(ENEMY);
 
 	animationTimer.start();
+	hasHit = false;
 }
 
 void Enemy::deInit()

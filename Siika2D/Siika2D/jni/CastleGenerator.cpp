@@ -24,6 +24,11 @@ CastleGenerator::CastleGenerator(core::Siika2D *siika)
 
 CastleGenerator::~CastleGenerator()
 {
+	for (Tile *t : tiles)
+		delete t;
+	for (Enemy *e : enemies)
+		delete e;
+
 	tiles.clear();
 	enemies.clear();
 }
@@ -33,7 +38,15 @@ void CastleGenerator::update(core::Siika2D *siika)
 	int tileAmount = 0;
 	bool deleteTile = false;
 
-	int ushikoXpos = siika->transfCrds()->deviceToUser(ushiko.go->getComponent<misc::TransformComponent>()->getPosition()).x + 100;
+	glm::vec2 ushikoPos = siika->transfCrds()->deviceToUser(ushiko.go->getComponent<misc::TransformComponent>()->getPosition());
+	ushikoPos.x += 100;
+	ushikoPos.y = -ushikoPos.y;
+
+	if (ushikoPos.y < -siika->_graphicsContext->getDisplaySize().y * 3)
+	{
+		ushiko.health -= ushiko.healthMax;
+		return;
+	}
 
 	tileMovement += 1;
 	for (Tile *t : tiles)
@@ -41,7 +54,7 @@ void CastleGenerator::update(core::Siika2D *siika)
 		t->go->update();
 		t->go->move(glm::vec2(t->xPos -= 5, t->yPos));
 
-		if (t->xPos < ushikoXpos && t->xPos > ushikoXpos - 10)
+		if (t->xPos < ushikoPos.x && t->xPos > ushikoPos.x - 10)
 			ushiko.groundLevel = -t->yPos;
 
 		tileAmount += 1;
@@ -64,14 +77,15 @@ void CastleGenerator::update(core::Siika2D *siika)
 		e->update(siika);
 		e->go->move(glm::vec2(e->xPos -= 5, e->yPos));
 
-		if (e->xPos < ushikoXpos && e->xPos > ushikoXpos - 100)
+		if (!e->hasHit &&
+			e->xPos < ushikoPos.x && e->xPos > ushikoPos.x - 100 &&
+			e->yPos < ushikoPos.y + 200 && e->yPos > ushikoPos.y - 200)
 		{
 			if (ushiko.dashing)
 				deleteEnemy = true;
-			else
-			{
-				ushiko.health -= 1;
-			}
+			else ushiko.health -= 1;
+
+			e->hasHit = true;
 		}
 
 		if (enemyXpos <= 0)

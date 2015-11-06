@@ -19,6 +19,7 @@ public:
 	misc::GameObject *go;
 
 	int xPos, yPos;
+	bool hasHit;
 
 private:
 	int firstFrame;
