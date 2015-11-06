@@ -14,8 +14,8 @@ LevelSelect::~LevelSelect()
 void LevelSelect::init(core::Siika2D *siika)
 {
 	glm::vec2 screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
-	boxSizex = screenSize.x / 4;
-	boxSizey = screenSize.y / 4; 
+	boxSizex = siika->_graphicsContext->getDisplaySize().x / 4;
+	boxSizey = siika->_graphicsContext->getDisplaySize().y / 4;
 	plainsLevel = new misc::GameObject;
 	castleLevel = new misc::GameObject;
 	forestLevel = new misc::GameObject;
@@ -62,9 +62,9 @@ void LevelSelect::init(core::Siika2D *siika)
 	}
 
 
-	plainsLevel->move(glm::vec2(screenSize.x - screenSize.x * 0.9f, screenSize.y - screenSize.y * 1.5f ));
-	forestLevel->move(glm::vec2(screenSize.x / 1.5f, screenSize.y - screenSize.y * 1.5f));
-	castleLevel->move(glm::vec2(screenSize.x * 1.2f, screenSize.y - screenSize.y * 1.5f));
+	plainsLevel->move(glm::vec2(0, 0));
+	forestLevel->move(glm::vec2(screenSize.x / 1.5, 0));
+	castleLevel->move(glm::vec2(screenSize.x / 3, 0));
 	
 }
 
