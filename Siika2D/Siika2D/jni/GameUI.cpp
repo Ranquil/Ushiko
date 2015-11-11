@@ -60,7 +60,7 @@ void GameUI::init(core::Siika2D *siika)
 			glm::vec2(0, 0),
 			glm::vec2(1, 1))));
 		misc::TransformComponent *hearttransComp = new misc::TransformComponent;
-		heartsprtComp->setZ(10);
+		heartsprtComp->setZ(90);
 
 		heartIcons[i]->addComponent(heartsprtComp);
 		heartIcons[i]->addComponent(hearttransComp);
