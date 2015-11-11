@@ -60,6 +60,7 @@ void Ushiko::update(core::Siika2D *siika)
 		touchPos = siika->transfCrds()->deviceToUser(touchPos);
 	}
 
+	// Ushiko is dashing
 	if (xOffset > 0)
 	{
 		ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
@@ -87,23 +88,22 @@ void Ushiko::update(core::Siika2D *siika)
 
 		if (canJump || !doubleJump)
 		{
+			// Jump (tap on the left side of the screen)
 			if (jumpTimer.getElapsedTime(SECONDS) > 0.2 && touchPos.x > 10 &&
 				touchPos.x < siika->_graphicsContext->getDisplaySize().x / 2)
 			{
-				//if (canJump || !doubleJump)
-				//{
-					ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
-					ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 35), false);
+				ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
+				ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 35), false);
 
-					if (canJump)
-						canJump = false;
-					else if (!doubleJump)
-						doubleJump = true;
+				if (canJump)
+					canJump = false;
+				else if (!doubleJump)
+					doubleJump = true;
 
-					jumpTimer.reset();
-				//}
+				jumpTimer.reset();
 			}
-			else if (xOffset <= 0 && dashTimer.getElapsedTime(SECONDS) > 2 &&
+			// Dash (tap on the right side of the screen)
+			else if (xOffset <= 0 && dashTimer.getElapsedTime(SECONDS) > 1.8 &&
 				touchPos.x > siika->_graphicsContext->getDisplaySize().x / 2)
 			{
 				if (xOffset <= 0)
@@ -115,6 +115,8 @@ void Ushiko::update(core::Siika2D *siika)
 				dashTimer.reset();
 			}
 		}
+		// Stay on top of platforms (if Ushiko is going down through the current ground level,
+		// apply some linear force upwards). This method allows us to jump through the platforms from below.
 		int ushikoLevel = siika->transfCrds()->deviceToUser(go->getComponent<misc::TransformComponent>()->getPosition()).y;
 		if (ushikoLevel > groundLevel - 250 && ushikoLevel < groundLevel && go->getComponent<misc::PhysicsComponent>()->_body->GetLinearVelocity().y < -1)
 		{

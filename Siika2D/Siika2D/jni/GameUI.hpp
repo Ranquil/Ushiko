@@ -41,5 +41,4 @@ private:
 	glm::vec2 touchPosition;
 };
 
-
-#endif //GAMEUI
+#endif // GAMEUI_H

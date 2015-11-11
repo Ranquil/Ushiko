@@ -43,9 +43,9 @@ void Castle::init(core::Siika2D *siika)
 void Castle::deInit()
 {
 	theme->stop();
+	//delete theme;
 
 	delete gameUI;
-	//delete theme;
 	delete lg;
 	delete cl;
 }

@@ -17,6 +17,9 @@ CastleGenerator::CastleGenerator(core::Siika2D *siika)
 	yLevel = siika->_graphicsContext->getDisplaySize().y * 2 + 400;
 	ushiko.groundLevel = yLevel;
 
+	// Go through update a few times to spawn the starting platform.
+	// This slows down loading just a little bit, so TODO(Jere):
+	// change this to spawn the platform without using update().
 	for (int i = 0; i < 280; i++)
 		update(siika);
 }
@@ -41,13 +44,15 @@ void CastleGenerator::update(core::Siika2D *siika)
 	ushikoPos.x += 100;
 	ushikoPos.y = -ushikoPos.y;
 
+	// Ushiko has fallen from the screen
 	if (ushikoPos.y < -siika->_graphicsContext->getDisplaySize().y * 3)
 	{
 		ushiko.health -= ushiko.healthMax;
 		return;
 	}
 
-	tileMovement += 1;
+	/* ----- UPDATING TILES ----- */
+
 	for (Tile *t : tiles)
 	{
 		t->go->update();
@@ -56,6 +61,7 @@ void CastleGenerator::update(core::Siika2D *siika)
 		if (t->xPos < ushikoPos.x && t->xPos > ushikoPos.x - 10)
 			ushiko.groundLevel = -t->yPos;
 
+		// When there are over 24 tiles, destroy the oldest
 		tileAmount += 1;
 		if (tileAmount > 24)
 			deleteTile = true;
@@ -68,6 +74,8 @@ void CastleGenerator::update(core::Siika2D *siika)
 		delete t;
 	}
 
+	/* ----- UPDATING ENEMIES ----- */
+
 	bool deleteEnemy = false;
 	for (Enemy *e : enemies)
 	{
@@ -76,6 +84,7 @@ void CastleGenerator::update(core::Siika2D *siika)
 		e->update(siika);
 		e->go->move(glm::vec2(e->xPos -= 5, e->yPos));
 
+		// Hit or get git by Ushiko, if colliding with her
 		if (!e->hasHit &&
 			e->xPos < ushikoPos.x && e->xPos > ushikoPos.x - 100 &&
 			e->yPos < ushikoPos.y + 200 && e->yPos > ushikoPos.y - 200)
@@ -98,7 +107,10 @@ void CastleGenerator::update(core::Siika2D *siika)
 		delete e;
 	}
 
-	if (tileMovement >= 17)
+	/* ----- SPAWNING TILES & ENEMIES ----- */
+
+	tileMovement += 1;
+	if (tileMovement >= 18)
 	{
 		tileMovement = 0;
 
@@ -108,6 +120,7 @@ void CastleGenerator::update(core::Siika2D *siika)
 			spawnTile(siika, screenSize.x * 1.6f, -yLevel);
 			platformSpawned += 1;
 
+			// 25% chance (per tile) to spawn an enemy on a tile past the half-way point of the platform
 			if (!platformHasEnemy && platformSpawned > (int)(platformLength / 2) && mrand48() % 4 == 0)
 			{
 				Enemy *e = new Enemy("sprite_shimapanda.png");
@@ -130,6 +143,7 @@ void CastleGenerator::update(core::Siika2D *siika)
 			int previousY = yLevel;
 			while (yLevel == previousY)
 			{
+				// Change the (Y) level of the new platform
 				yLevel = mrand48() % 3;
 				switch (yLevel)
 				{
@@ -160,12 +174,10 @@ void CastleGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
 		siika->_textureManager->createTexture(textureName),
 		glm::vec2(0, 0),
 		glm::vec2(1, 1))));
-//	misc::PhysicsComponent *physComp = new misc::PhysicsComponent(pos, glm::vec2(64, 64));
 	misc::TransformComponent *trnsComp = new misc::TransformComponent;
 
 	t->addComponent(trnsComp);
 	t->addComponent(sprtComp);
-//	t->addComponent(physComp);
 
 	sprtComp->setZ(80);
 	t->setId(GROUND);

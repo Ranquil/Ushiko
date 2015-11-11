@@ -1,7 +1,7 @@
 #include "GameUI.hpp"
 #include "Ushiko.hpp"
-#include <sstream>
 
+#include <sstream>
 
 GameUI::GameUI()
 {
@@ -17,11 +17,8 @@ void GameUI::init(core::Siika2D *siika)
 {
 	lt = new LevelTimer;
 	lt->InitTimer(siika, "arial.ttf", 64, 0.5, -0.95);
-	gemCount = 0;
-	gemTextUI = siika->_textManager->createText();
-	gemTextUI->setFont("arial.ttf");
-	gemTextUI->setPosition(-0.95, -0.95);
-	gemTextUI->setFontSize(64);
+
+	/* ----- Initialize the pause button ----- */
 
 	pauseButton = new misc::GameObject;
 	graphics::Texture *pauseButtonTexture;
@@ -42,9 +39,9 @@ void GameUI::init(core::Siika2D *siika)
 	pauseButton->addComponent(sprtComp);
 	pauseButton->addComponent(transComp);
 
-	pauseButton->move(glm::vec2(scrSize.x - 256,0));
+	pauseButton->move(glm::vec2(scrSize.x - 256, 0));
 
-
+	/* ----- Initialize hearts ----- */
 
 	graphics::Texture *heartTexture;
 	heartTexture = siika->_textureManager->createTexture("ui_heart_full.png");
@@ -72,6 +69,7 @@ void GameUI::init(core::Siika2D *siika)
 		heartIcons[i]->update();
 	}
 
+	/* ----- Initialize other objects and variables ----- */
 
 	shade = siika->_spriteManager->createSprite(
 		glm::vec2(0, scrSize.y),
@@ -82,6 +80,13 @@ void GameUI::init(core::Siika2D *siika)
 		glm::vec2(1, 1));
 	shade->setZ(-10);
 
+	gemCount = 0;
+
+	gemTextUI = siika->_textManager->createText();
+	gemTextUI->setFont("arial.ttf");
+	gemTextUI->setPosition(-0.95, -0.95);
+	gemTextUI->setFontSize(64);
+
 	lastState = RESUME;
 	inputTimer.start();
 	heartCount = ushiko.health;
@@ -91,20 +96,18 @@ void GameUI::deInit()
 {
 	delete lt;
 	delete pauseButton;
+
 	gemTextUI->setText("");
+
 	for (int i = 0; i < 3; i++)
-	{
 		delete heartIcons[i];
-	}
 }
 
 bool isIntersecting(glm::vec2 touchPosition, glm::vec2 box)
 {
 	if ((touchPosition.x > box.x && touchPosition.x < box.x + 128) &&
 		(touchPosition.y > box.y && touchPosition.y < box.y + 128))
-	{
 		return true;
-	}
 	return false;
 }
 
@@ -113,6 +116,7 @@ void GameUI::changeTexture(misc::GameObject *gameObject, core::Siika2D *siika, s
 	gameObject->removeComponent<misc::SpriteComponent>();
 	graphics::Texture *newTexture = siika->_textureManager->createTexture(newTextureName);
 	glm::vec2 location = gameObject->getComponent<misc::TransformComponent>()->getPosition();
+
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		location,
 		size,
@@ -123,15 +127,13 @@ void GameUI::changeTexture(misc::GameObject *gameObject, core::Siika2D *siika, s
 	sprtComp->setZ(0);
 
 	gameObject->addComponent(sprtComp);
-
 }
 
 int GameUI::update(core::Siika2D *siika)
 {
 	if (ushiko.health != heartCount)
-	{
 		changeTexture(heartIcons[ushiko.health], siika, "ui_heart_hurt.png",glm::vec2(64,64));
-	}
+
 	heartCount = ushiko.health;
 	lt->update();
 
@@ -153,6 +155,7 @@ int GameUI::update(core::Siika2D *siika)
 			{
 				changeTexture(pauseButton, siika, "ui_playbutton.png", glm::vec2(128,128));
 				shade->setPosition(glm::vec2(0, 0));
+
 				lastState = PAUSE;
 				return PAUSE;
 			}
@@ -160,12 +163,11 @@ int GameUI::update(core::Siika2D *siika)
 			{
 				changeTexture(pauseButton, siika, "ui_pausebutton.png", glm::vec2(128, 128));
 				shade->setPosition(glm::vec2(0, siika->_graphicsContext->getDisplaySize().y));
+
 				lastState = RESUME;
 				return RESUME;
 			}
 		}
 	}
 	return DEFAULT;
-
-
 }
