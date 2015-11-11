@@ -30,14 +30,12 @@ void LevelSelect::init(core::Siika2D *siika)
 			case 1:	
 				if(lvl2Unlocked == false)
 					lvlSelectTexture = siika->_textureManager->createTexture("tile_castle_middle.png");	
-				//else
-					//lvlSelectTexture = siika->_textureManager->createTexture("background_forest.png");
+				//else lvlSelectTexture = siika->_textureManager->createTexture("background_forest.png");
 				break;
 			case 2:
 				if (lvl3Unlocked == false)
 					lvlSelectTexture = siika->_textureManager->createTexture("tile_castle_middle.png");	
-				//else
-					//lvlSelectTexture = siika->_textureManager->createTexture("backgrond_castle.png");
+				//else lvlSelectTexture = siika->_textureManager->createTexture("backgrond_castle.png");
 				break;
 			default: break;
 		}
@@ -86,7 +84,7 @@ int LevelSelect::update(core::Siika2D *siika)
 
 	touchPosition = glm::vec2(0, 0);
 	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
-		touchPosition = siika->_input->touchPosition(i)._positionCurrent;
+		touchPosition = siika->_input->touchPosition(i)._positionStart;
 
 	if (siika->_input->touchPositionsActive() > 0)
 	{

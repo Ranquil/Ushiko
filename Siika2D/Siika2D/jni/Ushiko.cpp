@@ -16,6 +16,7 @@ Ushiko::~Ushiko()
 void Ushiko::init(core::Siika2D *siika)
 {
 	go = new misc::GameObject;
+	anim = IDLE;
 
 	graphics::Texture *ushikoTexture = siika->_textureManager->createTexture("erg.png");
 
@@ -70,13 +71,19 @@ void Ushiko::update(core::Siika2D *siika)
 			{
 				xOffset += 20;
 				if (xOffset >= 200)
+				{
 					dashing = false;
+					anim = RUN;
+				}
 			}
 			else
 			{
 				xOffset -= 20;
 				if (xOffset <= 0)
+				{
 					xOffset = 0;
+					anim = RUN;
+				}
 			}
 			go->move(glm::vec2(originalPos.x + xOffset, -originalPos.y));
 			dashTimer.reset();
@@ -101,6 +108,7 @@ void Ushiko::update(core::Siika2D *siika)
 					doubleJump = true;
 
 				jumpTimer.reset();
+				anim = JUMP_START;
 			}
 			// Dash (tap on the right side of the screen)
 			else if (xOffset <= 0 && dashTimer.getElapsedTime(SECONDS) > 1.8 &&
@@ -111,6 +119,7 @@ void Ushiko::update(core::Siika2D *siika)
 					dashing = true;
 					xOffset = 10;
 					originalPos = siika->transfCrds()->deviceToUser(ushiko.go->getComponent<misc::TransformComponent>()->getPosition());
+					anim = DASH;
 				}
 				dashTimer.reset();
 			}
@@ -125,6 +134,16 @@ void Ushiko::update(core::Siika2D *siika)
 
 			doubleJump = false;
 			canJump = true;
+			
+			if (anim == JUMP_MIDDLE)
+				anim = JUMP_END;
+			else anim = RUN;
 		}
 	}
+	animate();
+}
+
+void Ushiko::animate()
+{
+	// TODO(Jere): Step() the animation based on the animState
 }

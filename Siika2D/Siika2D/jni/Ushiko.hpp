@@ -5,6 +5,16 @@
 #include "../engine/misc/GameObject.h"
 #include "../engine/misc/Timer.h"
 
+enum animState {
+	IDLE,
+	RUN,
+	DASH,
+	JUMP_START,
+	JUMP_MIDDLE,
+	JUMP_END,
+	MAGIC
+};
+
 class Ushiko
 {
 public:
@@ -22,6 +32,10 @@ public:
 	misc::GameObject *go;
 
 private:
+	void animate();
+
+	animState anim;
+
 	misc::Timer jumpTimer;
 	bool doubleJump;
 	bool canJump;
