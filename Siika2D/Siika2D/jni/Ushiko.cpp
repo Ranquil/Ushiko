@@ -16,9 +16,11 @@ Ushiko::~Ushiko()
 void Ushiko::init(core::Siika2D *siika)
 {
 	go = new misc::GameObject;
-	anim = IDLE;
 
-	graphics::Texture *ushikoTexture = siika->_textureManager->createTexture("erg.png");
+	anim = IDLE;
+	animTimer.start();
+
+	graphics::Texture *ushikoTexture = siika->_textureManager->createTexture("sprite_ushiko.png");
 
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
@@ -26,15 +28,15 @@ void Ushiko::init(core::Siika2D *siika)
 		glm::vec2(64, 64),
 		ushikoTexture,
 		glm::vec2(0, 0),
-		glm::vec2(1, 1))));
-	misc::PhysicsComponent *physComp = new misc::PhysicsComponent(glm::vec2(0, 0), glm::vec2(1, 1));
+		glm::vec2(0.2, 0.2))));
+	misc::PhysicsComponent *physComp = new misc::PhysicsComponent;
 	misc::TransformComponent *trnsComp = new misc::TransformComponent;
+	sprtComp->setZ(10);
 
 	go->addComponent(trnsComp);
 	go->addComponent(sprtComp);
 	go->addComponent(physComp);
 
-	sprtComp->setZ(10);
 	go->setId(USHIKO);
 	go->move(glm::vec2(-1000, 0));
 
@@ -80,10 +82,7 @@ void Ushiko::update(core::Siika2D *siika)
 			{
 				xOffset -= 20;
 				if (xOffset <= 0)
-				{
 					xOffset = 0;
-					anim = RUN;
-				}
 			}
 			go->move(glm::vec2(originalPos.x + xOffset, -originalPos.y));
 			dashTimer.reset();
@@ -146,4 +145,12 @@ void Ushiko::update(core::Siika2D *siika)
 void Ushiko::animate()
 {
 	// TODO(Jere): Step() the animation based on the animState
+	go->getComponent<misc::SpriteComponent>()->getSprite()->step(9, 9, false);
+
+	/*
+	if (animTimer.getElapsedTime(SECONDS) > 0.5)
+	{
+		animTimer.reset();
+	}
+	//*/
 }

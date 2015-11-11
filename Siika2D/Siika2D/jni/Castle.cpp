@@ -45,6 +45,8 @@ void Castle::deInit()
 	theme->stop();
 	//delete theme;
 
+	bg->setPosition(glm::vec2(-3000, 0));
+
 	delete gameUI;
 	delete lg;
 	delete cl;
@@ -73,7 +75,7 @@ int Castle::update(core::Siika2D *siika)
 	siika->_graphicsContext->swap();
 
 	if (ushiko.health <= 0)
-		return LEVEL_SELECT;
+		return MAIN_MENU;
 	return CASTLE_LEVEL;
 }
 

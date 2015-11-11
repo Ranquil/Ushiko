@@ -22,7 +22,7 @@ void siika_onResume()
 
 void siika_init()
 {
-	currentScene = LEVEL_SELECT;
+	currentScene = MAIN_MENU;
 
 	scenes[QUIT] = new Scene;
 	scenes[MAIN_MENU] = new MainMenu;

@@ -12,31 +12,43 @@ MainMenu::~MainMenu()
 
 void MainMenu::init(core::Siika2D *siika)
 {
-	startGameButton = new misc::GameObject;
+	//startGameButton = new misc::GameObject;
 
-	graphics::Texture *startGameTexture = siika->_textureManager->createTexture("Temp_Menu_button.png");
-
-	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
+	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
+	bg = siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
-		glm::vec2(256, 256),
-		glm::vec2(128, 128),
-		startGameTexture,
+		glm::vec2(scrSize.x, scrSize.y),
 		glm::vec2(0, 0),
-		glm::vec2(1, 1))));
-	misc::TransformComponent *transComp = new misc::TransformComponent;
+		siika->_textureManager->createTexture("background_menu.png"),
+		glm::vec2(0, 0),
+		glm::vec2(1, 1));
+	bg->setSize(glm::vec2(scrSize.x, scrSize.y));
+	bg->setZ(100);
 
-	startGameButton->addComponent(sprtComp);
-	startGameButton->addComponent(transComp);
+	//graphics::Texture *startGameTexture = siika->_textureManager->createTexture("Temp_Menu_button.png");
 
-	glm::vec2 screenSize = siika->_graphicsContext->getDisplaySize();
-	startGameButton->move(glm::vec2(screenSize.x / 1.5f, screenSize.y - screenSize.y * 1.5));
+	//misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
+	//	glm::vec2(0, 0),
+	//	glm::vec2(256, 256),
+	//	glm::vec2(128, 128),
+	//	startGameTexture,
+	//	glm::vec2(0, 0),
+	//	glm::vec2(1, 1))));
+	//misc::TransformComponent *transComp = new misc::TransformComponent;
 
-	siika->_graphicsContext->setClearColor(graphics::Color(255, 0, 255, 255));
+	//startGameButton->addComponent(sprtComp);
+	//startGameButton->addComponent(transComp);
+
+	//glm::vec2 screenSize = siika->_graphicsContext->getDisplaySize();
+	//startGameButton->move(glm::vec2(screenSize.x / 1.5f, screenSize.y - screenSize.y * 1.5));
+
+	//siika->_graphicsContext->setClearColor(graphics::Color(255, 0, 255, 255));
 }
 
 void MainMenu::deInit()
 {
-	delete startGameButton;
+	//delete startGameButton;
+	bg->setPosition(glm::vec2(-3000, 0));
 }
 
 bool MainMenu::isIntersecting(glm::vec2 touchPosition, glm::vec2 box)
@@ -50,12 +62,14 @@ bool MainMenu::isIntersecting(glm::vec2 touchPosition, glm::vec2 box)
 int MainMenu::update(core::Siika2D *siika)
 {
 	siika->_graphicsContext->clear();
-	startGameButton->update();
+	//startGameButton->update();
 
-	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
-		touchPosition = siika->_input->touchPosition(i)._positionCurrent;
+	//touchPosition = glm::vec2(0, 0);
+	//for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
+	//	touchPosition = siika->_input->touchPosition(i)._positionCurrent;
 
-	if (isIntersecting(touchPosition, startGameButton->getComponent<misc::TransformComponent>()->getPosition()))
+	//if (isIntersecting(touchPosition, startGameButton->getComponent<misc::TransformComponent>()->getPosition()))
+	if (siika->_input->touchPositionsActive() > 0)
 		return LEVEL_SELECT;
 
 	siika->_spriteManager->drawSprites();

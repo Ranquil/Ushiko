@@ -27,14 +27,15 @@ public:
 	bool dashing;
 	int groundLevel;
 	int health;
+
 	const int healthMax = 3;
 
 	misc::GameObject *go;
 
 private:
 	void animate();
-
 	animState anim;
+	misc::Timer animTimer;
 
 	misc::Timer jumpTimer;
 	bool doubleJump;
