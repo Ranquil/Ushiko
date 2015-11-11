@@ -16,14 +16,15 @@ public:
 	void init(core::Siika2D *siika, int firstFrame = 0, int lastFrame = 0);
 	void deInit();
 
-	misc::GameObject *go;
-
 	int xPos, yPos;
 	bool hasHit;
+
+	misc::GameObject *go;
 
 private:
 	int firstFrame;
 	int lastFrame;
+
 	std::string enemyTextureName;
 	misc::Timer animationTimer;
 };

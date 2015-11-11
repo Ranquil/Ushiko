@@ -9,6 +9,7 @@ enum UIState
 	PAUSE,
 	RESUME
 };
+
 class GameUI
 {
 public:
@@ -19,24 +20,25 @@ public:
 
 	void init(core::Siika2D *siika);
 	void deInit();
+
 	void changeTexture(misc::GameObject *gameObject, core::Siika2D *siika, std::string newTextureName, glm::vec2 size);
 
+	LevelTimer *lt;
+
+private:
+	int heartCount;
 	int gemCount;
 	const int maxGems = 20;
+
+	UIState lastState;
 
 	graphics::Text *gemTextUI;
 	graphics::Sprite *shade;
 
-	int heartCount;
 	std::vector<misc::GameObject*> heartIcons;
 	misc::GameObject *pauseButton;
-	glm::vec2 touchPosition;
-
-	LevelTimer *lt;
-	UIState lastState;
-
-private:
 	misc::Timer inputTimer;
+	glm::vec2 touchPosition;
 };
 
 

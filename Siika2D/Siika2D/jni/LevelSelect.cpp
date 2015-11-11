@@ -1,6 +1,5 @@
 #include "LevelSelect.hpp"
 
-
 LevelSelect::LevelSelect()
 {
 
@@ -16,6 +15,7 @@ void LevelSelect::init(core::Siika2D *siika)
 	glm::vec2 screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
 	boxSizex = siika->_graphicsContext->getDisplaySize().x / 4;
 	boxSizey = siika->_graphicsContext->getDisplaySize().y / 4;
+
 	plainsLevel = new misc::GameObject;
 	castleLevel = new misc::GameObject;
 	forestLevel = new misc::GameObject;
@@ -26,18 +26,17 @@ void LevelSelect::init(core::Siika2D *siika)
 		
 		switch (i)
 		{
-			
-			case 0:	lvlSelectTexture = siika->_textureManager->createTexture("background_plains.png");	break;
+			case 0:	lvlSelectTexture = siika->_textureManager->createTexture("background_plains.png"); break;
 			case 1:	
 				if(lvl2Unlocked == false)
 					lvlSelectTexture = siika->_textureManager->createTexture("tile_castle_middle.png");	
-				else
+				//else
 					//lvlSelectTexture = siika->_textureManager->createTexture("background_forest.png");
 				break;
 			case 2:
 				if (lvl3Unlocked == false)
 					lvlSelectTexture = siika->_textureManager->createTexture("tile_castle_middle.png");	
-				else
+				//else
 					//lvlSelectTexture = siika->_textureManager->createTexture("backgrond_castle.png");
 				break;
 			default: break;
@@ -54,18 +53,16 @@ void LevelSelect::init(core::Siika2D *siika)
 		
 		switch (i)
 		{
-			case 0:	plainsLevel->addComponent(sprtComp); plainsLevel->addComponent(transComp);	break;
-			case 1:	forestLevel->addComponent(sprtComp); forestLevel->addComponent(transComp);	break;
-			case 2:	castleLevel->addComponent(sprtComp); castleLevel->addComponent(transComp);	break;
+			case 0:	plainsLevel->addComponent(sprtComp); plainsLevel->addComponent(transComp); break;
+			case 1:	forestLevel->addComponent(sprtComp); forestLevel->addComponent(transComp); break;
+			case 2:	castleLevel->addComponent(sprtComp); castleLevel->addComponent(transComp); break;
 			default: break;
 		}
 	}
 
-
 	plainsLevel->move(glm::vec2(0, 0));
 	forestLevel->move(glm::vec2(screenSize.x / 1.5, 0));
 	castleLevel->move(glm::vec2(screenSize.x / 3, 0));
-	
 }
 
 void LevelSelect::deInit()
@@ -79,9 +76,7 @@ bool LevelSelect::isIntersecting(glm::vec2 touchPosition, glm::vec2 box)
 {
 	if ((touchPosition.x > box.x && touchPosition.x < box.x + boxSizex) && 
 		touchPosition.y > box.y && touchPosition.y < box.y + boxSizey)
-	{
 		return true;
-	}
 	return false;
 }
 
@@ -90,23 +85,16 @@ int LevelSelect::update(core::Siika2D *siika)
 {
 	siika->_graphicsContext->clear();
 		for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
-		{
 			touchPosition = siika->_input->touchPosition(i)._positionCurrent;
-		}
+
 		if (siika->_input->fingerUp())
 		{
 			if (isIntersecting(touchPosition, plainsLevel->getComponent<misc::TransformComponent>()->getPosition()))
-			{
 				return CASTLE_LEVEL;
-			}
 			//else if (isIntersecting(touchPosition, forestLevel->getComponent<misc::TransformComponent>()->getPosition()))
-			//{
 			//	return FOREST_LEVEL
-			//}
 			//else if (isIntersecting(touchPosition, castleLevel->getComponent<misc::TransformComponent>()->getPosition()))
-			//{
 			//	return CASTLE_LEVEL
-			//}
 		}
 
 	plainsLevel->update();

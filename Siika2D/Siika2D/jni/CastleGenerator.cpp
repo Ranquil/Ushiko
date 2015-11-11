@@ -1,6 +1,5 @@
 #include "CastleGenerator.hpp"
 #include "Scene.hpp"
-
 #include "Ushiko.hpp"
 
 CastleGenerator::CastleGenerator(core::Siika2D *siika)

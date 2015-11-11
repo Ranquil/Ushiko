@@ -22,12 +22,13 @@ public:
 	virtual void resume();
 
 private:
+	bool paused;
+
 	CastleGenerator *lg;
 	colListener *cl;
-	audio::Audio *theme;
 	GameUI *gameUI;
 
-	bool paused;
+	audio::Audio *theme;
 };
 
 #endif // CASTLE_H

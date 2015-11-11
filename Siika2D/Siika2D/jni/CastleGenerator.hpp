@@ -25,17 +25,16 @@ public:
 	void update(core::Siika2D *siika);
 
 private:
-	std::vector<Tile*> tiles;
-	std::vector<Enemy*> enemies;
-
 	void spawnTile(core::Siika2D *siika, int xPos, int yPos);
 
 	bool platformHasEnemy;
-
 	int tileMovement;
 	int platformLength;
 	int platformSpawned;
 	int yLevel;
+
+	std::vector<Tile*> tiles;
+	std::vector<Enemy*> enemies;
 };
 
 #endif // CASTLEGENERATOR_H

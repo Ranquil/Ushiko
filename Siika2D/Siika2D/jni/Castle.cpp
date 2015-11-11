@@ -15,7 +15,6 @@ void Castle::init(core::Siika2D *siika)
 {
 	lg = new CastleGenerator(siika);
 	gameUI = new GameUI;
-
 	gameUI->init(siika);
 
 	ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(5, 0));
