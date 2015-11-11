@@ -80,22 +80,23 @@ bool LevelSelect::isIntersecting(glm::vec2 touchPosition, glm::vec2 box)
 	return false;
 }
 
-
 int LevelSelect::update(core::Siika2D *siika)
 {
 	siika->_graphicsContext->clear();
-		for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
-			touchPosition = siika->_input->touchPosition(i)._positionCurrent;
 
-		if (siika->_input->fingerUp())
-		{
-			if (isIntersecting(touchPosition, plainsLevel->getComponent<misc::TransformComponent>()->getPosition()))
-				return CASTLE_LEVEL;
-			//else if (isIntersecting(touchPosition, forestLevel->getComponent<misc::TransformComponent>()->getPosition()))
-			//	return FOREST_LEVEL
-			//else if (isIntersecting(touchPosition, castleLevel->getComponent<misc::TransformComponent>()->getPosition()))
-			//	return CASTLE_LEVEL
-		}
+	touchPosition = glm::vec2(0, 0);
+	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
+		touchPosition = siika->_input->touchPosition(i)._positionCurrent;
+
+	if (siika->_input->touchPositionsActive() > 0)
+	{
+		if (isIntersecting(touchPosition, plainsLevel->getComponent<misc::TransformComponent>()->getPosition()))
+			return CASTLE_LEVEL;
+		//else if (isIntersecting(touchPosition, forestLevel->getComponent<misc::TransformComponent>()->getPosition()))
+		//	return FOREST_LEVEL
+		//else if (isIntersecting(touchPosition, castleLevel->getComponent<misc::TransformComponent>()->getPosition()))
+		//	return CASTLE_LEVEL
+	}
 
 	plainsLevel->update();
 	forestLevel->update();
