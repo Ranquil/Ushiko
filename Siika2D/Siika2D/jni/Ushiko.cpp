@@ -110,7 +110,7 @@ void Ushiko::update(core::Siika2D *siika)
 				anim = JUMP_START;
 			}
 			// Dash (tap on the right side of the screen)
-			else if (xOffset <= 0 && dashTimer.getElapsedTime(SECONDS) > 1.8 &&
+			else if (xOffset <= 0 && dashTimer.getElapsedTime(SECONDS) > 1 &&
 				touchPos.x > siika->_graphicsContext->getDisplaySize().x / 2)
 			{
 				if (xOffset <= 0)
