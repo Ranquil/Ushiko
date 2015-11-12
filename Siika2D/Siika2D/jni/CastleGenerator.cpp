@@ -76,7 +76,7 @@ void CastleGenerator::update(core::Siika2D *siika)
 
 	/* ----- UPDATING ENEMIES ----- */
 
-	bool deleteEnemy = false;
+	Enemy *eDelete = nullptr;
 	for (Enemy *e : enemies)
 	{
 		int enemyXpos = siika->transfCrds()->deviceToUser(e->go->getComponent<misc::TransformComponent>()->getPosition()).x;
@@ -90,21 +90,27 @@ void CastleGenerator::update(core::Siika2D *siika)
 			e->yPos < ushikoPos.y + 200 && e->yPos > ushikoPos.y - 200)
 		{
 			if (ushiko.dashing)
-				deleteEnemy = true;
+				eDelete = e;
 			else ushiko.health -= 1;
 
 			e->hasHit = true;
 		}
 
-		if (enemyXpos <= 0)
-			deleteEnemy = true;
+		if (enemyXpos <= -100)
+			eDelete = e;
 	}
 
-	if (deleteEnemy)
+	if (eDelete != nullptr)
 	{
-		Enemy *e = enemies.front();
-		enemies.erase(enemies.begin());
-		delete e;
+		for (int i = 0; i < enemies.size(); i++)
+		{
+			if (enemies[i] == eDelete)
+			{
+				enemies.erase(enemies.begin() + i);
+				break;
+			}
+		}
+		delete eDelete;
 	}
 
 	/* ----- SPAWNING TILES & ENEMIES ----- */
