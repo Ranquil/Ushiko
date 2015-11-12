@@ -58,10 +58,7 @@ void Ushiko::update(core::Siika2D *siika)
 
 	glm::vec2 touchPos = glm::vec2(0, 0);
 	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
-	{
-		touchPos = siika->_input->touchPosition(i)._positionStart;
-		touchPos = siika->transfCrds()->deviceToUser(touchPos);
-	}
+		touchPos = siika->transfCrds()->deviceToUser(siika->_input->touchPosition(i)._positionStart);
 
 	// Ushiko is dashing
 	if (xOffset > 0)
@@ -91,6 +88,9 @@ void Ushiko::update(core::Siika2D *siika)
 	else
 	{
 		go->update();
+
+		if (anim != RUN)
+			anim = RUN;
 
 		if (canJump || !doubleJump)
 		{
@@ -145,12 +145,18 @@ void Ushiko::update(core::Siika2D *siika)
 void Ushiko::animate()
 {
 	// TODO(Jere): Step() the animation based on the animState
-	go->getComponent<misc::SpriteComponent>()->getSprite()->step(9, 9, false);
 
-	/*
-	if (animTimer.getElapsedTime(SECONDS) > 0.5)
+	if (animTimer.getElapsedTime(SECONDS) > 0.2)
 	{
+		switch (anim)
+		{
+			case RUN: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(0, 3); break;
+			case DASH: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(4, 7); break;
+			case JUMP_START: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(0, 1); break;
+			case JUMP_MIDDLE: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(2, 2); break;
+			case JUMP_END: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(3, 3); break;
+			default: break;
+		}
 		animTimer.reset();
 	}
-	//*/
 }
