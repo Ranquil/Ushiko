@@ -4,8 +4,7 @@
 
 LevelTimer::LevelTimer()
 {
-	levelTimer.start();
-	timerMinutes = 0;
+
 }
 
 LevelTimer::~LevelTimer()
@@ -15,6 +14,9 @@ LevelTimer::~LevelTimer()
 
 void LevelTimer::InitTimer(core::Siika2D *siika, std::string fontName, int fontSize, float xPosition, float yPosition)
 {
+	levelTimer.start();
+	timerMinutes = 0;
+
 	levelTimerText = siika->_textManager->createText();
 	levelTimerText->setFont(fontName);
 	levelTimerText->setPosition(xPosition, yPosition);
@@ -25,11 +27,11 @@ void LevelTimer::update()
 {
 	if (levelTimer.getElapsedTime(SECONDS) >= 60)
 	{
-		timerMinutes++;
+		timerMinutes += 1;
 		levelTimer.reset();
 	}
 
 	std::ostringstream timerOstring;
-	timerOstring << timerMinutes << (levelTimer.getElapsedTime(SECONDS) < 10 ? ":0" : ":") << (int)levelTimer.getElapsedTime(SECONDS) << "/" << "2:00";
+	timerOstring << timerMinutes << (levelTimer.getElapsedTime(SECONDS) < 10 ? ":0" : ":") << (int)(levelTimer.getElapsedTime(SECONDS)) << "/2:00";
 	levelTimerText->setText(timerOstring.str());
 }
