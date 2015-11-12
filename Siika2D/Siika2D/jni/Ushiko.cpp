@@ -126,7 +126,7 @@ void Ushiko::update(core::Siika2D *siika)
 		// Stay on top of platforms (if Ushiko is going down through the current ground level,
 		// apply some linear force upwards). This method allows us to jump through the platforms from below.
 		int ushikoLevel = siika->transfCrds()->deviceToUser(go->getComponent<misc::TransformComponent>()->getPosition()).y;
-		if (ushikoLevel > groundLevel - 250 && ushikoLevel < groundLevel && go->getComponent<misc::PhysicsComponent>()->_body->GetLinearVelocity().y < -1)
+		if (ushikoLevel > groundLevel - 250 && ushikoLevel < groundLevel - 200 && go->getComponent<misc::PhysicsComponent>()->_body->GetLinearVelocity().y < -1)
 		{
 			ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
 			ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 5), false);
