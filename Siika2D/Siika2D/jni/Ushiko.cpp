@@ -89,8 +89,10 @@ void Ushiko::update(core::Siika2D *siika)
 	{
 		go->update();
 
-		if (anim != RUN)
+		if (anim != RUN && anim != JUMP_START)
 			anim = RUN;
+		else if (anim == JUMP_START && jumpTimer.getElapsedTime(SECONDS) > 0.4)
+			anim = JUMP_MIDDLE;
 
 		if (canJump || !doubleJump)
 		{
