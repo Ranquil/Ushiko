@@ -31,8 +31,10 @@ void Ushiko::init(core::Siika2D *siika)
 		glm::vec2(0.2, 0.2))));
 	misc::PhysicsComponent *physComp = new misc::PhysicsComponent;
 	misc::TransformComponent *trnsComp = new misc::TransformComponent;
-	sprtComp->setZ(10);
+
 	physComp->setGravityScale(2);
+	sprtComp->setZ(10);
+
 	go->addComponent(trnsComp);
 	go->addComponent(sprtComp);
 	go->addComponent(physComp);
@@ -102,7 +104,7 @@ void Ushiko::update(core::Siika2D *siika)
 				touchPos.x < siika->_graphicsContext->getDisplaySize().x / 2)
 			{
 				ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
-				ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 45), false);
+				ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 50), false);
 
 				if (canJump)
 					canJump = false;

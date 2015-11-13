@@ -6,6 +6,7 @@
 #include "../engine/misc/timer.h"
 
 #include "Enemy.hpp"
+#include "Collectable.hpp"
 
 struct Tile
 {
@@ -30,10 +31,12 @@ public:
 	int platformLength;
 	int platformSpawned;
 	int yLevel;
+	int platformNum;
 
 	std::string generatorName;
 	std::vector<Tile*> tiles;
 	std::vector<Enemy*> enemies;
+	std::vector<Collectable*> gems;
 };
 
 #endif // LEVELGENERATOR_H

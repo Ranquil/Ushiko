@@ -15,6 +15,7 @@ LevelGenerator::LevelGenerator(core::Siika2D *siika, std::string name)
 	platformSpawned = 0;
 	platformHasEnemy = false;
 	generatorName = name;
+	platformNum = 0;
 
 	yLevel = siika->_graphicsContext->getDisplaySize().y * 2 + 400;
 	ushiko.groundLevel = yLevel;
@@ -22,7 +23,7 @@ LevelGenerator::LevelGenerator(core::Siika2D *siika, std::string name)
 	// Go through update a few times to spawn the starting platform.
 	// This slows down loading just a little bit, so TODO(Jere):
 	// change this to spawn the platform without using update().
-	for (int i = 0; i < 280; i++)
+	for (int i = 0; i < 300; i++)
 		update(siika);
 }
 
@@ -32,9 +33,17 @@ LevelGenerator::~LevelGenerator()
 		delete t;
 	for (Enemy *e : enemies)
 		delete e;
+	for (Collectable *c : gems)
+		delete c;
 
 	tiles.clear();
 	enemies.clear();
+	gems.clear();
+}
+
+double distance(glm::vec2 go1, glm::vec2 go2)
+{
+	return sqrt((go2.x - go1.x) * (go2.x - go1.x) + (go2.y - go1.y) * (go2.y - go1.y));
 }
 
 void LevelGenerator::update(core::Siika2D *siika)
@@ -63,9 +72,9 @@ void LevelGenerator::update(core::Siika2D *siika)
 		if (t->xPos < ushikoPos.x && t->xPos > ushikoPos.x - 10)
 			ushiko.groundLevel = -t->yPos;
 
-		// When there are over 24 tiles, destroy the oldest
+		// When there are over 30 tiles, destroy the oldest
 		tileAmount += 1;
-		if (tileAmount > 24)
+		if (tileAmount > 30)
 			deleteTile = true;
 	}
 
@@ -74,6 +83,39 @@ void LevelGenerator::update(core::Siika2D *siika)
 		Tile *t = tiles.front();
 		tiles.erase(tiles.begin());
 		delete t;
+	}
+
+	/* ----- UPDATING GEMS ----- */
+
+	Collectable *cDelete = nullptr;
+	for (Collectable *c : gems)
+	{
+		c->go->update();
+
+		glm::vec2 ushikoPosition = ushiko.go->getComponent<misc::TransformComponent>()->getPosition();
+		if (distance(c->go->getComponent<misc::TransformComponent>()->getPosition(), ushikoPosition) < 50)
+		{
+			ushiko.gemCount += 1;
+			cDelete = c;
+		}
+
+		c->go->move(glm::vec2(c->xPos -= 5, c->yPos));
+
+		if (c->xPos < -100)
+			cDelete = c;
+	}
+
+	if (cDelete != nullptr)
+	{
+		for (int i = 0; i < gems.size(); i++)
+		{
+			if (gems[i] == cDelete)
+			{
+				gems.erase(gems.begin() + i);
+				break;
+			}
+		}
+		delete cDelete;
 	}
 
 	/* ----- UPDATING ENEMIES ----- */
@@ -125,7 +167,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 		glm::vec2 screenSize = siika->_graphicsContext->getDisplaySize();
 		if (platformSpawned < platformLength)
 		{
-			spawnTile(siika, screenSize.x * 1.6f, -yLevel);
+			spawnTile(siika, screenSize.x * 1.8, -yLevel);
 			platformSpawned += 1;
 
 			// 25% chance (per tile) to spawn an enemy on a tile past the half-way point of the platform
@@ -134,12 +176,24 @@ void LevelGenerator::update(core::Siika2D *siika)
 				Enemy *e = new Enemy("sprite_shimapanda.png");
 
 				e->init(siika);
-				e->xPos = screenSize.x * 1.6f;
-				e->yPos = -yLevel + 200;
+				e->xPos = screenSize.x * 1.8;
+				e->yPos = -yLevel + 220;
 				e->go->move(glm::vec2(e->xPos, e->yPos));
 
 				enemies.push_back(e);
 				platformHasEnemy = true;
+			}
+			// Spawn a gem on every 4th (?) platform
+			if (platformNum == 2 && platformSpawned == (int)(platformLength / 2))
+			{
+				Collectable *c = new Collectable;
+
+				c->init(siika);
+				c->xPos = screenSize.x * 1.8;
+				c->yPos = -yLevel + 220;
+				c->go->move(glm::vec2(c->xPos, c->yPos));
+
+				gems.push_back(c);
 			}
 		}
 		else
@@ -147,6 +201,10 @@ void LevelGenerator::update(core::Siika2D *siika)
 			platformSpawned = 0;
 			platformLength = mrand48() % 10 + 5;
 			platformHasEnemy = false;
+
+			platformNum += 1;
+			if (platformNum >= 4)
+				platformNum = 0;
 
 			int previousY = yLevel;
 			while (yLevel == previousY)
