@@ -49,6 +49,9 @@
     <Filter Include="Ushiko\Entities">
       <UniqueIdentifier>{e7fd5e84-1f5c-4dce-8e5e-6af213bcf9ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Ushiko\Scenes\Levels\Generators">
+      <UniqueIdentifier>{2549170b-f4af-480d-9308-c0d2b8bc9ef7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <AndroidBuild Include="AndroidManifest.xml" />
@@ -162,10 +165,19 @@
     <ClCompile Include="jni\GameUI.cpp">
       <Filter>Ushiko</Filter>
     </ClCompile>
-    <ClCompile Include="jni\CastleGenerator.cpp">
+    <ClCompile Include="jni\Level.cpp">
       <Filter>Ushiko\Scenes\Levels</Filter>
     </ClCompile>
-    <ClCompile Include="jni\Level.cpp">
+    <ClCompile Include="jni\CastleGenerator.cpp">
+      <Filter>Ushiko\Scenes\Levels\Generators</Filter>
+    </ClCompile>
+    <ClCompile Include="jni\ForestGenerator.cpp">
+      <Filter>Ushiko\Scenes\Levels\Generators</Filter>
+    </ClCompile>
+    <ClCompile Include="jni\PlainsGenerator.cpp">
+      <Filter>Ushiko\Scenes\Levels\Generators</Filter>
+    </ClCompile>
+    <ClCompile Include="jni\LevelGenerator.cpp">
       <Filter>Ushiko\Scenes\Levels</Filter>
     </ClCompile>
     <ClCompile Include="jni\Collectable.cpp">
@@ -293,10 +305,19 @@
     <ClInclude Include="jni\GameUI.hpp">
       <Filter>Ushiko</Filter>
     </ClInclude>
-    <ClInclude Include="jni\CastleGenerator.hpp">
+    <ClInclude Include="jni\Level.hpp">
       <Filter>Ushiko\Scenes\Levels</Filter>
     </ClInclude>
-    <ClInclude Include="jni\Level.hpp">
+    <ClInclude Include="jni\CastleGenerator.hpp">
+      <Filter>Ushiko\Scenes\Levels\Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\ForestGenerator.hpp">
+      <Filter>Ushiko\Scenes\Levels\Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\PlainsGenerator.hpp">
+      <Filter>Ushiko\Scenes\Levels\Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\LevelGenerator.hpp">
       <Filter>Ushiko\Scenes\Levels</Filter>
     </ClInclude>
     <ClInclude Include="jni\Collectable.hpp">

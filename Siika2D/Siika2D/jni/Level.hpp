@@ -4,7 +4,7 @@
 #include "../engine/audio/Audio.h"
 
 #include "Scene.hpp"
-#include "CastleGenerator.hpp"
+#include "LevelGenerator.hpp"
 #include "GameUI.hpp"
 
 class Level : public Scene
@@ -25,7 +25,7 @@ private:
 	bool paused;
 	std::string levelName;
 
-	CastleGenerator *lg;
+	LevelGenerator *lg;
 	colListener *cl;
 	GameUI *gameUI;
 

@@ -1,6 +1,10 @@
 #include "Level.hpp"
 #include "Ushiko.hpp"
 
+#include "PlainsGenerator.hpp"
+#include "ForestGenerator.hpp"
+#include "CastleGenerator.hpp"
+
 Level::Level(std::string name)
 {
 	levelName = name;
@@ -13,7 +17,12 @@ Level::~Level()
 
 void Level::init(core::Siika2D *siika)
 {
-	lg = new CastleGenerator(siika);
+	if (levelName == "plains")
+		lg = new PlainsGenerator;
+	else if (levelName == "forest")
+		lg = new ForestGenerator;
+	else lg = new CastleGenerator;
+
 	gameUI = new GameUI;
 	gameUI->init(siika);
 
@@ -21,11 +30,16 @@ void Level::init(core::Siika2D *siika)
 	if (levelName == "castle")
 		bgTexture = "background_menu_castle.png";
 
+	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
+
+	glm::vec2 bgPos = glm::vec2(0, 0);
+	if (levelName == "castle" || levelName == "plains")
+		bgPos = glm::vec2(0, -scrSize.y);
+
 	ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(5, 0));
 
-	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
 	bg = siika->_spriteManager->createSprite(
-		levelName == "castle" || levelName == "plains" ? glm::vec2(0, -scrSize.y) : glm::vec2(0, 0),
+		bgPos,
 		glm::vec2(scrSize.x, scrSize.y * 2),
 		glm::vec2(0, 0),
 		siika->_textureManager->createTexture(bgTexture),
