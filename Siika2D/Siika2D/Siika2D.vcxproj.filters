@@ -168,6 +168,9 @@
     <ClCompile Include="jni\Level.cpp">
       <Filter>Ushiko\Scenes\Levels</Filter>
     </ClCompile>
+    <ClCompile Include="jni\Collectable.cpp">
+      <Filter>Ushiko</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="native_app_glue\android_native_app_glue.h">
@@ -295,6 +298,9 @@
     </ClInclude>
     <ClInclude Include="jni\Level.hpp">
       <Filter>Ushiko\Scenes\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\Collectable.hpp">
+      <Filter>Ushiko</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

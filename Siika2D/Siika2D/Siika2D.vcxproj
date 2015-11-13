@@ -47,6 +47,7 @@
     <ClCompile Include="engine\misc\TransformComponent.cpp" />
     <ClCompile Include="inc\lodepng\lodepng.cpp" />
     <ClCompile Include="jni\CastleGenerator.cpp" />
+    <ClCompile Include="jni\Collectable.cpp" />
     <ClCompile Include="jni\Enemy.cpp" />
     <ClCompile Include="jni\GameUI.cpp" />
     <ClCompile Include="jni\Level.cpp" />
@@ -94,6 +95,7 @@
     <ClInclude Include="engine\misc\TransformComponent.h" />
     <ClInclude Include="inc\lodepng\lodepng.h" />
     <ClInclude Include="jni\CastleGenerator.hpp" />
+    <ClInclude Include="jni\Collectable.hpp" />
     <ClInclude Include="jni\Enemy.hpp" />
     <ClInclude Include="jni\GameUI.hpp" />
     <ClInclude Include="jni\Level.hpp" />
