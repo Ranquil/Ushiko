@@ -2,6 +2,7 @@
 #define LEVELSELECT_H
 
 #include "Scene.hpp"
+#include <fstream>
 
 class LevelSelect : public Scene
 {

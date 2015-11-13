@@ -1,4 +1,7 @@
 #include "LevelSelect.hpp"
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 LevelSelect::LevelSelect()
 {
@@ -12,6 +15,46 @@ LevelSelect::~LevelSelect()
 
 void LevelSelect::init(core::Siika2D *siika)
 {
+	/*
+	std::ifstream inputFile("Configuration.txt");
+	if (inputFile.good())
+	{
+	std::string config;
+		while (std::getline(inputFile, config))
+		{
+			if (config == "0")
+			{
+				lvl2Unlocked = false;
+				lvl3Unlocked = false;
+			}
+			if (config == "1")
+			{
+				lvl2Unlocked = true;
+				lvl3Unlocked = false;
+			}
+			else
+			{
+				lvl2Unlocked = true;
+				lvl3Unlocked = true;
+			}
+		}
+		inputFile.close();
+	}
+	else
+	{
+		std::ofstream file("Configuration.txt");
+
+		if (file)
+		{
+			file << "1";
+			file.close();
+		}
+	}
+	*/
+
+
+
+
 	glm::vec2 screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
 	boxSizex = siika->_graphicsContext->getDisplaySize().x / 4;
 	boxSizey = siika->_graphicsContext->getDisplaySize().y / 4;
