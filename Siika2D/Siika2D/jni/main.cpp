@@ -47,10 +47,7 @@ void siika_main()
 	else if (currentScene != prevScene)
 	{
 		if (currentScene > LEVEL_SELECT)
-		{
-			delete ushiko.go;
 			ushiko.init(siika);
-		}
 
 		scenes[prevScene]->deInit();
 		scenes[currentScene]->init(siika);

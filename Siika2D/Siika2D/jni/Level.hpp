@@ -29,6 +29,7 @@ private:
 	colListener *cl;
 	GameUI *gameUI;
 
+	misc::Timer genTimer;
 	audio::Audio *theme;
 };
 

@@ -55,6 +55,7 @@ void Level::init(core::Siika2D *siika)
 	siika->_boxWorld->SetContactListener(cl);
 
 	paused = false;
+	genTimer.start();
 }
 
 void Level::deInit()
@@ -79,12 +80,14 @@ int Level::update(core::Siika2D *siika)
 	else if (state == RESUME)
 		resume();
 
-	if (!paused)
+	if (!paused && genTimer.getElapsedTime(MILLISECONDS) > 10)
 	{
 		siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
 
 		lg->update(siika);
 		ushiko.update(siika);
+
+		genTimer.reset();
 	}
 
 	siika->_spriteManager->drawSprites();
@@ -92,7 +95,10 @@ int Level::update(core::Siika2D *siika)
 	siika->_graphicsContext->swap();
 
 	if (ushiko.health <= 0)
+	{
+		delete ushiko.go;
 		return MAIN_MENU;
+	}
 
 	if (levelName == "plains")
 		return PLAINS_LEVEL;
@@ -103,16 +109,16 @@ int Level::update(core::Siika2D *siika)
 
 void Level::pause()
 {
-	gameUI->lt->levelTimer.pause();
-	lg->genTimer.pause();
+	gameUI->lt->levelTimer->pause();
+	genTimer.pause();
 	theme->pause();
 	paused = true;
 }
 
 void Level::resume()
 {
-	gameUI->lt->levelTimer.resume();
-	lg->genTimer.resume();
+	gameUI->lt->levelTimer->resume();
+	genTimer.resume();
 	theme->play();
 	paused = false;
 }

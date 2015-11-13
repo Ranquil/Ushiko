@@ -23,7 +23,7 @@ public:
 	LevelGenerator(core::Siika2D *siika, std::string name);
 	~LevelGenerator();
 
-	virtual void update(core::Siika2D *siika, bool timed = true);
+	virtual void update(core::Siika2D *siika);
 	virtual void spawnTile(core::Siika2D *siika, int xPos, int yPos);
 
 	bool platformHasEnemy;
@@ -37,8 +37,6 @@ public:
 	std::vector<Tile*> tiles;
 	std::vector<Enemy*> enemies;
 	std::vector<Collectable*> gems;
-
-	misc::Timer genTimer;
 };
 
 #endif // LEVELGENERATOR_H

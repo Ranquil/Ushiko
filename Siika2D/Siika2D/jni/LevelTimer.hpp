@@ -13,7 +13,7 @@ public:
 	void update();
 	void InitTimer(core::Siika2D *siika, std::string fontName, int fontSize, float xPosition, float yPosition);
 
-	misc::Timer levelTimer;
+	misc::Timer *levelTimer;
 
 private:
 	int timerMinutes;
