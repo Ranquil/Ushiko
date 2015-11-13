@@ -3,7 +3,7 @@
 #include "Ushiko.hpp"
 #include "MainMenu.hpp"
 #include "LevelSelect.hpp"
-#include "Castle.hpp"
+#include "Level.hpp"
 
 core::Siika2D *siika = core::Siika2D::UI();
 
@@ -27,7 +27,7 @@ void siika_init()
 	scenes[QUIT] = new Scene;
 	scenes[MAIN_MENU] = new MainMenu;
 	scenes[LEVEL_SELECT] = new LevelSelect;
-	scenes[CASTLE_LEVEL] = new Castle;
+	scenes[CASTLE_LEVEL] = new Level("castle");
 
 	scenes[currentScene]->init(siika);
 }

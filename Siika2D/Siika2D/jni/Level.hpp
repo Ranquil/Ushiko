@@ -1,5 +1,5 @@
-#ifndef CASTLE_H
-#define CASTLE_H
+#ifndef LEVEL_H
+#define LEVEL_H
 
 #include "../engine/audio/Audio.h"
 
@@ -7,11 +7,11 @@
 #include "CastleGenerator.hpp"
 #include "GameUI.hpp"
 
-class Castle : public Scene
+class Level : public Scene
 {
 public:
-	Castle();
-	~Castle();
+	Level(std::string name);
+	~Level();
 
 	virtual int update(core::Siika2D *siika);
 
@@ -23,6 +23,7 @@ public:
 
 private:
 	bool paused;
+	std::string levelName;
 
 	CastleGenerator *lg;
 	colListener *cl;
@@ -31,4 +32,4 @@ private:
 	audio::Audio *theme;
 };
 
-#endif // CASTLE_H
+#endif // LEVEL_H

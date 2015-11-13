@@ -1,30 +1,34 @@
-#include "Castle.hpp"
+#include "Level.hpp"
 #include "Ushiko.hpp"
 
-Castle::Castle()
+Level::Level(std::string name)
 {
-
+	levelName = name;
 }
 
-Castle::~Castle()
+Level::~Level()
 {
 	deInit();
 }
 
-void Castle::init(core::Siika2D *siika)
+void Level::init(core::Siika2D *siika)
 {
 	lg = new CastleGenerator(siika);
 	gameUI = new GameUI;
 	gameUI->init(siika);
 
+	std::string bgTexture = "background_forest_plains.png";
+	if (levelName == "castle")
+		bgTexture = "background_menu_castle.png";
+
 	ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(5, 0));
 
 	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
 	bg = siika->_spriteManager->createSprite(
-		glm::vec2(0, -scrSize.y),
+		levelName == "castle" ? glm::vec2(0, -scrSize.y) : glm::vec2(0, 0),
 		glm::vec2(scrSize.x, scrSize.y * 2),
 		glm::vec2(0, 0),
-		siika->_textureManager->createTexture("background_menu_castle.png"),
+		siika->_textureManager->createTexture(bgTexture),
 		glm::vec2(0, 0),
 		glm::vec2(1, 1));
 	bg->setZ(100);
@@ -39,7 +43,7 @@ void Castle::init(core::Siika2D *siika)
 	paused = false;
 }
 
-void Castle::deInit()
+void Level::deInit()
 {
 	theme->stop();
 	//delete theme;
@@ -51,7 +55,7 @@ void Castle::deInit()
 	delete cl;
 }
 
-int Castle::update(core::Siika2D *siika)
+int Level::update(core::Siika2D *siika)
 {
 	siika->_graphicsContext->clear();
 
@@ -78,14 +82,14 @@ int Castle::update(core::Siika2D *siika)
 	return CASTLE_LEVEL;
 }
 
-void Castle::pause()
+void Level::pause()
 {
 	gameUI->lt->levelTimer.pause();
 	theme->pause();
 	paused = true;
 }
 
-void Castle::resume()
+void Level::resume()
 {
 	gameUI->lt->levelTimer.resume();
 	theme->play();
