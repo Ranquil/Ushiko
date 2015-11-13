@@ -21,13 +21,12 @@ void Castle::init(core::Siika2D *siika)
 
 	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
 	bg = siika->_spriteManager->createSprite(
+		glm::vec2(0, -scrSize.y),
+		glm::vec2(scrSize.x, scrSize.y * 2),
 		glm::vec2(0, 0),
-		glm::vec2(scrSize.x, scrSize.y),
-		glm::vec2(0, 0),
-		siika->_textureManager->createTexture("background_castle.png"),
+		siika->_textureManager->createTexture("background_menu_castle.png"),
 		glm::vec2(0, 0),
 		glm::vec2(1, 1));
-	bg->setSize(glm::vec2(scrSize.x, scrSize.y));
 	bg->setZ(100);
 
 	theme = siika->_audioManager->createAudio("castle_theme.ogg");

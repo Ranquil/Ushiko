@@ -17,12 +17,11 @@ void MainMenu::init(core::Siika2D *siika)
 	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
 	bg = siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
-		glm::vec2(scrSize.x, scrSize.y),
+		glm::vec2(scrSize.x, scrSize.y * 2),
 		glm::vec2(0, 0),
-		siika->_textureManager->createTexture("background_menu.png"),
+		siika->_textureManager->createTexture("background_menu_castle.png"),
 		glm::vec2(0, 0),
 		glm::vec2(1, 1));
-	bg->setSize(glm::vec2(scrSize.x, scrSize.y));
 	bg->setZ(100);
 
 	//graphics::Texture *startGameTexture = siika->_textureManager->createTexture("Temp_Menu_button.png");
