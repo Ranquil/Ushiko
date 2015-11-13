@@ -17,8 +17,8 @@ public:
 	bool isIntersecting(glm::vec2 touchPosition, glm::vec2 box);
 
 private:
-	bool lvl2Unlocked = false;
-	bool lvl3Unlocked = false;
+	bool lvl2Unlocked = true;
+	bool lvl3Unlocked = true;
 	int boxSizey;
 	int boxSizex;
 

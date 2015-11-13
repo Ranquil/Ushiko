@@ -7,7 +7,7 @@
 
 core::Siika2D *siika = core::Siika2D::UI();
 
-Scene* scenes[4];
+Scene* scenes[6];
 int currentScene;
 
 void siika_onPause()
@@ -27,6 +27,8 @@ void siika_init()
 	scenes[QUIT] = new Scene;
 	scenes[MAIN_MENU] = new MainMenu;
 	scenes[LEVEL_SELECT] = new LevelSelect;
+	scenes[PLAINS_LEVEL] = new Level("plains");
+	scenes[FOREST_LEVEL] = new Level("forest");
 	scenes[CASTLE_LEVEL] = new Level("castle");
 
 	scenes[currentScene]->init(siika);

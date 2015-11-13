@@ -25,7 +25,7 @@ void Level::init(core::Siika2D *siika)
 
 	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
 	bg = siika->_spriteManager->createSprite(
-		levelName == "castle" ? glm::vec2(0, -scrSize.y) : glm::vec2(0, 0),
+		levelName == "castle" || levelName == "plains" ? glm::vec2(0, -scrSize.y) : glm::vec2(0, 0),
 		glm::vec2(scrSize.x, scrSize.y * 2),
 		glm::vec2(0, 0),
 		siika->_textureManager->createTexture(bgTexture),

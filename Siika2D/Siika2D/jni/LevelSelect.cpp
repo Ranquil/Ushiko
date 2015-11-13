@@ -30,12 +30,12 @@ void LevelSelect::init(core::Siika2D *siika)
 			case 1:	
 				if(lvl2Unlocked == false)
 					lvlSelectTexture = siika->_textureManager->createTexture("tile_castle_middle.png");	
-				else { lvlSelectTexture = siika->_textureManager->createTexture("background_forest.png"); }
+				else lvlSelectTexture = siika->_textureManager->createTexture("background_forest.png");
 				break;
 			case 2:
 				if (lvl3Unlocked == false)
 					lvlSelectTexture = siika->_textureManager->createTexture("tile_castle_middle.png");	
-				else { lvlSelectTexture = siika->_textureManager->createTexture("background_castle.png"); }
+				else lvlSelectTexture = siika->_textureManager->createTexture("background_castle.png");
 				break;
 			default: break;
 		}
@@ -59,8 +59,8 @@ void LevelSelect::init(core::Siika2D *siika)
 	}
 	float test = screenSize.x / 23;
 	plainsLevel->move(glm::vec2(test, -screenSize.y / 5));
-	forestLevel->move(glm::vec2(screenSize.x / 1.5 + test, -screenSize.y / 5));
-	castleLevel->move(glm::vec2(screenSize.x / 3 + test, -screenSize.y / 5));
+	forestLevel->move(glm::vec2(screenSize.x / 3 + test, -screenSize.y / 5));
+	castleLevel->move(glm::vec2(screenSize.x / 1.5 + test, -screenSize.y / 5));
 }
 
 void LevelSelect::deInit()
@@ -89,11 +89,11 @@ int LevelSelect::update(core::Siika2D *siika)
 	if (siika->_input->touchPositionsActive() > 0)
 	{
 		if (isIntersecting(touchPosition, plainsLevel->getComponent<misc::TransformComponent>()->getPosition()))
+			return PLAINS_LEVEL;
+		else if (isIntersecting(touchPosition, forestLevel->getComponent<misc::TransformComponent>()->getPosition()))
+			return FOREST_LEVEL;
+		else if (isIntersecting(touchPosition, castleLevel->getComponent<misc::TransformComponent>()->getPosition()))
 			return CASTLE_LEVEL;
-		//else if (isIntersecting(touchPosition, forestLevel->getComponent<misc::TransformComponent>()->getPosition()))
-		//	return FOREST_LEVEL
-		//else if (isIntersecting(touchPosition, castleLevel->getComponent<misc::TransformComponent>()->getPosition()))
-		//	return CASTLE_LEVEL
 	}
 
 	plainsLevel->update();
