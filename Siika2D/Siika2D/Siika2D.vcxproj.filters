@@ -43,9 +43,6 @@
     <Filter Include="Ushiko\Scenes\Levels">
       <UniqueIdentifier>{2ebcfaeb-3f58-4aac-8902-3b2ba025c755}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Ushiko\Scenes\Levels\Castle">
-      <UniqueIdentifier>{ab1403ce-ee49-4094-b9f0-dbea8ad3e660}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Ushiko\Scenes\Menu">
       <UniqueIdentifier>{a8ef5b79-64ed-43eb-82f8-6a386c714f6f}</UniqueIdentifier>
     </Filter>
@@ -147,12 +144,6 @@
     <ClCompile Include="engine\misc\PhysicsComponent.cpp">
       <Filter>Siika2D\engine\misc</Filter>
     </ClCompile>
-    <ClCompile Include="jni\Castle.cpp">
-      <Filter>Ushiko\Scenes\Levels\Castle</Filter>
-    </ClCompile>
-    <ClCompile Include="jni\CastleGenerator.cpp">
-      <Filter>Ushiko\Scenes\Levels\Castle</Filter>
-    </ClCompile>
     <ClCompile Include="jni\LevelTimer.cpp">
       <Filter>Ushiko\Scenes\Levels</Filter>
     </ClCompile>
@@ -170,6 +161,12 @@
     </ClCompile>
     <ClCompile Include="jni\GameUI.cpp">
       <Filter>Ushiko</Filter>
+    </ClCompile>
+    <ClCompile Include="jni\CastleGenerator.cpp">
+      <Filter>Ushiko\Scenes\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="jni\Level.cpp">
+      <Filter>Ushiko\Scenes\Levels</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -272,12 +269,6 @@
     <ClInclude Include="engine\misc\PhysicsComponent.h">
       <Filter>Siika2D\engine\misc</Filter>
     </ClInclude>
-    <ClInclude Include="jni\Castle.hpp">
-      <Filter>Ushiko\Scenes\Levels\Castle</Filter>
-    </ClInclude>
-    <ClInclude Include="jni\CastleGenerator.hpp">
-      <Filter>Ushiko\Scenes\Levels\Castle</Filter>
-    </ClInclude>
     <ClInclude Include="jni\LevelTimer.hpp">
       <Filter>Ushiko\Scenes\Levels</Filter>
     </ClInclude>
@@ -298,6 +289,12 @@
     </ClInclude>
     <ClInclude Include="jni\GameUI.hpp">
       <Filter>Ushiko</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\CastleGenerator.hpp">
+      <Filter>Ushiko\Scenes\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\Level.hpp">
+      <Filter>Ushiko\Scenes\Levels</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
