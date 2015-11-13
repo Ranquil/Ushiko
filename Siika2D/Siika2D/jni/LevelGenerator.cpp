@@ -155,8 +155,8 @@ void LevelGenerator::update(core::Siika2D *siika)
 				yLevel = mrand48() % 3;
 				switch (yLevel)
 				{
-				case 0: yLevel = 450; break;
-				case 1: yLevel = screenSize.y * 2 - 300; break;
+				case 0: yLevel = 550; break;
+				case 1: yLevel = screenSize.y * 2 - 275; break;
 				default: yLevel = screenSize.y * 2 + 400; break;
 				}
 			}
