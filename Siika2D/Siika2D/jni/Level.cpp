@@ -18,10 +18,10 @@ Level::~Level()
 void Level::init(core::Siika2D *siika)
 {
 	if (levelName == "plains")
-		lg = new PlainsGenerator;
+		lg = new PlainsGenerator(siika, "plains");
 	else if (levelName == "forest")
-		lg = new ForestGenerator;
-	else lg = new CastleGenerator;
+		lg = new ForestGenerator(siika, "forest");
+	else lg = new CastleGenerator(siika, "castle");
 
 	gameUI = new GameUI;
 	gameUI->init(siika);

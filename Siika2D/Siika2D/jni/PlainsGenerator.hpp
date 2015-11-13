@@ -5,6 +5,10 @@
 
 class PlainsGenerator : public LevelGenerator
 {
+public:
+	PlainsGenerator(core::Siika2D *siika, std::string name) :
+		LevelGenerator(siika, name) {}
+
 	// TODO(Jere): this
 };
 

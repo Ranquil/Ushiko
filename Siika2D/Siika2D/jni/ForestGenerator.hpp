@@ -5,6 +5,10 @@
 
 class ForestGenerator : public LevelGenerator
 {
+public:
+	ForestGenerator(core::Siika2D *siika, std::string name) :
+		LevelGenerator(siika, name) {}
+
 	// TODO(Jere): this
 };
 

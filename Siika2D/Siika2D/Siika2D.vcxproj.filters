@@ -181,7 +181,7 @@
       <Filter>Ushiko\Scenes\Levels</Filter>
     </ClCompile>
     <ClCompile Include="jni\Collectable.cpp">
-      <Filter>Ushiko</Filter>
+      <Filter>Ushiko\Entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -321,7 +321,7 @@
       <Filter>Ushiko\Scenes\Levels</Filter>
     </ClInclude>
     <ClInclude Include="jni\Collectable.hpp">
-      <Filter>Ushiko</Filter>
+      <Filter>Ushiko\Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
