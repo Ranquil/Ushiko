@@ -27,8 +27,6 @@ public:
 
 private:
 	int heartCount;
-	int gemCount;
-	const int maxGems = 20;
 
 	UIState lastState;
 

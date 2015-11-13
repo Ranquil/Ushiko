@@ -32,6 +32,8 @@ public:
 
 	misc::GameObject *go;
 
+	int gemCount;
+	const int maxGems = 20;
 private:
 	void animate();
 	animState anim;

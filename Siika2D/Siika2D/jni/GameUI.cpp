@@ -80,7 +80,7 @@ void GameUI::init(core::Siika2D *siika)
 		glm::vec2(1, 1));
 	shade->setZ(-10);
 
-	gemCount = 0;
+	ushiko.gemCount = 0;
 
 	gemTextUI = siika->_textManager->createText();
 	gemTextUI->setFont("arial.ttf");
@@ -138,7 +138,7 @@ int GameUI::update(core::Siika2D *siika)
 	lt->update();
 
 	std::ostringstream gemText;
-	gemText << gemCount << " / " << maxGems;
+	gemText << ushiko.gemCount << " / " << ushiko.maxGems;
 	gemTextUI->setText(gemText.str());
 
 	touchPosition = glm::vec2(0, 0);
