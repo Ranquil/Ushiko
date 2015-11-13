@@ -26,7 +26,7 @@ void Collectable::init(core::Siika2D *siika)
 		glm::vec2(0, 0),
 		glm::vec2(1, 1))));
 	misc::TransformComponent *trnsComp = new misc::TransformComponent;
-	sprtComp->setZ(30);
+	sprtComp->setZ(20);
 
 	go->addComponent(sprtComp);
 	go->addComponent(trnsComp);

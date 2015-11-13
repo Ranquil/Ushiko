@@ -104,7 +104,7 @@ void Ushiko::update(core::Siika2D *siika)
 				touchPos.x < siika->_graphicsContext->getDisplaySize().x / 2)
 			{
 				ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
-				ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 50), false);
+				ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 48), false);
 
 				if (canJump)
 					canJump = false;
