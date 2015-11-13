@@ -148,7 +148,7 @@ void Ushiko::animate()
 {
 	// TODO(Jere): Step() the animation based on the animState
 
-	if (animTimer.getElapsedTime(SECONDS) > 0.2)
+	if (animTimer.getElapsedTime(SECONDS) > 0.1)
 	{
 		switch (anim)
 		{
