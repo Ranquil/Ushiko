@@ -93,7 +93,12 @@ int Level::update(core::Siika2D *siika)
 
 	if (ushiko.health <= 0)
 		return MAIN_MENU;
-	return CASTLE_LEVEL;
+
+	if (levelName == "plains")
+		return PLAINS_LEVEL;
+	else if (levelName == "forest")
+		return FOREST_LEVEL;
+	else return CASTLE_LEVEL;
 }
 
 void Level::pause()
