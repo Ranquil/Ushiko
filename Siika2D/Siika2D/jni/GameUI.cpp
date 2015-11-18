@@ -84,6 +84,11 @@ void GameUI::init(core::Siika2D *siika)
 	gemTextUI->setPosition(-0.95, -0.95);
 	gemTextUI->setFontSize(64);
 
+	pointsTextUI = siika->_textManager->createText();
+	pointsTextUI->setFont("arial.ttf");
+	pointsTextUI->setPosition(0.80, -0.95);
+	pointsTextUI->setFontSize(64);
+
 	lastState = RESUME;
 	inputTimer.start();
 	heartCount = ushiko.health;
@@ -93,6 +98,7 @@ void GameUI::deInit()
 {
 	delete pauseButton;
 
+	pointsTextUI->setText("");
 	gemTextUI->setText("");
 
 	for (int i = 0; i < 3; i++)
@@ -132,9 +138,15 @@ int GameUI::update(core::Siika2D *siika)
 
 	heartCount = ushiko.health;
 
-	std::ostringstream gemText;
-	gemText << ushiko.gemCount << " / " << ushiko.maxGems;
-	gemTextUI->setText(gemText.str());
+	{
+		std::ostringstream gemText;
+		gemText << ushiko.gemCount << " / " << ushiko.maxGems;
+		gemTextUI->setText(gemText.str());
+		std::ostringstream pointsText;
+		pointsText << ushiko.pointsAmount;
+		pointsTextUI->setText(pointsText.str());
+
+	}
 
 	touchPosition = glm::vec2(0, 0);
 	if (inputTimer.getElapsedTime(SECONDS) > 0.5)

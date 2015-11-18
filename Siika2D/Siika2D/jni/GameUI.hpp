@@ -32,6 +32,8 @@ private:
 	graphics::Text *gemTextUI;
 	graphics::Sprite *shade;
 
+	graphics::Text *pointsTextUI;
+
 	std::vector<misc::GameObject*> heartIcons;
 	misc::GameObject *pauseButton;
 	misc::Timer inputTimer;
