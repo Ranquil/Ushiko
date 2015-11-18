@@ -51,7 +51,6 @@ void Ushiko::init(core::Siika2D *siika)
 	dashTimer.start();
 	dashing = false;
 	xOffset = 0;
-	
 }
 
 void Ushiko::update(core::Siika2D *siika)

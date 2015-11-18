@@ -95,7 +95,9 @@ void LevelGenerator::update(core::Siika2D *siika)
 		glm::vec2 ushikoPosition = ushiko.go->getComponent<misc::TransformComponent>()->getPosition();
 		if (distance(c->go->getComponent<misc::TransformComponent>()->getPosition(), ushikoPosition) < 50)
 		{
-			ushiko.gemCount += 1;
+			if (ushiko.gemCount < ushiko.maxGems)
+				ushiko.gemCount += 1;
+
 			switch (c->coinType)
 			{
 				case BRONZE: ushiko.pointsAmount += 10; break;

@@ -15,8 +15,15 @@ Collectable::~Collectable()
 void Collectable::init(core::Siika2D *siika)
 {
 	go = new misc::GameObject;
+	graphics::Texture *collectableTexture;
 
-	graphics::Texture *collectableTexture = siika->_textureManager->createTexture("sprite_coin_bronze.png");
+	int coin = mrand48() % 3;
+	switch (coin)
+	{
+		case 1: collectableTexture = siika->_textureManager->createTexture("sprite_coin_gold.png"); coinType = BRONZE; break;
+		case 2: collectableTexture = siika->_textureManager->createTexture("sprite_coin_silver.png"); coinType = SILVER; break;
+		default: collectableTexture = siika->_textureManager->createTexture("sprite_coin_bronze.png"); coinType = GOLD; break;
+	}
 
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
