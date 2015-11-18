@@ -5,6 +5,7 @@ Enemy::Enemy(std::string enemyTextureName)
 {
 	this->enemyTextureName = enemyTextureName;
 	this->flies = false;
+	this->rising = false;
 }
 
 Enemy::~Enemy()

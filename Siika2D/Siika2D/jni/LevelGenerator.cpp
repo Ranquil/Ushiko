@@ -201,6 +201,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 				e->init(siika);
 				e->xPos = screenSize.x * 1.8;
 				e->yPos = -yLevel + 220;
+				e->yLevel = e->yPos;
 				e->go->move(glm::vec2(e->xPos, e->yPos));
 
 				enemies.push_back(e);

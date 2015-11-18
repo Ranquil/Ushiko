@@ -16,9 +16,10 @@ public:
 	void init(core::Siika2D *siika, int firstFrame = 0, int lastFrame = 0);
 	void deInit();
 
-	int xPos, yPos;
+	int xPos, yPos, yLevel;
 	bool hasHit;
 	bool flies;
+	bool rising;
 
 	misc::GameObject *go;
 
