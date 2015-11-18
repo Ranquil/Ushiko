@@ -43,6 +43,7 @@ void Ushiko::init(core::Siika2D *siika)
 	go->move(glm::vec2(-1000, 0));
 
 	health = healthMax;
+	pointsAmount = 0;
 
 	jumpTimer.start();
 	doubleJump = true;
