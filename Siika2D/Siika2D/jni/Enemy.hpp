@@ -8,7 +8,7 @@
 class Enemy
 {
 public:
-	Enemy(std::string enemyTextureName, bool flying = false);
+	Enemy(std::string enemyTextureName);
 	~Enemy();
 
 	void update(core::Siika2D *siika);

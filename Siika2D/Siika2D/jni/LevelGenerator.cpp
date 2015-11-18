@@ -99,6 +99,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 			cDelete = c;
 		}
 
+		c->update();
 		c->go->move(glm::vec2(c->xPos -= 5, c->yPos));
 
 		if (c->xPos < -100)
@@ -126,7 +127,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 		int enemyXpos = siika->transfCrds()->deviceToUser(e->go->getComponent<misc::TransformComponent>()->getPosition()).x;
 
 		e->update(siika);
-		e->go->move(glm::vec2(e->xPos -= 5, e->yPos));
+		e->go->move(glm::vec2(e->flies ? e->xPos -= 8 : e->xPos -= 5, e->yPos));
 
 		// Hit or get git by Ushiko, if colliding with her
 		if (!e->hasHit &&
@@ -173,7 +174,17 @@ void LevelGenerator::update(core::Siika2D *siika)
 			// 25% chance (per tile) to spawn an enemy on a tile past the half-way point of the platform
 			if (!platformHasEnemy && platformSpawned > (int)(platformLength / 2) && mrand48() % 4 == 0)
 			{
-				Enemy *e = new Enemy("sprite_shimapanda.png");
+				Enemy *e;
+				bool fly = false;
+				if (mrand48() % 3 == 0)
+					fly = true;
+
+				if (fly)
+				{
+					e = new Enemy("sprite_mikucopter.png");
+					e->flies = true;
+				}
+				else e = new Enemy("sprite_shimapanda.png");
 
 				e->init(siika);
 				e->xPos = screenSize.x * 1.8;
@@ -203,7 +214,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 			platformHasEnemy = false;
 
 			platformNum += 1;
-			if (platformNum == 2)
+			if (platformNum > 3)
 				platformNum = 0;
 
 			int previousY = yLevel;
