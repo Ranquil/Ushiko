@@ -1,7 +1,6 @@
 #ifndef GAMEUI_H
 #define GAMEUI_H
 
-#include "LevelTimer.hpp"
 
 enum UIState
 {
@@ -22,8 +21,6 @@ public:
 	void deInit();
 
 	void changeTexture(misc::GameObject *gameObject, core::Siika2D *siika, std::string newTextureName, glm::vec2 size);
-
-	LevelTimer *lt;
 
 private:
 	int heartCount;

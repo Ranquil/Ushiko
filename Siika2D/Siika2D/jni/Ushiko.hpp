@@ -34,6 +34,8 @@ public:
 
 	int gemCount;
 	const int maxGems = 20;
+	int pointsAmount;
+
 private:
 	void animate();
 	animState anim;

@@ -109,7 +109,6 @@ int Level::update(core::Siika2D *siika)
 
 void Level::pause()
 {
-	gameUI->lt->levelTimer->pause();
 	genTimer.pause();
 	theme->pause();
 	paused = true;
@@ -117,7 +116,6 @@ void Level::pause()
 
 void Level::resume()
 {
-	gameUI->lt->levelTimer->resume();
 	genTimer.resume();
 	theme->play();
 	paused = false;

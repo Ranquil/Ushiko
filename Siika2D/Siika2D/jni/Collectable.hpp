@@ -4,9 +4,16 @@
 #include "../engine/core/Siika2D.h"
 #include "../engine/misc/Timer.h"
 
+enum CoinType
+{
+	BRONZE,
+	SILVER,
+	GOLD
+};
 class Collectable
 {
 public:
+
 	Collectable();
 	~Collectable();
 
@@ -17,7 +24,7 @@ public:
 
 	int xPos, yPos;
 	misc::GameObject *go;
-
+	CoinType coinType;
 private:
 	misc::Timer animTimer;
 };

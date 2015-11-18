@@ -96,6 +96,12 @@ void LevelGenerator::update(core::Siika2D *siika)
 		if (distance(c->go->getComponent<misc::TransformComponent>()->getPosition(), ushikoPosition) < 50)
 		{
 			ushiko.gemCount += 1;
+			switch (c->coinType)
+			{
+			case BRONZE:	ushiko.pointsAmount += 10; break;
+			case SILVER:	ushiko.pointsAmount += 50; break;
+			case GOLD:		ushiko.pointsAmount += 150; break;
+			}
 			cDelete = c;
 		}
 
@@ -135,7 +141,13 @@ void LevelGenerator::update(core::Siika2D *siika)
 			e->yPos < ushikoPos.y + 200 && e->yPos > ushikoPos.y - 200)
 		{
 			if (ushiko.dashing)
+			{
 				eDelete = e;
+				if (e->flies == false)
+					ushiko.pointsAmount += 20;
+				else
+					ushiko.pointsAmount += 40;
+			}
 			else ushiko.health -= 1;
 
 			e->hasHit = true;

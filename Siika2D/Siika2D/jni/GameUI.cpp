@@ -15,9 +15,6 @@ GameUI::~GameUI()
 
 void GameUI::init(core::Siika2D *siika)
 {
-	lt = new LevelTimer;
-	lt->InitTimer(siika, "arial.ttf", 64, 0.5, -0.95);
-
 	/* ----- Initialize the pause button ----- */
 
 	pauseButton = new misc::GameObject;
@@ -94,7 +91,6 @@ void GameUI::init(core::Siika2D *siika)
 
 void GameUI::deInit()
 {
-	delete lt;
 	delete pauseButton;
 
 	gemTextUI->setText("");
@@ -135,7 +131,6 @@ int GameUI::update(core::Siika2D *siika)
 		changeTexture(heartIcons[ushiko.health], siika, "ui_heart_hurt.png",glm::vec2(64,64));
 
 	heartCount = ushiko.health;
-	lt->update();
 
 	std::ostringstream gemText;
 	gemText << ushiko.gemCount << " / " << ushiko.maxGems;
