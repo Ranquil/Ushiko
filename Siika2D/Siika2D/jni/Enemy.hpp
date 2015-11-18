@@ -8,7 +8,7 @@
 class Enemy
 {
 public:
-	Enemy(std::string enemyTextureName);
+	Enemy(std::string enemyTextureName, bool flying = false);
 	~Enemy();
 
 	void update(core::Siika2D *siika);
@@ -18,6 +18,7 @@ public:
 
 	int xPos, yPos;
 	bool hasHit;
+	bool flies;
 
 	misc::GameObject *go;
 

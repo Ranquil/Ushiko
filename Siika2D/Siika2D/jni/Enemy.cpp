@@ -1,9 +1,10 @@
 #include "Enemy.hpp"
 #include "Scene.hpp"
 
-Enemy::Enemy(std::string enemyTextureName)
+Enemy::Enemy(std::string enemyTextureName, bool flying)
 {
 	this->enemyTextureName = enemyTextureName;
+	this->flies = flying;
 }
 
 Enemy::~Enemy()
