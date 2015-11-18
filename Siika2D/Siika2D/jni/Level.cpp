@@ -80,7 +80,7 @@ int Level::update(core::Siika2D *siika)
 	else if (state == RESUME)
 		resume();
 
-	if (!paused && genTimer.getElapsedTime(MILLISECONDS) > 10)
+	if (!paused && genTimer.getElapsedTime(MILLISECONDS) > 5)
 	{
 		siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
 
@@ -116,7 +116,7 @@ void Level::pause()
 
 void Level::resume()
 {
-	genTimer.resume();
+	genTimer.reset();
 	theme->play();
 	paused = false;
 }
