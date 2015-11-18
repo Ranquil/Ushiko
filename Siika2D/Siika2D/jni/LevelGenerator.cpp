@@ -98,9 +98,10 @@ void LevelGenerator::update(core::Siika2D *siika)
 			ushiko.gemCount += 1;
 			switch (c->coinType)
 			{
-			case BRONZE:	ushiko.pointsAmount += 10; break;
-			case SILVER:	ushiko.pointsAmount += 50; break;
-			case GOLD:		ushiko.pointsAmount += 150; break;
+				case BRONZE: ushiko.pointsAmount += 10; break;
+				case SILVER: ushiko.pointsAmount += 50; break;
+				case GOLD: ushiko.pointsAmount += 150; break;
+				default: break;
 			}
 			cDelete = c;
 		}
@@ -135,6 +136,22 @@ void LevelGenerator::update(core::Siika2D *siika)
 		e->update(siika);
 		e->go->move(glm::vec2(e->flies ? e->xPos -= 8 : e->xPos -= 5, e->yPos));
 
+		if (e->flies)
+		{
+			if (e->rising)
+			{
+				e->go->move(glm::vec2(e->xPos, e->yPos -= 2));
+				if (e->yPos < e->yLevel - 10)
+					e->rising = false;
+			}
+			else
+			{
+				e->go->move(glm::vec2(e->xPos, e->yPos += 2));
+				if (e->yPos > e->yLevel + 10)
+					e->rising = true;
+			}
+		}
+
 		// Hit or get git by Ushiko, if colliding with her
 		if (!e->hasHit &&
 			e->xPos < ushikoPos.x && e->xPos > ushikoPos.x - 100 &&
@@ -143,10 +160,9 @@ void LevelGenerator::update(core::Siika2D *siika)
 			if (ushiko.dashing)
 			{
 				eDelete = e;
-				if (e->flies == false)
+				if (!e->flies)
 					ushiko.pointsAmount += 20;
-				else
-					ushiko.pointsAmount += 40;
+				else ushiko.pointsAmount += 40;
 			}
 			else ushiko.health -= 1;
 
