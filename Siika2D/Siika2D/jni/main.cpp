@@ -7,7 +7,7 @@
 
 core::Siika2D *siika = core::Siika2D::UI();
 
-Scene* scenes[6];
+Scene* scenes[7];
 int currentScene;
 
 void siika_onPause()
