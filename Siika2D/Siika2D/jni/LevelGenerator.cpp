@@ -202,7 +202,8 @@ void LevelGenerator::update(core::Siika2D *siika)
 			platformSpawned += 1;
 
 			// 25% chance (per tile) to spawn an enemy on a tile past the half-way point of the platform
-			if (!platformHasEnemy && platformSpawned > (int)(platformLength / 2) && lrand48() % 4 == 0)
+			if (!platformHasEnemy && platformSpawned > (int)(platformLength / 2) &&
+				platformSpawned != platformLength && lrand48() % 4 == 0)
 			{
 				Enemy *e;
 				bool fly = false;
