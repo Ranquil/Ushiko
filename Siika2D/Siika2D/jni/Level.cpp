@@ -1,10 +1,6 @@
 #include "Level.hpp"
 #include "Ushiko.hpp"
 
-#include "PlainsGenerator.hpp"
-#include "ForestGenerator.hpp"
-#include "CastleGenerator.hpp"
-
 Level::Level(std::string name)
 {
 	levelName = name;
@@ -17,11 +13,7 @@ Level::~Level()
 
 void Level::init(core::Siika2D *siika)
 {
-	if (levelName == "plains")
-		lg = new PlainsGenerator(siika, "plains");
-	else if (levelName == "forest")
-		lg = new ForestGenerator(siika, "forest");
-	else lg = new CastleGenerator(siika, levelName);
+	lg = new LevelGenerator(siika, levelName);
 
 	gameUI = new GameUI;
 	gameUI->init(siika);
@@ -106,8 +98,7 @@ int Level::update(core::Siika2D *siika)
 		return FOREST_LEVEL;
 	else if (levelName == "castle")
 		return CASTLE_LEVEL;
-	else
-		return BOSS_LEVEL;
+	else return BOSS_LEVEL;
 }
 
 void Level::pause()
