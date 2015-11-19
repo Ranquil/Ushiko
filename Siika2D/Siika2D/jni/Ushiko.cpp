@@ -63,6 +63,8 @@ void Ushiko::update(core::Siika2D *siika)
 	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
 		touchPos = siika->transfCrds()->deviceToUser(siika->_input->touchPosition(i)._positionStart);
 
+	int prevAnim = anim;
+
 	// Ushiko is dashing
 	if (xOffset > 0)
 	{
@@ -144,14 +146,14 @@ void Ushiko::update(core::Siika2D *siika)
 			else anim = RUN;
 		}
 	}
-	animate();
+	animate(prevAnim);
 }
 
-void Ushiko::animate()
+void Ushiko::animate(int prev)
 {
 	// TODO(Jere): Step() the animation based on the animState
 
-	if (animTimer.getElapsedTime(SECONDS) > 0.1)
+	if (animTimer.getElapsedTime(SECONDS) > 0.1 || anim != prev)
 	{
 		switch (anim)
 		{

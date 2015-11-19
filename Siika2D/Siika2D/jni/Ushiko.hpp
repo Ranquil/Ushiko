@@ -37,7 +37,7 @@ public:
 	int pointsAmount;
 
 private:
-	void animate();
+	void animate(int prev);
 	animState anim;
 	misc::Timer animTimer;
 
