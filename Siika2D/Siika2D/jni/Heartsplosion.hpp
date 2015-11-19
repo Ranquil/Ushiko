@@ -12,11 +12,9 @@ public:
 	~Heartsplosion();
 
 	void init(core::Siika2D *siika, int x, int y);
-	void update();
+	void update(core::Siika2D *siika);
 
 	int xPos, yPos;
-//	float lifeTime;
-//	misc::Timer lifeTimer;
 	misc::GameObject *go;
 
 private:

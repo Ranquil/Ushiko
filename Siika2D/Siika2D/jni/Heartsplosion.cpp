@@ -7,7 +7,8 @@ Heartsplosion::Heartsplosion()
 
 Heartsplosion::~Heartsplosion()
 {
-	delete go;
+	if (go != NULL)
+		delete go;
 }
 
 void Heartsplosion::init(core::Siika2D *siika, int x, int y)
@@ -31,13 +32,18 @@ void Heartsplosion::init(core::Siika2D *siika, int x, int y)
 	go->addComponent(trnsComp);
 
 	force = glm::vec2(mrand48() % 9 + 1, lrand48() % 9 + 1);
-
-//	lifeTime = drand48() + 0.4f;
-//	lifeTimer.start();
 }
 
-void Heartsplosion::update()
+void Heartsplosion::update(core::Siika2D *siika)
 {
+	glm::vec2 screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
+	if (xPos < 0 || xPos > screenSize.x ||
+		-yPos < 0 || -yPos > screenSize.y)
+	{
+		delete go;
+		go = NULL;
+		return;
+	}
 	go->update();
 	go->move(glm::vec2(xPos += force.x, yPos += force.y));
 }

@@ -66,7 +66,8 @@ void LevelGenerator::update(core::Siika2D *siika)
 
 	Heartsplosion *hDelete = nullptr;
 	for (Heartsplosion *h : hearts)
-		h->update();
+		if (h->go != NULL)
+			h->update(siika);
 
 	/* ----- SPAWNING TILES & ENEMIES ----- */
 
