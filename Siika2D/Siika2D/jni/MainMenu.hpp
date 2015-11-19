@@ -1,6 +1,7 @@
 #ifndef MAINMENU_H
 #define MAINMENU_H
 
+#include "../engine/misc/Timer.h"
 #include "Scene.hpp"
 
 class MainMenu : public Scene
@@ -18,6 +19,10 @@ public:
 
 private:
 	misc::GameObject *startGameButton;
+	graphics::Sprite *logo;
+
+	misc::Timer initTimer;
+	bool hasBeenInit;
 };
 
 #endif // MAINMENU_H

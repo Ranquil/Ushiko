@@ -77,6 +77,8 @@ void LevelSelect::init(core::Siika2D *siika)
 	forestLevel->move(glm::vec2(screenSize.x / 3 + test, -screenSize.y / 5));
 	castleLevel->move(glm::vec2(screenSize.x / 1.5 + test, -screenSize.y / 5));
 	bossLevel->move(glm::vec2(screenSize.x / 3 + test, -screenSize.y / 2));
+
+	siika->_graphicsContext->setClearColor(graphics::Color(0, 255, 255, 255));
 }
 
 void LevelSelect::deInit()
