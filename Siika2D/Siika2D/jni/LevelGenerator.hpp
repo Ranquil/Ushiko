@@ -7,6 +7,7 @@
 
 #include "Enemy.hpp"
 #include "Collectable.hpp"
+#include "Heartsplosion.hpp"
 
 struct Tile
 {
@@ -26,6 +27,9 @@ public:
 	virtual void update(core::Siika2D *siika);
 	virtual void spawnTile(core::Siika2D *siika, int xPos, int yPos);
 
+private:
+	void heartsplode(core::Siika2D *siika, int x, int y);
+
 	bool platformHasEnemy;
 	int tileMovement;
 	int platformLength;
@@ -37,6 +41,7 @@ public:
 	std::vector<Tile*> tiles;
 	std::vector<Enemy*> enemies;
 	std::vector<Collectable*> gems;
+	std::vector<Heartsplosion*> hearts;
 };
 
 #endif // LEVELGENERATOR_H

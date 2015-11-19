@@ -35,10 +35,13 @@ LevelGenerator::~LevelGenerator()
 		delete e;
 	for (Collectable *c : gems)
 		delete c;
+	for (Heartsplosion *h : hearts)
+		delete h;
 
 	tiles.clear();
 	enemies.clear();
 	gems.clear();
+	hearts.clear();
 }
 
 double distance(glm::vec2 go1, glm::vec2 go2)
@@ -128,6 +131,29 @@ void LevelGenerator::update(core::Siika2D *siika)
 		delete cDelete;
 	}
 
+	/* ----- UPDATING HEARTS ----- */
+
+	Heartsplosion *hDelete = nullptr;
+	for (Heartsplosion *h : hearts)
+	{
+		h->update();
+		//if (h->lifeTimer.getElapsedTime(SECONDS) > h->lifeTime)
+			//hDelete = h;
+	}
+
+	if (hDelete != nullptr)
+	{
+		for (int i = 0; i < hearts.size(); i++)
+		{
+			if (hearts[i] == hDelete)
+			{
+				hearts.erase(hearts.begin() + i);
+				break;
+			}
+		}
+		delete hDelete;
+	}
+
 	/* ----- UPDATING ENEMIES ----- */
 
 	Enemy *eDelete = nullptr;
@@ -165,6 +191,8 @@ void LevelGenerator::update(core::Siika2D *siika)
 				if (!e->flies)
 					ushiko.pointsAmount += 20;
 				else ushiko.pointsAmount += 40;
+
+				heartsplode(siika, e->xPos, e->yPos);
 			}
 			else ushiko.health -= 1;
 
@@ -312,4 +340,21 @@ void LevelGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
 
 	Tile *newTile = new Tile(t, xPos, yPos);
 	tiles.push_back(newTile);
+}
+
+void LevelGenerator::heartsplode(core::Siika2D *siika, int x, int y)
+{
+	for (Heartsplosion *heart : hearts)
+		delete heart;
+	hearts.clear();
+
+	for (int i = 0; i < 10; i++)
+	{
+		Heartsplosion *heart = new Heartsplosion;
+		heart->init(siika, x, y);
+		heart->xPos = x;
+		heart->yPos = y;
+		heart->go->move(glm::vec2(x, y));
+		hearts.push_back(heart);
+	}
 }

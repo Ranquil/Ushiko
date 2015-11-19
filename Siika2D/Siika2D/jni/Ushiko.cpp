@@ -151,8 +151,6 @@ void Ushiko::update(core::Siika2D *siika)
 
 void Ushiko::animate(int prev)
 {
-	// TODO(Jere): Step() the animation based on the animState
-
 	if (animTimer.getElapsedTime(SECONDS) > 0.1 || anim != prev)
 	{
 		switch (anim)
