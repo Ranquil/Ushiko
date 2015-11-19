@@ -21,19 +21,19 @@ void Level::init(core::Siika2D *siika)
 		lg = new PlainsGenerator(siika, "plains");
 	else if (levelName == "forest")
 		lg = new ForestGenerator(siika, "forest");
-	else lg = new CastleGenerator(siika, "castle");
+	else lg = new CastleGenerator(siika, levelName);
 
 	gameUI = new GameUI;
 	gameUI->init(siika);
 
 	std::string bgTexture = "background_forest_plains.png";
-	if (levelName == "castle")
+	if (levelName == "castle" || levelName == "boss")
 		bgTexture = "background_menu_castle.png";
 
 	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
 
 	glm::vec2 bgPos = glm::vec2(0, 0);
-	if (levelName == "castle" || levelName == "plains")
+	if (levelName == "castle" || levelName == "plains" || levelName == "boss")
 		bgPos = glm::vec2(0, -scrSize.y);
 
 	ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(5, 0));
@@ -104,7 +104,10 @@ int Level::update(core::Siika2D *siika)
 		return PLAINS_LEVEL;
 	else if (levelName == "forest")
 		return FOREST_LEVEL;
-	else return CASTLE_LEVEL;
+	else if (levelName == "castle")
+		return CASTLE_LEVEL;
+	else
+		return BOSS_LEVEL;
 }
 
 void Level::pause()

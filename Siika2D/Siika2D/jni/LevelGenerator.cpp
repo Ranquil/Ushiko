@@ -203,7 +203,8 @@ void LevelGenerator::update(core::Siika2D *siika)
 
 			// 25% chance (per tile) to spawn an enemy on a tile past the half-way point of the platform
 			if (!platformHasEnemy && platformSpawned > (int)(platformLength / 2) &&
-				platformSpawned != platformLength && lrand48() % 4 == 0)
+				platformSpawned != platformLength && lrand48() % 4 == 0 &&
+				generatorName != "boss")
 			{
 				Enemy *e;
 				bool fly = false;
@@ -282,7 +283,7 @@ void LevelGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
 		else if (platformSpawned == platformLength - 1)
 			textureName = "tile_log_right.png";
 	}
-	else if (generatorName == "castle")
+	else if (generatorName == "castle" || generatorName == "boss")
 	{
 		textureName = "tile_castle_middle.png";
 		if (platformSpawned == 0)

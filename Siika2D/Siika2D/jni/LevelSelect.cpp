@@ -76,7 +76,7 @@ void LevelSelect::init(core::Siika2D *siika)
 	plainsLevel->move(glm::vec2(test, -screenSize.y / 5));
 	forestLevel->move(glm::vec2(screenSize.x / 3 + test, -screenSize.y / 5));
 	castleLevel->move(glm::vec2(screenSize.x / 1.5 + test, -screenSize.y / 5));
-	bossLevel->move(glm::vec2(screenSize.x / 3 + test, -screenSize.y / 3));
+	bossLevel->move(glm::vec2(screenSize.x / 3 + test, -screenSize.y / 2));
 }
 
 void LevelSelect::deInit()
@@ -84,6 +84,7 @@ void LevelSelect::deInit()
 	delete plainsLevel;
 	delete forestLevel; 
 	delete castleLevel;
+	delete bossLevel;
 }
 
 bool LevelSelect::isIntersecting(glm::vec2 touchPosition, glm::vec2 box)
@@ -110,11 +111,14 @@ int LevelSelect::update(core::Siika2D *siika)
 			return FOREST_LEVEL;
 		else if (isIntersecting(touchPosition, castleLevel->getComponent<misc::TransformComponent>()->getPosition()))
 			return CASTLE_LEVEL;
+		else if (isIntersecting(touchPosition, bossLevel->getComponent<misc::TransformComponent>()->getPosition()))
+			return BOSS_LEVEL;
 	}
 
 	plainsLevel->update();
 	forestLevel->update();
 	castleLevel->update();
+	bossLevel->update();
 
 	siika->_spriteManager->drawSprites();
 	siika->_textManager->drawTexts();
