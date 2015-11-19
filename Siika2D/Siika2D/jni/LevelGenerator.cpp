@@ -188,7 +188,7 @@ void LevelGenerator::spawnEnemy(core::Siika2D *siika, int xPos, int yPos)
 		if (generatorName == "castle")
 		{
 			e = new Enemy("sprite_shibat.png");
-			e->yPos -= 50;
+			e->yPos -= 300;
 		}
 		else e = new Enemy("sprite_mikucopter.png");
 		e->flies = true;
