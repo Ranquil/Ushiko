@@ -20,12 +20,14 @@ public:
 private:
 	bool lvl2Unlocked = true;
 	bool lvl3Unlocked = true;
+	bool bosslvlUnlocked = true;
 	int boxSizey;
 	int boxSizex;
 
 	misc::GameObject *plainsLevel;
 	misc::GameObject *forestLevel;
 	misc::GameObject *castleLevel;
+	misc::GameObject *bossLevel;
 };
 
 
