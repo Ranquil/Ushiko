@@ -32,8 +32,8 @@ public:
 
 	misc::GameObject *go;
 
-	int gemCount;
-	const int maxGems = 20;
+	int coinCount;
+	const int maxCoins = 10;
 	int pointsAmount;
 
 private:

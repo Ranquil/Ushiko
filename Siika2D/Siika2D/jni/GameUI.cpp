@@ -77,7 +77,7 @@ void GameUI::init(core::Siika2D *siika)
 		glm::vec2(1, 1));
 	shade->setZ(-10);
 
-	ushiko.gemCount = 0;
+	ushiko.coinCount = 0;
 
 	gemTextUI = siika->_textManager->createText();
 	gemTextUI->setFont("arial.ttf");
@@ -150,7 +150,7 @@ int GameUI::update(core::Siika2D *siika)
 
 	{
 		std::ostringstream gemText;
-		gemText << ushiko.gemCount << " / " << ushiko.maxGems;
+		gemText << ushiko.coinCount << " / " << ushiko.maxCoins;
 		gemTextUI->setText(gemText.str());
 		std::ostringstream pointsText;
 		pointsText << ushiko.pointsAmount;
