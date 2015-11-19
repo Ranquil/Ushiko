@@ -202,11 +202,11 @@ void LevelGenerator::update(core::Siika2D *siika)
 			platformSpawned += 1;
 
 			// 25% chance (per tile) to spawn an enemy on a tile past the half-way point of the platform
-			if (!platformHasEnemy && platformSpawned > (int)(platformLength / 2) && mrand48() % 4 == 0)
+			if (!platformHasEnemy && platformSpawned > (int)(platformLength / 2) && lrand48() % 4 == 0)
 			{
 				Enemy *e;
 				bool fly = false;
-				if (mrand48() % 3 == 0)
+				if (lrand48() % 3 == 0)
 					fly = true;
 
 				if (fly)
@@ -226,7 +226,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 				platformHasEnemy = true;
 			}
 			// Spawn a gem on every 4th (?) platform
-			if (platformNum == 2 && platformSpawned == (int)(platformLength / 2))
+			if (platformNum == 2 && platformSpawned == (int)(platformLength / 2) - 1)
 			{
 				Collectable *c = new Collectable;
 
@@ -240,8 +240,9 @@ void LevelGenerator::update(core::Siika2D *siika)
 		}
 		else
 		{
+			platformLength = (lrand48() % 10) + 5;
+
 			platformSpawned = 0;
-			platformLength = mrand48() % 10 + 5;
 			platformHasEnemy = false;
 
 			platformNum += 1;
@@ -252,7 +253,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 			while (yLevel == previousY)
 			{
 				// Change the (Y) level of the new platform
-				yLevel = mrand48() % 3;
+				yLevel = lrand48() % 3;
 				switch (yLevel)
 				{
 					case 0: yLevel = 580; break;

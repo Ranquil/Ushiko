@@ -17,7 +17,7 @@ void Collectable::init(core::Siika2D *siika)
 	go = new misc::GameObject;
 	graphics::Texture *collectableTexture;
 
-	int coin = mrand48() % 3;
+	int coin = lrand48() % 3;
 	switch (coin)
 	{
 		case 1: collectableTexture = siika->_textureManager->createTexture("sprite_coin_gold.png"); coinType = BRONZE; break;
