@@ -79,7 +79,7 @@ int Level::update(core::Siika2D *siika)
 	}
 
 	siika->_spriteManager->drawSprites();
-	siika->_textManager->drawTexts();
+	//siika->_textManager->drawTexts();
 	siika->_graphicsContext->swap();
 
 	if (ushiko.health <= 0)

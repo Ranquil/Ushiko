@@ -13,7 +13,7 @@ public:
 
 	void update(core::Siika2D *siika);
 
-	void init(core::Siika2D *siika, int firstFrame = 0, int lastFrame = 0);
+	void init(core::Siika2D *siika, int firstFrame = 0, int lastFrame = 0, int animeSpeed = 200);
 	void deInit();
 
 	int xPos, yPos, yLevel;
@@ -27,6 +27,7 @@ private:
 	bool fbf;
 	int firstFrame;
 	int lastFrame;
+	int animeSpeed;
 
 	std::string enemyTextureName;
 	misc::Timer animationTimer;

@@ -13,12 +13,13 @@ Enemy::~Enemy()
 	deInit();
 }
 
-void Enemy::init(core::Siika2D *siika, int firstFrame, int lastFrame)
+void Enemy::init(core::Siika2D *siika, int firstFrame, int lastFrame, int animeSpeed)
 {
 	go = new misc::GameObject;
 
 	this->firstFrame = firstFrame;
 	this->lastFrame = lastFrame;
+	this->animeSpeed = animeSpeed;
 
 	graphics::Texture *enemyTexture = siika->_textureManager->createTexture(enemyTextureName);
 
@@ -48,7 +49,7 @@ void Enemy::update(core::Siika2D *siika)
 {
 	go->update();
 
-	if (animationTimer.getElapsedTime(MILLISECONDS) >= 200)
+	if (animationTimer.getElapsedTime(MILLISECONDS) >= animeSpeed)
 	{
 		if (lastFrame != 0)
 			go->getComponent<misc::SpriteComponent>()->getSprite()->step(firstFrame, lastFrame, true);
