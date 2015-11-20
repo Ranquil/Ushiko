@@ -216,9 +216,6 @@ void LevelGenerator::spawnCoin(core::Siika2D *siika, int xPos, int yPos)
 
 void LevelGenerator::updateTiles(glm::vec2 ushikoPos)
 {
-	if (tiles.size() < 1)
-		return;
-
 	int tileAmount = 0;
 	Tile *tDelete = nullptr;
 
