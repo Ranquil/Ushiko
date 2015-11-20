@@ -46,6 +46,7 @@
     <ClCompile Include="engine\misc\Timer.cpp" />
     <ClCompile Include="engine\misc\TransformComponent.cpp" />
     <ClCompile Include="inc\lodepng\lodepng.cpp" />
+    <ClCompile Include="jni\Boss.cpp" />
     <ClCompile Include="jni\Collectable.cpp" />
     <ClCompile Include="jni\Enemy.cpp" />
     <ClCompile Include="jni\GameUI.cpp" />
@@ -95,6 +96,7 @@
     <ClInclude Include="engine\misc\Timer.h" />
     <ClInclude Include="engine\misc\TransformComponent.h" />
     <ClInclude Include="inc\lodepng\lodepng.h" />
+    <ClInclude Include="jni\Boss.hpp" />
     <ClInclude Include="jni\Collectable.hpp" />
     <ClInclude Include="jni\Enemy.hpp" />
     <ClInclude Include="jni\GameUI.hpp" />
