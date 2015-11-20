@@ -2,6 +2,7 @@
 #define COLLECTABLE_H
 
 #include "../engine/core/Siika2D.h"
+#include "../engine/misc/GameObject.h"
 #include "../engine/misc/Timer.h"
 
 enum CoinType
