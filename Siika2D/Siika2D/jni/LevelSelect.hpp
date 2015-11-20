@@ -1,8 +1,9 @@
 #ifndef LEVELSELECT_H
 #define LEVELSELECT_H
 
+#include "../engine/misc/GameObject.h"
+
 #include "Scene.hpp"
-#include <fstream>
 
 class LevelSelect : public Scene
 {
@@ -21,6 +22,7 @@ private:
 	bool lvl2Unlocked = true;
 	bool lvl3Unlocked = true;
 	bool bosslvlUnlocked = true;
+
 	int boxSizey;
 	int boxSizex;
 
@@ -29,6 +31,5 @@ private:
 	misc::GameObject *castleLevel;
 	misc::GameObject *bossLevel;
 };
-
 
 #endif // LEVELSELECT_H

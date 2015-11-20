@@ -2,8 +2,6 @@
 #define LEVELGENERATOR_H
 
 #include "../engine/core/Siika2D.h"
-#include "../engine/misc/GameObject.h"
-#include "../engine/misc/timer.h"
 
 #include "Enemy.hpp"
 #include "Collectable.hpp"

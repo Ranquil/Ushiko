@@ -5,7 +5,8 @@
 #include "../engine/misc/GameObject.h"
 #include "../engine/misc/Timer.h"
 
-enum animState {
+enum animState
+{
 	IDLE,
 	RUN,
 	DASH,
