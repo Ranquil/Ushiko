@@ -20,10 +20,12 @@ struct Projectile
 
 	misc::GameObject *gameObject;
 	ProjectileType projectileType;
+	int xPos, yPos;
 };
 
 class Boss
 {
+public:
 	Boss();
 	~Boss();
 
@@ -34,11 +36,14 @@ class Boss
 
 	void spawnProjectile(core::Siika2D *siika);
 
+	void isIntersecting(glm::vec2 projectilePosition);
+
 private:
 	misc::GameObject *boss;
 	std::vector<Projectile*> projectiles;
 	misc::Timer projectileTimer;
 	int bossHealth; 
+	glm::vec2 screenSize;
 };
 
 #endif // BOSS_H
