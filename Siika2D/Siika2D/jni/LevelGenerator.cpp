@@ -180,22 +180,16 @@ void LevelGenerator::spawnEnemy(core::Siika2D *siika, int xPos, int yPos)
 	if (lrand48() % 3 == 0)
 		fly = true;
 
-	e->xPos = xPos;
-	e->yPos = yPos;
-
 	if (fly)
 	{
-		if (generatorName == "castle")
-		{
-			e = new Enemy("sprite_shibat.png");
-			e->yPos -= 50;
-		}
-		else e = new Enemy("sprite_mikucopter.png");
+		e = new Enemy("sprite_mikucopter.png");
 		e->flies = true;
 	}
 	else e = new Enemy("sprite_shimapanda.png");
 
 	e->init(siika);
+	e->xPos = xPos;
+	e->yPos = yPos;
 	e->yLevel = e->yPos;
 	e->go->move(glm::vec2(e->xPos, e->yPos));
 
@@ -217,7 +211,7 @@ void LevelGenerator::spawnCoin(core::Siika2D *siika, int xPos, int yPos)
 void LevelGenerator::updateTiles(glm::vec2 ushikoPos)
 {
 	int tileAmount = 0;
-	Tile *tDelete = nullptr;
+	bool deleteTile = false;
 
 	for (Tile *t : tiles)
 	{
@@ -227,21 +221,17 @@ void LevelGenerator::updateTiles(glm::vec2 ushikoPos)
 		if (t->xPos < ushikoPos.x && t->xPos > ushikoPos.x - 10)
 			ushiko.groundLevel = -t->yPos;
 
-		if (t->xPos <= 0)
-			tDelete = t;
+		// When there are over 30 tiles, destroy the oldest
+		tileAmount += 1;
+		if (tileAmount > 30)
+			deleteTile = true;
 	}
 
-	if (tDelete != nullptr)
+	if (deleteTile)
 	{
-		for (int i = 0; i < tiles.size(); i++)
-		{
-			if (tiles[i] == tDelete)
-			{
-				tiles.erase(tiles.begin() + i);
-				break;
-			}
-		}
-		delete tDelete;
+		Tile *t = tiles.front();
+		tiles.erase(tiles.begin());
+		delete t;
 	}
 }
 
