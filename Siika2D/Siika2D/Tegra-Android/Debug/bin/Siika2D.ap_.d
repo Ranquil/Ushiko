@@ -14,9 +14,14 @@ C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\assets\bg_fragmentS
 C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\assets\bg_vertexShader.glsl \
 C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\assets\castle_theme.ogg \
 C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\assets\fragmentTextShader.glsl \
+C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\assets\logo.png \
 C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\assets\panda.png \
 C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\assets\shade.png \
+C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\assets\sprite_coin_bronze.png \
+C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\assets\sprite_coin_gold.png \
+C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\assets\sprite_coin_silver.png \
 C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\assets\sprite_gigapuddi.png \
+C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\assets\sprite_mikucopter.png \
 C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\assets\sprite_shimapanda.png \
 C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\assets\sprite_ushiko.png \
 C:\Users\JereOik\Documents\GitHub\pls\Ushiko\Siika2D\Siika2D\assets\Temp_Menu_button.png \

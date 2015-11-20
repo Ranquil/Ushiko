@@ -212,6 +212,7 @@ void LevelGenerator::updateTiles(glm::vec2 ushikoPos)
 {
 	int tileAmount = 0;
 	bool deleteTile = false;
+	//bool ushikoGround = false;
 
 	for (Tile *t : tiles)
 	{
@@ -219,7 +220,10 @@ void LevelGenerator::updateTiles(glm::vec2 ushikoPos)
 		t->go->move(glm::vec2(t->xPos -= 5, t->yPos));
 
 		if (t->xPos < ushikoPos.x && t->xPos > ushikoPos.x - 10)
+		{
 			ushiko.groundLevel = -t->yPos;
+			//ushikoGround = true;
+		}
 
 		// When there are over 30 tiles, destroy the oldest
 		tileAmount += 1;
@@ -233,6 +237,9 @@ void LevelGenerator::updateTiles(glm::vec2 ushikoPos)
 		tiles.erase(tiles.begin());
 		delete t;
 	}
+
+	//if (!ushikoGround)
+		//ushiko.groundLevel = -5000;
 }
 
 void LevelGenerator::updateEnemies(core::Siika2D *siika, glm::vec2 ushikoPos)

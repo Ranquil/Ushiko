@@ -66,7 +66,7 @@ int MainMenu::update(core::Siika2D *siika)
 			logo->setPosition(glm::vec2(-5000, 0));
 		}
 	}
-	else if (siika->_input->touchPositionsActive() > 0)
+	if (siika->_input->touchPositionsActive() > 0)
 		return LEVEL_SELECT;
 
 	siika->_spriteManager->drawSprites();
