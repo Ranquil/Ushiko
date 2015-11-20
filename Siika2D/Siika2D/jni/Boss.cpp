@@ -23,6 +23,7 @@ void Boss::init(core::Siika2D *siika)
 		bossTexture,
 		glm::vec2(0, 0),
 		glm::vec2(1, 1))));
+
 	misc::TransformComponent *trnsComp = new misc::TransformComponent;
 	sprtComp->setZ(30);
 
@@ -36,7 +37,9 @@ void Boss::deInit()
 {
 	delete boss;
 	for (Projectile* p : projectiles)
+	{
 		delete p;
+	}
 }
 
 void Boss::spawnProjectile(core::Siika2D *siika)
@@ -62,13 +65,15 @@ void Boss::spawnProjectile(core::Siika2D *siika)
 void Boss::update(core::Siika2D *siika)
 {
 	if (projectileTimer.getElapsedTime(MILLISECONDS) >= 500)
+	{
 		spawnProjectile(siika);
+	}
 
 	for (Projectile* p : projectiles)
 	{
-		glm::vec2 pPosition = p->gameObject->getComponent<misc::TransformComponent>()->getPosition();
+		glm::vec2 *pPosition = &p->gameObject->getComponent<misc::TransformComponent>()->getPosition();
 		p->gameObject->update();
-		p->gameObject->move(glm::vec2(pPosition.x -= 7, pPosition.y));
+		p->gameObject->move(glm::vec2(pPosition->x -= 7, pPosition->y));
 	}
 
 	boss->update();
