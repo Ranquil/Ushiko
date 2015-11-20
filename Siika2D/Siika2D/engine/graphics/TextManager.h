@@ -70,6 +70,5 @@ namespace graphics
 		std::vector<Text*> _texts;
 		glm::vec2 _displaySize;
 		GLuint _program;
-		graphics::Buffer _buf;
 	};
 }

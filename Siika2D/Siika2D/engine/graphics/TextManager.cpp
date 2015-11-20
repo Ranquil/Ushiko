@@ -3,7 +3,7 @@
 using namespace graphics;
 
 
-TextManager::TextManager(core::ResourceManager* resourceManager, ShaderManager* shaderManager, glm::vec2 displaySize) :_buf(GL_ARRAY_BUFFER, GL_DYNAMIC_DRAW)
+TextManager::TextManager(core::ResourceManager* resourceManager, ShaderManager* shaderManager, glm::vec2 displaySize)
 {
 	_resourceManager = resourceManager;
 	_shaderManager = shaderManager;
@@ -18,12 +18,7 @@ TextManager::TextManager(core::ResourceManager* resourceManager, ShaderManager* 
 
 TextManager::~TextManager()
 {
-	std::vector<Text*>::iterator it;
-	for (it = _texts.begin(); it != _texts.end(); it++)
-	{
-		delete *it;
-	}
-	_texts.empty();
+
 }
 
 
@@ -51,15 +46,15 @@ void TextManager::drawTexts()
 	setTextureUniform(textureSampler, texture);
 	setColorUniform(colorLoc);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	_buf.bindBuffer();
+
 	for (int i = 0; i < _texts.size(); i++)
 	{
 		if (_texts.at(i)->isInitialized)
 		{
-			_texts.at(i)->draw(_displaySize, positionLoc, colorLoc,&_buf);
+			_texts.at(i)->draw(_displaySize, positionLoc, colorLoc);
 		}
 	}
-	_buf.unbindBuffer();
+
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glUseProgram(0);
 	_shaderManager->setCurrentShader(previousShader);

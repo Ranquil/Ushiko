@@ -13,7 +13,8 @@
 #include <android/sensor.h>
 #include "../misc/Input.h"
 #include "../misc/CoordTransform.h"
-//#include "../misc/ColListener.h"
+#include "../misc/ColListener.h"
+
 //#include "..\core\MemoryManager.h"
 
 namespace core
@@ -49,7 +50,7 @@ namespace core
 	class Siika2D
 	{
 		friend class AndroidInterface;
-		friend class SceneManager;
+
 	public:
 
 
@@ -77,13 +78,8 @@ namespace core
 		graphics::Camera *_camera;
 		audio::AudioManager* _audioManager;
 		b2World * _boxWorld;
+		//misc::collisionListener _collisionListener;
 		misc::CoordTransform* transfCrds(){return _coordTransf;}
-		std::string * readTxtFile(std::string name);
-		/**
-		Opens a file for writing user needs to close it with fclose(file)
-		*/
-		FILE * openFileForWrite(std::string name);
-		FILE * openFileForRead(std::string name);
 	protected:
 		virtual ~Siika2D();
 		Siika2D();

@@ -10,7 +10,7 @@
 namespace graphics
 {
 	/**
-	Sprite 
+	Sprite
 	When sprite is created it gets assigned the currently used shader, if no shader is set default one will be used
 
 	*/
@@ -26,17 +26,17 @@ namespace graphics
 		void setSize(glm::vec2 size){ _size = size; }
 		void setOrigin(glm::vec2 origin){ _origin = origin; }
 		void setColor(Color col)
-		{ 
-			if(!_col)
-				_col = new Color(0,0,0,0);
-			_col->setRGBA(col.getR(), col.getG(), col.getB(), col.getA()); 
+		{
+			if (!_col)
+				_col = new Color(0, 0, 0, 0);
+			_col->setRGBA(col.getR(), col.getG(), col.getB(), col.getA());
 		}
 		/**
 		Sets sprite rotation angle in degrees
 		*/
 		void setRotation(GLfloat angle){ _rotationAngle = angle; }
 		/**
-		Sets Z used for draw order 
+		Sets Z used for draw order
 		*/
 		void setZ(int Z){ _posZ = Z; }
 		/**
@@ -55,14 +55,14 @@ namespace graphics
 		bool getVisible(){ return _draw; }
 		bool getToDelete(){ return _delete; }
 		void step();
-		
-		/** 
+
+		/**
 		begin: start position in a spritesheet, frame's start from 0
 		end: end position in a spritesheet, frame's start from 0
 		loop: if loop = false sprite will not be drawn after last frame
 		Call before draw to set sprites start frame in the spritesheet
 		*/
-		void step(unsigned int begin, unsigned int end, bool loop=true);
+		void step(unsigned int begin, unsigned int end, bool loop = true);
 
 
 	protected:
