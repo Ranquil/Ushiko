@@ -61,14 +61,8 @@ namespace core
 			Returns text from file as a std::string
 			*/
 		std::string* loadTextFile(std::string filename);
-		/**
-		Gets an open file from external storage for write. Need to call fclose() when done
-		*/
-		FILE * getFileForWrite(std::string filename);
-		/**
-		Gets a open file from external storage for read. Need to call fclose() when done
-		*/
-		FILE * getFileForRead(std::string filename);
+
+
 		/**
 			Loads any file type or returns an existing one.
 			Returns file data as a vector of unsigned characters.
@@ -79,6 +73,7 @@ namespace core
 		//loadSound()
 		//loadFont()
 
+		
 	private:
 		std::map<std::string, ImageData> _loadedImages;
 		std::map<std::string, AudioData> _loadedAudio;
