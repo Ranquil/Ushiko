@@ -1,5 +1,4 @@
 #include "Enemy.hpp"
-#include "Scene.hpp"
 
 Enemy::Enemy(std::string enemyTextureName, bool fourByfour)
 {
@@ -35,7 +34,6 @@ void Enemy::init(core::Siika2D *siika, int firstFrame, int lastFrame)
 
 	go->addComponent(sprtComp);
 	go->addComponent(trnsComp);
-	go->setId(ENEMY);
 
 	animationTimer.start();
 	hasHit = false;

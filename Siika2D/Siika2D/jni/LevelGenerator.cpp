@@ -89,7 +89,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 				platformSpawned != platformLength && lrand48() % 4 == 0 &&
 				generatorName != "boss")
 			{
-				spawnEnemy(siika, screenSize.x * 1.8, -yLevel + 220);
+				spawnEnemy(siika, screenSize.x * 1.8, -yLevel + 240);
 				platformHasEnemy = true;
 			}
 
@@ -189,7 +189,7 @@ void LevelGenerator::spawnEnemy(core::Siika2D *siika, int xPos, int yPos)
 		else
 		{
 			e = new Enemy("sprite_shibat.png");
-			yPos += 250;
+			yPos += 100;
 		}
 	}
 	else
@@ -199,11 +199,11 @@ void LevelGenerator::spawnEnemy(core::Siika2D *siika, int xPos, int yPos)
 		else
 		{
 			e = new Enemy("sprite_gigapuddi.png", true);
-			frames = 8;
+			frames = 7;
 		}
 	}
 
-	e->init(siika, frames);
+	e->init(siika, 0, frames);
 	e->xPos = xPos;
 	e->yPos = yPos;
 	if (fly) e->flies = true;
@@ -236,7 +236,7 @@ void LevelGenerator::updateTiles(glm::vec2 ushikoPos)
 		t->go->update();
 		t->go->move(glm::vec2(t->xPos -= 5, t->yPos));
 
-		if (t->xPos < ushikoPos.x && t->xPos > ushikoPos.x - 10)
+		if (t->xPos < ushikoPos.x + 10 && t->xPos > ushikoPos.x - 10)
 		{
 			ushiko.groundLevel = -t->yPos;
 			//ushikoGround = true;

@@ -43,9 +43,6 @@ void Level::init(core::Siika2D *siika)
 	theme->setLooping(true);
 	theme->play();
 
-	cl = new colListener;
-	siika->_boxWorld->SetContactListener(cl);
-
 	paused = false;
 	genTimer.start();
 }
@@ -59,7 +56,6 @@ void Level::deInit()
 
 	delete gameUI;
 	delete lg;
-	delete cl;
 }
 
 int Level::update(core::Siika2D *siika)
