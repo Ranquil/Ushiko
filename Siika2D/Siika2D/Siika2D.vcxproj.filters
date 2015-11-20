@@ -177,6 +177,9 @@
     <ClCompile Include="jni\Boss.cpp">
       <Filter>Ushiko\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="engine\misc\File.cpp">
+      <Filter>Siika2D\engine\misc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="native_app_glue\android_native_app_glue.h">
@@ -313,6 +316,9 @@
     </ClInclude>
     <ClInclude Include="jni\Boss.hpp">
       <Filter>Ushiko\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\misc\File.h">
+      <Filter>Siika2D\engine\misc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

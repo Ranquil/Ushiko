@@ -1,6 +1,8 @@
 #ifndef LEVELSELECT_H
 #define LEVELSELECT_H
 
+#include "../engine/misc/GameObject.h"
+
 #include "Scene.hpp"
 #include <fstream>
 

@@ -48,11 +48,11 @@ double Timer::getElapsedTime(TIME time)
 		switch (time)
 		{
 		case SECONDS:
-			return _elapsedTime / 1000000;
+			return _elapsedTime/1000000;
 			break;
 
 		case MILLISECONDS:
-			return _elapsedTime / 1000;
+			return _elapsedTime/1000;
 			break;
 
 		case MICROSECONDS:
@@ -66,11 +66,11 @@ double Timer::getElapsedTime(TIME time)
 		switch (time)
 		{
 		case SECONDS:
-			return _elapsedTime / 1000000;
+			return _elapsedTime/1000000;
 			break;
 
 		case MILLISECONDS:
-			return _elapsedTime / 1000;
+			return _elapsedTime/1000;
 			break;
 
 		case MICROSECONDS:
@@ -79,3 +79,4 @@ double Timer::getElapsedTime(TIME time)
 		}
 	}
 }
+

@@ -1,9 +1,7 @@
 #pragma once
 #include <ctime>
 enum TIME
-{
-	SECONDS, MILLISECONDS, MICROSECONDS
-};
+{SECONDS, MILLISECONDS, MICROSECONDS};
 
 namespace misc
 {
@@ -36,7 +34,7 @@ namespace misc
 		double getElapsedTime(TIME time);
 		bool operator==(const Timer rhs)
 		{
-			if (this->_start == rhs._start)
+			if(this->_start == rhs._start)
 				return true;
 			return false;
 		}

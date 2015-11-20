@@ -66,7 +66,9 @@ std::string* ResourceManager::loadTextFile(std::string filename)
 {
 	std::map<std::string, std::string>::iterator it = _loadedTextFiles.find(filename);
 	if (it != _loadedTextFiles.end())
+	{
 		return &it->second;
+	}
 	else
 	{
 		std::vector<unsigned char> assetData = loadAsset(filename);
@@ -74,9 +76,34 @@ std::string* ResourceManager::loadTextFile(std::string filename)
 		std::string loadedText(assetData.begin(), assetData.end());
 
 		_loadedTextFiles.insert(std::make_pair(filename, loadedText));
-
 		return &_loadedTextFiles.at(filename);
 	}
+}
+misc::File * ResourceManager::getFile(std::string filename)
+{
+	std::map<std::string, misc::File>::iterator it = _FilesInExtStrg.find(filename);
+	if (it != _FilesInExtStrg.end())
+	{
+		return &it->second;
+	}
+	else
+	{
+		_FilesInExtStrg.insert(std::make_pair(filename,misc::File(filename)));
+		return &_FilesInExtStrg.at(filename);
+	}
+}
+FILE * ResourceManager::getFileForRead(std::string filename)
+{
+	char * buffer;
+	std::string path = "/sdcard/" + filename;
+	FILE* file = fopen(path.c_str(), "r");
+	return file;
+}
+FILE * ResourceManager::getFileForWrite(std::string filename)
+{
+	std::string path = "/sdcard/" +filename;
+	FILE* file = fopen(path.c_str(), "w+");
+	return file;
 }
 
 std::vector<unsigned char>* ResourceManager::loadFile(std::string filename)

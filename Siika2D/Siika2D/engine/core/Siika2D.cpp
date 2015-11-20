@@ -15,8 +15,24 @@ Siika2D* Siika2D::UI()
 	return _instance;
 
 }
-
-
+misc::File* Siika2D::getFile(std::string name)
+{
+	return _resourceManager.getFile(name);
+}
+std::string* Siika2D::readTxtFile(std::string name)
+{
+	return _resourceManager.loadTextFile(name);
+}
+/*
+FILE* Siika2D::openFileForWrite(std::string name)
+{
+	return _resourceManager.getFileForWrite(name);
+}
+FILE* Siika2D::openFileForRead(std::string name)
+{
+	return _resourceManager.getFileForRead(name);
+}
+*/
 Siika2D::Siika2D()
 {
 	
