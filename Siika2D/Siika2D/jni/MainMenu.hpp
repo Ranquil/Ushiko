@@ -1,9 +1,7 @@
 #ifndef MAINMENU_H
 #define MAINMENU_H
 
-#include "../engine/misc/GameObject.h"
 #include "../engine/misc/Timer.h"
-
 #include "Scene.hpp"
 
 class MainMenu : public Scene

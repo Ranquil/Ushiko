@@ -144,6 +144,9 @@
     <ClCompile Include="engine\misc\PhysicsComponent.cpp">
       <Filter>Siika2D\engine\misc</Filter>
     </ClCompile>
+    <ClCompile Include="jni\LevelTimer.cpp">
+      <Filter>Ushiko\Scenes\Levels</Filter>
+    </ClCompile>
     <ClCompile Include="jni\LevelSelect.cpp">
       <Filter>Ushiko\Scenes\Menu</Filter>
     </ClCompile>
@@ -274,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="engine\misc\PhysicsComponent.h">
       <Filter>Siika2D\engine\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\LevelTimer.hpp">
+      <Filter>Ushiko\Scenes\Levels</Filter>
     </ClInclude>
     <ClInclude Include="jni\LevelSelect.hpp">
       <Filter>Ushiko\Scenes\Menu</Filter>

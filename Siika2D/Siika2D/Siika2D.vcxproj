@@ -54,6 +54,7 @@
     <ClCompile Include="jni\Level.cpp" />
     <ClCompile Include="jni\LevelGenerator.cpp" />
     <ClCompile Include="jni\LevelSelect.cpp" />
+    <ClCompile Include="jni\LevelTimer.cpp" />
     <ClCompile Include="jni\main.cpp" />
     <ClCompile Include="jni\MainMenu.cpp" />
     <ClCompile Include="jni\Ushiko.cpp" />
@@ -103,6 +104,7 @@
     <ClInclude Include="jni\Level.hpp" />
     <ClInclude Include="jni\LevelGenerator.hpp" />
     <ClInclude Include="jni\LevelSelect.hpp" />
+    <ClInclude Include="jni\LevelTimer.hpp" />
     <ClInclude Include="jni\MainMenu.hpp" />
     <ClInclude Include="jni\Scene.hpp" />
     <ClInclude Include="jni\Ushiko.hpp" />

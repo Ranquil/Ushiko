@@ -1,4 +1,5 @@
 #include "Ushiko.hpp"
+#include "Scene.hpp"
 
 Ushiko ushiko;
 
@@ -38,6 +39,7 @@ void Ushiko::init(core::Siika2D *siika)
 	go->addComponent(sprtComp);
 	go->addComponent(physComp);
 
+	go->setId(USHIKO);
 	go->move(glm::vec2(-1000, 0));
 
 	health = healthMax;

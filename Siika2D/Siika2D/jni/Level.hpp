@@ -26,6 +26,7 @@ private:
 	std::string levelName;
 
 	LevelGenerator *lg;
+	colListener *cl;
 	GameUI *gameUI;
 
 	misc::Timer genTimer;
