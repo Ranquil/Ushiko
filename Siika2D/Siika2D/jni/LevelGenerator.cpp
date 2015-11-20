@@ -180,14 +180,31 @@ void LevelGenerator::spawnEnemy(core::Siika2D *siika, int xPos, int yPos)
 	if (lrand48() % 3 == 0)
 		fly = true;
 
+	int frames = 0;
+
 	if (fly)
 	{
-		e = new Enemy("sprite_mikucopter.png");
 		e->flies = true;
+		if (generatorName == "forest")
+			e = new Enemy("sprite_mikucopter.png");
+		else
+		{
+			e = new Enemy("sprite_shibat.png");
+			yPos += 300;
+		}
 	}
-	else e = new Enemy("sprite_shimapanda.png");
+	else
+	{
+		if (generatorName == "forest")
+			e = new Enemy("sprite_shimapanda.png");
+		else
+		{
+			e = new Enemy("sprite_gigapuddi.png", true);
+			frames = 8;
+		}
+	}
 
-	e->init(siika);
+	e->init(siika, frames);
 	e->xPos = xPos;
 	e->yPos = yPos;
 	e->yLevel = e->yPos;
@@ -244,7 +261,6 @@ void LevelGenerator::updateTiles(glm::vec2 ushikoPos)
 
 void LevelGenerator::updateEnemies(core::Siika2D *siika, glm::vec2 ushikoPos)
 {
-
 	Enemy *eDelete = nullptr;
 	for (Enemy *e : enemies)
 	{

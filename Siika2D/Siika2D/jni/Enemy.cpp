@@ -1,11 +1,12 @@
 #include "Enemy.hpp"
 #include "Scene.hpp"
 
-Enemy::Enemy(std::string enemyTextureName)
+Enemy::Enemy(std::string enemyTextureName, bool fourByfour)
 {
 	this->enemyTextureName = enemyTextureName;
 	this->flies = false;
 	this->rising = false;
+	this->fbf = fourByfour;
 }
 
 Enemy::~Enemy()
@@ -28,7 +29,7 @@ void Enemy::init(core::Siika2D *siika, int firstFrame, int lastFrame)
 		glm::vec2(64, 64),
 		enemyTexture,
 		glm::vec2(0, 0),
-		lastFrame != 0 ? glm::vec2(0.2, 0.2) : glm::vec2(0.5, 0.5))));
+		fbf ? glm::vec2(0.25, 0.25) : (lastFrame != 0 ? glm::vec2(0.2, 0.2) : glm::vec2(0.5, 0.5)))));
 	misc::TransformComponent *trnsComp = new misc::TransformComponent;
 	sprtComp->setZ(30);
 

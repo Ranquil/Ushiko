@@ -8,7 +8,7 @@
 class Enemy
 {
 public:
-	Enemy(std::string enemyTextureName);
+	Enemy(std::string enemyTextureName, bool fourByfour = false);
 	~Enemy();
 
 	void update(core::Siika2D *siika);
@@ -24,6 +24,7 @@ public:
 	misc::GameObject *go;
 
 private:
+	bool fbf;
 	int firstFrame;
 	int lastFrame;
 
