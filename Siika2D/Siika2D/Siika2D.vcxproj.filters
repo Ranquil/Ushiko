@@ -174,9 +174,6 @@
     <ClCompile Include="jni\Heartsplosion.cpp">
       <Filter>Ushiko\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="jni\Boss.cpp">
-      <Filter>Ushiko\Entities</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="native_app_glue\android_native_app_glue.h">
@@ -309,9 +306,6 @@
       <Filter>Ushiko\Entities</Filter>
     </ClInclude>
     <ClInclude Include="jni\Heartsplosion.hpp">
-      <Filter>Ushiko\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="jni\Boss.hpp">
       <Filter>Ushiko\Entities</Filter>
     </ClInclude>
   </ItemGroup>
