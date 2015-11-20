@@ -184,13 +184,12 @@ void LevelGenerator::spawnEnemy(core::Siika2D *siika, int xPos, int yPos)
 
 	if (fly)
 	{
-		e->flies = true;
 		if (generatorName == "forest")
 			e = new Enemy("sprite_mikucopter.png");
 		else
 		{
 			e = new Enemy("sprite_shibat.png");
-			yPos += 300;
+			yPos += 250;
 		}
 	}
 	else
@@ -207,6 +206,7 @@ void LevelGenerator::spawnEnemy(core::Siika2D *siika, int xPos, int yPos)
 	e->init(siika, frames);
 	e->xPos = xPos;
 	e->yPos = yPos;
+	if (fly) e->flies = true;
 	e->yLevel = e->yPos;
 	e->go->move(glm::vec2(e->xPos, e->yPos));
 

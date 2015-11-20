@@ -50,8 +50,7 @@ void Enemy::update(core::Siika2D *siika)
 {
 	go->update();
 
-	if (animationTimer.getElapsedTime(MILLISECONDS) >= 500 ||
-		(flies && animationTimer.getElapsedTime(MILLISECONDS) >= 200))
+	if (animationTimer.getElapsedTime(MILLISECONDS) >= 200)
 	{
 		if (lastFrame != 0)
 			go->getComponent<misc::SpriteComponent>()->getSprite()->step(firstFrame, lastFrame, true);
