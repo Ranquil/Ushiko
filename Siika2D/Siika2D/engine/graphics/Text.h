@@ -13,8 +13,8 @@
 namespace graphics
 {
 	/**
-		Class for drawable text.
-		Uses FreeType to load .ttf fonts.
+	Class for drawable text.
+	Uses FreeType to load .ttf fonts.
 	*/
 	class Text
 	{
@@ -29,39 +29,39 @@ namespace graphics
 		Text(core::ResourceManager* resourceManager, FT_Library* ftLibrary);
 		~Text();
 		/**
-			Load font from file
+		Load font from file
 		*/
 		void setFont(std::string filename);
 
 		/**
-			Set font size in pixels
+		Set font size in pixels
 		*/
 		void setFontSize(GLint size);
 
 		/**
-			Set the string of characters to display
+		Set the string of characters to display
 		*/
 		void setText(std::string text);
 
 		/**
-			Set text position. Origin: bottom-left
+		Set text position. Origin: bottom-left
 		*/
 		void setPosition(GLfloat x, GLfloat y);
 
 		/**
-			Set text color.
+		Set text color.
 		*/
 		void setColor(Color color);
 
 		/**
-			Get text color.
+		Get text color.
 		*/
 		Color getColor();
 	protected:
 		/**
-			Draws text. Generates textures for each character of the text and draws them.
+		Draws text. Generates textures for each character of the text and draws them.
 		*/
-		void draw(glm::vec2 displaySize, GLint posLoc, GLint colLoc, Buffer * buf);
+		void draw(glm::vec2 displaySize, GLint posLoc, GLint colLoc, Buffer * buf, GLuint _program);
 		bool isInitialized; //Gives OK to textManager for drawing if true.
 
 	private:
