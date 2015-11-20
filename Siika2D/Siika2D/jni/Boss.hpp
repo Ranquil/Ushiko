@@ -7,7 +7,8 @@
 enum ProjectileType
 {
 	RETURNABLE,
-	DAMAGING
+	DAMAGING,
+	LAST
 };
 
 struct Projectile
@@ -36,6 +37,7 @@ private:
 	misc::GameObject *boss;
 	std::vector<Projectile*> projectiles;
 	misc::Timer projectileTimer;
+	int bossHealth; 
 };
 
 #endif // BOSS_H

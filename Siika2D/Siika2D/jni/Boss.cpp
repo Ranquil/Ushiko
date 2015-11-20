@@ -55,8 +55,8 @@ void Boss::spawnProjectile(core::Siika2D *siika)
 
 	go->addComponent(sprtComp);
 	go->addComponent(trnsComp);
-
-	projectiles.push_back(new Projectile(go, RETURNABLE));
+	ProjectileType test = static_cast<ProjectileType>(lrand48() % LAST);
+	projectiles.push_back(new Projectile(go, test));
 }
 
 void Boss::update(core::Siika2D *siika)
