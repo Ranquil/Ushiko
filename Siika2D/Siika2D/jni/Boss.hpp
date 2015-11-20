@@ -21,6 +21,7 @@ struct Projectile
 	misc::GameObject *gameObject;
 	ProjectileType projectileType;
 	int xPos, yPos;
+	int pDirection = 7;
 };
 
 class Boss
@@ -36,7 +37,7 @@ public:
 
 	void spawnProjectile(core::Siika2D *siika);
 
-	void isIntersecting(glm::vec2 projectilePosition);
+	void isIntersecting(glm::vec2 projectilePosition, glm::vec2 otherPosition);
 
 private:
 	misc::GameObject *boss;

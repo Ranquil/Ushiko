@@ -71,6 +71,11 @@ void Boss::spawnProjectile(core::Siika2D *siika)
 	projectiles.push_back(p);
 }
 
+void Boss::isIntersecting(glm::vec2 projectilePosition, glm::vec2 otherPosition)
+{
+
+}
+
 void Boss::update(core::Siika2D *siika)
 {
 	if (projectileTimer.getElapsedTime(MILLISECONDS) >= 500)
@@ -82,14 +87,21 @@ void Boss::update(core::Siika2D *siika)
 
 	for (Projectile* p : projectiles)
 	{
-		glm::vec2 pPosition = p->gameObject->getComponent<misc::TransformComponent>()->getPosition();
-		p->gameObject->update();
-		p->gameObject->move(glm::vec2(p->xPos -= 7, p->yPos));
+		glm::vec2 pPosition = siika->transfCrds()->deviceToUser(p->gameObject->getComponent<misc::TransformComponent>()->getPosition());
+		glm::vec2 bossPos = siika->transfCrds()->deviceToUser(boss->getComponent<misc::TransformComponent>()->getPosition());
+		glm::vec2 ushikoPos = siika->transfCrds()->deviceToUser(ushiko.go->getComponent<misc::TransformComponent>()->getPosition());
+		if (p->projectileType == DAMAGING && isIntersecting(pPosition, )
+		{
+
+		}
+
 		if (pPosition.x < 0)
 		{
 			delete(p);
 			projectiles.erase(std::remove(projectiles.begin(), projectiles.end(), p), projectiles.end());
 		}
+		p->gameObject->update();
+		p->gameObject->move(glm::vec2(p->xPos -= p->pDirection, p->yPos));
 	}
 
 	boss->update();
