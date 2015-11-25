@@ -78,7 +78,7 @@ void Boss::isIntersecting(glm::vec2 projectilePosition, glm::vec2 otherPosition)
 
 void Boss::update(core::Siika2D *siika)
 {
-	if (projectileTimer.getElapsedTime(MILLISECONDS) >= 500)
+	/*if (projectileTimer.getElapsedTime(MILLISECONDS) >= 500)
 	{
 		spawnProjectile(siika);
 		projectileTimer.reset();
@@ -104,5 +104,5 @@ void Boss::update(core::Siika2D *siika)
 		p->gameObject->move(glm::vec2(p->xPos -= p->pDirection, p->yPos));
 	}
 
-	boss->update();
+	boss->update();*/
 }
