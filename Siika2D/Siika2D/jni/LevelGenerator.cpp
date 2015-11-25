@@ -185,22 +185,21 @@ void LevelGenerator::spawnEnemy(core::Siika2D *siika, int xPos, int yPos)
 
 	if (fly)
 	{
-		if (generatorName == "forest")
+		if (generatorName == "castle")
 			e = new Enemy("sprite_mikucopter.png");
 		else if (generatorName == "plains")
-		{
 			e = new Enemy("sprite_noodles.png");
-			//frames = 2;
-		}
 		else
 		{
 			e = new Enemy("sprite_shibat.png");
-			yPos += 100;
+			yPos += 80;
 		}
 	}
 	else
 	{
-		if (generatorName == "forest")
+		if (generatorName == "castle")
+			e = new Enemy("sprite_meido.png");
+		else if (generatorName == "forest")
 			e = new Enemy("sprite_shimapanda.png");
 		else
 		{
