@@ -31,8 +31,8 @@ private:
 	GameUI *gameUI;
 
 	misc::Timer genTimer;
-	//audio::Audio *theme;
 	audio::Audio *theme;
+	audio::Audio *coin;
 	Boss *boss;
 };
 
