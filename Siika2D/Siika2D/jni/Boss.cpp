@@ -47,12 +47,19 @@ void Boss::deInit()
 void Boss::spawnProjectile(core::Siika2D *siika)
 {
 	misc::GameObject *go = new misc::GameObject;
+	ProjectileType PT = static_cast<ProjectileType>(lrand48() % LAST);
+
+	graphics::Texture *pTexture;
+	if (PT == RETURNABLE)
+		pTexture == siika->_textureManager->createTexture("sprite_inkball.png");
+	else
+		pTexture == siika->_textureManager->createTexture("panda.png");
 
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
 		glm::vec2(64, 64),
 		glm::vec2(32, 32),
-		siika->_textureManager->createTexture("panda.png"),
+		pTexture,
 		glm::vec2(0, 0),
 		glm::vec2(1, 1))));
 	sprtComp->setZ(20);
@@ -62,7 +69,6 @@ void Boss::spawnProjectile(core::Siika2D *siika)
 	go->addComponent(sprtComp);
 	go->addComponent(trnsComp);
 
-	ProjectileType PT = static_cast<ProjectileType>(lrand48() % LAST);
 	glm::vec2 bossPos = siika->transfCrds()->deviceToUser(boss->getComponent<misc::TransformComponent>()->getPosition());
 	Projectile *p = new Projectile(go, PT);
 	p->xPos = bossPos.x;
@@ -73,8 +79,8 @@ void Boss::spawnProjectile(core::Siika2D *siika)
 
 bool Boss::isIntersecting(glm::vec2 projectilePosition, glm::vec2 otherPosition)
 {
-	if ((otherPosition.x < projectilePosition.x && otherPosition.x > projectilePosition.x + 64) &&
-		otherPosition.y < projectilePosition.y && otherPosition.y > projectilePosition.y + 64)
+	if ((projectilePosition.x > otherPosition.x - 64 && projectilePosition.x < otherPosition.x + 64) &&
+		projectilePosition.y > otherPosition.y - 64 && projectilePosition.y < otherPosition.y + 64)
 		return true;
 	return false;
 }
@@ -87,16 +93,22 @@ void Boss::update(core::Siika2D *siika)
 		projectileTimer.reset();
 	}
 
+		glm::vec2 ushikoPos = siika->transfCrds()->deviceToUser(ushiko.go->getComponent<misc::TransformComponent>()->getPosition());
+		glm::vec2 bossPos = siika->transfCrds()->deviceToUser(boss->getComponent<misc::TransformComponent>()->getPosition());
 	Projectile *deletep = nullptr;
 	for (Projectile* p : projectiles)
 	{
 		glm::vec2 pPosition = siika->transfCrds()->deviceToUser(p->gameObject->getComponent<misc::TransformComponent>()->getPosition());
-		glm::vec2 bossPos = siika->transfCrds()->deviceToUser(boss->getComponent<misc::TransformComponent>()->getPosition());
-		glm::vec2 ushikoPos = siika->transfCrds()->deviceToUser(ushiko.go->getComponent<misc::TransformComponent>()->getPosition());
-		if (p->projectileType == DAMAGING || p->projectileType == RETURNABLE && isIntersecting(pPosition, ushikoPos))
+		if ((p->projectileType == DAMAGING || p->projectileType == RETURNABLE) && isIntersecting(pPosition, ushikoPos))
 		{
+			if (p->projectileType == RETURNABLE && ushiko.dashing)
+			{
+				p->pDirection = -p->pDirection;
+			}
 			ushiko.health -= 1;
+			deletep = p;
 		}
+
 
 		if (pPosition.x < 0)
 		{
