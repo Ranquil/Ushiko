@@ -19,8 +19,9 @@ void Level::init(core::Siika2D *siika)
 	{
 		boss = new Boss();
 		boss->init(siika);
-
 	}
+	else boss = nullptr;
+
 	gameUI = new GameUI;
 	if (levelName == "boss")
 		gameUI->init(siika, levelName, boss);
@@ -48,9 +49,12 @@ void Level::init(core::Siika2D *siika)
 		glm::vec2(1, 1));
 	bg->setZ(100);
 
-	//theme = siika->_audioManager->createAudio("castle_theme.ogg");
-	//theme->setLooping(true);
-	//theme->play();
+	theme = siika->_audioManager->createAudio("castle_theme.ogg");
+	theme->setLooping(true);
+	theme->setVolume(0.2f);
+	theme->play();
+
+	coin = siika->_audioManager->createAudio("coin.ogg");
 
 	unlocked = false;
 	paused = false;
@@ -60,15 +64,14 @@ void Level::init(core::Siika2D *siika)
 
 void Level::deInit()
 {
-	//theme->stop();
-	//delete theme;
+	theme->stop();
 
 	bg->setPosition(glm::vec2(-3000, 0));
 
 	delete gameUI;
 	delete lg;
 
-	if (levelName == "boss")
+	if (boss != nullptr)
 		delete boss;
 }
 
@@ -90,10 +93,15 @@ int Level::update(core::Siika2D *siika)
 	{
 		siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
 
+		int coins = ushiko.coinCount;
+
 		lg->update(siika);
 		ushiko.update(siika);
 
-		if (levelName == "boss")
+		if (coins == ushiko.coinCount - 1)
+			coin->play();
+
+		if (boss != nullptr)
 			boss->update(siika);
 
 		int pointsNeeded = 500;
@@ -151,13 +159,13 @@ int Level::update(core::Siika2D *siika)
 void Level::pause()
 {
 	genTimer.pause();
-	//theme->pause();
+	theme->pause();
 	paused = true;
 }
 
 void Level::resume()
 {
 	genTimer.reset();
-	//theme->play();
+	theme->play();
 	paused = false;
 }
