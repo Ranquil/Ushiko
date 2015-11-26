@@ -149,9 +149,9 @@ int GameUI::update(core::Siika2D *siika)
 	heartCount = ushiko.health;
 
 	{
-		std::ostringstream gemText;
-		gemText << ushiko.coinCount << " / " << ushiko.maxCoins;
-		gemTextUI->setText(gemText.str());
+		//std::ostringstream gemText;
+		//gemText << ushiko.coinCount << " / " << ushiko.maxCoins;
+		//gemTextUI->setText(gemText.str());
 		std::ostringstream pointsText;
 		pointsText << ushiko.pointsAmount;
 		pointsTextUI->setText(pointsText.str());
