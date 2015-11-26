@@ -22,7 +22,10 @@ void Level::init(core::Siika2D *siika)
 
 	}
 	gameUI = new GameUI;
-	gameUI->init(siika);
+	if (levelName == "boss")
+		gameUI->init(siika, levelName, boss);
+	else
+		gameUI->init(siika, levelName);
 
 	std::string bgTexture = "background_forest_plains.png";
 	if (levelName == "castle" || levelName == "boss")
@@ -72,8 +75,12 @@ void Level::deInit()
 int Level::update(core::Siika2D *siika)
 {
 	siika->_graphicsContext->clear();
+	int state;
+	if (levelName == "boss")
+		state = gameUI->update(siika, boss);
+	else
+		state = gameUI->update(siika);
 
-	int state = gameUI->update(siika);
 	if (state == PAUSE)
 		pause();
 	else if (state == RESUME)
@@ -121,6 +128,11 @@ int Level::update(core::Siika2D *siika)
 	siika->_textManager->drawTexts();
 	siika->_graphicsContext->swap();
 
+	if (boss->bossHealth <= 0)
+	{
+		delete ushiko.go;
+		return MAIN_MENU;
+	}
 	if (ushiko.health <= 0)
 	{
 		delete ushiko.go;

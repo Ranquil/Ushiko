@@ -1,6 +1,7 @@
 #include "GameUI.hpp"
 #include "Ushiko.hpp"
 
+
 #include <sstream>
 
 GameUI::GameUI()
@@ -13,7 +14,7 @@ GameUI::~GameUI()
 	deInit();
 }
 
-void GameUI::init(core::Siika2D *siika)
+void GameUI::init(core::Siika2D *siika, std::string levelName, Boss *boss)
 {
 	/* ----- Initialize the pause button ----- */
 
@@ -43,12 +44,9 @@ void GameUI::init(core::Siika2D *siika)
 	graphics::Texture *heartTexture;
 	heartTexture = siika->_textureManager->createTexture("ui_heart_full.png");
 
-	heartIcons.push_back(new misc::GameObject);
-	heartIcons.push_back(new misc::GameObject);
-	heartIcons.push_back(new misc::GameObject);
-
 	for (int i = 0; i < 3; i++)
 	{
+		heartIcons.push_back(new misc::GameObject);
 		misc::SpriteComponent *heartsprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 			glm::vec2(0, 0),
 			glm::vec2(64, 64),
@@ -57,13 +55,60 @@ void GameUI::init(core::Siika2D *siika)
 			glm::vec2(0, 0),
 			glm::vec2(1, 1))));
 		misc::TransformComponent *hearttransComp = new misc::TransformComponent;
-		heartsprtComp->setZ(90);
+		heartsprtComp->setZ(10);
 
 		heartIcons[i]->addComponent(heartsprtComp);
 		heartIcons[i]->addComponent(hearttransComp);
 		
 		heartIcons[i]->move(glm::vec2(i * 128, 0));
 		heartIcons[i]->update();
+	}
+
+	if (levelName == "boss")
+	{
+		graphics::Texture *bossHeartTexture;
+		bossHeartTexture = siika->_textureManager->createTexture("ui_bosslifebar_heart.png");
+
+			for (int i = 0; i < 10; i++)
+			{
+				bossHeartIcons.push_back(new misc::GameObject);
+
+				misc::SpriteComponent *bossheartsprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
+					glm::vec2(0, 0),
+					glm::vec2(64, 64),
+					glm::vec2(0, 0),
+					bossHeartTexture,
+					glm::vec2(0, 0),
+					glm::vec2(1, 1))));
+					bossheartsprtComp->setZ(10);
+
+				misc::TransformComponent *bosshearttransComp = new misc::TransformComponent;
+
+				bossHeartIcons[i]->addComponent(bossheartsprtComp);
+				bossHeartIcons[i]->addComponent(bosshearttransComp);
+				bossHeartIcons[i]->move(glm::vec2(i * 96, -scrSize.y +  160));
+			}
+			graphics::Texture *bossTextTexture;
+			bossTextTexture = siika->_textureManager->createTexture("ui_bosslifebar_logo.png");
+			bossText = new misc::GameObject;
+
+			misc::SpriteComponent *bosstextsprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
+				glm::vec2(0, 0),
+				glm::vec2(256, 256),
+				glm::vec2(0, 0),
+				bossTextTexture,
+				glm::vec2(0, 0),
+				glm::vec2(1, 1))));
+			bosstextsprtComp->setZ(10);
+
+			misc::TransformComponent *bosstexttransComp = new misc::TransformComponent;
+
+			bossText->addComponent(bosstextsprtComp);
+			bossText->addComponent(bosstexttransComp);
+
+			bossText->move(glm::vec2(0, -scrSize.y + scrSize.y / 4));
+
+
 	}
 
 	/* ----- Initialize other objects and variables ----- */
@@ -92,6 +137,7 @@ void GameUI::init(core::Siika2D *siika)
 	lastState = RESUME;
 	inputTimer.start();
 	heartCount = ushiko.health;
+	bossHeartCount = boss->bossHealth;
 }
 
 void GameUI::deInit()
@@ -103,6 +149,12 @@ void GameUI::deInit()
 
 	for (int i = 0; i < 3; i++)
 		delete heartIcons[i];
+	if (bossHeartIcons.size() > 0)
+	{
+		for (int i = 0; i < 10; i++)
+			delete bossHeartIcons[i];
+	}
+	delete bossText;
 }
 
 bool isIntersecting(glm::vec2 touchPosition, glm::vec2 box)
@@ -131,7 +183,7 @@ void GameUI::changeTexture(misc::GameObject *gameObject, core::Siika2D *siika, s
 	gameObject->addComponent(sprtComp);
 }
 
-int GameUI::update(core::Siika2D *siika)
+int GameUI::update(core::Siika2D *siika, Boss *boss)
 {
 	if (ushiko.pointsAmount > 10 && ushiko.pointsAmount < 99)
 		pointsTextUI->setPosition(0.85, -0.95);
@@ -147,6 +199,11 @@ int GameUI::update(core::Siika2D *siika)
 		changeTexture(heartIcons[ushiko.health], siika, "ui_heart_hurt.png",glm::vec2(64,64));
 
 	heartCount = ushiko.health;
+
+	if (boss->bossHealth != bossHeartCount)
+		changeTexture(bossHeartIcons[boss->bossHealth], siika, "ui_bosslifebar_hearthurt.png", glm::vec2(64, 64));
+
+	bossHeartCount = boss->bossHealth;
 
 	{
 		//std::ostringstream gemText;

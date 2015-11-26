@@ -39,11 +39,12 @@ public:
 
 	bool isIntersecting(glm::vec2 projectilePosition, glm::vec2 otherPosition);
 
+	const int bossMaxHealth = 10;
+	int bossHealth;
 private:
 	misc::GameObject *boss;
 	std::vector<Projectile*> projectiles;
 	misc::Timer projectileTimer;
-	int bossHealth; 
 	glm::vec2 screenSize;
 };
 
