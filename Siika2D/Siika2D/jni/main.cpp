@@ -22,6 +22,12 @@ void siika_onResume()
 
 void siika_init()
 {
+	misc::File *file = siika->getFile("progress.txt");
+	std::string read = file->readFile();
+
+	if (read.find("1") == std::string::npos) // Comment this line out to always reset progress on launch
+		file->writeFile("0");
+
 	currentScene = MAIN_MENU;
 
 	scenes[QUIT] = new Scene;

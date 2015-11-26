@@ -79,7 +79,6 @@ int Level::update(core::Siika2D *siika)
 	else if (state == RESUME)
 		resume();
 
-
 	if (!paused && genTimer.getElapsedTime(MILLISECONDS) > 5)
 	{
 		siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
@@ -87,16 +86,25 @@ int Level::update(core::Siika2D *siika)
 		lg->update(siika);
 		ushiko.update(siika);
 
-		if (!unlocked && ushiko.coinCount >= 10)
+		if (levelName == "boss")
+			boss->update(siika);
+
+		int pointsNeeded = 500;
+		if (levelName == "forest")
+			pointsNeeded = 1000;
+		else if (levelName != "plains")
+			pointsNeeded = 2000;
+
+		if (!unlocked && ushiko.pointsAmount >= pointsNeeded)
 		{
 			unlocked = true;
 			misc::File *file = siika->getFile("progress.txt");
 			std::string read = file->readFile();
 
 			int levels = 0;
-			if (read.find("1") == std::string::npos) levels += 1;
-			if (read.find("2") == std::string::npos) levels += 1;
-			if (read.find("3") == std::string::npos) levels += 1;
+			if (read.find("1") != std::string::npos) levels += 1;
+			if (read.find("2") != std::string::npos) levels += 1;
+			if (read.find("3") != std::string::npos) levels += 1;
 
 			if (levelName == "plains" && levels == 0)
 				file->writeFile("1");
@@ -106,13 +114,11 @@ int Level::update(core::Siika2D *siika)
 				file->writeFile("123");
 		}
 
-		if (levelName == "boss")
-			boss->update(siika);
 		genTimer.reset();
 	}
 
 	siika->_spriteManager->drawSprites();
-	//siika->_textManager->drawTexts();
+	siika->_textManager->drawTexts();
 	siika->_graphicsContext->swap();
 
 	if (ushiko.health <= 0)

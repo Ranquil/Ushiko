@@ -16,6 +16,7 @@ LevelSelect::~LevelSelect()
 
 void LevelSelect::init(core::Siika2D *siika)
 {
+<<<<<<< HEAD
 	//misc::File *file = siika->getFile("progress.txt");
 	//file->writeFile("0");
 	//std::string read = file->readFile();
@@ -26,6 +27,15 @@ void LevelSelect::init(core::Siika2D *siika)
 	//else unlocked = 0;
 
 	unlocked = 3;
+=======
+	misc::File *file = siika->getFile("progress.txt");
+	std::string read = file->readFile();
+
+	unlocked = 0;
+	if (read.find("1") != std::string::npos) unlocked = 1;
+	if (read.find("2") != std::string::npos) unlocked = 2;
+	if (read.find("3") != std::string::npos) unlocked = 3;
+>>>>>>> origin/master
 
 	glm::vec2 screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
 	boxSizex = siika->_graphicsContext->getDisplaySize().x / 4;
