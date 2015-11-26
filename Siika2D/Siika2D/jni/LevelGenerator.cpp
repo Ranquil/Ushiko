@@ -101,7 +101,12 @@ void LevelGenerator::update(core::Siika2D *siika)
 		}
 		else
 		{
-			platformLength = (lrand48() % 10) + 5;
+			platformLength = lrand48() % 10;
+			if (generatorName == "forest")
+				platformLength += 4;
+			else if (generatorName == "castle" || generatorName == "boss")
+				platformLength += 2;
+			else platformLength += 6;
 
 			platformSpawned = 0;
 			platformHasEnemy = false;
@@ -343,10 +348,10 @@ void LevelGenerator::updateCoins(glm::vec2 ushikoPos)
 
 			switch (c->coinType)
 			{
-			case BRONZE: ushiko.pointsAmount += 10; break;
-			case SILVER: ushiko.pointsAmount += 50; break;
-			case GOLD: ushiko.pointsAmount += 150; break;
-			default: break;
+				case BRONZE: ushiko.pointsAmount += 10; break;
+				case SILVER: ushiko.pointsAmount += 50; break;
+				case GOLD: ushiko.pointsAmount += 150; break;
+				default: break;
 			}
 			cDelete = c;
 		}

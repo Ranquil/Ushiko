@@ -89,7 +89,8 @@ int Level::update(core::Siika2D *siika)
 		if (levelName == "boss")
 			boss->update(siika);
 
-		if (!unlocked && ushiko.coinCount >= 1)
+		// TODO(Jere): switch this to use points instead of coins
+		if (!unlocked && ushiko.coinCount >= 10)
 		{
 			unlocked = true;
 			misc::File *file = siika->getFile("progress.txt");
