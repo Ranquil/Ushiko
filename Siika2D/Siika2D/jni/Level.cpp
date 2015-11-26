@@ -15,6 +15,12 @@ void Level::init(core::Siika2D *siika)
 {
 	lg = new LevelGenerator(siika, levelName);
 
+	if (levelName == "boss")
+	{
+		boss = new Boss();
+		boss->init(siika);
+
+	}
 	gameUI = new GameUI;
 	gameUI->init(siika);
 
@@ -45,6 +51,7 @@ void Level::init(core::Siika2D *siika)
 
 	paused = false;
 	genTimer.start();
+
 }
 
 void Level::deInit()
@@ -56,6 +63,7 @@ void Level::deInit()
 
 	delete gameUI;
 	delete lg;
+	delete boss;
 }
 
 int Level::update(core::Siika2D *siika)
