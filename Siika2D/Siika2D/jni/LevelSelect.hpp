@@ -4,7 +4,6 @@
 #include "../engine/misc/GameObject.h"
 
 #include "Scene.hpp"
-#include <fstream>
 
 class LevelSelect : public Scene
 {
@@ -20,17 +19,13 @@ public:
 	bool isIntersecting(glm::vec2 touchPosition, glm::vec2 box);
 
 private:
-	bool lvl2Unlocked = true;
-	bool lvl3Unlocked = true;
-	bool bosslvlUnlocked = true;
-	int boxSizey;
-	int boxSizex;
+	int unlocked;
+	int boxSizey, boxSizex;
 
 	misc::GameObject *plainsLevel;
 	misc::GameObject *forestLevel;
 	misc::GameObject *castleLevel;
 	misc::GameObject *bossLevel;
 };
-
 
 #endif // LEVELSELECT_H

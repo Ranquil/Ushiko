@@ -1,9 +1,8 @@
 #include "LevelSelect.hpp"
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <android\/asset_manager.h>
-
 
 LevelSelect::LevelSelect()
 {
@@ -16,7 +15,15 @@ LevelSelect::~LevelSelect()
 }
 
 void LevelSelect::init(core::Siika2D *siika)
-{	
+{
+	misc::File *file = siika->getFile("progress.txt");
+	//file->writeFile("0");
+	std::string read = file->readFile();
+
+	if (read.find("1") != std::string::npos) unlocked = 1;
+	else if (read.find("2") != std::string::npos) unlocked = 2;
+	else if (read.find("3") != std::string::npos) unlocked = 3;
+	else unlocked = 0;
 
 	glm::vec2 screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
 	boxSizex = siika->_graphicsContext->getDisplaySize().x / 4;
@@ -35,22 +42,19 @@ void LevelSelect::init(core::Siika2D *siika)
 		{
 			case 0:	lvlSelectTexture = siika->_textureManager->createTexture("background_plains.png"); break;
 			case 1:	
-				if(lvl2Unlocked == false)
-					lvlSelectTexture = siika->_textureManager->createTexture("tile_castle_middle.png");	
-				else 
+				if(unlocked >= 1)
 					lvlSelectTexture = siika->_textureManager->createTexture("background_forest.png");
+				else lvlSelectTexture = siika->_textureManager->createTexture("tile_castle_middle.png");
 				break;
 			case 2:
-				if (lvl3Unlocked == false)
-					lvlSelectTexture = siika->_textureManager->createTexture("tile_castle_middle.png");	
-				else 
+				if (unlocked >= 2)
 					lvlSelectTexture = siika->_textureManager->createTexture("background_castle.png");
+				else lvlSelectTexture = siika->_textureManager->createTexture("tile_castle_middle.png");
 				break;
 			case 3:
-				if (bosslvlUnlocked == false)
-					lvlSelectTexture = siika->_textureManager->createTexture("tile_castle_middle-png");
-				else
+				if (unlocked >= 3)
 					lvlSelectTexture = siika->_textureManager->createTexture("background_castle.png");
+				else lvlSelectTexture = siika->_textureManager->createTexture("tile_castle_middle.png");
 			default: break;
 		}
 
@@ -65,14 +69,16 @@ void LevelSelect::init(core::Siika2D *siika)
 		
 		switch (i)
 		{
-			case 0:	plainsLevel->addComponent(sprtComp);	plainsLevel->addComponent(transComp); break;
-			case 1:	forestLevel->addComponent(sprtComp);	forestLevel->addComponent(transComp); break;
-			case 2:	castleLevel->addComponent(sprtComp);	castleLevel->addComponent(transComp); break;
-			case 3: bossLevel->addComponent(sprtComp);		bossLevel->addComponent(transComp); break;
+			case 0:	plainsLevel->addComponent(sprtComp); plainsLevel->addComponent(transComp); break;
+			case 1:	forestLevel->addComponent(sprtComp); forestLevel->addComponent(transComp); break;
+			case 2:	castleLevel->addComponent(sprtComp); castleLevel->addComponent(transComp); break;
+			case 3: bossLevel->addComponent(sprtComp); bossLevel->addComponent(transComp); break;
 			default: break;
 		}
 	}
+
 	float test = screenSize.x / 23;
+
 	plainsLevel->move(glm::vec2(test, -screenSize.y / 5));
 	forestLevel->move(glm::vec2(screenSize.x / 3 + test, -screenSize.y / 5));
 	castleLevel->move(glm::vec2(screenSize.x / 1.5 + test, -screenSize.y / 5));
@@ -109,11 +115,11 @@ int LevelSelect::update(core::Siika2D *siika)
 	{
 		if (isIntersecting(touchPosition, plainsLevel->getComponent<misc::TransformComponent>()->getPosition()))
 			return PLAINS_LEVEL;
-		else if (isIntersecting(touchPosition, forestLevel->getComponent<misc::TransformComponent>()->getPosition()))
+		else if (unlocked >= 1 && isIntersecting(touchPosition, forestLevel->getComponent<misc::TransformComponent>()->getPosition()))
 			return FOREST_LEVEL;
-		else if (isIntersecting(touchPosition, castleLevel->getComponent<misc::TransformComponent>()->getPosition()))
+		else if (unlocked >= 2 && isIntersecting(touchPosition, castleLevel->getComponent<misc::TransformComponent>()->getPosition()))
 			return CASTLE_LEVEL;
-		else if (isIntersecting(touchPosition, bossLevel->getComponent<misc::TransformComponent>()->getPosition()))
+		else if (unlocked >= 3 && isIntersecting(touchPosition, bossLevel->getComponent<misc::TransformComponent>()->getPosition()))
 			return BOSS_LEVEL;
 	}
 

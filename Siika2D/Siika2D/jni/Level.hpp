@@ -1,7 +1,7 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 
-#include "../engine/audio/Audio.h"
+//#include "../engine/audio/Audio.h"
 
 #include "Scene.hpp"
 #include "LevelGenerator.hpp"
@@ -23,13 +23,14 @@ public:
 
 private:
 	bool paused;
+	bool unlocked;
 	std::string levelName;
 
 	LevelGenerator *lg;
 	GameUI *gameUI;
 
 	misc::Timer genTimer;
-	audio::Audio *theme;
+	//audio::Audio *theme;
 };
 
 #endif // LEVEL_H

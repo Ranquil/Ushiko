@@ -39,17 +39,18 @@ void Level::init(core::Siika2D *siika)
 		glm::vec2(1, 1));
 	bg->setZ(100);
 
-	theme = siika->_audioManager->createAudio("castle_theme.ogg");
-	theme->setLooping(true);
-	theme->play();
+	//theme = siika->_audioManager->createAudio("castle_theme.ogg");
+	//theme->setLooping(true);
+	//theme->play();
 
+	unlocked = false;
 	paused = false;
 	genTimer.start();
 }
 
 void Level::deInit()
 {
-	theme->stop();
+	//theme->stop();
 	//delete theme;
 
 	bg->setPosition(glm::vec2(-3000, 0));
@@ -74,6 +75,25 @@ int Level::update(core::Siika2D *siika)
 
 		lg->update(siika);
 		ushiko.update(siika);
+
+		if (!unlocked && ushiko.coinCount >= 10)
+		{
+			unlocked = true;
+			misc::File *file = siika->getFile("progress.txt");
+			std::string read = file->readFile();
+
+			int levels = 0;
+			if (read.find("1") == std::string::npos) levels += 1;
+			if (read.find("2") == std::string::npos) levels += 1;
+			if (read.find("3") == std::string::npos) levels += 1;
+
+			if (levelName == "plains" && levels == 0)
+				file->writeFile("1");
+			if (levelName == "forest" && levels == 1)
+				file->writeFile("12");
+			if (levelName == "castle" && levels == 2)
+				file->writeFile("123");
+		}
 
 		genTimer.reset();
 	}
@@ -100,13 +120,13 @@ int Level::update(core::Siika2D *siika)
 void Level::pause()
 {
 	genTimer.pause();
-	theme->pause();
+	//theme->pause();
 	paused = true;
 }
 
 void Level::resume()
 {
 	genTimer.reset();
-	theme->play();
+	//theme->play();
 	paused = false;
 }
