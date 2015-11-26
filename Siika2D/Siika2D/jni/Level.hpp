@@ -31,12 +31,9 @@ private:
 	GameUI *gameUI;
 
 	misc::Timer genTimer;
-<<<<<<< HEAD
 	//audio::Audio *theme;
-=======
 	audio::Audio *theme;
 	Boss *boss;
->>>>>>> origin/master
 };
 
 #endif // LEVEL_H

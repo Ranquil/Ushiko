@@ -64,7 +64,9 @@ void Level::deInit()
 
 	delete gameUI;
 	delete lg;
-	delete boss;
+
+	if (levelName == "boss")
+		delete boss;
 }
 
 int Level::update(core::Siika2D *siika)
@@ -84,7 +86,6 @@ int Level::update(core::Siika2D *siika)
 
 		lg->update(siika);
 		ushiko.update(siika);
-<<<<<<< HEAD
 
 		if (!unlocked && ushiko.coinCount >= 10)
 		{
@@ -105,9 +106,8 @@ int Level::update(core::Siika2D *siika)
 				file->writeFile("123");
 		}
 
-=======
-		boss->update(siika);
->>>>>>> origin/master
+		if (levelName == "boss")
+			boss->update(siika);
 		genTimer.reset();
 	}
 
