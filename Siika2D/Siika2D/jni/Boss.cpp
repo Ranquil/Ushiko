@@ -73,8 +73,8 @@ void Boss::spawnProjectile(core::Siika2D *siika)
 
 bool Boss::isIntersecting(glm::vec2 projectilePosition, glm::vec2 otherPosition)
 {
-	if ((otherPosition.x > projectilePosition.x && otherPosition.x < projectilePosition.x + 64) &&
-		otherPosition.y > projectilePosition.y && otherPosition.y < projectilePosition.y + 64)
+	if ((otherPosition.x < projectilePosition.x && otherPosition.x > projectilePosition.x + 64) &&
+		otherPosition.y < projectilePosition.y && otherPosition.y > projectilePosition.y + 64)
 		return true;
 	return false;
 }
@@ -93,10 +93,10 @@ void Boss::update(core::Siika2D *siika)
 		glm::vec2 pPosition = siika->transfCrds()->deviceToUser(p->gameObject->getComponent<misc::TransformComponent>()->getPosition());
 		glm::vec2 bossPos = siika->transfCrds()->deviceToUser(boss->getComponent<misc::TransformComponent>()->getPosition());
 		glm::vec2 ushikoPos = siika->transfCrds()->deviceToUser(ushiko.go->getComponent<misc::TransformComponent>()->getPosition());
-		//if (p->projectileType == DAMAGING || p->projectileType == RETURNABLE && isIntersecting(pPosition, ushikoPos))
-		//{
-		//	ushiko.health -= 1;
-		//}
+		if (p->projectileType == DAMAGING || p->projectileType == RETURNABLE && isIntersecting(pPosition, ushikoPos))
+		{
+			ushiko.health -= 1;
+		}
 
 		if (pPosition.x < 0)
 		{
