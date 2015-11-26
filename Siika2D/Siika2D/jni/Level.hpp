@@ -6,6 +6,7 @@
 #include "Scene.hpp"
 #include "LevelGenerator.hpp"
 #include "GameUI.hpp"
+#include "Boss.hpp"
 
 class Level : public Scene
 {
@@ -30,7 +31,12 @@ private:
 	GameUI *gameUI;
 
 	misc::Timer genTimer;
+<<<<<<< HEAD
 	//audio::Audio *theme;
+=======
+	audio::Audio *theme;
+	Boss *boss;
+>>>>>>> origin/master
 };
 
 #endif // LEVEL_H

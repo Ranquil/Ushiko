@@ -37,7 +37,7 @@ public:
 
 	void spawnProjectile(core::Siika2D *siika);
 
-	void isIntersecting(glm::vec2 projectilePosition, glm::vec2 otherPosition);
+	bool isIntersecting(glm::vec2 projectilePosition, glm::vec2 otherPosition);
 
 private:
 	misc::GameObject *boss;

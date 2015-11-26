@@ -15,6 +15,12 @@ void Level::init(core::Siika2D *siika)
 {
 	lg = new LevelGenerator(siika, levelName);
 
+	if (levelName == "boss")
+	{
+		boss = new Boss();
+		boss->init(siika);
+
+	}
 	gameUI = new GameUI;
 	gameUI->init(siika);
 
@@ -46,6 +52,7 @@ void Level::init(core::Siika2D *siika)
 	unlocked = false;
 	paused = false;
 	genTimer.start();
+
 }
 
 void Level::deInit()
@@ -57,6 +64,7 @@ void Level::deInit()
 
 	delete gameUI;
 	delete lg;
+	delete boss;
 }
 
 int Level::update(core::Siika2D *siika)
@@ -69,12 +77,14 @@ int Level::update(core::Siika2D *siika)
 	else if (state == RESUME)
 		resume();
 
+
 	if (!paused && genTimer.getElapsedTime(MILLISECONDS) > 5)
 	{
 		siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
 
 		lg->update(siika);
 		ushiko.update(siika);
+<<<<<<< HEAD
 
 		if (!unlocked && ushiko.coinCount >= 10)
 		{
@@ -95,6 +105,9 @@ int Level::update(core::Siika2D *siika)
 				file->writeFile("123");
 		}
 
+=======
+		boss->update(siika);
+>>>>>>> origin/master
 		genTimer.reset();
 	}
 
