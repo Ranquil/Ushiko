@@ -87,7 +87,7 @@ void Boss::update(core::Siika2D *siika)
 		projectileTimer.reset();
 	}
 
-
+	Projectile *deletep = nullptr;
 	for (Projectile* p : projectiles)
 	{
 		glm::vec2 pPosition = siika->transfCrds()->deviceToUser(p->gameObject->getComponent<misc::TransformComponent>()->getPosition());
@@ -100,12 +100,15 @@ void Boss::update(core::Siika2D *siika)
 
 		if (pPosition.x < 0)
 		{
-			delete(p);
-			projectiles.erase(std::remove(projectiles.begin(), projectiles.end(), p), projectiles.end());
+			deletep = p;
 		}
 		p->gameObject->update();
 		p->gameObject->move(glm::vec2(p->xPos -= p->pDirection, p->yPos));
 	}
-
+	if (deletep != nullptr)
+	{
+		projectiles.erase(std::remove(projectiles.begin(), projectiles.end(), deletep), projectiles.end());
+		delete deletep;
+	}
 	boss->update();
 }
