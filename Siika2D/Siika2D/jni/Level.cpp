@@ -76,13 +76,14 @@ int Level::update(core::Siika2D *siika)
 	else if (state == RESUME)
 		resume();
 
+
 	if (!paused && genTimer.getElapsedTime(MILLISECONDS) > 5)
 	{
 		siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
 
 		lg->update(siika);
 		ushiko.update(siika);
-
+		boss->update(siika);
 		genTimer.reset();
 	}
 
