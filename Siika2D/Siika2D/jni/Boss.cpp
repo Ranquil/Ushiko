@@ -101,7 +101,6 @@ void Boss::update(core::Siika2D *siika)
 	{
 		spawnProjectile(siika);
 		projectileTimer.reset();
-		bossHealth -= 1;
 	}
 
 		glm::vec2 ushikoPos = siika->transfCrds()->deviceToUser(ushiko.go->getComponent<misc::TransformComponent>()->getPosition());
@@ -129,6 +128,11 @@ void Boss::update(core::Siika2D *siika)
 				ushiko.health -= 1;
 				deletep = p;
 			}
+		}
+		if (pPosition.x > screenSize.x && p->projectileType == LAST)
+		{
+			bossHealth -= 1;
+			deletep = p;
 		}
 
 

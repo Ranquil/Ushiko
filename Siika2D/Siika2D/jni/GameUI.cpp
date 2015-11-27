@@ -66,10 +66,30 @@ void GameUI::init(core::Siika2D *siika, std::string levelName, Boss *boss)
 
 	if (levelName == "boss")
 	{
+		graphics::Texture *bossTextTexture;
+		bossTextTexture = siika->_textureManager->createTexture("ui_bosslifebar_logo.png");
+		bossText = new misc::GameObject;
+
+		misc::SpriteComponent *bosstextsprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
+			glm::vec2(0, 0),
+			glm::vec2(128, 128),
+			glm::vec2(0, 128),
+			bossTextTexture,
+			glm::vec2(0, 0),
+			glm::vec2(1, 1))));
+		bosstextsprtComp->setZ(10);
+
+		misc::TransformComponent *bosstexttransComp = new misc::TransformComponent;
+
+		bossText->addComponent(bosstextsprtComp);
+		bossText->addComponent(bosstexttransComp);
+
+		bossText->move(glm::vec2(0, -scrSize.y - 32));
+
 		graphics::Texture *bossHeartTexture;
 		bossHeartTexture = siika->_textureManager->createTexture("ui_bosslifebar_heart.png");
 
-			for (int i = 0; i < 10; i++)
+			for (int i = 0; i < boss->bossMaxHealth; i++)
 			{
 				bossHeartIcons.push_back(new misc::GameObject);
 
@@ -86,29 +106,10 @@ void GameUI::init(core::Siika2D *siika, std::string levelName, Boss *boss)
 
 				bossHeartIcons[i]->addComponent(bossheartsprtComp);
 				bossHeartIcons[i]->addComponent(bosshearttransComp);
-				bossHeartIcons[i]->move(glm::vec2(i * 96, -scrSize.y +  160));
+				glm::vec2 heartPos =glm::vec2(256 + i * 96, -scrSize.y + 234);
+				//heartPos.y + (-scrSize.y / 3);
+				bossHeartIcons[i]->move(heartPos);
 			}
-			graphics::Texture *bossTextTexture;
-			bossTextTexture = siika->_textureManager->createTexture("ui_bosslifebar_logo.png");
-			bossText = new misc::GameObject;
-
-			misc::SpriteComponent *bosstextsprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
-				glm::vec2(0, 0),
-				glm::vec2(256, 256),
-				glm::vec2(0, 0),
-				bossTextTexture,
-				glm::vec2(0, 0),
-				glm::vec2(1, 1))));
-			bosstextsprtComp->setZ(10);
-
-			misc::TransformComponent *bosstexttransComp = new misc::TransformComponent;
-
-			bossText->addComponent(bosstextsprtComp);
-			bossText->addComponent(bosstexttransComp);
-
-			bossText->move(glm::vec2(0, -scrSize.y + scrSize.y / 4));
-
-
 	}
 
 	/* ----- Initialize other objects and variables ----- */

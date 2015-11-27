@@ -23,11 +23,8 @@ void LevelSelect::init(core::Siika2D *siika)
 	if (read.find("1") != std::string::npos) unlocked = 1;
 	if (read.find("2") != std::string::npos) unlocked = 2;
 	if (read.find("3") != std::string::npos) unlocked = 3;
-<<<<<<< HEAD
 
 	unlocked = 3;
-=======
->>>>>>> origin/master
 
 	glm::vec2 screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
 	boxSizex = siika->_graphicsContext->getDisplaySize().x / 4;
