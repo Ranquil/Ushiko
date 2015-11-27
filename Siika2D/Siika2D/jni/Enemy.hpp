@@ -11,15 +11,16 @@ public:
 	Enemy(std::string enemyTextureName, bool fourByfour = false);
 	~Enemy();
 
-	void update(core::Siika2D *siika);
-
 	void init(core::Siika2D *siika, int firstFrame = 0, int lastFrame = 0, int animeSpeed = 200);
 	void deInit();
 
-	int xPos, yPos, yLevel;
-	bool hasHit;
+	void update(core::Siika2D *siika);
+
 	bool flies;
 	bool rising;
+	bool hasHit;
+	int xPos, yPos;
+	int yLevel;
 
 	misc::GameObject *go;
 

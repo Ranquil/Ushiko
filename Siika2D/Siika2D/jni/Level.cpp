@@ -13,7 +13,7 @@ Level::~Level()
 
 void Level::init(core::Siika2D *siika)
 {
-	lg = new LevelGenerator(siika, levelName);
+	/* ----- Initialize the boss ----- */
 
 	if (levelName == "boss")
 	{
@@ -22,11 +22,14 @@ void Level::init(core::Siika2D *siika)
 	}
 	else boss = nullptr;
 
+	/* ----- Initialize GameUI ----- */
+
 	gameUI = new GameUI;
 	if (levelName == "boss")
 		gameUI->init(siika, levelName, boss);
-	else
-		gameUI->init(siika, levelName);
+	else gameUI->init(siika, levelName);
+
+	/* ----- Initialize the background texture & position ----- */
 
 	std::string bgTexture = "background_forest_plains.png";
 	if (levelName == "castle" || levelName == "boss")
@@ -38,8 +41,6 @@ void Level::init(core::Siika2D *siika)
 	if (levelName == "castle" || levelName == "plains" || levelName == "boss")
 		bgPos = glm::vec2(0, -scrSize.y);
 
-	ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(5, 0));
-
 	bg = siika->_spriteManager->createSprite(
 		bgPos,
 		glm::vec2(scrSize.x, scrSize.y * 2),
@@ -49,6 +50,8 @@ void Level::init(core::Siika2D *siika)
 		glm::vec2(1, 1));
 	bg->setZ(100);
 
+	/* ----- Initialize the sounds ----- */
+
 	theme = siika->_audioManager->createAudio("castle_theme.ogg");
 	theme->setLooping(true);
 	theme->setVolume(0.2f);
@@ -56,10 +59,14 @@ void Level::init(core::Siika2D *siika)
 
 	coin = siika->_audioManager->createAudio("coin.ogg");
 
+	/* ----- And other stuff ----- */
+
+	lg = new LevelGenerator(siika, levelName);
+	ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(5, 0));
+
 	unlocked = false;
 	paused = false;
 	genTimer.start();
-
 }
 
 void Level::deInit()
@@ -78,6 +85,7 @@ void Level::deInit()
 int Level::update(core::Siika2D *siika)
 {
 	siika->_graphicsContext->clear();
+
 	int state;
 	if (levelName == "boss")
 		state = gameUI->update(siika, boss);

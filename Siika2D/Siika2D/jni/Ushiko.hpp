@@ -5,7 +5,8 @@
 #include "../engine/misc/GameObject.h"
 #include "../engine/misc/Timer.h"
 
-enum animState {
+enum animState
+{
 	IDLE,
 	RUN,
 	DASH,
@@ -25,29 +26,28 @@ public:
 	void update(core::Siika2D *siika);
 
 	bool dashing;
+	const int healthMax = 3;
+	const int maxCoins = 10;
+
 	int groundLevel;
 	int health;
-
-	const int healthMax = 3;
+	int coinCount;
+	int pointsAmount;
 
 	misc::GameObject *go;
 
-	int coinCount;
-	const int maxCoins = 10;
-	int pointsAmount;
-
 private:
-	void animate(int prev);
 	animState anim;
+	void animate(int prev);
 	misc::Timer animTimer;
 
-	misc::Timer jumpTimer;
-	bool doubleJump;
 	bool canJump;
+	bool doubleJump;
+	misc::Timer jumpTimer;
 
-	misc::Timer dashTimer;
-	glm::vec2 originalPos;
 	int xOffset;
+	glm::vec2 originalPos;
+	misc::Timer dashTimer;
 };
 
 extern Ushiko ushiko;

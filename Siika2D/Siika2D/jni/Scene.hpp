@@ -17,10 +17,10 @@ enum ScreenState
 class Scene
 {
 public:
-	virtual int update(core::Siika2D *siika) { return QUIT; }
-
 	virtual void init(core::Siika2D *siika) {}
 	virtual void deInit() {}
+
+	virtual int update(core::Siika2D *siika) { return QUIT; }
 
 	virtual void pause() {}
 	virtual void resume() {}

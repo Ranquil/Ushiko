@@ -1,9 +1,9 @@
 #ifndef LEVELSELECT_H
 #define LEVELSELECT_H
 
-#include "../engine/misc/GameObject.h"
-
 #include "Scene.hpp"
+
+#include "../engine/misc/GameObject.h"
 
 class LevelSelect : public Scene
 {
@@ -11,14 +11,14 @@ public:
 	LevelSelect();
 	~LevelSelect();
 
-	virtual int update(core::Siika2D *siika);
-
 	virtual void init(core::Siika2D *siika);
 	virtual void deInit();
 
-	bool isIntersecting(glm::vec2 touchPosition, glm::vec2 box);
+	virtual int update(core::Siika2D *siika);
 
 private:
+	bool isIntersecting(glm::vec2 touchPosition, glm::vec2 box);
+
 	int unlocked;
 	int boxSizey, boxSizex;
 

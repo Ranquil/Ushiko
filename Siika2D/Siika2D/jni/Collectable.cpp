@@ -11,7 +11,6 @@ Collectable::~Collectable()
 	deinit();
 }
 
-
 void Collectable::init(core::Siika2D *siika)
 {
 	go = new misc::GameObject;

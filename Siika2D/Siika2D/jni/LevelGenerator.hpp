@@ -1,10 +1,6 @@
 #ifndef LEVELGENERATOR_H
 #define LEVELGENERATOR_H
 
-#include "../engine/core/Siika2D.h"
-#include "../engine/misc/GameObject.h"
-#include "../engine/misc/timer.h"
-
 #include "Enemy.hpp"
 #include "Collectable.hpp"
 #include "Heartsplosion.hpp"
@@ -14,6 +10,7 @@ struct Tile
 	Tile(misc::GameObject *t, int x, int y) :
 		go(t), xPos(x), yPos(y) {}
 	~Tile() { delete go; }
+
 	misc::GameObject *go;
 	int xPos, yPos;
 };

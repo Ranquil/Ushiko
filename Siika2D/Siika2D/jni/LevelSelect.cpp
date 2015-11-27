@@ -1,7 +1,5 @@
 #include "LevelSelect.hpp"
 
-#include <iostream>
-#include <fstream>
 #include <sstream>
 
 LevelSelect::LevelSelect()

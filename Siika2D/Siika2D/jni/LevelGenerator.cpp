@@ -3,10 +3,12 @@
 
 LevelGenerator::LevelGenerator(core::Siika2D *siika, std::string name)
 {
+	srand48(time(NULL));
+
 	tiles.clear();
 	enemies.clear();
-
-	srand48(time(NULL));
+	coins.clear();
+	hearts.clear();
 
 	tileMovement = 0;
 	platformLength = 10;
@@ -54,7 +56,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 	ushikoPos.x += 100;
 	ushikoPos.y = -ushikoPos.y;
 
-	// Ushiko has fallen from the screen
+	// Ushiko has fallen and can't get up
 	if (ushikoPos.y < -siika->_graphicsContext->getDisplaySize().y * 3)
 	{
 		ushiko.health -= ushiko.healthMax;
@@ -167,11 +169,10 @@ void LevelGenerator::spawnTile(core::Siika2D *siika, int xPos, int yPos)
 		glm::vec2(0, 0),
 		glm::vec2(1, 1))));
 	misc::TransformComponent *trnsComp = new misc::TransformComponent;
+	sprtComp->setZ(80);
 
 	t->addComponent(trnsComp);
 	t->addComponent(sprtComp);
-
-	sprtComp->setZ(80);
 	t->move(pos);
 
 	Tile *newTile = new Tile(t, xPos, yPos);
@@ -217,8 +218,11 @@ void LevelGenerator::spawnEnemy(core::Siika2D *siika, int xPos, int yPos)
 	e->init(siika, 0, frames, speed);
 	e->xPos = xPos;
 	e->yPos = yPos;
-	if (fly) e->flies = true;
 	e->yLevel = e->yPos;
+
+	if (fly)
+		e->flies = true;
+
 	e->go->move(glm::vec2(e->xPos, e->yPos));
 
 	enemies.push_back(e);
@@ -240,7 +244,6 @@ void LevelGenerator::updateTiles(glm::vec2 ushikoPos)
 {
 	int tileAmount = 0;
 	bool deleteTile = false;
-	//bool ushikoGround = false;
 
 	for (Tile *t : tiles)
 	{
@@ -248,10 +251,7 @@ void LevelGenerator::updateTiles(glm::vec2 ushikoPos)
 		t->go->move(glm::vec2(t->xPos -= 5, t->yPos));
 
 		if (t->xPos < ushikoPos.x + 10 && t->xPos > ushikoPos.x - 10)
-		{
 			ushiko.groundLevel = -t->yPos;
-			//ushikoGround = true;
-		}
 
 		// When there are over 30 tiles, destroy the oldest
 		tileAmount += 1;
@@ -265,9 +265,6 @@ void LevelGenerator::updateTiles(glm::vec2 ushikoPos)
 		tiles.erase(tiles.begin());
 		delete t;
 	}
-
-	//if (!ushikoGround)
-		//ushiko.groundLevel = -5000;
 }
 
 void LevelGenerator::updateEnemies(core::Siika2D *siika, glm::vec2 ushikoPos)
@@ -285,13 +282,13 @@ void LevelGenerator::updateEnemies(core::Siika2D *siika, glm::vec2 ushikoPos)
 			if (e->rising)
 			{
 				e->go->move(glm::vec2(e->xPos, e->yPos -= 2));
-				if (e->yPos < e->yLevel - 10)
+				if (e->yPos < e->yLevel - 12)
 					e->rising = false;
 			}
 			else
 			{
 				e->go->move(glm::vec2(e->xPos, e->yPos += 2));
-				if (e->yPos > e->yLevel + 10)
+				if (e->yPos > e->yLevel + 12)
 					e->rising = true;
 			}
 		}
@@ -311,7 +308,6 @@ void LevelGenerator::updateEnemies(core::Siika2D *siika, glm::vec2 ushikoPos)
 				heartsplode(siika, e->xPos, e->yPos);
 			}
 			else ushiko.health -= 1;
-
 			e->hasHit = true;
 		}
 

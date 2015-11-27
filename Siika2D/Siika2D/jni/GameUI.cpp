@@ -1,7 +1,6 @@
 #include "GameUI.hpp"
 #include "Ushiko.hpp"
 
-
 #include <sstream>
 
 GameUI::GameUI()
@@ -63,6 +62,8 @@ void GameUI::init(core::Siika2D *siika, std::string levelName, Boss *boss)
 		heartIcons[i]->move(glm::vec2(i * 128, 0));
 		heartIcons[i]->update();
 	}
+
+	/* ----- Initialize the boss stuff ----- */
 
 	if (levelName == "boss")
 	{
@@ -126,10 +127,10 @@ void GameUI::init(core::Siika2D *siika, std::string levelName, Boss *boss)
 
 	ushiko.coinCount = 0;
 
-	gemTextUI = siika->_textManager->createText();
+	/*gemTextUI = siika->_textManager->createText();
 	gemTextUI->setFont("arial.ttf");
 	gemTextUI->setPosition(-0.95, -0.95);
-	gemTextUI->setFontSize(64);
+	gemTextUI->setFontSize(64);*/
 
 	pointsTextUI = siika->_textManager->createText();
 	pointsTextUI->setFont("arial.ttf");
@@ -149,10 +150,11 @@ void GameUI::deInit()
 	delete pauseButton;
 
 	pointsTextUI->setText("");
-	gemTextUI->setText("");
+	//gemTextUI->setText("");
 
 	for (int i = 0; i < 3; i++)
 		delete heartIcons[i];
+
 	if (bossHeartIcons.size() > 0)
 	{
 		for (int i = 0; i < 10; i++)
@@ -209,17 +211,15 @@ int GameUI::update(core::Siika2D *siika, Boss *boss)
 		bossHeartCount = boss->bossHealth;
 	}
 
-	{
-		//std::ostringstream gemText;
-		//gemText << ushiko.coinCount << " / " << ushiko.maxCoins;
-		//gemTextUI->setText(gemText.str());
-		std::ostringstream pointsText;
-		pointsText << ushiko.pointsAmount;
-		pointsTextUI->setText(pointsText.str());
+	/*std::ostringstream gemText;
+	gemText << ushiko.coinCount << " / " << ushiko.maxCoins;
+	gemTextUI->setText(gemText.str());*/
 
-	}
+	std::ostringstream pointsText;
+	pointsText << ushiko.pointsAmount;
+	pointsTextUI->setText(pointsText.str());
 
-	touchPosition = glm::vec2(0, 0);
+	glm::vec2 touchPosition = glm::vec2(0, 0);
 	if (inputTimer.getElapsedTime(SECONDS) > 0.5)
 	{
 		for (int i = 0; i < siika->_input->touchPositionsActive(); i++)

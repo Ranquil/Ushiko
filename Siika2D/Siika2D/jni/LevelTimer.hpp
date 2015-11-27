@@ -1,4 +1,4 @@
-#ifndef LEVELTIMER_H
+/*#ifndef LEVELTIMER_H
 #define LEVELTIMER_H
 
 #include "../engine/core/Siika2D.h"
@@ -21,4 +21,4 @@ private:
 	graphics::Text *levelTimerText; 
 };
 
-#endif // LEVELTIMER_H
+#endif // LEVELTIMER_H*/

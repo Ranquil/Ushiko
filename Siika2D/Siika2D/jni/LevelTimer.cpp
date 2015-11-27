@@ -1,4 +1,4 @@
-#include "LevelTimer.hpp"
+/*#include "LevelTimer.hpp"
 
 #include <sstream>
 
@@ -36,4 +36,4 @@ void LevelTimer::update()
 	std::ostringstream timerOstring;
 	timerOstring << timerMinutes << (levelTimer->getElapsedTime(SECONDS) < 10 ? ":0" : ":") << (int)(levelTimer->getElapsedTime(SECONDS)) << "/2:00";
 	levelTimerText->setText(timerOstring.str());
-}
+}*/
