@@ -81,8 +81,7 @@ int Level::update(core::Siika2D *siika)
 	int state;
 	if (levelName == "boss")
 		state = gameUI->update(siika, boss);
-	else
-		state = gameUI->update(siika);
+	else state = gameUI->update(siika);
 
 	if (state == PAUSE)
 		pause();
@@ -136,7 +135,7 @@ int Level::update(core::Siika2D *siika)
 	siika->_textManager->drawTexts();
 	siika->_graphicsContext->swap();
 
-	if (boss->bossHealth <= 0)
+	if (boss != nullptr && boss->bossHealth <= 0)
 	{
 		delete ushiko.go;
 		return MAIN_MENU;

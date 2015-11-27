@@ -111,6 +111,7 @@ void GameUI::init(core::Siika2D *siika, std::string levelName, Boss *boss)
 				bossHeartIcons[i]->move(heartPos);
 			}
 	}
+	else bossText = nullptr;
 
 	/* ----- Initialize other objects and variables ----- */
 
@@ -138,7 +139,9 @@ void GameUI::init(core::Siika2D *siika, std::string levelName, Boss *boss)
 	lastState = RESUME;
 	inputTimer.start();
 	heartCount = ushiko.health;
-	bossHeartCount = boss->bossHealth;
+
+	if (levelName == "boss")
+		bossHeartCount = boss->bossHealth;
 }
 
 void GameUI::deInit()
@@ -155,7 +158,8 @@ void GameUI::deInit()
 		for (int i = 0; i < 10; i++)
 			delete bossHeartIcons[i];
 	}
-	delete bossText;
+	if (bossText != nullptr)
+		delete bossText;
 }
 
 bool isIntersecting(glm::vec2 touchPosition, glm::vec2 box)
@@ -192,19 +196,18 @@ int GameUI::update(core::Siika2D *siika, Boss *boss)
 		pointsTextUI->setPosition(0.80, -0.95);
 	else if (ushiko.pointsAmount > 1000 && ushiko.pointsAmount < 9999)
 		pointsTextUI->setPosition(0.75, -0.95);
-	else
-		pointsTextUI->setPosition(0.90, -0.95);
-
+	else pointsTextUI->setPosition(0.90, -0.95);
 
 	if (ushiko.health != heartCount)
 		changeTexture(heartIcons[ushiko.health], siika, "ui_heart_hurt.png",glm::vec2(64,64));
 
 	heartCount = ushiko.health;
 
-	if (boss->bossHealth != bossHeartCount)
+	if (boss != nullptr && boss->bossHealth != bossHeartCount)
+	{
 		changeTexture(bossHeartIcons[boss->bossHealth], siika, "ui_bosslifebar_hearthurt.png", glm::vec2(64, 64));
-
-	bossHeartCount = boss->bossHealth;
+		bossHeartCount = boss->bossHealth;
+	}
 
 	{
 		//std::ostringstream gemText;

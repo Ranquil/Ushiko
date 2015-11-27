@@ -19,6 +19,6 @@
       </intent-filter>
     </activity>
   <activity android:name="com.nvidia.pentak.LaunchProxy" android:noHistory="true"><intent-filter><action android:name="android.intent.action.MAIN" /></intent-filter></activity></application>
-
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
 </manifest> 
 <!-- END_INCLUDE(manifest) -->

@@ -19,7 +19,7 @@ void Ushiko::init(core::Siika2D *siika)
 	anim = IDLE;
 	animTimer.start();
 
-	graphics::Texture *ushikoTexture = siika->_textureManager->createTexture("sprite_ushiko.png");
+	graphics::Texture *ushikoTexture = siika->_textureManager->createTexture("sprite_ushiko_1.png");
 
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
@@ -27,7 +27,7 @@ void Ushiko::init(core::Siika2D *siika)
 		glm::vec2(64, 64),
 		ushikoTexture,
 		glm::vec2(0, 0),
-		glm::vec2(0.2, 0.2))));
+		glm::vec2(0.25, 0.25))));
 	misc::PhysicsComponent *physComp = new misc::PhysicsComponent;
 	misc::TransformComponent *trnsComp = new misc::TransformComponent;
 
@@ -92,10 +92,13 @@ void Ushiko::update(core::Siika2D *siika)
 	{
 		go->update();
 
-		if (anim != RUN && anim != JUMP_START)
+		if (anim != RUN && anim != JUMP_START && anim != JUMP_MIDDLE)
 			anim = RUN;
-		else if (anim == JUMP_START && jumpTimer.getElapsedTime(SECONDS) > 0.4)
+		else if (anim == JUMP_START && jumpTimer.getElapsedTime(SECONDS) > 0.2)
+		{
+			ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(2, 2);
 			anim = JUMP_MIDDLE;
+		}
 
 		if (canJump || !doubleJump)
 		{
@@ -113,6 +116,7 @@ void Ushiko::update(core::Siika2D *siika)
 
 				jumpTimer.reset();
 				anim = JUMP_START;
+				ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(0, 1);
 			}
 			// Dash (tap on the right side of the screen)
 			else if (xOffset <= 0 && dashTimer.getElapsedTime(SECONDS) > 0.8f &&
@@ -140,7 +144,10 @@ void Ushiko::update(core::Siika2D *siika)
 			canJump = true;
 			
 			if (anim == JUMP_MIDDLE)
+			{
+				ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(3, 3);
 				anim = JUMP_END;
+			}
 			else anim = RUN;
 		}
 	}
@@ -154,10 +161,10 @@ void Ushiko::animate(int prev)
 		switch (anim)
 		{
 			case RUN: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(0, 3); break;
-			case DASH: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(4, 7); break;
-			case JUMP_START: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(0, 1); break;
-			case JUMP_MIDDLE: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(2, 2); break;
-			case JUMP_END: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(3, 3); break;
+			case DASH: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(4, 8); break;
+			//case JUMP_START: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(0, 1); break;
+			//case JUMP_MIDDLE: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(2, 2); break;
+			//case JUMP_END: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(3, 3); break;
 			default: break;
 		}
 		animTimer.reset();
