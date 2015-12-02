@@ -44,6 +44,7 @@ public:
 private:
 	misc::GameObject *bossFront;
 	misc::GameObject *bossBack;
+	float bossDirection = 1.4f;
 	std::vector<Projectile*> projectiles;
 	misc::Timer projectileTimer;
 	misc::Timer animTimer;

@@ -27,12 +27,12 @@ void Boss::init(core::Siika2D *siika)
 		glm::vec2(0, 0),
 		glm::vec2(0.5, 0.5))));
 	misc::TransformComponent *trnsComp = new misc::TransformComponent;
-	sprtComp->setZ(90);
+	sprtComp->setZ(0);
 
 	bossFront->addComponent(sprtComp);
 	bossFront->addComponent(trnsComp);
 
-	bossFront->move(glm::vec2(screenSize.x, -screenSize.y / 2));
+	bossFront->move(glm::vec2(screenSize.x + 256, -screenSize.y / 2));
 	bossBack = new misc::GameObject;
 
 	graphics::Texture *bossTexture2 = siika->_textureManager->createTexture("sprite_tentacles_back.png");
@@ -45,12 +45,12 @@ void Boss::init(core::Siika2D *siika)
 		glm::vec2(0, 0),
 		glm::vec2(0.5, 0.5))));
 	misc::TransformComponent *trnsComp2 = new misc::TransformComponent;
-	sprtComp->setZ(0);
+	sprtComp->setZ(90);
 
 	bossBack->addComponent(sprtComp2);
 	bossBack->addComponent(trnsComp2);
 
-	bossBack->move(glm::vec2(screenSize.x, -screenSize.y / 2));
+	bossBack->move(glm::vec2(screenSize.x + 256, -screenSize.y / 2));
 
 	projectileTimer.start();
 	animTimer.start();
@@ -122,6 +122,7 @@ void Boss::update(core::Siika2D *siika)
 
 	glm::vec2 ushikoPos = siika->transfCrds()->deviceToUser(ushiko.go->getComponent<misc::TransformComponent>()->getPosition());
 	glm::vec2 bossPos = siika->transfCrds()->deviceToUser(bossFront->getComponent<misc::TransformComponent>()->getPosition());
+	glm::vec2 bossBackPos = siika->transfCrds()->deviceToUser(bossBack->getComponent<misc::TransformComponent>()->getPosition());
 	Projectile *deletep = nullptr;
 	for (Projectile* p : projectiles)
 	{
@@ -166,4 +167,12 @@ void Boss::update(core::Siika2D *siika)
 		bossBack->getComponent<misc::SpriteComponent>()->getSprite()->step();
 		animTimer.reset();
 	}
+	bossFront->getComponent<misc::GameObject>()->move(glm::vec2(bossPos.x -= bossDirection, bossPos.y));
+	bossBack->getComponent<misc::GameObject>()->move(glm::vec2(bossPos.x -= bossDirection, bossPos.y));
+	if (bossPos.x < screenSize.x || bossPos.x > screenSize.x + 256)
+	{
+		bossDirection = -bossDirection;
+	}
+
+
 }
