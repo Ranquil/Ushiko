@@ -167,8 +167,8 @@ void Boss::update(core::Siika2D *siika)
 		bossBack->getComponent<misc::SpriteComponent>()->getSprite()->step();
 		animTimer.reset();
 	}
-	bossFront->getComponent<misc::GameObject>()->move(glm::vec2(bossPos.x -= bossDirection, bossPos.y));
-	bossBack->getComponent<misc::GameObject>()->move(glm::vec2(bossPos.x -= bossDirection, bossPos.y));
+	bossFront->move(glm::vec2(bossPos.x -= bossDirection, bossPos.y));
+	bossBack->move(glm::vec2(bossPos.x -= bossDirection, bossPos.y));
 	if (bossPos.x < screenSize.x || bossPos.x > screenSize.x + 256)
 	{
 		bossDirection = -bossDirection;
