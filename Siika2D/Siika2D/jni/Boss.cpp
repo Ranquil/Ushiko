@@ -14,7 +14,6 @@ Boss::~Boss()
 void Boss::init(core::Siika2D *siika)
 {
 	bossFront = new misc::GameObject;
-	bossBack = new misc::GameObject;
 
 	screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
 
@@ -22,35 +21,36 @@ void Boss::init(core::Siika2D *siika)
 
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
-		glm::vec2(256, 256),
-		glm::vec2(256, 0),
+		glm::vec2(768, 768),
+		glm::vec2(768, 384),
 		bossTexture,
 		glm::vec2(0, 0),
-		glm::vec2(0.25, 0.25))));
+		glm::vec2(0.5, 0.5))));
 	misc::TransformComponent *trnsComp = new misc::TransformComponent;
-	sprtComp->setZ(100);
+	sprtComp->setZ(90);
 
 	bossFront->addComponent(sprtComp);
 	bossFront->addComponent(trnsComp);
 
-	//bossFront->move(glm::vec2(screenSize.x, 0));
+	bossFront->move(glm::vec2(screenSize.x, -screenSize.y / 2));
+	bossBack = new misc::GameObject;
 
 	graphics::Texture *bossTexture2 = siika->_textureManager->createTexture("sprite_tentacles_back.png");
 
 	misc::SpriteComponent *sprtComp2 = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
-		glm::vec2(256, 256),
-		glm::vec2(256, 0),
+		glm::vec2(768, 768),
+		glm::vec2(768, 384),
 		bossTexture2,
 		glm::vec2(0, 0),
-		glm::vec2(0.25, 0.25))));
+		glm::vec2(0.5, 0.5))));
 	misc::TransformComponent *trnsComp2 = new misc::TransformComponent;
-	sprtComp->setZ(10);
+	sprtComp->setZ(0);
 
 	bossBack->addComponent(sprtComp2);
 	bossBack->addComponent(trnsComp2);
 
-	//bossBack->move(glm::vec2(screenSize.x, 0));
+	bossBack->move(glm::vec2(screenSize.x, -screenSize.y / 2));
 
 	projectileTimer.start();
 	animTimer.start();
@@ -160,7 +160,7 @@ void Boss::update(core::Siika2D *siika)
 	}
 	bossFront->update();
 	bossBack->update();
-	if (animTimer.getElapsedTime(MILLISECONDS) >= 500)
+	if (animTimer.getElapsedTime(MILLISECONDS) >= 100)
 	{
 		bossFront->getComponent<misc::SpriteComponent>()->getSprite()->step();
 		bossBack->getComponent<misc::SpriteComponent>()->getSprite()->step();
