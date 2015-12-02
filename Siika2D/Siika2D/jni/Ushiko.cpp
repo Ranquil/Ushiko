@@ -59,6 +59,9 @@ void Ushiko::init(core::Siika2D *siika)
 	currentFrame = animations[IDLE].startPos;
 	animTimer.start();
 
+	airTimer.start();
+	airTimer.pause();
+
 	health = healthMax;
 	pointsAmount = 0;
 
@@ -132,6 +135,8 @@ void Ushiko::update(core::Siika2D *siika)
 
 		if (canJump || !doubleJump)
 		{
+			int ushikoPos = go->getComponent<misc::TransformComponent>()->getPosition().y;
+
 			// Jump (tap on the left side of the screen)
 			if (jumpTimer.getElapsedTime(SECONDS) > 0.2 && touchPos.x > 10 &&
 				touchPos.x < siika->_graphicsContext->getDisplaySize().x / 2)
@@ -145,11 +150,13 @@ void Ushiko::update(core::Siika2D *siika)
 				{
 					canJump = false;
 					currentAnimation = JUMP_START;
+					airTimer.reset();
 				}
-				else if (!doubleJump)
+				else if (!doubleJump && airTimer.getElapsedTime(MILLISECONDS) > 300)
 				{
 					doubleJump = true;
 					currentAnimation = DOUBLE_JUMP;
+					airTimer.pause();
 				}
 			}
 			// Dash (tap on the right side of the screen)

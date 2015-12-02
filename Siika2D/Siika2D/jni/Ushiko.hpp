@@ -59,6 +59,7 @@ private:
 	bool canJump;
 	bool doubleJump;
 	misc::Timer jumpTimer;
+	misc::Timer airTimer;
 
 	int xOffset;
 	glm::vec2 originalPos;
