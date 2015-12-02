@@ -42,9 +42,11 @@ public:
 	const int bossMaxHealth = 10;
 	int bossHealth;
 private:
-	misc::GameObject *boss;
+	misc::GameObject *bossFront;
+	misc::GameObject *bossBack;
 	std::vector<Projectile*> projectiles;
 	misc::Timer projectileTimer;
+	misc::Timer animTimer;
 	glm::vec2 screenSize;
 };
 

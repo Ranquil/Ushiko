@@ -13,11 +13,12 @@ Boss::~Boss()
 
 void Boss::init(core::Siika2D *siika)
 {
-	boss = new misc::GameObject;
+	bossFront = new misc::GameObject;
+	bossBack = new misc::GameObject;
 
 	screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
 
-	graphics::Texture *bossTexture = siika->_textureManager->createTexture("panda.png");
+	graphics::Texture *bossTexture = siika->_textureManager->createTexture("sprite_tentacles_front.png");
 
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
@@ -25,22 +26,41 @@ void Boss::init(core::Siika2D *siika)
 		glm::vec2(256, 0),
 		bossTexture,
 		glm::vec2(0, 0),
-		glm::vec2(1, 1))));
+		glm::vec2(0.25, 0.25))));
 	misc::TransformComponent *trnsComp = new misc::TransformComponent;
-	sprtComp->setZ(30);
+	sprtComp->setZ(100);
 
-	boss->addComponent(sprtComp);
-	boss->addComponent(trnsComp);
+	bossFront->addComponent(sprtComp);
+	bossFront->addComponent(trnsComp);
 
-	boss->move(glm::vec2(screenSize.x, 0));
+	//bossFront->move(glm::vec2(screenSize.x, 0));
+
+	graphics::Texture *bossTexture2 = siika->_textureManager->createTexture("sprite_tentacles_back.png");
+
+	misc::SpriteComponent *sprtComp2 = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
+		glm::vec2(0, 0),
+		glm::vec2(256, 256),
+		glm::vec2(256, 0),
+		bossTexture2,
+		glm::vec2(0, 0),
+		glm::vec2(0.25, 0.25))));
+	misc::TransformComponent *trnsComp2 = new misc::TransformComponent;
+	sprtComp->setZ(10);
+
+	bossBack->addComponent(sprtComp2);
+	bossBack->addComponent(trnsComp2);
+
+	//bossBack->move(glm::vec2(screenSize.x, 0));
 
 	projectileTimer.start();
+	animTimer.start();
 	bossHealth = bossMaxHealth;
 }
 
 void Boss::deInit()
 {
-	delete boss;
+	delete bossFront;
+	delete bossBack;
 	for (Projectile* p : projectiles)
 		delete p;
 }
@@ -73,7 +93,7 @@ void Boss::spawnProjectile(core::Siika2D *siika)
 	go->addComponent(sprtComp);
 	go->addComponent(trnsComp);
 
-	glm::vec2 bossPos = siika->transfCrds()->deviceToUser(boss->getComponent<misc::TransformComponent>()->getPosition());
+	glm::vec2 bossPos = siika->transfCrds()->deviceToUser(bossFront->getComponent<misc::TransformComponent>()->getPosition());
 	Projectile *p = new Projectile(go, PT);
 	if (PT == DAMAGING)
 		p->gameObject->getComponent<misc::SpriteComponent>()->getSprite()->setColor(graphics::Color(255, 0, 0, 255));
@@ -101,7 +121,7 @@ void Boss::update(core::Siika2D *siika)
 	}
 
 	glm::vec2 ushikoPos = siika->transfCrds()->deviceToUser(ushiko.go->getComponent<misc::TransformComponent>()->getPosition());
-	glm::vec2 bossPos = siika->transfCrds()->deviceToUser(boss->getComponent<misc::TransformComponent>()->getPosition());
+	glm::vec2 bossPos = siika->transfCrds()->deviceToUser(bossFront->getComponent<misc::TransformComponent>()->getPosition());
 	Projectile *deletep = nullptr;
 	for (Projectile* p : projectiles)
 	{
@@ -138,5 +158,12 @@ void Boss::update(core::Siika2D *siika)
 		projectiles.erase(std::remove(projectiles.begin(), projectiles.end(), deletep), projectiles.end());
 		delete deletep;
 	}
-	boss->update();
+	bossFront->update();
+	bossBack->update();
+	if (animTimer.getElapsedTime(MILLISECONDS) >= 500)
+	{
+		bossFront->getComponent<misc::SpriteComponent>()->getSprite()->step();
+		bossBack->getComponent<misc::SpriteComponent>()->getSprite()->step();
+		animTimer.reset();
+	}
 }
