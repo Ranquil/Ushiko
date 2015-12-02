@@ -29,14 +29,14 @@ void Collectable::init(core::Siika2D *siika, bool isHeart)
 	}
 	else
 		collectableTexture = siika->_textureManager->createTexture("ui_heart_full.png");
-
+	
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
 		glm::vec2(64, 64),
 		glm::vec2(32, 32),
 		collectableTexture,
 		glm::vec2(0, 0),
-		glm::vec2(0.5, 0.5))));
+		isHeart ? glm::vec2(1, 1) : glm::vec2(0.5,0.5))));
 	misc::TransformComponent *trnsComp = new misc::TransformComponent;
 	sprtComp->setZ(20);
 
@@ -48,7 +48,7 @@ void Collectable::init(core::Siika2D *siika, bool isHeart)
 
 void Collectable::update()
 {
-	if (animTimer.getElapsedTime(SECONDS) > 0.1f)
+	if (animTimer.getElapsedTime(SECONDS) > 0.1f && isHeart == false)
 	{
 		animTimer.reset();
 		go->getComponent<misc::SpriteComponent>()->getSprite()->step();

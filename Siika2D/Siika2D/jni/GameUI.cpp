@@ -200,8 +200,10 @@ int GameUI::update(core::Siika2D *siika, Boss *boss)
 		pointsTextUI->setPosition(0.75, -0.95);
 	else pointsTextUI->setPosition(0.90, -0.95);
 
-	if (ushiko.health != heartCount)
+	if (ushiko.health < heartCount)
 		changeTexture(heartIcons[ushiko.health], siika, "ui_heart_hurt.png",glm::vec2(64,64));
+	else if (ushiko.health > heartCount)
+		changeTexture(heartIcons[ushiko.health - 1], siika, "ui_heart_full.png", glm::vec2(64, 64));
 
 	heartCount = ushiko.health;
 
