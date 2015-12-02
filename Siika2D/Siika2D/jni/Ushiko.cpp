@@ -13,6 +13,8 @@ Ushiko::Ushiko()
 	animations[JUMP_MIDDLE] = { 1, 2, 1, false };
 	animations[JUMP_END]    = { 1, 3, 1, false };
 	animations[DOUBLE_JUMP] = { 2, 8, 7, false };
+
+	sheetsLoaded = false;
 }
 
 Ushiko::~Ushiko()
@@ -24,15 +26,22 @@ void Ushiko::init(core::Siika2D *siika)
 {
 	go = new misc::GameObject;
 
-	graphics::Texture *tex1 = siika->_textureManager->createTexture("sprite_ushiko_1.png");
+	if (!sheetsLoaded)
+	{
+		sheets.clear();
+		sheets.push_back(siika->_textureManager->createTexture("sprite_ushiko_1.png"));
+		sheets.push_back(siika->_textureManager->createTexture("sprite_ushiko_2.png"));
+		sheetsLoaded = true;
+	}
 
 	misc::SpriteComponent *sheet = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
 		glm::vec2(128, 128),
 		glm::vec2(64, 64),
-		tex1,
+		sheets[0],
 		glm::vec2(0, 0),
 		glm::vec2(0.25, 0.25))));
+
 	misc::PhysicsComponent *physComp = new misc::PhysicsComponent;
 	misc::TransformComponent *trnsComp = new misc::TransformComponent;
 
@@ -45,6 +54,7 @@ void Ushiko::init(core::Siika2D *siika)
 
 	go->move(glm::vec2(-1000, 0));
 
+	prevChange = 0;
 	currentAnimation = IDLE;
 	currentFrame = animations[IDLE].startPos;
 	animTimer.start();
@@ -63,24 +73,23 @@ void Ushiko::init(core::Siika2D *siika)
 
 void Ushiko::changeSheet(core::Siika2D *siika, unsigned int sheetNum)
 {
-	go->removeComponent<misc::SpriteComponent>();
-	graphics::Texture *newTexture;
-	if (sheetNum == 1)
-		newTexture = siika->_textureManager->createTexture("sprite_ushiko_1.png");
-	else newTexture = siika->_textureManager->createTexture("sprite_ushiko_2.png");
+	if (sheetNum != prevChange)
+	{
+		go->removeComponent<misc::SpriteComponent>();
+		glm::vec2 location = go->getComponent<misc::TransformComponent>()->getPosition();
 
-	glm::vec2 location = go->getComponent<misc::TransformComponent>()->getPosition();
+		misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
+			location,
+			glm::vec2(128, 128),
+			glm::vec2(64, 64),
+			sheets[sheetNum],
+			glm::vec2(0, 0),
+			glm::vec2(0.25, 0.25))));
+		sprtComp->setZ(10);
 
-	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
-		location,
-		glm::vec2(128, 128),
-		glm::vec2(64, 64),
-		newTexture,
-		glm::vec2(0, 0),
-		glm::vec2(0.25, 0.25))));
-	sprtComp->setZ(10);
-
-	go->addComponent(sprtComp);
+		go->addComponent(sprtComp);
+		prevChange = sheetNum;
+	}
 }
 
 void Ushiko::update(core::Siika2D *siika)
@@ -105,10 +114,7 @@ void Ushiko::update(core::Siika2D *siika)
 			{
 				xOffset += 20;
 				if (xOffset >= 200)
-				{
 					dashing = false;
-					currentAnimation = RUN;
-				}
 			}
 			else
 			{
@@ -170,6 +176,8 @@ void Ushiko::update(core::Siika2D *siika)
 
 			if (currentAnimation == JUMP_MIDDLE)
 				currentAnimation = JUMP_END;
+			else if (currentAnimation != RUN)
+				currentAnimation = RUN;
 
 			doubleJump = false;
 			canJump = true;
@@ -184,13 +192,12 @@ void Ushiko::update(core::Siika2D *siika)
 		animation anim = animations[currentAnimation];
 		bool updateFrame = false;
 
+		// If the new animation is in a different sheet, change to it
+		changeSheet(siika, anim.sheet - 1);
+
 		// Check if the animation has changed
 		if (currentAnimation != previousAnimation)
 		{
-			// If the new animation is in a different sheet, change to it
-			if (anim.sheet != animations[previousAnimation].sheet)
-				changeSheet(siika, anim.sheet);
-
 			// Set the new animation frame
 			currentFrame = anim.startPos;
 			updateFrame = true;
@@ -200,12 +207,19 @@ void Ushiko::update(core::Siika2D *siika)
 			currentFrame += 1;
 
 			// Check if the frame goes above the frame amount of the animation
-			if (currentFrame > anim.startPos + anim.frames)
+			if (currentFrame > anim.startPos + anim.frames - 1)
 			{
 				// If it's a looping animation, go back to the start
 				if (anim.loop)
 				{
 					currentFrame = anim.startPos;
+					updateFrame = true;
+				}
+				// Transition from dash to run
+				else if (currentAnimation == DASH)
+				{
+					currentAnimation = RUN;
+					currentFrame = animations[RUN].startPos;
 					updateFrame = true;
 				}
 				// Transition from start of a jump to the middle
