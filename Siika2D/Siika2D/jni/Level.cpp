@@ -71,7 +71,8 @@ void Level::init(core::Siika2D *siika)
 
 void Level::deInit()
 {
-	theme->stop();
+	delete theme;
+	delete coin;
 
 	bg->setPosition(glm::vec2(-3000, 0));
 
