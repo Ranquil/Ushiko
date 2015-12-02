@@ -5,19 +5,33 @@
 #include "../engine/misc/GameObject.h"
 #include "../engine/misc/Timer.h"
 
-enum animState
-{
-	IDLE,
-	RUN,
-	DASH,
-	JUMP_START,
-	JUMP_MIDDLE,
-	JUMP_END,
-	MAGIC
-};
+#include <map>
 
 class Ushiko
 {
+	enum animState
+	{
+		IDLE,
+		RUN,
+		DASH,
+		JUMP_START,
+		JUMP_MIDDLE,
+		JUMP_END,
+		DOUBLE_JUMP
+	};
+	typedef struct {
+		unsigned int sheet;
+		unsigned int startPos;
+		unsigned int frames;
+		bool loop;
+	} animation;
+
+	animState currentAnimation;
+	unsigned int currentFrame;
+
+	std::map<animState, animation> animations;
+	misc::Timer animTimer;
+
 public:
 	Ushiko();
 	~Ushiko();
@@ -37,9 +51,7 @@ public:
 	misc::GameObject *go;
 
 private:
-	animState anim;
-	void animate(int prev);
-	misc::Timer animTimer;
+	void changeSheet(core::Siika2D *siika, unsigned int sheetNum);
 
 	bool canJump;
 	bool doubleJump;

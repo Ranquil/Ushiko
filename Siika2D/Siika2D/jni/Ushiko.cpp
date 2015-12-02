@@ -4,7 +4,15 @@ Ushiko ushiko;
 
 Ushiko::Ushiko()
 {
+	// Set up all the animations (sheet, starting frame, frame amount, loop)
 
+	animations[IDLE]        = { 1, 9, 1, false };
+	animations[RUN]         = { 2, 0, 8, true  };
+	animations[DASH]        = { 1, 4, 5, false };
+	animations[JUMP_START]  = { 1, 0, 2, false };
+	animations[JUMP_MIDDLE] = { 1, 2, 1, false };
+	animations[JUMP_END]    = { 1, 3, 1, false };
+	animations[DOUBLE_JUMP] = { 2, 8, 7, false };
 }
 
 Ushiko::~Ushiko()
@@ -16,29 +24,30 @@ void Ushiko::init(core::Siika2D *siika)
 {
 	go = new misc::GameObject;
 
-	anim = IDLE;
-	animTimer.start();
+	graphics::Texture *tex1 = siika->_textureManager->createTexture("sprite_ushiko_1.png");
 
-	graphics::Texture *ushikoTexture = siika->_textureManager->createTexture("sprite_ushiko_1.png");
-
-	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
+	misc::SpriteComponent *sheet = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
 		glm::vec2(128, 128),
 		glm::vec2(64, 64),
-		ushikoTexture,
+		tex1,
 		glm::vec2(0, 0),
 		glm::vec2(0.25, 0.25))));
 	misc::PhysicsComponent *physComp = new misc::PhysicsComponent;
 	misc::TransformComponent *trnsComp = new misc::TransformComponent;
 
 	physComp->setGravityScale(2);
-	sprtComp->setZ(10);
+	sheet->setZ(10);
 
 	go->addComponent(trnsComp);
-	go->addComponent(sprtComp);
+	go->addComponent(sheet);
 	go->addComponent(physComp);
 
 	go->move(glm::vec2(-1000, 0));
+
+	currentAnimation = IDLE;
+	currentFrame = animations[IDLE].startPos;
+	animTimer.start();
 
 	health = healthMax;
 	pointsAmount = 0;
@@ -52,6 +61,28 @@ void Ushiko::init(core::Siika2D *siika)
 	xOffset = 0;
 }
 
+void Ushiko::changeSheet(core::Siika2D *siika, unsigned int sheetNum)
+{
+	go->removeComponent<misc::SpriteComponent>();
+	graphics::Texture *newTexture;
+	if (sheetNum == 1)
+		newTexture = siika->_textureManager->createTexture("sprite_ushiko_1.png");
+	else newTexture = siika->_textureManager->createTexture("sprite_ushiko_2.png");
+
+	glm::vec2 location = go->getComponent<misc::TransformComponent>()->getPosition();
+
+	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
+		location,
+		glm::vec2(128, 128),
+		glm::vec2(64, 64),
+		newTexture,
+		glm::vec2(0, 0),
+		glm::vec2(0.25, 0.25))));
+	sprtComp->setZ(10);
+
+	go->addComponent(sprtComp);
+}
+
 void Ushiko::update(core::Siika2D *siika)
 {
 	if (health > healthMax)
@@ -61,7 +92,8 @@ void Ushiko::update(core::Siika2D *siika)
 	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
 		touchPos = siika->transfCrds()->deviceToUser(siika->_input->touchPosition(i)._positionStart);
 
-	int prevAnim = anim;
+	// Get the current animation
+	animState previousAnimation = currentAnimation;
 
 	// Ushiko is dashing
 	if (xOffset > 0)
@@ -75,7 +107,7 @@ void Ushiko::update(core::Siika2D *siika)
 				if (xOffset >= 200)
 				{
 					dashing = false;
-					anim = RUN;
+					currentAnimation = RUN;
 				}
 			}
 			else
@@ -92,14 +124,6 @@ void Ushiko::update(core::Siika2D *siika)
 	{
 		go->update();
 
-		if (anim != RUN && anim != JUMP_START && anim != JUMP_MIDDLE)
-			anim = RUN;
-		else if (anim == JUMP_START && jumpTimer.getElapsedTime(SECONDS) > 0.2)
-		{
-			ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(2, 2);
-			anim = JUMP_MIDDLE;
-		}
-
 		if (canJump || !doubleJump)
 		{
 			// Jump (tap on the left side of the screen)
@@ -109,14 +133,18 @@ void Ushiko::update(core::Siika2D *siika)
 				ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
 				ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 48), false);
 
-				if (canJump)
-					canJump = false;
-				else if (!doubleJump)
-					doubleJump = true;
-
 				jumpTimer.reset();
-				anim = JUMP_START;
-				ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(0, 1);
+
+				if (canJump)
+				{
+					canJump = false;
+					currentAnimation = JUMP_START;
+				}
+				else if (!doubleJump)
+				{
+					doubleJump = true;
+					currentAnimation = DOUBLE_JUMP;
+				}
 			}
 			// Dash (tap on the right side of the screen)
 			else if (xOffset <= 0 && dashTimer.getElapsedTime(SECONDS) > 0.8f &&
@@ -124,10 +152,10 @@ void Ushiko::update(core::Siika2D *siika)
 			{
 				if (xOffset <= 0)
 				{
+					currentAnimation = DASH;
 					dashing = true;
 					xOffset = 10;
 					originalPos = siika->transfCrds()->deviceToUser(ushiko.go->getComponent<misc::TransformComponent>()->getPosition());
-					anim = DASH;
 				}
 				dashTimer.reset();
 			}
@@ -140,33 +168,68 @@ void Ushiko::update(core::Siika2D *siika)
 			ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
 			ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 10), false);
 
+			if (currentAnimation == JUMP_MIDDLE)
+				currentAnimation = JUMP_END;
+
 			doubleJump = false;
 			canJump = true;
-			
-			if (anim == JUMP_MIDDLE)
-			{
-				ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(3, 3);
-				anim = JUMP_END;
-			}
-			else anim = RUN;
 		}
 	}
-	animate(prevAnim);
-}
 
-void Ushiko::animate(int prev)
-{
-	if (animTimer.getElapsedTime(SECONDS) > 0.1 || anim != prev)
+	if (animTimer.getElapsedTime(MILLISECONDS) > 100)
 	{
-		switch (anim)
-		{
-			case RUN: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(0, 3); break;
-			case DASH: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(4, 8); break;
-			//case JUMP_START: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(0, 1); break;
-			//case JUMP_MIDDLE: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(2, 2); break;
-			//case JUMP_END: ushiko.go->getComponent<misc::SpriteComponent>()->getSprite()->step(3, 3); break;
-			default: break;
-		}
 		animTimer.reset();
+
+		// Get the current animation
+		animation anim = animations[currentAnimation];
+		bool updateFrame = false;
+
+		// Check if the animation has changed
+		if (currentAnimation != previousAnimation)
+		{
+			// If the new animation is in a different sheet, change to it
+			if (anim.sheet != animations[previousAnimation].sheet)
+				changeSheet(siika, anim.sheet);
+
+			// Set the new animation frame
+			currentFrame = anim.startPos;
+			updateFrame = true;
+		}
+		else // Update the current animation
+		{
+			currentFrame += 1;
+
+			// Check if the frame goes above the frame amount of the animation
+			if (currentFrame > anim.startPos + anim.frames)
+			{
+				// If it's a looping animation, go back to the start
+				if (anim.loop)
+				{
+					currentFrame = anim.startPos;
+					updateFrame = true;
+				}
+				// Transition from start of a jump to the middle
+				else if (currentAnimation == JUMP_START)
+				{
+					currentAnimation = JUMP_MIDDLE;
+					currentFrame = animations[JUMP_MIDDLE].startPos;
+					updateFrame = true;
+				}
+				// Transition from the middle of a jump to the end of it
+				else if (currentAnimation == JUMP_END)
+				{
+					currentAnimation = RUN;
+					currentFrame = animations[RUN].startPos;
+					updateFrame = true;
+				}
+				// Stay on the last frame
+				else currentFrame -= 1;
+			}
+			else updateFrame = true;
+		}
+
+		// If the animation needs updating, update it
+		if (updateFrame)
+			go->getComponent<misc::SpriteComponent>()->getSprite()->step(currentFrame, currentFrame);
 	}
 }
