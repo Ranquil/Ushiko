@@ -27,7 +27,7 @@ void Boss::init(core::Siika2D *siika)
 		glm::vec2(0, 0),
 		glm::vec2(0.5, 0.5))));
 	misc::TransformComponent *trnsComp = new misc::TransformComponent;
-	sprtComp->setZ(0);
+	sprtComp->setZ(90);
 
 	bossFront->addComponent(sprtComp);
 	bossFront->addComponent(trnsComp);
@@ -45,7 +45,7 @@ void Boss::init(core::Siika2D *siika)
 		glm::vec2(0, 0),
 		glm::vec2(0.5, 0.5))));
 	misc::TransformComponent *trnsComp2 = new misc::TransformComponent;
-	sprtComp->setZ(90);
+	sprtComp->setZ(10);
 
 	bossBack->addComponent(sprtComp2);
 	bossBack->addComponent(trnsComp2);
@@ -70,7 +70,7 @@ void Boss::spawnProjectile(core::Siika2D *siika)
 	misc::GameObject *go = new misc::GameObject;
 	ProjectileType PT;
 	
-		int projectileType(lrand48() % 4);
+		int projectileType(lrand48() % 3);
 		if (projectileType == 0)
 			PT = RETURNABLE;
 		else
@@ -96,7 +96,7 @@ void Boss::spawnProjectile(core::Siika2D *siika)
 	glm::vec2 bossPos = siika->transfCrds()->deviceToUser(bossFront->getComponent<misc::TransformComponent>()->getPosition());
 	Projectile *p = new Projectile(go, PT);
 	if (PT == DAMAGING)
-		p->gameObject->getComponent<misc::SpriteComponent>()->getSprite()->setColor(graphics::Color(255, 0, 0, 255));
+		p->gameObject->getComponent<misc::SpriteComponent>()->getSprite()->setColor(graphics::Color(255, 0, 0, 0));
 	p->xPos = bossPos.x;
 	p->yPos = (-screenSize.y / 20) * ((lrand48() % 16 + 2));
 	go->move(glm::vec2(p->xPos, p->yPos));
@@ -114,7 +114,7 @@ bool Boss::isIntersecting(glm::vec2 projectilePosition, glm::vec2 otherPosition)
 
 void Boss::update(core::Siika2D *siika)
 {
-	if (projectileTimer.getElapsedTime(MILLISECONDS) >= 1000)
+	if (projectileTimer.getElapsedTime(MILLISECONDS) >= 1500)
 	{
 		spawnProjectile(siika);
 		projectileTimer.reset();
