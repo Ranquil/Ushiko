@@ -18,7 +18,7 @@ public:
 	Collectable();
 	~Collectable();
 
-	void init(core::Siika2D *siika);
+	void init(core::Siika2D *siika, bool isHeart = false);
 	void deinit();
 
 	void update();
@@ -26,6 +26,7 @@ public:
 	int xPos, yPos;
 	misc::GameObject *go;
 	CoinType coinType;
+	bool isHeart;
 
 private:
 	misc::Timer animTimer;

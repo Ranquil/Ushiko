@@ -7,7 +7,7 @@ LevelGenerator::LevelGenerator(core::Siika2D *siika, std::string name)
 
 	tiles.clear();
 	enemies.clear();
-	coins.clear();
+	collectable.clear();
 	hearts.clear();
 
 	tileMovement = 0;
@@ -33,14 +33,14 @@ LevelGenerator::~LevelGenerator()
 		delete t;
 	for (Enemy *e : enemies)
 		delete e;
-	for (Collectable *c : coins)
+	for (Collectable *c : collectable)
 		delete c;
 	for (Heartsplosion *h : hearts)
 		delete h;
 
 	tiles.clear();
 	enemies.clear();
-	coins.clear();
+	collectable.clear();
 	hearts.clear();
 }
 
@@ -64,7 +64,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 	}
 
 	updateTiles(ushikoPos);
-	updateCoins(ushikoPos);
+	updateCollectable(ushikoPos);
 
 	Heartsplosion *hDelete = nullptr;
 	for (Heartsplosion *h : hearts)
@@ -98,7 +98,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 			// Spawn a coin on every 4th platform, starting from 3rd platform (#2)
 			if (platformNum == 2 && platformSpawned == (int)(platformLength / 2) - 1)
 			{
-				spawnCoin(siika, screenSize.x * 1.8, -yLevel + 220);
+				spawnCollectable(siika, screenSize.x * 1.8, -yLevel + 220);
 			}
 		}
 		else
@@ -228,16 +228,19 @@ void LevelGenerator::spawnEnemy(core::Siika2D *siika, int xPos, int yPos)
 	enemies.push_back(e);
 }
 
-void LevelGenerator::spawnCoin(core::Siika2D *siika, int xPos, int yPos)
+void LevelGenerator::spawnCollectable(core::Siika2D *siika, int xPos, int yPos)
 {
 	Collectable *c = new Collectable;
+	if (generatorName == "boss")
+		c->init(siika, true);
+	else
+		c->init(siika);
 
-	c->init(siika);
 	c->xPos = xPos;
 	c->yPos = yPos;
 	c->go->move(glm::vec2(c->xPos, c->yPos));
 
-	coins.push_back(c);
+	collectable.push_back(c);
 }
 
 void LevelGenerator::updateTiles(glm::vec2 ushikoPos)
@@ -329,25 +332,33 @@ void LevelGenerator::updateEnemies(core::Siika2D *siika, glm::vec2 ushikoPos)
 	}
 }
 
-void LevelGenerator::updateCoins(glm::vec2 ushikoPos)
+void LevelGenerator::updateCollectable(glm::vec2 ushikoPos)
 {
 	Collectable *cDelete = nullptr;
-	for (Collectable *c : coins)
+	for (Collectable *c : collectable)
 	{
 		c->go->update();
 
 		glm::vec2 ushikoPosition = ushiko.go->getComponent<misc::TransformComponent>()->getPosition();
 		if (distance(c->go->getComponent<misc::TransformComponent>()->getPosition(), ushikoPosition) < 50)
 		{
-			if (ushiko.coinCount < ushiko.maxCoins)
-				ushiko.coinCount += 1;
-
-			switch (c->coinType)
+			if (c->isHeart == false)
 			{
+				if (ushiko.coinCount < ushiko.maxCoins)
+					ushiko.coinCount += 1;
+
+				switch (c->coinType)
+				{
 				case BRONZE: ushiko.pointsAmount += 10; break;
 				case SILVER: ushiko.pointsAmount += 50; break;
 				case GOLD: ushiko.pointsAmount += 150; break;
 				default: break;
+				}
+			}
+			else
+			{
+				if (ushiko.health < ushiko.healthMax)
+					ushiko.health += 1;
 			}
 			cDelete = c;
 		}
@@ -361,11 +372,11 @@ void LevelGenerator::updateCoins(glm::vec2 ushikoPos)
 
 	if (cDelete != nullptr)
 	{
-		for (int i = 0; i < coins.size(); i++)
+		for (int i = 0; i < collectable.size(); i++)
 		{
-			if (coins[i] == cDelete)
+			if (collectable[i] == cDelete)
 			{
-				coins.erase(coins.begin() + i);
+				collectable.erase(collectable.begin() + i);
 				break;
 			}
 		}

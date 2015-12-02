@@ -1,4 +1,5 @@
 #include "Enemy.hpp"
+#include "Ushiko.hpp"
 
 Enemy::Enemy(std::string enemyTextureName, bool fourByfour)
 {

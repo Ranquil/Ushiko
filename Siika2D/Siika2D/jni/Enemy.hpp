@@ -32,6 +32,7 @@ private:
 
 	std::string enemyTextureName;
 	misc::Timer animationTimer;
+	misc::Timer inkBallTimer;
 };
 
 #endif // ENEMY_H

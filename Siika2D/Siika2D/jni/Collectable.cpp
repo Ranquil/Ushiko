@@ -11,18 +11,24 @@ Collectable::~Collectable()
 	deinit();
 }
 
-void Collectable::init(core::Siika2D *siika)
+void Collectable::init(core::Siika2D *siika, bool isHeart)
 {
+	this->isHeart = isHeart;
 	go = new misc::GameObject;
 	graphics::Texture *collectableTexture;
 
-	int coin = lrand48() % 6;
-	switch (coin)
+	if (isHeart == false)
 	{
+		int coin = lrand48() % 6;
+		switch (coin)
+		{
 		case 1: collectableTexture = siika->_textureManager->createTexture("sprite_coin_gold.png"); coinType = GOLD; break;
 		case 2: case 3: collectableTexture = siika->_textureManager->createTexture("sprite_coin_silver.png"); coinType = SILVER; break;
 		default: collectableTexture = siika->_textureManager->createTexture("sprite_coin_bronze.png"); coinType = BRONZE; break;
+		}
 	}
+	else
+		collectableTexture = siika->_textureManager->createTexture("ui_heart_full.png");
 
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
