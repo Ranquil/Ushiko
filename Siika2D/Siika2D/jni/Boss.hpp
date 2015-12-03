@@ -49,6 +49,7 @@ private:
 	misc::Timer projectileTimer;
 	misc::Timer animTimer;
 	glm::vec2 screenSize;
+	int tempY;
 };
 
 #endif // BOSS_H

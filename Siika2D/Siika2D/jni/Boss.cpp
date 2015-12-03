@@ -52,6 +52,8 @@ void Boss::init(core::Siika2D *siika)
 
 	bossBack->move(glm::vec2(screenSize.x + 256, -screenSize.y / 2));
 
+	tempY = -screenSize.y / 2;
+
 	projectileTimer.start();
 	animTimer.start();
 	bossHealth = bossMaxHealth;
@@ -161,16 +163,16 @@ void Boss::update(core::Siika2D *siika)
 	}
 	bossFront->update();
 	bossBack->update();
+	bossFront->move(glm::vec2(bossPos.x -= bossDirection, tempY));
+	bossBack->move(glm::vec2(bossBackPos.x -= bossDirection / 2, tempY));
+	if (bossPos.x < screenSize.x || bossPos.x > screenSize.x + 256)
+	{
+		bossDirection = -bossDirection;
+	}
 	if (animTimer.getElapsedTime(MILLISECONDS) >= 100)
 	{
 		bossFront->getComponent<misc::SpriteComponent>()->getSprite()->step();
 		bossBack->getComponent<misc::SpriteComponent>()->getSprite()->step();
 		animTimer.reset();
-	}
-	bossFront->move(glm::vec2(bossPos.x -= bossDirection, bossPos.y));
-	bossBack->move(glm::vec2(bossBackPos.x -= bossDirection / 2, bossBackPos.y));
-	if (bossPos.x < screenSize.x || bossPos.x > screenSize.x + 256)
-	{
-		bossDirection = -bossDirection;
 	}
 }
