@@ -47,6 +47,7 @@ void LevelSelect::init(core::Siika2D *siika)
 			lockTexture,
 			glm::vec2(0, 0),
 			glm::vec2(1, 1))));
+		sprtComp->setZ(80);
 		misc::TransformComponent *transComp = new misc::TransformComponent;
 
 		go->addComponent(sprtComp);
@@ -77,6 +78,7 @@ void LevelSelect::init(core::Siika2D *siika)
 			lvlSelectTexture,
 			glm::vec2(0, 0),
 			glm::vec2(1, 1))));
+		sprtComp->setZ(90);
 		misc::TransformComponent *transComp = new misc::TransformComponent;
 		
 		switch (i)
