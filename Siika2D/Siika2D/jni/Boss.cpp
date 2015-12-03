@@ -108,8 +108,8 @@ void Boss::spawnProjectile(core::Siika2D *siika)
 bool Boss::isIntersecting(glm::vec2 projectilePosition, glm::vec2 otherPosition)
 {
 	int test = 84;
-	if ((projectilePosition.x > otherPosition.x- test && projectilePosition.x < otherPosition.x + test) &&
-		projectilePosition.y > otherPosition.y - test && projectilePosition.y < otherPosition.y + test)
+	if (projectilePosition.x < otherPosition.x && projectilePosition.x > otherPosition.x - 100 &&
+		projectilePosition.y < otherPosition.y + 200 && projectilePosition.y > otherPosition.y - 200)
 		return true;
 	return false;
 }
