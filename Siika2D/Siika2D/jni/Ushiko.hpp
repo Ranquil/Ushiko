@@ -29,7 +29,6 @@ class Ushiko
 	animState currentAnimation;
 	unsigned int currentFrame;
 
-	std::vector<graphics::Texture*> sheets;
 	std::map<animState, animation> animations;
 	misc::Timer animTimer;
 
@@ -54,7 +53,6 @@ public:
 private:
 	unsigned int prevChange;
 	void changeSheet(core::Siika2D *siika, unsigned int sheetNum);
-	bool sheetsLoaded;
 
 	bool canJump;
 	bool doubleJump;

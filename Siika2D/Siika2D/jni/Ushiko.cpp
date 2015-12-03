@@ -13,8 +13,6 @@ Ushiko::Ushiko()
 	animations[JUMP_MIDDLE] = { 1, 2, 1, false };
 	animations[JUMP_END]    = { 1, 3, 1, false };
 	animations[DOUBLE_JUMP] = { 2, 8, 7, false };
-
-	sheetsLoaded = false;
 }
 
 Ushiko::~Ushiko()
@@ -26,19 +24,11 @@ void Ushiko::init(core::Siika2D *siika)
 {
 	go = new misc::GameObject;
 
-	if (!sheetsLoaded)
-	{
-		sheets.clear();
-		sheets.push_back(siika->_textureManager->createTexture("sprite_ushiko_1.png"));
-		sheets.push_back(siika->_textureManager->createTexture("sprite_ushiko_2.png"));
-		sheetsLoaded = true;
-	}
-
 	misc::SpriteComponent *sheet = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
 		glm::vec2(128, 128),
 		glm::vec2(64, 64),
-		sheets[0],
+		siika->_textureManager->createTexture("sprite_ushiko_1.png"),
 		glm::vec2(0, 0),
 		glm::vec2(0.25, 0.25))));
 
@@ -85,7 +75,7 @@ void Ushiko::changeSheet(core::Siika2D *siika, unsigned int sheetNum)
 			location,
 			glm::vec2(128, 128),
 			glm::vec2(64, 64),
-			sheets[sheetNum],
+			sheetNum == 1 ? siika->_textureManager->createTexture("sprite_ushiko_1.png") : siika->_textureManager->createTexture("sprite_ushiko_2.png"),
 			glm::vec2(0, 0),
 			glm::vec2(0.25, 0.25))));
 		sprtComp->setZ(10);
@@ -227,6 +217,7 @@ void Ushiko::update(core::Siika2D *siika)
 				{
 					currentAnimation = RUN;
 					currentFrame = animations[RUN].startPos;
+					changeSheet(siika, animations[RUN].sheet);
 					updateFrame = true;
 				}
 				// Transition from start of a jump to the middle
@@ -241,6 +232,7 @@ void Ushiko::update(core::Siika2D *siika)
 				{
 					currentAnimation = RUN;
 					currentFrame = animations[RUN].startPos;
+					changeSheet(siika, animations[RUN].sheet);
 					updateFrame = true;
 				}
 				// Stay on the last frame

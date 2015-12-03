@@ -58,6 +58,7 @@
     <ClCompile Include="jni\LevelTimer.cpp" />
     <ClCompile Include="jni\main.cpp" />
     <ClCompile Include="jni\MainMenu.cpp" />
+    <ClCompile Include="jni\Puff.cpp" />
     <ClCompile Include="jni\Ushiko.cpp" />
     <ClCompile Include="native_app_glue\android_native_app_glue.c" />
     <ClCompile Include="Siika_main.cpp" />
@@ -108,6 +109,7 @@
     <ClInclude Include="jni\LevelSelect.hpp" />
     <ClInclude Include="jni\LevelTimer.hpp" />
     <ClInclude Include="jni\MainMenu.hpp" />
+    <ClInclude Include="jni\Puff.hpp" />
     <ClInclude Include="jni\Scene.hpp" />
     <ClInclude Include="jni\Ushiko.hpp" />
     <ClInclude Include="native_app_glue\android_native_app_glue.h" />

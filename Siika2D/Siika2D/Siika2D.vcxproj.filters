@@ -180,6 +180,9 @@
     <ClCompile Include="engine\misc\File.cpp">
       <Filter>Siika2D\engine\misc</Filter>
     </ClCompile>
+    <ClCompile Include="jni\Puff.cpp">
+      <Filter>Ushiko\Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="native_app_glue\android_native_app_glue.h">
@@ -319,6 +322,9 @@
     </ClInclude>
     <ClInclude Include="engine\misc\File.h">
       <Filter>Siika2D\engine\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\Puff.hpp">
+      <Filter>Ushiko\Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

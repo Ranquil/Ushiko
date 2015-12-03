@@ -3,7 +3,7 @@
 
 #include "Enemy.hpp"
 #include "Collectable.hpp"
-#include "Heartsplosion.hpp"
+#include "Puff.hpp"
 
 struct Tile
 {
@@ -27,11 +27,11 @@ private:
 	void spawnTile(core::Siika2D *siika, int xPos, int yPos);
 	void spawnEnemy(core::Siika2D *siika, int xPos, int yPos);
 	void spawnCollectable(core::Siika2D *siika, int xPos, int yPos);
-	void heartsplode(core::Siika2D *siika, int xPos, int yPos);
+	//void heartsplode(core::Siika2D *siika, int xPos, int yPos);
 
 	void updateTiles(glm::vec2 ushikoPos);
 	void updateEnemies(core::Siika2D *siika, glm::vec2 ushikoPos);
-	void updateCollectable(glm::vec2 ushikoPos);
+	void updateCollectables(glm::vec2 ushikoPos);
 
 	bool platformHasEnemy;
 	int tileMovement;
@@ -44,7 +44,8 @@ private:
 	std::vector<Tile*> tiles;
 	std::vector<Enemy*> enemies;
 	std::vector<Collectable*> collectable;
-	std::vector<Heartsplosion*> hearts;
+	//std::vector<Heartsplosion*> hearts;
+	std::vector<Puff*> puffs;
 };
 
 #endif // LEVELGENERATOR_H

@@ -8,7 +8,8 @@ LevelGenerator::LevelGenerator(core::Siika2D *siika, std::string name)
 	tiles.clear();
 	enemies.clear();
 	collectable.clear();
-	hearts.clear();
+	//hearts.clear();
+	puffs.clear();
 
 	tileMovement = 0;
 	platformLength = 10;
@@ -35,13 +36,16 @@ LevelGenerator::~LevelGenerator()
 		delete e;
 	for (Collectable *c : collectable)
 		delete c;
-	for (Heartsplosion *h : hearts)
-		delete h;
+	//for (Heartsplosion *h : hearts)
+		//delete h;
+	for (Puff *p : puffs)
+		delete p;
 
 	tiles.clear();
 	enemies.clear();
 	collectable.clear();
-	hearts.clear();
+	puffs.clear();
+	//hearts.clear();
 }
 
 double distance(glm::vec2 go1, glm::vec2 go2)
@@ -64,12 +68,15 @@ void LevelGenerator::update(core::Siika2D *siika)
 	}
 
 	updateTiles(ushikoPos);
-	updateCollectable(ushikoPos);
+	updateCollectables(ushikoPos);
 
-	Heartsplosion *hDelete = nullptr;
-	for (Heartsplosion *h : hearts)
-		if (h->go != NULL)
-			h->update(siika);
+	//Heartsplosion *hDelete = nullptr;
+	//for (Heartsplosion *h : hearts)
+	//	if (h->go != NULL)
+	//		h->update(siika);
+	for (Puff *p : puffs)
+		if (p->go != NULL)
+			p->update(siika);
 
 	/* ----- SPAWNING TILES & ENEMIES ----- */
 
@@ -308,7 +315,9 @@ void LevelGenerator::updateEnemies(core::Siika2D *siika, glm::vec2 ushikoPos)
 					ushiko.pointsAmount += 20;
 				else ushiko.pointsAmount += 40;
 
-				heartsplode(siika, e->xPos, e->yPos);
+				Puff *p = new Puff;
+				p->init(siika, e->xPos, e->yPos);
+				puffs.push_back(p);
 			}
 			else ushiko.health -= 1;
 			e->hasHit = true;
@@ -332,7 +341,7 @@ void LevelGenerator::updateEnemies(core::Siika2D *siika, glm::vec2 ushikoPos)
 	}
 }
 
-void LevelGenerator::updateCollectable(glm::vec2 ushikoPos)
+void LevelGenerator::updateCollectables(glm::vec2 ushikoPos)
 {
 	Collectable *cDelete = nullptr;
 	for (Collectable *c : collectable)
@@ -349,10 +358,10 @@ void LevelGenerator::updateCollectable(glm::vec2 ushikoPos)
 
 				switch (c->coinType)
 				{
-				case BRONZE: ushiko.pointsAmount += 10; break;
-				case SILVER: ushiko.pointsAmount += 50; break;
-				case GOLD: ushiko.pointsAmount += 150; break;
-				default: break;
+					case BRONZE: ushiko.pointsAmount += 10; break;
+					case SILVER: ushiko.pointsAmount += 50; break;
+					case GOLD: ushiko.pointsAmount += 150; break;
+					default: break;
 				}
 			}
 			else
@@ -384,19 +393,19 @@ void LevelGenerator::updateCollectable(glm::vec2 ushikoPos)
 	}
 }
 
-void LevelGenerator::heartsplode(core::Siika2D *siika, int x, int y)
-{
-	for (Heartsplosion *heart : hearts)
-		delete heart;
-	hearts.clear();
-
-	for (int i = 0; i < 10; i++)
-	{
-		Heartsplosion *heart = new Heartsplosion;
-		heart->init(siika, x, y);
-		heart->xPos = x;
-		heart->yPos = y;
-		heart->go->move(glm::vec2(x, y));
-		hearts.push_back(heart);
-	}
-}
+//void LevelGenerator::heartsplode(core::Siika2D *siika, int x, int y)
+//{
+//	for (Heartsplosion *heart : hearts)
+//		delete heart;
+//	hearts.clear();
+//
+//	for (int i = 0; i < 10; i++)
+//	{
+//		Heartsplosion *heart = new Heartsplosion;
+//		heart->init(siika, x, y);
+//		heart->xPos = x;
+//		heart->yPos = y;
+//		heart->go->move(glm::vec2(x, y));
+//		hearts.push_back(heart);
+//	}
+//}
