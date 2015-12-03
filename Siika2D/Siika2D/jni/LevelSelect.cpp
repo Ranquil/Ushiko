@@ -56,27 +56,17 @@ void LevelSelect::init(core::Siika2D *siika)
 	}
 	for (int i = 0; i < 4; i++)
 	{
-		bool addLock = false;
 		graphics::Texture *lvlSelectTexture;
 		
 		switch (i)
 		{
 			case 0:	lvlSelectTexture = siika->_textureManager->createTexture("background_plains.png"); break;
 			case 1:	
-					lvlSelectTexture = siika->_textureManager->createTexture("background_forest.png");
-					if (unlocked >= 1)
-						addLock = true;
-				break;
+				lvlSelectTexture = siika->_textureManager->createTexture("background_forest.png"); break;
 			case 2:
-					lvlSelectTexture = siika->_textureManager->createTexture("background_castle.png");
-					if (unlocked >= 2)
-						addLock = true;
-				break;
+					lvlSelectTexture = siika->_textureManager->createTexture("background_castle.png"); break;
 			case 3:
-					lvlSelectTexture = siika->_textureManager->createTexture("background_castle.png");
-					if (unlocked >= 3)
-						addLock = true;
-			default: break;
+					lvlSelectTexture = siika->_textureManager->createTexture("background_castle.png");	default: break;
 		}
 
 
@@ -97,13 +87,14 @@ void LevelSelect::init(core::Siika2D *siika)
 			case 3: bossLevel->addComponent(sprtComp); bossLevel->addComponent(transComp); break;
 			default: break;
 		}
-		if (addLock == true)
+		for (int j = 3; j > unlocked; j--)
 		{
-			switch (i)
+			switch (j)
 			{
-			case 1: levelLocks[1]->move(glm::vec2(screenSize.x / 3 + screenSize.x / 23, -screenSize.y / 5)); break;
-			case 2: levelLocks[2]->move(glm::vec2(screenSize.x / 1.5 + screenSize.x / 23, -screenSize.y / 5)); break;
-			case 3: levelLocks[3]->move(glm::vec2(screenSize.x / 3 + screenSize.x / 23, -screenSize.y / 2)); break;
+				case 1: levelLocks[0]->move(glm::vec2(screenSize.x / 3 + screenSize.x / 23, -screenSize.y / 5)); break;
+				case 2: levelLocks[1]->move(glm::vec2(screenSize.x / 1.5 + screenSize.x / 23, -screenSize.y / 5)); break;
+				case 3: levelLocks[2]->move(glm::vec2(screenSize.x / 3 + screenSize.x / 23, -screenSize.y / 2)); break;
+				default: break;
 			}
 		}
 	}
