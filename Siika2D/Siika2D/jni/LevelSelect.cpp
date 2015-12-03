@@ -117,6 +117,10 @@ void LevelSelect::deInit()
 	delete forestLevel; 
 	delete castleLevel;
 	delete bossLevel;
+	for (misc::GameObject* go : levelLocks)
+	{
+		delete go;
+	}
 }
 
 bool LevelSelect::isIntersecting(glm::vec2 touchPosition, glm::vec2 box)

@@ -108,7 +108,6 @@ void GameUI::init(core::Siika2D *siika, std::string levelName, Boss *boss)
 				bossHeartIcons[i]->addComponent(bossheartsprtComp);
 				bossHeartIcons[i]->addComponent(bosshearttransComp);
 				glm::vec2 heartPos =glm::vec2(256 + i * 96, -scrSize.y + 234);
-				//heartPos.y + (-scrSize.y / 3);
 				bossHeartIcons[i]->move(heartPos);
 			}
 	}
@@ -126,11 +125,6 @@ void GameUI::init(core::Siika2D *siika, std::string levelName, Boss *boss)
 	shade->setZ(-10);
 
 	ushiko.coinCount = 0;
-
-	/*gemTextUI = siika->_textManager->createText();
-	gemTextUI->setFont("arial.ttf");
-	gemTextUI->setPosition(-0.95, -0.95);
-	gemTextUI->setFontSize(64);*/
 
 	pointsTextUI = siika->_textManager->createText();
 	pointsTextUI->setFont("arial.ttf");
@@ -150,7 +144,6 @@ void GameUI::deInit()
 	delete pauseButton;
 
 	pointsTextUI->setText("");
-	//gemTextUI->setText("");
 
 	for (int i = 0; i < 3; i++)
 		delete heartIcons[i];
@@ -203,7 +196,7 @@ int GameUI::update(core::Siika2D *siika, Boss *boss)
 	if (ushiko.health < heartCount)
 		changeTexture(heartIcons[ushiko.health], siika, "ui_heart_hurt.png",glm::vec2(64,64));
 	else if (ushiko.health > heartCount)
-		changeTexture(heartIcons[ushiko.health - 1], siika, "ui_heart_full.png", glm::vec2(64, 64));
+		changeTexture(heartIcons[ushiko.health - 1], siika, "ui_heart_pink.png", glm::vec2(64, 64));
 
 	heartCount = ushiko.health;
 
@@ -212,10 +205,6 @@ int GameUI::update(core::Siika2D *siika, Boss *boss)
 		changeTexture(bossHeartIcons[boss->bossHealth], siika, "ui_bosslifebar_hearthurt.png", glm::vec2(64, 64));
 		bossHeartCount = boss->bossHealth;
 	}
-
-	/*std::ostringstream gemText;
-	gemText << ushiko.coinCount << " / " << ushiko.maxCoins;
-	gemTextUI->setText(gemText.str());*/
 
 	std::ostringstream pointsText;
 	pointsText << ushiko.pointsAmount;
