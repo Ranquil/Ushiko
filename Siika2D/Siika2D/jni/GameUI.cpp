@@ -41,7 +41,7 @@ void GameUI::init(core::Siika2D *siika, std::string levelName, Boss *boss)
 	/* ----- Initialize hearts ----- */
 
 	graphics::Texture *heartTexture;
-	heartTexture = siika->_textureManager->createTexture("ui_heart_full.png");
+	heartTexture = siika->_textureManager->createTexture("ui_heart_pink.png");
 
 	for (int i = 0; i < 3; i++)
 	{
