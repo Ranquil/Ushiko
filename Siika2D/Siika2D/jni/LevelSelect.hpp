@@ -4,6 +4,7 @@
 #include "Scene.hpp"
 
 #include "../engine/misc/GameObject.h"
+#include "../engine/misc/Timer.h"
 
 class LevelSelect : public Scene
 {
@@ -19,9 +20,11 @@ public:
 private:
 	bool isIntersecting(glm::vec2 touchPosition, glm::vec2 box);
 	std::vector<misc::GameObject*> levelLocks;
+	misc::Timer inputTimer;
 
 	int unlocked;
 	int boxSizey, boxSizex;
+	bool instructions;
 
 	misc::GameObject *plainsLevel;
 	misc::GameObject *forestLevel;
