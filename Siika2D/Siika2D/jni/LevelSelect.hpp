@@ -18,6 +18,7 @@ public:
 
 private:
 	bool isIntersecting(glm::vec2 touchPosition, glm::vec2 box);
+	std::vector<misc::GameObject*> levelLocks;
 
 	int unlocked;
 	int boxSizey, boxSizex;

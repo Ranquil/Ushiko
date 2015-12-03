@@ -22,7 +22,7 @@ void LevelSelect::init(core::Siika2D *siika)
 	if (read.find("2") != std::string::npos) unlocked = 2;
 	if (read.find("3") != std::string::npos) unlocked = 3;
 
-	unlocked = 3;
+	//unlocked = 3;
 
 	glm::vec2 screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
 	boxSizex = siika->_graphicsContext->getDisplaySize().x / 4;
@@ -33,29 +33,52 @@ void LevelSelect::init(core::Siika2D *siika)
 	forestLevel = new misc::GameObject;
 	bossLevel = new misc::GameObject;
 
+
+	for (int i = 3; i > unlocked; i--)
+	{
+		misc::GameObject *go = new misc::GameObject;
+
+		graphics::Texture *lockTexture = siika->_textureManager->createTexture("tile_lock.png");
+
+		misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
+			glm::vec2(0, 0),
+			glm::vec2(64, 64),
+			glm::vec2(0, 0),
+			lockTexture,
+			glm::vec2(0, 0),
+			glm::vec2(1, 1))));
+		misc::TransformComponent *transComp = new misc::TransformComponent;
+
+		go->addComponent(sprtComp);
+		go->addComponent(transComp);
+
+		levelLocks.push_back(go);
+	}
 	for (int i = 0; i < 4; i++)
 	{
+		bool addLock = false;
 		graphics::Texture *lvlSelectTexture;
 		
 		switch (i)
 		{
 			case 0:	lvlSelectTexture = siika->_textureManager->createTexture("background_plains.png"); break;
 			case 1:	
-				if(unlocked >= 1)
 					lvlSelectTexture = siika->_textureManager->createTexture("background_forest.png");
-				else lvlSelectTexture = siika->_textureManager->createTexture("tile_castle_middle.png");
+					if (unlocked >= 1)
+						addLock = true;
 				break;
 			case 2:
-				if (unlocked >= 2)
 					lvlSelectTexture = siika->_textureManager->createTexture("background_castle.png");
-				else lvlSelectTexture = siika->_textureManager->createTexture("tile_castle_middle.png");
+					if (unlocked >= 2)
+						addLock = true;
 				break;
 			case 3:
-				if (unlocked >= 3)
 					lvlSelectTexture = siika->_textureManager->createTexture("background_castle.png");
-				else lvlSelectTexture = siika->_textureManager->createTexture("tile_castle_middle.png");
+					if (unlocked >= 3)
+						addLock = true;
 			default: break;
 		}
+
 
 		misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 			glm::vec2(0, 0),
@@ -73,6 +96,15 @@ void LevelSelect::init(core::Siika2D *siika)
 			case 2:	castleLevel->addComponent(sprtComp); castleLevel->addComponent(transComp); break;
 			case 3: bossLevel->addComponent(sprtComp); bossLevel->addComponent(transComp); break;
 			default: break;
+		}
+		if (addLock == true)
+		{
+			switch (i)
+			{
+			case 1: levelLocks[1]->move(glm::vec2(screenSize.x / 3 + screenSize.x / 23, -screenSize.y / 5)); break;
+			case 2: levelLocks[2]->move(glm::vec2(screenSize.x / 1.5 + screenSize.x / 23, -screenSize.y / 5)); break;
+			case 3: levelLocks[3]->move(glm::vec2(screenSize.x / 3 + screenSize.x / 23, -screenSize.y / 2)); break;
+			}
 		}
 	}
 
