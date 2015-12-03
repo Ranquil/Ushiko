@@ -388,8 +388,8 @@ void LevelGenerator::updatePuffs(core::Siika2D *siika)
 	{
 		if (p->go != NULL)
 		{
-			p->update(siika);
 			p->go->move(glm::vec2(p->xPos -= 5, p->yPos));
+			p->update(siika);
 		}
 		else pDelete = p;
 	}

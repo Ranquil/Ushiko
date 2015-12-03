@@ -192,11 +192,11 @@ void GameUI::changeTexture(misc::GameObject *gameObject, core::Siika2D *siika, s
 
 int GameUI::update(core::Siika2D *siika, Boss *boss)
 {
-	if (ushiko.pointsAmount > 10 && ushiko.pointsAmount < 99)
+	if (ushiko.pointsAmount > 10 && ushiko.pointsAmount < 100)
 		pointsTextUI->setPosition(0.85, -0.95);
-	else if (ushiko.pointsAmount > 100 && ushiko.pointsAmount < 999)
+	else if (ushiko.pointsAmount > 100 && ushiko.pointsAmount < 1000)
 		pointsTextUI->setPosition(0.80, -0.95);
-	else if (ushiko.pointsAmount > 1000 && ushiko.pointsAmount < 9999)
+	else if (ushiko.pointsAmount > 1000 && ushiko.pointsAmount < 10000)
 		pointsTextUI->setPosition(0.75, -0.95);
 	else pointsTextUI->setPosition(0.90, -0.95);
 

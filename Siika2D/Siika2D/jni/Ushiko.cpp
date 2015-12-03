@@ -190,13 +190,11 @@ void Ushiko::update(core::Siika2D *siika)
 		bool updateFrame = false;
 
 		// If the new animation is in a different sheet, change to it
-		//changeSheet(siika, anim.sheet - 1);
+		changeSheet(siika, anim.sheet);
 
 		// Check if the animation has changed
 		if (currentAnimation != previousAnimation)
 		{
-			changeSheet(siika, anim.sheet - 1);
-
 			// Set the new animation frame
 			currentFrame = anim.startPos;
 			updateFrame = true;
@@ -222,11 +220,12 @@ void Ushiko::update(core::Siika2D *siika)
 					changeSheet(siika, animations[RUN].sheet);
 					updateFrame = true;
 				}
-				// Transition from start of a jump to the middle
-				else if (currentAnimation == JUMP_START)
+				// Transition from start of a jump / double jump to the middle
+				else if (currentAnimation == JUMP_START || currentAnimation == DOUBLE_JUMP)
 				{
 					currentAnimation = JUMP_MIDDLE;
 					currentFrame = animations[JUMP_MIDDLE].startPos;
+					changeSheet(siika, animations[JUMP_MIDDLE].sheet);
 					updateFrame = true;
 				}
 				// Transition from the middle of a jump to the end of it
