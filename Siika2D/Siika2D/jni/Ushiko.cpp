@@ -190,13 +190,11 @@ void Ushiko::update(core::Siika2D *siika)
 		bool updateFrame = false;
 
 		// If the new animation is in a different sheet, change to it
-		//changeSheet(siika, anim.sheet - 1);
+		changeSheet(siika, anim.sheet - 1);
 
 		// Check if the animation has changed
 		if (currentAnimation != previousAnimation)
 		{
-			changeSheet(siika, anim.sheet - 1);
-
 			// Set the new animation frame
 			currentFrame = anim.startPos;
 			updateFrame = true;
