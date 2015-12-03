@@ -15,6 +15,7 @@ public:
 	void update(core::Siika2D *siika);
 
 	misc::GameObject *go;
+	int xPos, yPos;
 
 private:
 	misc::Timer animTimer;

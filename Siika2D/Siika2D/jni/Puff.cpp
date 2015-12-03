@@ -34,6 +34,9 @@ void Puff::init(core::Siika2D *siika, int x, int y)
 
 	animTimer.start();
 	animSteps = 0;
+
+	xPos = x;
+	yPos = y;
 }
 
 void Puff::update(core::Siika2D *siika)

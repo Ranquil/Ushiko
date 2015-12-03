@@ -7,8 +7,7 @@ LevelGenerator::LevelGenerator(core::Siika2D *siika, std::string name)
 
 	tiles.clear();
 	enemies.clear();
-	collectable.clear();
-	//hearts.clear();
+	collectables.clear();
 	puffs.clear();
 
 	tileMovement = 0;
@@ -34,18 +33,15 @@ LevelGenerator::~LevelGenerator()
 		delete t;
 	for (Enemy *e : enemies)
 		delete e;
-	for (Collectable *c : collectable)
+	for (Collectable *c : collectables)
 		delete c;
-	//for (Heartsplosion *h : hearts)
-		//delete h;
 	for (Puff *p : puffs)
 		delete p;
 
 	tiles.clear();
 	enemies.clear();
-	collectable.clear();
+	collectables.clear();
 	puffs.clear();
-	//hearts.clear();
 }
 
 double distance(glm::vec2 go1, glm::vec2 go2)
@@ -69,14 +65,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 
 	updateTiles(ushikoPos);
 	updateCollectables(ushikoPos);
-
-	//Heartsplosion *hDelete = nullptr;
-	//for (Heartsplosion *h : hearts)
-	//	if (h->go != NULL)
-	//		h->update(siika);
-	for (Puff *p : puffs)
-		if (p->go != NULL)
-			p->update(siika);
+	updatePuffs(siika);
 
 	/* ----- SPAWNING TILES & ENEMIES ----- */
 
@@ -240,14 +229,13 @@ void LevelGenerator::spawnCollectable(core::Siika2D *siika, int xPos, int yPos)
 	Collectable *c = new Collectable;
 	if (generatorName == "boss")
 		c->init(siika, true);
-	else
-		c->init(siika);
+	else c->init(siika);
 
 	c->xPos = xPos;
 	c->yPos = yPos;
 	c->go->move(glm::vec2(c->xPos, c->yPos));
 
-	collectable.push_back(c);
+	collectables.push_back(c);
 }
 
 void LevelGenerator::updateTiles(glm::vec2 ushikoPos)
@@ -344,7 +332,7 @@ void LevelGenerator::updateEnemies(core::Siika2D *siika, glm::vec2 ushikoPos)
 void LevelGenerator::updateCollectables(glm::vec2 ushikoPos)
 {
 	Collectable *cDelete = nullptr;
-	for (Collectable *c : collectable)
+	for (Collectable *c : collectables)
 	{
 		c->go->update();
 
@@ -381,15 +369,41 @@ void LevelGenerator::updateCollectables(glm::vec2 ushikoPos)
 
 	if (cDelete != nullptr)
 	{
-		for (int i = 0; i < collectable.size(); i++)
+		for (int i = 0; i < collectables.size(); i++)
 		{
-			if (collectable[i] == cDelete)
+			if (collectables[i] == cDelete)
 			{
-				collectable.erase(collectable.begin() + i);
+				collectables.erase(collectables.begin() + i);
 				break;
 			}
 		}
 		delete cDelete;
+	}
+}
+
+void LevelGenerator::updatePuffs(core::Siika2D *siika)
+{
+	Puff *pDelete = nullptr;
+	for (Puff *p : puffs)
+	{
+		if (p->go != NULL)
+		{
+			p->update(siika);
+			p->go->move(glm::vec2(p->xPos -= 5, p->yPos));
+		}
+		else pDelete = p;
+	}
+	if (pDelete != nullptr)
+	{
+		for (int i = 0; i < puffs.size(); i++)
+		{
+			if (puffs[i] = pDelete)
+			{
+				puffs.erase(puffs.begin() + i);
+				break;
+			}
+		}
+		delete pDelete;
 	}
 }
 
