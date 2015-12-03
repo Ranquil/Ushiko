@@ -22,7 +22,7 @@ void LevelSelect::init(core::Siika2D *siika)
 	if (read.find("2") != std::string::npos) unlocked = 2;
 	if (read.find("3") != std::string::npos) unlocked = 3;
 
-	//unlocked = 3;
+	unlocked = 1;
 
 	glm::vec2 screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
 	boxSizex = siika->_graphicsContext->getDisplaySize().x / 4;
@@ -34,7 +34,7 @@ void LevelSelect::init(core::Siika2D *siika)
 	bossLevel = new misc::GameObject;
 
 
-	for (int i = 3; i > unlocked; i--)
+	for (int i = unlocked; i < 3; i++)
 	{
 		misc::GameObject *go = new misc::GameObject;
 
@@ -89,17 +89,17 @@ void LevelSelect::init(core::Siika2D *siika)
 			case 3: bossLevel->addComponent(sprtComp); bossLevel->addComponent(transComp); break;
 			default: break;
 		}
-		for (int j = 3; j > unlocked; j--)
+	}
+		for (int j = unlocked; j < 3; j++)
 		{
 			switch (j)
 			{
-				case 1: levelLocks[0]->move(glm::vec2(screenSize.x / 3 + screenSize.x / 23, -screenSize.y / 5)); break;
-				case 2: levelLocks[1]->move(glm::vec2(screenSize.x / 1.5 + screenSize.x / 23, -screenSize.y / 5)); break;
-				case 3: levelLocks[2]->move(glm::vec2(screenSize.x / 3 + screenSize.x / 23, -screenSize.y / 2)); break;
+				case 0: levelLocks[0]->move(glm::vec2(screenSize.x / 3 + screenSize.x / 23, -screenSize.y / 5)); break;
+				case 1: levelLocks[1]->move(glm::vec2(screenSize.x / 1.5 + screenSize.x / 23, -screenSize.y / 5)); break;
+				case 2: levelLocks[2]->move(glm::vec2(screenSize.x / 3 + screenSize.x / 23, -screenSize.y / 2)); break;
 				default: break;
 			}
 		}
-	}
 
 	float test = screenSize.x / 23;
 
