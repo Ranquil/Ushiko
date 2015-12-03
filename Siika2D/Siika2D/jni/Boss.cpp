@@ -168,11 +168,9 @@ void Boss::update(core::Siika2D *siika)
 		animTimer.reset();
 	}
 	bossFront->move(glm::vec2(bossPos.x -= bossDirection, bossPos.y));
-	bossBack->move(glm::vec2(bossPos.x -= bossDirection, bossPos.y));
+	bossBack->move(glm::vec2(bossBackPos.x -= bossDirection / 2, bossBackPos.y));
 	if (bossPos.x < screenSize.x || bossPos.x > screenSize.x + 256)
 	{
 		bossDirection = -bossDirection;
 	}
-
-
 }
