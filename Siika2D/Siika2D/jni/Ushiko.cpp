@@ -142,26 +142,26 @@ void Ushiko::update(core::Siika2D *siika)
 					currentAnimation = JUMP_START;
 					airTimer.reset();
 				}
-				else if (!doubleJump && airTimer.getElapsedTime(MILLISECONDS) > 300)
+				else if (!doubleJump && airTimer.getElapsedTime(MILLISECONDS) > 400)
 				{
 					doubleJump = true;
 					currentAnimation = DOUBLE_JUMP;
 					airTimer.pause();
 				}
 			}
-			// Dash (tap on the right side of the screen)
-			else if (xOffset <= 0 && dashTimer.getElapsedTime(SECONDS) > 0.8f &&
-				touchPos.x > siika->_graphicsContext->getDisplaySize().x / 2)
+		}
+		// Dash (tap on the right side of the screen)
+		if (xOffset <= 0 && dashTimer.getElapsedTime(SECONDS) > 0.8f &&
+			touchPos.x > siika->_graphicsContext->getDisplaySize().x / 2)
+		{
+			if (xOffset <= 0)
 			{
-				if (xOffset <= 0)
-				{
-					currentAnimation = DASH;
-					dashing = true;
-					xOffset = 10;
-					originalPos = siika->transfCrds()->deviceToUser(ushiko.go->getComponent<misc::TransformComponent>()->getPosition());
-				}
-				dashTimer.reset();
+				currentAnimation = DASH;
+				dashing = true;
+				xOffset = 10;
+				originalPos = siika->transfCrds()->deviceToUser(ushiko.go->getComponent<misc::TransformComponent>()->getPosition());
 			}
+			dashTimer.reset();
 		}
 		// Stay on top of platforms (if Ushiko is going down through the current ground level,
 		// apply some linear force upwards). This method allows us to jump through the platforms from below.
