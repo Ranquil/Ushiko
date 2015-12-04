@@ -175,4 +175,20 @@ void Boss::update(core::Siika2D *siika)
 		bossBack->getComponent<misc::SpriteComponent>()->getSprite()->step();
 		animTimer.reset();
 	}
+
+	if (hurtAnimation)
+	{
+		hurtTimer.start();
+		bossFront->getComponent<misc::SpriteComponent>()->getSprite()->setColor(graphics::Color(255, 0, 0, 0));
+		bossBack->getComponent<misc::SpriteComponent>()->getSprite()->setColor(graphics::Color(255, 0, 0, 0));
+		if (hurtTimer.getElapsedTime(MILLISECONDS) > 2000)
+		{
+			hurtAnimation = false;
+		}
+	}
+	else
+	{
+		bossFront->getComponent<misc::SpriteComponent>()->getSprite()->setColor(graphics::Color(0, 0, 0, 0));
+		bossBack->getComponent<misc::SpriteComponent>()->getSprite()->setColor(graphics::Color(0, 0, 0, 0));
+	}
 }
