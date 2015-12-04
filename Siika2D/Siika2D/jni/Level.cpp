@@ -67,6 +67,16 @@ void Level::init(core::Siika2D *siika)
 	unlocked = false;
 	paused = false;
 	genTimer.start();
+
+	unlock = siika->_spriteManager->createSprite(
+		glm::vec2(-5000, 0),
+		glm::vec2(512, 512),
+		glm::vec2(256, 256),
+		siika->_textureManager->createTexture("tile_unlock.png"),
+		glm::vec2(0, 0),
+		glm::vec2(1, 1));
+	unlock->setZ(0);
+	unlockTimes = 0;
 }
 
 void Level::deInit()
@@ -74,7 +84,8 @@ void Level::deInit()
 	//delete theme;
 	//delete coin;
 
-	bg->setPosition(glm::vec2(-3000, 0));
+	bg->setPosition(glm::vec2(-5000, 0));
+	unlock->setPosition(glm::vec2(-5000, 0));
 
 	delete gameUI;
 	delete lg;
@@ -102,6 +113,12 @@ int Level::update(core::Siika2D *siika)
 		siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
 
 		int coins = ushiko.coinCount;
+		if (unlockTimes > 0)
+		{
+			unlockTimes -= 1;
+			if (unlockTimes <= 0)
+				unlock->setPosition(glm::vec2(-5000, 0));
+		}
 
 		lg->update(siika);
 		ushiko.update(siika);
@@ -124,17 +141,31 @@ int Level::update(core::Siika2D *siika)
 			misc::File *file = siika->getFile("progress.txt");
 			std::string read = file->readFile();
 
+			glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
+
 			int levels = 0;
 			if (read.find("1") != std::string::npos) levels += 1;
 			if (read.find("2") != std::string::npos) levels += 1;
 			if (read.find("3") != std::string::npos) levels += 1;
 
 			if (levelName == "plains" && levels == 0)
+			{
 				file->writeFile("1");
+				unlock->setPosition(glm::vec2(scrSize.x / 2, scrSize.y / 2));
+				unlockTimes = 100;
+			}
 			if (levelName == "forest" && levels == 1)
+			{
 				file->writeFile("12");
+				unlock->setPosition(glm::vec2(scrSize.x / 2, scrSize.y / 2));
+				unlockTimes = 100;
+			}
 			if (levelName == "castle" && levels == 2)
+			{
 				file->writeFile("123");
+				unlock->setPosition(glm::vec2(scrSize.x / 2, scrSize.y / 2));
+				unlockTimes = 100;
+			}
 		}
 
 		genTimer.reset();

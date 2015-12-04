@@ -22,8 +22,6 @@ void LevelSelect::init(core::Siika2D *siika)
 	if (read.find("2") != std::string::npos) unlocked = 2;
 	if (read.find("3") != std::string::npos) unlocked = 3;
 
-	unlocked = 3;
-
 	glm::vec2 screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
 	boxSizex = siika->_graphicsContext->getDisplaySize().x / 4;
 	boxSizey = siika->_graphicsContext->getDisplaySize().y / 4;
@@ -139,8 +137,8 @@ void LevelSelect::deInit()
 	delete castleLevel;
 	delete bossLevel;
 
-	//for (misc::GameObject* go : levelLocks)
-		//delete go;
+	for (misc::GameObject* go : levelLocks)
+		delete go;
 }
 
 bool LevelSelect::isIntersecting(glm::vec2 touchPosition, glm::vec2 box)

@@ -31,6 +31,8 @@ private:
 	misc::Timer genTimer;
 	audio::Audio *theme;
 	audio::Audio *coin;
+	graphics::Sprite *unlock;
+	int unlockTimes;
 };
 
 #endif // LEVEL_H

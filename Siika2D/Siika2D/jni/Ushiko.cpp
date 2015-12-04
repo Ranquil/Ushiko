@@ -36,7 +36,7 @@ void Ushiko::init(core::Siika2D *siika)
 	misc::TransformComponent *trnsComp = new misc::TransformComponent;
 
 	physComp->setGravityScale(2);
-	sheet->setZ(10);
+	sheet->setZ(15);
 
 	go->addComponent(trnsComp);
 	go->addComponent(sheet);
@@ -78,7 +78,7 @@ void Ushiko::changeSheet(core::Siika2D *siika, unsigned int sheetNum)
 			sheetNum == 1 ? siika->_textureManager->createTexture("sprite_ushiko_1.png") : siika->_textureManager->createTexture("sprite_ushiko_2.png"),
 			glm::vec2(0, 0),
 			glm::vec2(0.25, 0.25))));
-		sprtComp->setZ(10);
+		sprtComp->setZ(15);
 
 		go->addComponent(sprtComp);
 		prevChange = sheetNum;
