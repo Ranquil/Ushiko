@@ -30,6 +30,7 @@ private:
 	misc::GameObject *forestLevel;
 	misc::GameObject *castleLevel;
 	misc::GameObject *bossLevel;
+	graphics::Sprite *question;
 };
 
 #endif // LEVELSELECT_H

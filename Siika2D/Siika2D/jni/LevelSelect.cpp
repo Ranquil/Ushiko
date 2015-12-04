@@ -22,7 +22,7 @@ void LevelSelect::init(core::Siika2D *siika)
 	if (read.find("2") != std::string::npos) unlocked = 2;
 	if (read.find("3") != std::string::npos) unlocked = 3;
 
-	//unlocked = 1;
+	unlocked = 3;
 
 	glm::vec2 screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
 	boxSizex = siika->_graphicsContext->getDisplaySize().x / 4;
@@ -46,32 +46,37 @@ void LevelSelect::init(core::Siika2D *siika)
 		glm::vec2(1, 1));
 	bg->setZ(100);
 
+	question = siika->_spriteManager->createSprite(
+		glm::vec2(scrSize.x, scrSize.y),
+		glm::vec2(128, 128),
+		glm::vec2(160, 160),
+		siika->_textureManager->createTexture("tile_question.png"),
+		glm::vec2(0, 0),
+		glm::vec2(1, 1));
+	question->setZ(80);
+
 	instructions = false;
 	inputTimer.start();
 
-	for (int i = 0; i < unlocked; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		misc::GameObject *go = new misc::GameObject;
 		graphics::Texture *lockTexture = siika->_textureManager->createTexture("tile_lock.png");
 
-		misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
-			glm::vec2(0, 0),
+		misc::SpriteComponent *sprtCompLock = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
+			glm::vec2(-1000, 0),
 			glm::vec2(64, 64),
 			glm::vec2(0, 0),
 			lockTexture,
 			glm::vec2(0, 0),
 			glm::vec2(1, 1))));
-		sprtComp->setZ(80);
-		misc::TransformComponent *transComp = new misc::TransformComponent;
+		sprtCompLock->setZ(80);
+		misc::TransformComponent *transCompLock = new misc::TransformComponent;
 
-		go->addComponent(sprtComp);
-		go->addComponent(transComp);
+		go->addComponent(sprtCompLock);
+		go->addComponent(transCompLock);
 
 		levelLocks.push_back(go);
-	}
-
-	for (int i = 0; i < 4; i++)
-	{
 		graphics::Texture *lvlSelectTexture;
 		
 		switch (i)
@@ -103,7 +108,7 @@ void LevelSelect::init(core::Siika2D *siika)
 		}
 	}
 
-	for (int j = 0; j < unlocked; j++)
+	for (int j = unlocked; j < 4; j++)
 	{
 		switch (j)
 		{
@@ -127,6 +132,7 @@ void LevelSelect::init(core::Siika2D *siika)
 void LevelSelect::deInit()
 {
 	bg->setPosition(glm::vec2(-5000, 0));
+	question->setPosition(glm::vec2(-5000, 0));
 
 	delete plainsLevel;
 	delete forestLevel; 
@@ -155,7 +161,7 @@ int LevelSelect::update(core::Siika2D *siika)
 
 	if (siika->_input->touchPositionsActive() > 0)
 	{
-		glm::vec2 instrBox = glm::vec2(1800, 1800);
+		glm::vec2 insBox = siika->_graphicsContext->getDisplaySize();
 		if (isIntersecting(touchPosition, plainsLevel->getComponent<misc::TransformComponent>()->getPosition()))
 			return PLAINS_LEVEL;
 		else if (unlocked >= 1 && isIntersecting(touchPosition, forestLevel->getComponent<misc::TransformComponent>()->getPosition()))
@@ -164,7 +170,7 @@ int LevelSelect::update(core::Siika2D *siika)
 			return CASTLE_LEVEL;
 		else if (unlocked >= 3 && isIntersecting(touchPosition, bossLevel->getComponent<misc::TransformComponent>()->getPosition()))
 			return BOSS_LEVEL;
-		else if (!instructions)
+		else if (!instructions && isIntersecting(touchPosition, glm::vec2(insBox.x - 128, insBox.y - 128)))
 		{
 			if (inputTimer.getElapsedTime(SECONDS) > 0.5)
 			{
