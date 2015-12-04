@@ -183,6 +183,9 @@
     <ClCompile Include="jni\Puff.cpp">
       <Filter>Ushiko\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="jni\GameOver.cpp">
+      <Filter>Ushiko\Scenes\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="native_app_glue\android_native_app_glue.h">
@@ -325,6 +328,9 @@
     </ClInclude>
     <ClInclude Include="jni\Puff.hpp">
       <Filter>Ushiko\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\GameOver.hpp">
+      <Filter>Ushiko\Scenes\Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

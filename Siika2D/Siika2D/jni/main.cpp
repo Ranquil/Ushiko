@@ -4,10 +4,11 @@
 #include "MainMenu.hpp"
 #include "LevelSelect.hpp"
 #include "Level.hpp"
+#include "GameOver.hpp"
 
 core::Siika2D *siika = core::Siika2D::UI();
 
-Scene* scenes[7];
+Scene* scenes[8];
 int currentScene;
 
 void siika_onPause()
@@ -37,6 +38,7 @@ void siika_init()
 	scenes[FOREST_LEVEL] = new Level("forest");
 	scenes[CASTLE_LEVEL] = new Level("castle");
 	scenes[BOSS_LEVEL] = new Level("boss");
+	scenes[GAME_OVER] = new GameOver;
 
 	scenes[currentScene]->init(siika);
 }

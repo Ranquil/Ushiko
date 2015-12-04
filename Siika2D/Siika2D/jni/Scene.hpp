@@ -11,7 +11,8 @@ enum ScreenState
 	PLAINS_LEVEL,
 	FOREST_LEVEL,
 	CASTLE_LEVEL,
-	BOSS_LEVEL
+	BOSS_LEVEL,
+	GAME_OVER
 };
 
 class Scene

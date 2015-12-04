@@ -50,6 +50,7 @@
     <ClCompile Include="jni\Boss.cpp" />
     <ClCompile Include="jni\Collectable.cpp" />
     <ClCompile Include="jni\Enemy.cpp" />
+    <ClCompile Include="jni\GameOver.cpp" />
     <ClCompile Include="jni\GameUI.cpp" />
     <ClCompile Include="jni\Heartsplosion.cpp" />
     <ClCompile Include="jni\Level.cpp" />
@@ -102,6 +103,7 @@
     <ClInclude Include="jni\Boss.hpp" />
     <ClInclude Include="jni\Collectable.hpp" />
     <ClInclude Include="jni\Enemy.hpp" />
+    <ClInclude Include="jni\GameOver.hpp" />
     <ClInclude Include="jni\GameUI.hpp" />
     <ClInclude Include="jni\Heartsplosion.hpp" />
     <ClInclude Include="jni\Level.hpp" />
