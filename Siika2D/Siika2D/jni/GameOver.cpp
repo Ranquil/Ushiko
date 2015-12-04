@@ -32,12 +32,20 @@ void GameOver::init(core::Siika2D *siika)
 
 void GameOver::deInit()
 {
-
+	delete GameOverScreen;
 }
 
 int GameOver::update(core::Siika2D *siika)
 {
+	glm::vec2 screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
 
+	touchPosition = glm::vec2(0, 0);
+	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
+		touchPosition = siika->_input->touchPosition(i)._positionStart;
+	glm::vec2 box = siika->transfCrds()->deviceToUser(GameOverScreen->getComponent<misc::TransformComponent>()->getPosition());
+	if ((touchPosition.x > box.x && touchPosition.x < box.x + screenSize.x) &&
+		touchPosition.y > box.y && touchPosition.y < box.y + screenSize.y)
+		return MAIN_MENU;
 
 	return GAME_OVER;
 }

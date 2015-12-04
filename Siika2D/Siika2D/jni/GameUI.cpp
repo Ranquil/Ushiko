@@ -127,8 +127,8 @@ void GameUI::init(core::Siika2D *siika, std::string levelName, Boss *boss)
 	ushiko.coinCount = 0;
 
 	pointsTextUI = siika->_textManager->createText();
-	pointsTextUI->setFont("arial.ttf");
-	pointsTextUI->setPosition(0.90, -0.95);
+	pointsTextUI->setFont("coolvetica.ttf");
+	pointsTextUI->setPosition(-1, 0.70);
 	pointsTextUI->setFontSize(64);
 
 	lastState = RESUME;
@@ -185,13 +185,6 @@ void GameUI::changeTexture(misc::GameObject *gameObject, core::Siika2D *siika, s
 
 int GameUI::update(core::Siika2D *siika, Boss *boss)
 {
-	if (ushiko.pointsAmount > 10 && ushiko.pointsAmount < 100)
-		pointsTextUI->setPosition(0.85, -0.95);
-	else if (ushiko.pointsAmount > 100 && ushiko.pointsAmount < 1000)
-		pointsTextUI->setPosition(0.80, -0.95);
-	else if (ushiko.pointsAmount > 1000 && ushiko.pointsAmount < 10000)
-		pointsTextUI->setPosition(0.75, -0.95);
-	else pointsTextUI->setPosition(0.90, -0.95);
 
 	if (ushiko.health < heartCount)
 		changeTexture(heartIcons[ushiko.health], siika, "ui_heart_hurt.png",glm::vec2(64,64));
