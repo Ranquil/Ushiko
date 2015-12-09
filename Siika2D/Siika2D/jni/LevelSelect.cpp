@@ -139,6 +139,7 @@ void LevelSelect::deInit()
 
 	for (misc::GameObject* go : levelLocks)
 		delete go;
+	levelLocks.clear();
 }
 
 bool LevelSelect::isIntersecting(glm::vec2 touchPosition, glm::vec2 box)
