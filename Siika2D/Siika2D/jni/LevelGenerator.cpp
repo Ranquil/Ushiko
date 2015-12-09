@@ -61,6 +61,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 	if (ushikoPos.y < -siika->_graphicsContext->getDisplaySize().y * 3)
 	{
 		ushiko.health -= ushiko.healthMax;
+		sound.playSound(KUOLONKORINA);
 		return;
 	}
 

@@ -144,6 +144,9 @@ void Boss::update(core::Siika2D *siika)
 			else
 			{
 				ushiko.health -= 1;
+				if (ushiko.health > 0)
+					sound.playSound(USHIKO_HURT);
+				else sound.playSound(KUOLONKORINA);
 				deletep = p;
 			}
 		}

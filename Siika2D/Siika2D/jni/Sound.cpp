@@ -27,6 +27,8 @@ void Sound::resume()
 void Sound::loadSounds(core::Siika2D* siika)
 {
 	sounds[COIN] = siika->_audioManager->createAudio("coin.ogg");
+	sounds[COIN]->setVolume(0.5);
+
 	sounds[ENEMY_DEAD] = siika->_audioManager->createAudio("enemy_dead.ogg");
 	sounds[KUOLONKORINA] = siika->_audioManager->createAudio("kuolonkorina.ogg");
 
