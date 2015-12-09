@@ -1,5 +1,6 @@
 #include "Boss.hpp"
 #include "Ushiko.hpp"
+#include "Sound.hpp"
 
 Boss::Boss()
 {
@@ -57,10 +58,13 @@ void Boss::init(core::Siika2D *siika)
 	projectileTimer.start();
 	animTimer.start();
 	bossHealth = bossMaxHealth;
+
+	sound.playSound(LONKERO);
 }
 
 void Boss::deInit()
 {
+	sound.stopSound(LONKERO);
 	delete bossFront;
 	delete bossBack;
 	for (Projectile* p : projectiles)

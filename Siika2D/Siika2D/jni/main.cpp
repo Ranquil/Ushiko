@@ -15,11 +15,13 @@ int currentScene;
 void siika_onPause()
 {
 	scenes[currentScene]->pause();
+	sound.pause();
 }
 
 void siika_onResume()
 {
 	scenes[currentScene]->resume();
+	sound.resume();
 }
 
 void siika_init()
