@@ -9,7 +9,7 @@
 enum soundName
 {
 	COIN,
-	ENEMY_HURT,
+	ENEMY_DEAD,
 	USHIKO_HURT,
 	LONKERO
 };
@@ -25,6 +25,7 @@ public:
 
 private:
 	std::map<soundName, audio::Audio*> sounds;
+	std::vector<audio::Audio*> ushikoHurts;
 };
 
 extern Sound sound;

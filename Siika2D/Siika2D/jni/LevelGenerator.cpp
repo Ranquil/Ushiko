@@ -1,5 +1,6 @@
 #include "LevelGenerator.hpp"
 #include "Ushiko.hpp"
+#include "Sound.hpp"
 
 LevelGenerator::LevelGenerator(core::Siika2D *siika, std::string name)
 {
@@ -306,8 +307,14 @@ void LevelGenerator::updateEnemies(core::Siika2D *siika, glm::vec2 ushikoPos)
 				Puff *p = new Puff;
 				p->init(siika, e->xPos, e->yPos);
 				puffs.push_back(p);
+
+				sound.playSound(ENEMY_DEAD);
 			}
-			else ushiko.health -= 1;
+			else
+			{
+				ushiko.health -= 1;
+				sound.playSound(USHIKO_HURT);
+			}
 			e->hasHit = true;
 		}
 
