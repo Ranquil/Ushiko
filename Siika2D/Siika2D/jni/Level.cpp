@@ -1,5 +1,6 @@
 #include "Level.hpp"
 #include "Ushiko.hpp"
+#include "Sound.hpp"
 
 Level::Level(std::string name)
 {
@@ -50,15 +51,6 @@ void Level::init(core::Siika2D *siika)
 		glm::vec2(1, 1));
 	bg->setZ(100);
 
-	/* ----- Initialize the sounds ----- */
-
-	theme = siika->_audioManager->createAudio("castle_theme.ogg");
-	theme->setLooping(true);
-	theme->setVolume(0.2f);
-	theme->play();
-
-	coin = siika->_audioManager->createAudio("coin.ogg");
-
 	/* ----- And other stuff ----- */
 
 	lg = new LevelGenerator(siika, levelName);
@@ -81,9 +73,6 @@ void Level::init(core::Siika2D *siika)
 
 void Level::deInit()
 {
-	//delete theme;
-	//delete coin;
-
 	bg->setPosition(glm::vec2(-5000, 0));
 	unlock->setPosition(glm::vec2(-5000, 0));
 
@@ -124,7 +113,7 @@ int Level::update(core::Siika2D *siika)
 		ushiko.update(siika);
 
 		if (coins == ushiko.coinCount - 1)
-			coin->play();
+			sound.playSound(COIN);
 
 		if (boss != nullptr)
 			boss->update(siika);
@@ -198,13 +187,11 @@ int Level::update(core::Siika2D *siika)
 void Level::pause()
 {
 	genTimer.pause();
-	theme->pause();
 	paused = true;
 }
 
 void Level::resume()
 {
 	genTimer.reset();
-	theme->play();
 	paused = false;
 }

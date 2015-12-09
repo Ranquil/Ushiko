@@ -29,8 +29,6 @@ private:
 
 	std::string levelName;
 	misc::Timer genTimer;
-	audio::Audio *theme;
-	audio::Audio *coin;
 	graphics::Sprite *unlock;
 	int unlockTimes;
 };

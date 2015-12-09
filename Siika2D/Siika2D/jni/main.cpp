@@ -5,6 +5,7 @@
 #include "LevelSelect.hpp"
 #include "Level.hpp"
 #include "GameOver.hpp"
+#include "Sound.hpp"
 
 core::Siika2D *siika = core::Siika2D::UI();
 
@@ -41,6 +42,7 @@ void siika_init()
 	scenes[GAME_OVER] = new GameOver;
 
 	scenes[currentScene]->init(siika);
+	sound.loadSounds(siika);
 }
 
 void siika_main()
