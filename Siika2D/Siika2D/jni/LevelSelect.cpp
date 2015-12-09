@@ -55,13 +55,18 @@ void LevelSelect::init(core::Siika2D *siika)
 	question->setZ(80);
 
 	forNextLevel = siika->_spriteManager->createSprite(
-		glm::vec2(scrSize.x, scrSize.y),
-		glm::vec2(128, 128),
-		glm::vec2(128, 128),
-		siika->_textureManager->createTexture("tile_level.png"),
+		glm::vec2(scrSize.x / 2, scrSize.y + scrSize.y / 3),
+		glm::vec2(512, 512),
+		glm::vec2(256, 512),
+		siika->_textureManager->createTexture("tile_level_sheet.png"),
 		glm::vec2(0, 0),
-		glm::vec2(1, 1));
+		glm::vec2(0.5, 0.5));
 	forNextLevel->setZ(70);
+
+	for (int i = 0; i < unlocked; i++)
+	{
+		forNextLevel->step();
+	}
 
 	instructions = false;
 	inputTimer.start();
