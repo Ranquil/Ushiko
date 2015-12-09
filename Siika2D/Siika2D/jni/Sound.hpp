@@ -11,7 +11,8 @@ enum soundName
 	COIN,
 	ENEMY_DEAD,
 	USHIKO_HURT,
-	LONKERO
+	LONKERO,
+	KUOLONKORINA
 };
 
 class Sound

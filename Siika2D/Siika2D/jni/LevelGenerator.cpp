@@ -313,7 +313,9 @@ void LevelGenerator::updateEnemies(core::Siika2D *siika, glm::vec2 ushikoPos)
 			else
 			{
 				ushiko.health -= 1;
-				sound.playSound(USHIKO_HURT);
+				if (ushiko.health > 0)
+					sound.playSound(USHIKO_HURT);
+				else sound.playSound(KUOLONKORINA);
 			}
 			e->hasHit = true;
 		}
