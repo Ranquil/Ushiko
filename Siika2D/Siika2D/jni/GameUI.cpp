@@ -125,12 +125,13 @@ void GameUI::init(core::Siika2D *siika, std::string levelName, Boss *boss)
 	shade->setZ(-10);
 
 	ushiko.coinCount = 0;
-
-	pointsTextUI = siika->_textManager->createText();
-	pointsTextUI->setFont("coolvetica.ttf");
-	pointsTextUI->setPosition(-1, 0.70);
-	pointsTextUI->setFontSize(64);
-
+	if (levelName != "boss")
+	{
+		pointsTextUI = siika->_textManager->createText();
+		pointsTextUI->setFont("coolvetica.ttf");
+		pointsTextUI->setPosition(-1, 0.70);
+		pointsTextUI->setFontSize(64);
+	}
 	lastState = RESUME;
 	inputTimer.start();
 	heartCount = ushiko.health;
@@ -150,7 +151,8 @@ void GameUI::deInit()
 {
 	delete pauseButton;
 
-	pointsTextUI->setText("");
+	if (pointsTextUI != nullptr)
+		pointsTextUI->setText("");
 
 	for (int i = 0; i < 3; i++)
 		delete heartIcons[i];
@@ -205,10 +207,12 @@ int GameUI::update(core::Siika2D *siika, Boss *boss)
 		changeTexture(bossHeartIcons[boss->bossHealth], siika, "ui_bosslifebar_hearthurt.png", glm::vec2(64, 64));
 		bossHeartCount = boss->bossHealth;
 	}
-
-	std::ostringstream pointsText;
-	pointsText << ushiko.pointsAmount << "/" << levelPoints;
-	pointsTextUI->setText(pointsText.str());
+	if (boss == nullptr)
+	{
+		std::ostringstream pointsText;
+		pointsText << ushiko.pointsAmount << "/" << levelPoints;
+		pointsTextUI->setText(pointsText.str());
+	}
 
 	glm::vec2 touchPosition = glm::vec2(0, 0);
 	if (inputTimer.getElapsedTime(SECONDS) > 0.5)

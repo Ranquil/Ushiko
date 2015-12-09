@@ -22,6 +22,7 @@ void LevelSelect::init(core::Siika2D *siika)
 	if (read.find("1") != std::string::npos) unlocked = 1;
 	if (read.find("2") != std::string::npos) unlocked = 2;
 	if (read.find("3") != std::string::npos) unlocked = 3;
+	unlocked = 3;
 	glm::vec2 screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
 	boxSizex = siika->_graphicsContext->getDisplaySize().x / 4;
 	boxSizey = siika->_graphicsContext->getDisplaySize().y / 4;
@@ -52,6 +53,15 @@ void LevelSelect::init(core::Siika2D *siika)
 		glm::vec2(0, 0),
 		glm::vec2(1, 1));
 	question->setZ(80);
+
+	forNextLevel = siika->_spriteManager->createSprite(
+		glm::vec2(scrSize.x, scrSize.y),
+		glm::vec2(128, 128),
+		glm::vec2(128, 128),
+		siika->_textureManager->createTexture("tile_level.png"),
+		glm::vec2(0, 0),
+		glm::vec2(1, 1));
+	forNextLevel->setZ(70);
 
 	instructions = false;
 	inputTimer.start();

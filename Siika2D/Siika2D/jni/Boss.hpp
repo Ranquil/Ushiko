@@ -42,7 +42,6 @@ public:
 	const int bossMaxHealth = 10;
 	int bossHealth;
 private:
-	bool hurtAnimation;
 	misc::Timer hurtTimer;
 	misc::GameObject *bossFront;
 	misc::GameObject *bossBack;

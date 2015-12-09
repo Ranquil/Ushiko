@@ -31,6 +31,7 @@ private:
 	misc::GameObject *castleLevel;
 	misc::GameObject *bossLevel;
 	graphics::Sprite *question;
+	graphics::Sprite *forNextLevel;
 };
 
 #endif // LEVELSELECT_H
