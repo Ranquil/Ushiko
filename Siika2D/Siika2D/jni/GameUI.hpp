@@ -37,6 +37,7 @@ private:
 	misc::GameObject *bossText;
 	misc::GameObject *pauseButton;
 	misc::Timer inputTimer;
+	int levelPoints;
 };
 
 #endif // GAMEUI_H

@@ -137,6 +137,13 @@ void GameUI::init(core::Siika2D *siika, std::string levelName, Boss *boss)
 
 	if (levelName == "boss")
 		bossHeartCount = boss->bossHealth;
+
+	if (levelName == "plains")
+		levelPoints = 500;
+	else if (levelName == "forest")
+		levelPoints = 1000;
+	else if (levelName == "castle")
+		levelPoints = 2000;
 }
 
 void GameUI::deInit()
@@ -200,7 +207,7 @@ int GameUI::update(core::Siika2D *siika, Boss *boss)
 	}
 
 	std::ostringstream pointsText;
-	pointsText << ushiko.pointsAmount;
+	pointsText << ushiko.pointsAmount << "/" << levelPoints;
 	pointsTextUI->setText(pointsText.str());
 
 	glm::vec2 touchPosition = glm::vec2(0, 0);

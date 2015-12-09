@@ -21,7 +21,6 @@ void LevelSelect::init(core::Siika2D *siika)
 	if (read.find("1") != std::string::npos) unlocked = 1;
 	if (read.find("2") != std::string::npos) unlocked = 2;
 	if (read.find("3") != std::string::npos) unlocked = 3;
-
 	glm::vec2 screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
 	boxSizex = siika->_graphicsContext->getDisplaySize().x / 4;
 	boxSizey = siika->_graphicsContext->getDisplaySize().y / 4;
@@ -82,7 +81,7 @@ void LevelSelect::init(core::Siika2D *siika)
 			case 0:	lvlSelectTexture = siika->_textureManager->createTexture("background_plains.png"); break;
 			case 1:	lvlSelectTexture = siika->_textureManager->createTexture("background_forest.png"); break;
 			case 2: lvlSelectTexture = siika->_textureManager->createTexture("background_castle.png"); break;
-			case 3: lvlSelectTexture = siika->_textureManager->createTexture("background_castle.png"); break;
+			case 3: lvlSelectTexture = siika->_textureManager->createTexture("background_boss.png"); break;
 			default: break;
 		}
 
