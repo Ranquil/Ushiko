@@ -1,4 +1,5 @@
 #include "Ushiko.hpp"
+#include "Sound.hpp"
 
 Ushiko ushiko;
 
@@ -141,12 +142,14 @@ void Ushiko::update(core::Siika2D *siika)
 					canJump = false;
 					currentAnimation = JUMP_START;
 					airTimer.reset();
+					sound.playSound(JUMP);
 				}
 				else if (!doubleJump && airTimer.getElapsedTime(MILLISECONDS) > 400)
 				{
 					doubleJump = true;
 					currentAnimation = DOUBLE_JUMP;
 					airTimer.pause();
+					sound.playSound(JUMP);
 				}
 			}
 		}

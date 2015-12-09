@@ -1,4 +1,5 @@
 #include "MainMenu.hpp"
+#include "Sound.hpp"
 
 MainMenu::MainMenu()
 {
@@ -37,6 +38,8 @@ void MainMenu::init(core::Siika2D *siika)
 
 	siika->_graphicsContext->setClearColor(graphics::Color(0, 0, 0, 0));
 	initTimer.start();
+
+	playSound = true;
 }
 
 void MainMenu::deInit()
@@ -59,6 +62,11 @@ int MainMenu::update(core::Siika2D *siika)
 
 	if (!hasBeenInit)
 	{
+		if (playSound)
+		{
+			playSound = false;
+			sound.playSound(TITLE_SCREEN);
+		}
 		if (initTimer.getElapsedTime(SECONDS) > 3)
 		{
 			hasBeenInit = true;
@@ -67,7 +75,10 @@ int MainMenu::update(core::Siika2D *siika)
 		}
 	}
 	else if (siika->_input->touchPositionsActive() > 0)
+	{
+		sound.playSound(SELECT);
 		return LEVEL_SELECT;
+	}
 
 	siika->_spriteManager->drawSprites();
 	siika->_textManager->drawTexts();

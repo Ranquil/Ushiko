@@ -26,13 +26,18 @@ void Sound::resume()
 
 void Sound::loadSounds(core::Siika2D* siika)
 {
+	// Load sounds
 	sounds[COIN] = siika->_audioManager->createAudio("coin.ogg");
-	sounds[COIN]->setVolume(0.5);
-
 	sounds[ENEMY_DEAD] = siika->_audioManager->createAudio("enemy_dead.ogg");
-	sounds[KUOLONKORINA] = siika->_audioManager->createAudio("kuolonkorina.ogg");
-
 	sounds[LONKERO] = siika->_audioManager->createAudio("lonkero.ogg");
+	sounds[KUOLONKORINA] = siika->_audioManager->createAudio("kuolonkorina.ogg");
+	sounds[JUMP] = siika->_audioManager->createAudio("jump.ogg");
+	sounds[SELECT] = siika->_audioManager->createAudio("select.ogg");
+	sounds[TITLE_SCREEN] = siika->_audioManager->createAudio("title_screen.ogg");
+
+	// Adjust special properties/volumes
+	sounds[COIN]->setVolume(0.5f);
+	sounds[JUMP]->setVolume(0.6f);
 	sounds[LONKERO]->setLooping(true);
 
 	// Too lazy to do this any other way
@@ -55,7 +60,7 @@ void Sound::playSound(soundName snd)
 		ushikoHurts[lrand48() % 11]->play();
 	else sounds[snd]->play();
 
-	if (snd == LONKERO)
+	if (snd == LONKERO) // add any looping sounds to this vector
 		currentlyPlaying.push_back(snd);
 }
 
@@ -73,6 +78,5 @@ void Sound::stopSound(soundName snd)
 				break;
 			}
 		}
-		//delete sounds[snd];
 	}
 }

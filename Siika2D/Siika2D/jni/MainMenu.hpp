@@ -24,6 +24,7 @@ private:
 	graphics::Sprite *logo;
 	misc::Timer initTimer;
 
+	bool playSound;
 	bool hasBeenInit;
 };
 

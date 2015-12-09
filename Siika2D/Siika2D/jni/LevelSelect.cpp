@@ -1,4 +1,5 @@
 #include "LevelSelect.hpp"
+#include "Sound.hpp"
 
 #include <sstream>
 
@@ -161,13 +162,25 @@ int LevelSelect::update(core::Siika2D *siika)
 	{
 		glm::vec2 insBox = siika->_graphicsContext->getDisplaySize();
 		if (isIntersecting(touchPosition, plainsLevel->getComponent<misc::TransformComponent>()->getPosition()))
+		{
+			sound.playSound(SELECT);
 			return PLAINS_LEVEL;
+		}
 		else if (unlocked >= 1 && isIntersecting(touchPosition, forestLevel->getComponent<misc::TransformComponent>()->getPosition()))
+		{
+			sound.playSound(SELECT);
 			return FOREST_LEVEL;
+		}
 		else if (unlocked >= 2 && isIntersecting(touchPosition, castleLevel->getComponent<misc::TransformComponent>()->getPosition()))
+		{
+			sound.playSound(SELECT);
 			return CASTLE_LEVEL;
+		}
 		else if (unlocked >= 3 && isIntersecting(touchPosition, bossLevel->getComponent<misc::TransformComponent>()->getPosition()))
+		{
+			sound.playSound(SELECT);
 			return BOSS_LEVEL;
+		}
 		else if (!instructions && isIntersecting(touchPosition, glm::vec2(insBox.x - 128, insBox.y - 128)))
 		{
 			if (inputTimer.getElapsedTime(SECONDS) > 0.5)
@@ -176,6 +189,7 @@ int LevelSelect::update(core::Siika2D *siika)
 				instructions = true;
 				bg->setPosition(glm::vec2(0, 0));
 				bg->setZ(0);
+				sound.playSound(SELECT);
 			}
 		}
 		else if (instructions)
@@ -186,6 +200,7 @@ int LevelSelect::update(core::Siika2D *siika)
 				instructions = false;
 				bg->setPosition(glm::vec2(0, -siika->_graphicsContext->getDisplaySize().y));
 				bg->setZ(100);
+				sound.playSound(SELECT);
 			}
 		}
 	}
