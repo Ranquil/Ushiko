@@ -24,7 +24,7 @@ LevelGenerator::LevelGenerator(core::Siika2D *siika, std::string name)
 	// Go through update a few times to spawn the starting platform.
 	// This slows down loading just a little bit, so TODO(Jere):
 	// change this to spawn the platform without using update().
-	for (int i = 0; i < 360; i++)
+	for (int i = 0; i < 250; i++)
 		update(siika);
 }
 

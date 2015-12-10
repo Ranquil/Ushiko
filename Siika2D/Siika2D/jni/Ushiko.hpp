@@ -55,10 +55,11 @@ private:
 	unsigned int prevChange;
 	void changeSheet(core::Siika2D *siika, unsigned int sheetNum);
 
+	bool letGo;
 	bool canJump;
 	bool doubleJump;
 	misc::Timer jumpTimer;
-	misc::Timer airTimer;
+	//misc::Timer airTimer;
 
 	int xOffset;
 	glm::vec2 originalPos;

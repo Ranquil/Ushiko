@@ -50,8 +50,8 @@ void Ushiko::init(core::Siika2D *siika)
 	currentFrame = animations[IDLE].startPos;
 	animTimer.start();
 
-	airTimer.start();
-	airTimer.pause();
+	//airTimer.start();
+	//airTimer.pause();
 
 	health = healthMax;
 	pointsAmount = 0;
@@ -60,6 +60,7 @@ void Ushiko::init(core::Siika2D *siika)
 	jumpTimer.start();
 	doubleJump = true;
 	canJump = false;
+	letGo = true;
 
 	dashTimer.start();
 	dashing = false;
@@ -96,6 +97,9 @@ void Ushiko::update(core::Siika2D *siika)
 	for (int i = 0; i < siika->_input->touchPositionsActive(); i++)
 		touchPos = siika->transfCrds()->deviceToUser(siika->_input->touchPosition(i)._positionStart);
 
+	if (!letGo && touchPos.x == 0 && touchPos.y == 0)
+		letGo = true;
+
 	// Get the current animation
 	animState previousAnimation = currentAnimation;
 
@@ -125,7 +129,7 @@ void Ushiko::update(core::Siika2D *siika)
 	{
 		go->update();
 
-		if (canJump || !doubleJump)
+		if ((canJump || !doubleJump) && letGo)
 		{
 			int ushikoPos = go->getComponent<misc::TransformComponent>()->getPosition().y;
 
@@ -133,6 +137,8 @@ void Ushiko::update(core::Siika2D *siika)
 			if (jumpTimer.getElapsedTime(SECONDS) > 0.2 && touchPos.x > 10 &&
 				touchPos.x < siika->_graphicsContext->getDisplaySize().x / 2)
 			{
+				letGo = false;
+
 				ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
 				ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 48), false);
 
@@ -142,14 +148,14 @@ void Ushiko::update(core::Siika2D *siika)
 				{
 					canJump = false;
 					currentAnimation = JUMP_START;
-					airTimer.reset();
+					//airTimer.reset();
 					sound.playSound(JUMP);
 				}
-				else if (!doubleJump && airTimer.getElapsedTime(MILLISECONDS) > 400)
+				else if (!doubleJump)// && airTimer.getElapsedTime(MILLISECONDS) > 400)
 				{
 					doubleJump = true;
 					currentAnimation = DOUBLE_JUMP;
-					airTimer.pause();
+					//airTimer.pause();
 					sound.playSound(JUMP);
 				}
 			}
