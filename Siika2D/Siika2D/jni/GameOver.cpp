@@ -15,48 +15,42 @@ GameOver::~GameOver()
 
 void GameOver::init(core::Siika2D *siika)
 {
-	glm::vec2 screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
-	gameOverScreen = new misc::GameObject;
+	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
 
-	graphics::Texture *texture = siika->_textureManager->createTexture("panda.png");
-
-	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
+	gameOver = siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
-		glm::vec2(screenSize.x, screenSize.y),
+		glm::vec2(scrSize.x, scrSize.y * 2),
 		glm::vec2(0, 0),
-		texture,
+		siika->_textureManager->createTexture("background_gameover.png"),
 		glm::vec2(0, 0),
-		glm::vec2(1, 1))));
-	misc::TransformComponent *trnsComp = new misc::TransformComponent;
-
-	gameOverScreen->addComponent(sprtComp);
-	gameOverScreen->addComponent(trnsComp);
+		glm::vec2(1, 1));
+	gameOver->setZ(100);
 
 	enemiesText = siika->_textManager->createText();
 	enemiesText->setFont("coolvetica.ttf");
-	enemiesText->setPosition(-0.5f, -0.4f);
+	enemiesText->setPosition(-0.7f, -0.5f);
 	enemiesText->setFontSize(64);
 
 	std::stringstream enm;
-	enm << "Enemies killed: " << ushiko.enemiesKilled;
+	enm << "Enemies killed: " << ushiko.enemiesKilled << ", Total score: " << ushiko.pointsAmount;
 	enemiesText->setText(enm.str());
 
-	scoreText = siika->_textManager->createText();
+	/*scoreText = siika->_textManager->createText();
 	scoreText->setFont("coolvetica.ttf");
 	scoreText->setPosition(-0.5f, -0.2f);
 	scoreText->setFontSize(64);
 
 	std::stringstream scr;
 	scr << "Total score: " << ushiko.pointsAmount;
-	scoreText->setText(scr.str());
+	scoreText->setText(scr.str());*/
 }
 
 void GameOver::deInit()
 {
 	enemiesText->setText("");
-	scoreText->setText("");
+	//scoreText->setText("");
 
-	delete gameOverScreen;
+	gameOver->setPosition(glm::vec2(-5000, 0));
 }
 
 int GameOver::update(core::Siika2D *siika)

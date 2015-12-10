@@ -132,6 +132,7 @@ void GameUI::init(core::Siika2D *siika, std::string levelName, Boss *boss)
 		pointsTextUI->setPosition(-1, 0.70);
 		pointsTextUI->setFontSize(64);
 	}
+	else pointsTextUI = nullptr;
 	lastState = RESUME;
 	inputTimer.start();
 	heartCount = ushiko.health;

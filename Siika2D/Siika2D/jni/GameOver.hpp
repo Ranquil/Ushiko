@@ -17,10 +17,10 @@ public:
 	virtual int update(core::Siika2D *siika);
 
 private:
-	misc::GameObject *gameOverScreen;
+	graphics::Sprite *gameOver;
 
 	graphics::Text *enemiesText;
-	graphics::Text *scoreText;
+	//graphics::Text *scoreText;
 };
 
 #endif // GAME_OVER_H

@@ -305,6 +305,8 @@ void LevelGenerator::updateEnemies(core::Siika2D *siika, glm::vec2 ushikoPos)
 					ushiko.pointsAmount += 20;
 				else ushiko.pointsAmount += 40;
 
+				ushiko.enemiesKilled += 1;
+
 				Puff *p = new Puff;
 				p->init(siika, e->xPos, e->yPos);
 				puffs.push_back(p);
