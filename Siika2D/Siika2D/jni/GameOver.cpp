@@ -32,7 +32,7 @@ void GameOver::init(core::Siika2D *siika)
 	enemiesText->setFontSize(64);
 
 	std::stringstream enm;
-	enm << "Enemies killed: " << ushiko.enemiesKilled << ", Total score: " << ushiko.pointsAmount;
+	enm << "Enemies killed: " << ushiko.enemiesKilled << "   Total score: " << ushiko.pointsAmount;
 	enemiesText->setText(enm.str());
 
 	/*scoreText = siika->_textManager->createText();

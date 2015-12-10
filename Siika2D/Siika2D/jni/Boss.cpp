@@ -137,7 +137,7 @@ void Boss::update(core::Siika2D *siika)
 		{
 			if (ushiko.dashing && p->projectileType == RETURNABLE)
 			{
-				p->pDirection = p->pDirection - p->pDirection * 4;
+				p->pDirection = p->pDirection - p->pDirection * 2;
 				p->projectileType = LAST;
 			
 			}
@@ -152,6 +152,7 @@ void Boss::update(core::Siika2D *siika)
 		}
 		if (pPosition.x > screenSize.x && p->projectileType == LAST)
 		{
+			ushiko.pointsAmount += 100;
 			bossHealth -= 1;
 			deletep = p;
 		}
@@ -161,7 +162,7 @@ void Boss::update(core::Siika2D *siika)
 			deletep = p;
 		}
 		p->gameObject->update();
-		p->gameObject->move(glm::vec2(p->xPos -= p->pDirection, p->yPos));
+		p->gameObject->move(glm::vec2(p->xPos -= p->pDirection * 1.5, p->yPos));
 	}
 	if (deletep != nullptr)
 	{

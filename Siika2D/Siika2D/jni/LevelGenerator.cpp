@@ -74,7 +74,7 @@ void LevelGenerator::update(core::Siika2D *siika)
 	updateEnemies(siika, ushikoPos);
 
 	tileMovement += 1;
-	if (tileMovement >= 18)
+	if (tileMovement >= 14)
 	{
 		tileMovement = 0;
 
@@ -248,7 +248,7 @@ void LevelGenerator::updateTiles(glm::vec2 ushikoPos)
 	for (Tile *t : tiles)
 	{
 		t->go->update();
-		t->go->move(glm::vec2(t->xPos -= 5, t->yPos));
+		t->go->move(glm::vec2(t->xPos -= 7, t->yPos));
 
 		if (t->xPos < ushikoPos.x + 10 && t->xPos > ushikoPos.x - 10)
 			ushiko.groundLevel = -t->yPos;
@@ -275,7 +275,7 @@ void LevelGenerator::updateEnemies(core::Siika2D *siika, glm::vec2 ushikoPos)
 		int enemyXpos = siika->transfCrds()->deviceToUser(e->go->getComponent<misc::TransformComponent>()->getPosition()).x;
 
 		e->update(siika);
-		e->go->move(glm::vec2(e->flies ? e->xPos -= 8 : e->xPos -= 5, e->yPos));
+		e->go->move(glm::vec2(e->flies ? e->xPos -= 10 : e->xPos -= 7, e->yPos));
 
 		if (e->flies)
 		{
@@ -373,7 +373,7 @@ void LevelGenerator::updateCollectables(glm::vec2 ushikoPos)
 		}
 
 		c->update();
-		c->go->move(glm::vec2(c->xPos -= 5, c->yPos));
+		c->go->move(glm::vec2(c->xPos -= 7, c->yPos));
 
 		if (c->xPos < -100)
 			cDelete = c;
@@ -400,7 +400,7 @@ void LevelGenerator::updatePuffs(core::Siika2D *siika)
 	{
 		if (p->go != NULL)
 		{
-			p->go->move(glm::vec2(p->xPos -= 5, p->yPos));
+			p->go->move(glm::vec2(p->xPos -= 7, p->yPos));
 			p->update(siika);
 		}
 		else pDelete = p;

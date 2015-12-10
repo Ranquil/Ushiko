@@ -176,29 +176,33 @@ int LevelSelect::update(core::Siika2D *siika)
 	if (siika->_input->touchPositionsActive() > 0)
 	{
 		glm::vec2 insBox = siika->_graphicsContext->getDisplaySize();
-		if (isIntersecting(touchPosition, plainsLevel->getComponent<misc::TransformComponent>()->getPosition()))
+		if (inputTimer.getElapsedTime(SECONDS) > 0.5)
 		{
-			sound.playSound(SELECT);
-			return PLAINS_LEVEL;
-		}
-		else if (unlocked >= 1 && isIntersecting(touchPosition, forestLevel->getComponent<misc::TransformComponent>()->getPosition()))
-		{
-			sound.playSound(SELECT);
-			return FOREST_LEVEL;
-		}
-		else if (unlocked >= 2 && isIntersecting(touchPosition, castleLevel->getComponent<misc::TransformComponent>()->getPosition()))
-		{
-			sound.playSound(SELECT);
-			return CASTLE_LEVEL;
-		}
-		else if (unlocked >= 3 && isIntersecting(touchPosition, bossLevel->getComponent<misc::TransformComponent>()->getPosition()))
-		{
-			sound.playSound(SELECT);
-			return BOSS_LEVEL;
-		}
-		else if (!instructions && isIntersecting(touchPosition, glm::vec2(insBox.x - 128, insBox.y - 128)))
-		{
-			if (inputTimer.getElapsedTime(SECONDS) > 0.5)
+			if (isIntersecting(touchPosition, plainsLevel->getComponent<misc::TransformComponent>()->getPosition()))
+			{
+				inputTimer.reset();
+				sound.playSound(SELECT);
+				return PLAINS_LEVEL;
+			}
+			else if (unlocked >= 1 && isIntersecting(touchPosition, forestLevel->getComponent<misc::TransformComponent>()->getPosition()))
+			{
+				inputTimer.reset();
+				sound.playSound(SELECT);
+				return FOREST_LEVEL;
+			}
+			else if (unlocked >= 2 && isIntersecting(touchPosition, castleLevel->getComponent<misc::TransformComponent>()->getPosition()))
+			{
+				inputTimer.reset();
+				sound.playSound(SELECT);
+				return CASTLE_LEVEL;
+			}
+			else if (unlocked >= 3 && isIntersecting(touchPosition, bossLevel->getComponent<misc::TransformComponent>()->getPosition()))
+			{
+				inputTimer.reset();
+				sound.playSound(SELECT);
+				return BOSS_LEVEL;
+			}
+			else if (!instructions && isIntersecting(touchPosition, glm::vec2(insBox.x - 128, insBox.y - 128)))
 			{
 				inputTimer.reset();
 				instructions = true;
@@ -206,10 +210,7 @@ int LevelSelect::update(core::Siika2D *siika)
 				bg->setZ(0);
 				sound.playSound(SELECT);
 			}
-		}
-		else if (instructions)
-		{
-			if (inputTimer.getElapsedTime(SECONDS) > 0.5)
+			else if (instructions)
 			{
 				inputTimer.reset();
 				instructions = false;

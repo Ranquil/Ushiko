@@ -97,8 +97,9 @@ int Level::update(core::Siika2D *siika)
 	else if (state == RESUME)
 		resume();
 
-	if (!paused && genTimer.getElapsedTime(MILLISECONDS) > 5)
+	if (!paused && genTimer.getElapsedTime(MILLISECONDS) > 10)
 	{
+		genTimer.reset();
 		siika->_boxWorld->Step(1.5f / 60.0f, 6, 2);
 
 		int coins = ushiko.coinCount;
@@ -156,8 +157,6 @@ int Level::update(core::Siika2D *siika)
 				unlockTimes = 100;
 			}
 		}
-
-		genTimer.reset();
 	}
 
 	siika->_spriteManager->drawSprites();
