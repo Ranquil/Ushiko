@@ -55,6 +55,7 @@ void Ushiko::init(core::Siika2D *siika)
 
 	health = healthMax;
 	pointsAmount = 0;
+	enemiesKilled = 0;
 
 	jumpTimer.start();
 	doubleJump = true;

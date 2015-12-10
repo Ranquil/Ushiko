@@ -47,6 +47,7 @@ public:
 	int health;
 	int coinCount;
 	int pointsAmount;
+	int enemiesKilled;
 
 	misc::GameObject *go;
 

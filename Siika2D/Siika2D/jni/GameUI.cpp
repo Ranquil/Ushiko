@@ -209,7 +209,7 @@ int GameUI::update(core::Siika2D *siika, Boss *boss)
 	}
 	if (boss == nullptr)
 	{
-		std::ostringstream pointsText;
+		std::stringstream pointsText;
 		pointsText << ushiko.pointsAmount << "/" << levelPoints;
 		pointsTextUI->setText(pointsText.str());
 	}

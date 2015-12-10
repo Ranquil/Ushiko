@@ -167,12 +167,12 @@ int Level::update(core::Siika2D *siika)
 	if (boss != nullptr && boss->bossHealth <= 0)
 	{
 		delete ushiko.go;
-		return MAIN_MENU;
+		return GAME_OVER;
 	}
 	if (ushiko.health <= 0)
 	{
 		delete ushiko.go;
-		return MAIN_MENU;
+		return GAME_OVER;
 	}
 
 	if (levelName == "plains")

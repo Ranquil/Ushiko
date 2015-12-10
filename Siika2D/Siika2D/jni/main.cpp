@@ -36,12 +36,12 @@ void siika_init()
 
 	scenes[QUIT] = new Scene;
 	scenes[MAIN_MENU] = new MainMenu;
+	scenes[GAME_OVER] = new GameOver;
 	scenes[LEVEL_SELECT] = new LevelSelect;
 	scenes[PLAINS_LEVEL] = new Level("plains");
 	scenes[FOREST_LEVEL] = new Level("forest");
 	scenes[CASTLE_LEVEL] = new Level("castle");
 	scenes[BOSS_LEVEL] = new Level("boss");
-	scenes[GAME_OVER] = new GameOver;
 
 	scenes[currentScene]->init(siika);
 	sound.loadSounds(siika);

@@ -2,6 +2,7 @@
 #define GAME_OVER_H
 
 #include "Scene.hpp"
+
 #include "../engine/misc/GameObject.h"
 
 class GameOver : public Scene
@@ -16,7 +17,10 @@ public:
 	virtual int update(core::Siika2D *siika);
 
 private:
-	misc::GameObject *GameOverScreen;
+	misc::GameObject *gameOverScreen;
+
+	graphics::Text *enemiesText;
+	graphics::Text *scoreText;
 };
 
-#endif
+#endif // GAME_OVER_H
