@@ -91,7 +91,7 @@ int GameOver::update(core::Siika2D *siika)
 	}
 
 	if (siika->_input->touchPositionsActive() > 0)
-		return MAIN_MENU;
+		return LEVEL_SELECT;
 
 	siika->_spriteManager->drawSprites();
 	siika->_textManager->drawTexts();

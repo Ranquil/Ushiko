@@ -6,10 +6,11 @@
 #include "Level.hpp"
 #include "GameOver.hpp"
 #include "Sound.hpp"
+#include "EndScreen.hpp"
 
 core::Siika2D *siika = core::Siika2D::UI();
 
-Scene* scenes[8];
+Scene* scenes[9];
 int currentScene;
 
 void siika_onPause()
@@ -38,6 +39,7 @@ void siika_init()
 	scenes[MAIN_MENU] = new MainMenu;
 	scenes[GAME_OVER] = new GameOver;
 	scenes[LEVEL_SELECT] = new LevelSelect;
+	scenes[END_SCREEN] = new EndScreen;
 	scenes[PLAINS_LEVEL] = new Level("plains");
 	scenes[FOREST_LEVEL] = new Level("forest");
 	scenes[CASTLE_LEVEL] = new Level("castle");

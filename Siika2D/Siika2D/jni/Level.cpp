@@ -182,7 +182,7 @@ int Level::update(core::Siika2D *siika)
 	if (boss != nullptr && boss->bossHealth <= 0)
 	{
 		delete ushiko.go;
-		return GAME_OVER;
+		return END_SCREEN;
 	}
 	if (ushiko.health <= 0)
 	{

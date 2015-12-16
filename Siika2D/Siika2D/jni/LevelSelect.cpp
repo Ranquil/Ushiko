@@ -22,7 +22,7 @@ void LevelSelect::init(core::Siika2D *siika)
 	if (read.find("1") != std::string::npos) unlocked = 1;
 	if (read.find("2") != std::string::npos) unlocked = 2;
 	if (read.find("3") != std::string::npos) unlocked = 3;
-	unlocked = 3;
+	//unlocked = 3;
 	glm::vec2 screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
 	boxSizex = siika->_graphicsContext->getDisplaySize().x / 4;
 	boxSizey = siika->_graphicsContext->getDisplaySize().y / 4;
@@ -55,7 +55,7 @@ void LevelSelect::init(core::Siika2D *siika)
 	question->setZ(80);
 
 	forNextLevel = siika->_spriteManager->createSprite(
-		glm::vec2(scrSize.x / 2, scrSize.y + scrSize.y / 3),
+		glm::vec2(scrSize.x / 2, scrSize.y + scrSize.y / 3 - 10),
 		glm::vec2(512, 512),
 		glm::vec2(256, 512),
 		siika->_textureManager->createTexture("tile_level_sheet.png"),
@@ -146,7 +146,11 @@ void LevelSelect::deInit()
 {
 	bg->setPosition(glm::vec2(-5000, 0));
 	question->setPosition(glm::vec2(-5000, 0));
+<<<<<<< HEAD
+	forNextLevel->setPosition(glm::vec2(-5000, 0));
+=======
 	sound.stopSound(MENU_THEME);
+>>>>>>> origin/master
 
 	delete plainsLevel;
 	delete forestLevel; 

@@ -122,7 +122,7 @@ bool Boss::isIntersecting(glm::vec2 projectilePosition, glm::vec2 otherPosition)
 
 void Boss::update(core::Siika2D *siika)
 {
-	if (projectileTimer.getElapsedTime(MILLISECONDS) >= 1500)
+	if (projectileTimer.getElapsedTime(MILLISECONDS) >= 2000)
 	{
 		spawnProjectile(siika);
 		projectileTimer.reset();
