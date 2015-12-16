@@ -21,7 +21,8 @@ enum soundName
 	PORA_2,
 	LONKERO, // all looping sounds under this one
 	CASTLE_THEME,
-	BOSS_THEME
+	BOSS_THEME,
+	MENU_THEME
 };
 
 class Sound

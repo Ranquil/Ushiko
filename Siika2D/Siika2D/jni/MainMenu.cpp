@@ -72,6 +72,7 @@ int MainMenu::update(core::Siika2D *siika)
 			hasBeenInit = true;
 			bg->setPosition(glm::vec2(0, 0));
 			logo->setPosition(glm::vec2(-5000, 0));
+			sound.playSound(MENU_THEME);
 		}
 	}
 	else if (initTimer.getElapsedTime(SECONDS) > 0.5 && siika->_input->touchPositionsActive() > 0)

@@ -146,6 +146,7 @@ void LevelSelect::deInit()
 {
 	bg->setPosition(glm::vec2(-5000, 0));
 	question->setPosition(glm::vec2(-5000, 0));
+	sound.stopSound(MENU_THEME);
 
 	delete plainsLevel;
 	delete forestLevel; 
