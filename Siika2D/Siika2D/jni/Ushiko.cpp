@@ -156,7 +156,7 @@ void Ushiko::update(core::Siika2D *siika)
 					doubleJump = true;
 					currentAnimation = DOUBLE_JUMP;
 					//airTimer.pause();
-					sound.playSound(JUMP);
+					sound.playSound(PORA_1);
 				}
 			}
 		}
@@ -170,6 +170,7 @@ void Ushiko::update(core::Siika2D *siika)
 				dashing = true;
 				xOffset = 10;
 				originalPos = siika->transfCrds()->deviceToUser(ushiko.go->getComponent<misc::TransformComponent>()->getPosition());
+				sound.playSound(PORA_2);
 			}
 			dashTimer.reset();
 		}

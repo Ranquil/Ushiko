@@ -65,6 +65,7 @@ void Boss::init(core::Siika2D *siika)
 void Boss::deInit()
 {
 	sound.stopSound(LONKERO);
+
 	delete bossFront;
 	delete bossBack;
 	for (Projectile* p : projectiles)
@@ -152,6 +153,7 @@ void Boss::update(core::Siika2D *siika)
 		}
 		if (pPosition.x > screenSize.x && p->projectileType == LAST)
 		{
+			sound.playSound(BOSS_DAMAGE);
 			ushiko.pointsAmount += 100;
 			bossHealth -= 1;
 			deletep = p;

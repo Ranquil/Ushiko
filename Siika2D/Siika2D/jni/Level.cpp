@@ -69,10 +69,16 @@ void Level::init(core::Siika2D *siika)
 		glm::vec2(1, 1));
 	unlock->setZ(0);
 	unlockTimes = 0;
+
+	if (levelName == "castle" || levelName == "boss")
+		sound.playSound(CASTLE_THEME);
 }
 
 void Level::deInit()
 {
+	if (levelName == "castle" || levelName == "boss")
+		sound.stopSound(CASTLE_THEME);
+
 	bg->setPosition(glm::vec2(-5000, 0));
 	unlock->setPosition(glm::vec2(-5000, 0));
 
@@ -143,18 +149,21 @@ int Level::update(core::Siika2D *siika)
 				file->writeFile("1");
 				unlock->setPosition(glm::vec2(scrSize.x / 2, scrSize.y / 2));
 				unlockTimes = 100;
+				sound.playSound(LEVEL_UNLOCK);
 			}
 			if (levelName == "forest" && levels == 1)
 			{
 				file->writeFile("12");
 				unlock->setPosition(glm::vec2(scrSize.x / 2, scrSize.y / 2));
 				unlockTimes = 100;
+				sound.playSound(LEVEL_UNLOCK);
 			}
 			if (levelName == "castle" && levels == 2)
 			{
 				file->writeFile("123");
 				unlock->setPosition(glm::vec2(scrSize.x / 2, scrSize.y / 2));
 				unlockTimes = 100;
+				sound.playSound(LEVEL_UNLOCK);
 			}
 		}
 	}
