@@ -146,11 +146,8 @@ void LevelSelect::deInit()
 {
 	bg->setPosition(glm::vec2(-5000, 0));
 	question->setPosition(glm::vec2(-5000, 0));
-<<<<<<< HEAD
 	forNextLevel->setPosition(glm::vec2(-5000, 0));
-=======
 	sound.stopSound(MENU_THEME);
->>>>>>> origin/master
 
 	delete plainsLevel;
 	delete forestLevel; 
