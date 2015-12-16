@@ -70,14 +70,18 @@ void Level::init(core::Siika2D *siika)
 	unlock->setZ(0);
 	unlockTimes = 0;
 
-	if (levelName == "castle" || levelName == "boss")
+	if (levelName == "castle")
 		sound.playSound(CASTLE_THEME);
+	else if (levelName == "boss")
+		sound.playSound(BOSS_THEME);
 }
 
 void Level::deInit()
 {
-	if (levelName == "castle" || levelName == "boss")
+	if (levelName == "castle")
 		sound.stopSound(CASTLE_THEME);
+	else if (levelName == "boss")
+		sound.stopSound(BOSS_THEME);
 
 	bg->setPosition(glm::vec2(-5000, 0));
 	unlock->setPosition(glm::vec2(-5000, 0));

@@ -11,7 +11,6 @@ enum soundName
 	COIN,
 	ENEMY_DEAD,
 	USHIKO_HURT,
-	LONKERO,
 	KUOLONKORINA,
 	JUMP,
 	SELECT,
@@ -20,7 +19,9 @@ enum soundName
 	LEVEL_UNLOCK,
 	PORA_1,
 	PORA_2,
-	CASTLE_THEME
+	LONKERO, // all looping sounds under this one
+	CASTLE_THEME,
+	BOSS_THEME
 };
 
 class Sound

@@ -39,12 +39,14 @@ void Sound::loadSounds(core::Siika2D* siika)
 	sounds[PORA_1] = siika->_audioManager->createAudio("pora_1.ogg");
 	sounds[PORA_2] = siika->_audioManager->createAudio("pora_2.ogg");
 	sounds[CASTLE_THEME] = siika->_audioManager->createAudio("Ushiko_Castle.ogg");
+	sounds[BOSS_THEME] = siika->_audioManager->createAudio("boss_theme.ogg");
 
 	// Adjust special properties/volumes
 	sounds[COIN]->setVolume(0.5f);
 	sounds[JUMP]->setVolume(0.6f);
 	sounds[LONKERO]->setLooping(true);
 	sounds[CASTLE_THEME]->setLooping(true);
+	sounds[BOSS_THEME]->setLooping(true);
 
 	// Too lazy to do this any other way
 	ushikoHurts.push_back(siika->_audioManager->createAudio("voih_1.ogg"));
@@ -66,13 +68,13 @@ void Sound::playSound(soundName snd)
 		ushikoHurts[lrand48() % 11]->play();
 	else sounds[snd]->play();
 
-	if (snd == LONKERO || snd == CASTLE_THEME) // add any looping sounds to this vector
+	if (snd >= LONKERO) // add any looping sounds to this vector
 		currentlyPlaying.push_back(snd);
 }
 
 void Sound::stopSound(soundName snd)
 {
-	if (snd == LONKERO || snd == CASTLE_THEME) // only looping sounds should be stopped
+	if (snd >= LONKERO) // only looping sounds should be stopped
 	{
 		sounds[snd]->stop();
 
