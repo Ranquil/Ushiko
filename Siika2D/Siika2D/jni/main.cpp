@@ -60,7 +60,12 @@ void siika_main()
 	else if (currentScene != prevScene)
 	{
 		if (currentScene > LEVEL_SELECT)
+		{
 			ushiko.init(siika);
+			if (ushiko.prevLevel != currentScene)
+				ushiko.pointsAmount = 0;
+			ushiko.prevLevel = currentScene;
+		}
 
 		scenes[prevScene]->deInit();
 		scenes[currentScene]->init(siika);

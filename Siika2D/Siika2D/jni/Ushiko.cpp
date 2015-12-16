@@ -14,6 +14,8 @@ Ushiko::Ushiko()
 	animations[JUMP_MIDDLE] = { 1, 2, 1, false };
 	animations[JUMP_END]    = { 1, 3, 1, false };
 	animations[DOUBLE_JUMP] = { 2, 8, 7, false };
+
+	prevLevel = 0;
 }
 
 Ushiko::~Ushiko()
@@ -54,7 +56,7 @@ void Ushiko::init(core::Siika2D *siika)
 	//airTimer.pause();
 
 	health = healthMax;
-	pointsAmount = 0;
+	//pointsAmount = 0;
 	enemiesKilled = 0;
 
 	jumpTimer.start();
@@ -177,10 +179,10 @@ void Ushiko::update(core::Siika2D *siika)
 		// Stay on top of platforms (if Ushiko is going down through the current ground level,
 		// apply some linear force upwards). This method allows us to jump through the platforms from below.
 		int ushikoLevel = siika->transfCrds()->deviceToUser(go->getComponent<misc::TransformComponent>()->getPosition()).y;
-		if (ushikoLevel > groundLevel - 260 && ushikoLevel < groundLevel - 200 && go->getComponent<misc::PhysicsComponent>()->_body->GetLinearVelocity().y < -1)
+		if (ushikoLevel > groundLevel - 260 && ushikoLevel < groundLevel - 220 && go->getComponent<misc::PhysicsComponent>()->_body->GetLinearVelocity().y < -1)
 		{
 			ushiko.go->getComponent<misc::PhysicsComponent>()->_body->SetLinearVelocity(b2Vec2(0, 0));
-			ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 10), false);
+			ushiko.go->getComponent<misc::PhysicsComponent>()->applyLinearForce(glm::vec2(0, 8), false);
 
 			if (currentAnimation == JUMP_MIDDLE)
 				currentAnimation = JUMP_END;

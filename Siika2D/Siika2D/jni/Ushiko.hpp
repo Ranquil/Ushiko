@@ -48,6 +48,7 @@ public:
 	int coinCount;
 	int pointsAmount;
 	int enemiesKilled;
+	int prevLevel;
 
 	misc::GameObject *go;
 

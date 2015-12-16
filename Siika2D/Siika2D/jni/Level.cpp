@@ -150,6 +150,7 @@ int Level::update(core::Siika2D *siika)
 				unlock->setPosition(glm::vec2(scrSize.x / 2, scrSize.y / 2));
 				unlockTimes = 100;
 				sound.playSound(LEVEL_UNLOCK);
+				ushiko.pointsAmount = 0;
 			}
 			if (levelName == "forest" && levels == 1)
 			{
@@ -157,6 +158,7 @@ int Level::update(core::Siika2D *siika)
 				unlock->setPosition(glm::vec2(scrSize.x / 2, scrSize.y / 2));
 				unlockTimes = 100;
 				sound.playSound(LEVEL_UNLOCK);
+				ushiko.pointsAmount = 0;
 			}
 			if (levelName == "castle" && levels == 2)
 			{
@@ -164,6 +166,7 @@ int Level::update(core::Siika2D *siika)
 				unlock->setPosition(glm::vec2(scrSize.x / 2, scrSize.y / 2));
 				unlockTimes = 100;
 				sound.playSound(LEVEL_UNLOCK);
+				ushiko.pointsAmount = 0;
 			}
 		}
 	}
