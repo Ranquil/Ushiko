@@ -137,7 +137,7 @@ void Ushiko::update(core::Siika2D *siika)
 
 			// Jump (tap on the left side of the screen)
 			if (jumpTimer.getElapsedTime(SECONDS) > 0.2 && touchPos.x > 10 &&
-				touchPos.x < siika->_graphicsContext->getDisplaySize().x / 2)
+				touchPos.x < siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize()).x / 2)
 			{
 				letGo = false;
 
@@ -164,7 +164,7 @@ void Ushiko::update(core::Siika2D *siika)
 		}
 		// Dash (tap on the right side of the screen)
 		if (xOffset <= 0 && dashTimer.getElapsedTime(SECONDS) > 0.8f &&
-			touchPos.x > siika->_graphicsContext->getDisplaySize().x / 2)
+			touchPos.x > siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize()).x / 2)
 		{
 			if (xOffset <= 0)
 			{
