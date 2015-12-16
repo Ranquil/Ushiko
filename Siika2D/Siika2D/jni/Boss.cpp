@@ -18,7 +18,7 @@ void Boss::init(core::Siika2D *siika)
 
 	screenSize = siika->transfCrds()->deviceToUser(siika->_graphicsContext->getDisplaySize());
 
-	graphics::Texture *bossTexture = siika->_textureManager->createTexture("sprite_tentacles_front.png");
+	graphics::Texture *bossTexture = siika->_textureManager->createTexture("sprite_tentaclespink_front.png");
 
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
@@ -36,7 +36,7 @@ void Boss::init(core::Siika2D *siika)
 	bossFront->move(glm::vec2(screenSize.x + 256, -screenSize.y / 2));
 	bossBack = new misc::GameObject;
 
-	graphics::Texture *bossTexture2 = siika->_textureManager->createTexture("sprite_tentacles_back.png");
+	graphics::Texture *bossTexture2 = siika->_textureManager->createTexture("sprite_tentaclespink_back.png");
 
 	misc::SpriteComponent *sprtComp2 = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
@@ -84,7 +84,10 @@ void Boss::spawnProjectile(core::Siika2D *siika)
 			PT = DAMAGING;
 
 	graphics::Texture *pTexture;
-	pTexture = siika->_textureManager->createTexture("sprite_inkball.png");
+	if (PT == DAMAGING)
+		pTexture = siika->_textureManager->createTexture("sprite_inkball.png");
+	else
+		pTexture = siika->_textureManager->createTexture("sprite_inkballpink.png");
 
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
@@ -102,8 +105,6 @@ void Boss::spawnProjectile(core::Siika2D *siika)
 
 	glm::vec2 bossPos = siika->transfCrds()->deviceToUser(bossFront->getComponent<misc::TransformComponent>()->getPosition());
 	Projectile *p = new Projectile(go, PT);
-	if (PT == DAMAGING)
-		p->gameObject->getComponent<misc::SpriteComponent>()->getSprite()->setColor(graphics::Color(255, 0, 0, 0));
 	p->xPos = bossPos.x;
 	p->yPos = (-screenSize.y / 20) * ((lrand48() % 16 + 2));
 	go->move(glm::vec2(p->xPos, p->yPos));
