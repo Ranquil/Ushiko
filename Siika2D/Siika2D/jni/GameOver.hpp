@@ -18,6 +18,9 @@ public:
 
 private:
 	graphics::Sprite *gameOver;
+	graphics::Sprite *deadUshiko;
+	int deathSteps;
+	int deathFrames;
 
 	graphics::Text *enemiesText;
 	//graphics::Text *scoreText;
