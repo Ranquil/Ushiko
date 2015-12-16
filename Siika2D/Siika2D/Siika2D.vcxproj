@@ -49,6 +49,7 @@
     <ClCompile Include="inc\lodepng\lodepng.cpp" />
     <ClCompile Include="jni\Boss.cpp" />
     <ClCompile Include="jni\Collectable.cpp" />
+    <ClCompile Include="jni\EndScreen.cpp" />
     <ClCompile Include="jni\Enemy.cpp" />
     <ClCompile Include="jni\GameOver.cpp" />
     <ClCompile Include="jni\GameUI.cpp" />
@@ -103,6 +104,7 @@
     <ClInclude Include="inc\lodepng\lodepng.h" />
     <ClInclude Include="jni\Boss.hpp" />
     <ClInclude Include="jni\Collectable.hpp" />
+    <ClInclude Include="jni\EndScreen.hpp" />
     <ClInclude Include="jni\Enemy.hpp" />
     <ClInclude Include="jni\GameOver.hpp" />
     <ClInclude Include="jni\GameUI.hpp" />

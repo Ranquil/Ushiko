@@ -74,6 +74,10 @@ void Level::init(core::Siika2D *siika)
 		sound.playSound(CASTLE_THEME);
 	else if (levelName == "boss")
 		sound.playSound(BOSS_THEME);
+	else if (levelName == "plains")
+		sound.playSound(PLAINS_THEME);
+	else if (levelName == "forest")
+		sound.playSound(FOREST_THEME);
 }
 
 void Level::deInit()
@@ -82,6 +86,10 @@ void Level::deInit()
 		sound.stopSound(CASTLE_THEME);
 	else if (levelName == "boss")
 		sound.stopSound(BOSS_THEME);
+	else if (levelName == "plains")
+		sound.stopSound(PLAINS_THEME);
+	else if (levelName == "forest")
+		sound.stopSound(FOREST_THEME);
 
 	bg->setPosition(glm::vec2(-5000, 0));
 	unlock->setPosition(glm::vec2(-5000, 0));

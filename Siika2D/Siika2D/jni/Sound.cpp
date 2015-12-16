@@ -41,6 +41,9 @@ void Sound::loadSounds(core::Siika2D* siika)
 	sounds[CASTLE_THEME] = siika->_audioManager->createAudio("castle_theme.ogg");
 	sounds[BOSS_THEME] = siika->_audioManager->createAudio("boss_theme.ogg");
 	sounds[MENU_THEME] = siika->_audioManager->createAudio("menu_theme.ogg");
+	sounds[PLAINS_THEME] = siika->_audioManager->createAudio("plains_theme.ogg");
+	sounds[FOREST_THEME] = siika->_audioManager->createAudio("forest_theme.ogg");
+	sounds[BLEARGH] = siika->_audioManager->createAudio("boss_bleargh.ogg");
 
 	// Adjust special properties/volumes
 	sounds[COIN]->setVolume(0.5f);
@@ -49,6 +52,8 @@ void Sound::loadSounds(core::Siika2D* siika)
 	sounds[CASTLE_THEME]->setLooping(true);
 	sounds[BOSS_THEME]->setLooping(true);
 	sounds[MENU_THEME]->setLooping(true);
+	sounds[PLAINS_THEME]->setLooping(true);
+	sounds[FOREST_THEME]->setLooping(true);
 
 	// Too lazy to do this any other way
 	ushikoHurts.push_back(siika->_audioManager->createAudio("voih_1.ogg"));

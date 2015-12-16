@@ -19,10 +19,10 @@ void EndScreen::init(core::Siika2D *siika)
 	glm::vec2 scrSize = siika->_graphicsContext->getDisplaySize();
 	
 	endScreen = siika->_spriteManager->createSprite(
+		glm::vec2(0, -scrSize.y),
+		glm::vec2(scrSize.x, scrSize.y * 2),
 		glm::vec2(0, 0),
-		glm::vec2(scrSize.x, scrSize.y),
-		glm::vec2(0, 0),
-		siika->_textureManager->createTexture("title_screen_11_12.png"),
+		siika->_textureManager->createTexture("background_gameover.png"),
 		glm::vec2(0, 0),
 		glm::vec2(1, 1));
 	endScreen->setZ(100);

@@ -19,10 +19,13 @@ enum soundName
 	LEVEL_UNLOCK,
 	PORA_1,
 	PORA_2,
+	BLEARGH,
 	LONKERO, // all looping sounds under this one
 	CASTLE_THEME,
 	BOSS_THEME,
-	MENU_THEME
+	MENU_THEME,
+	PLAINS_THEME,
+	FOREST_THEME
 };
 
 class Sound

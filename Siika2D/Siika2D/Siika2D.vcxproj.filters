@@ -189,6 +189,9 @@
     <ClCompile Include="jni\Sound.cpp">
       <Filter>Ushiko</Filter>
     </ClCompile>
+    <ClCompile Include="jni\EndScreen.cpp">
+      <Filter>Ushiko\Scenes\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="native_app_glue\android_native_app_glue.h">
@@ -337,6 +340,9 @@
     </ClInclude>
     <ClInclude Include="jni\Sound.hpp">
       <Filter>Ushiko</Filter>
+    </ClInclude>
+    <ClInclude Include="jni\EndScreen.hpp">
+      <Filter>Ushiko\Scenes\Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
