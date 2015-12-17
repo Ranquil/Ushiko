@@ -80,14 +80,12 @@ void Boss::spawnProjectile(core::Siika2D *siika)
 		int projectileType(lrand48() % 3);
 		if (projectileType == 0)
 			PT = RETURNABLE;
-		else
-			PT = DAMAGING;
+		else PT = DAMAGING;
 
 	graphics::Texture *pTexture;
 	if (PT == DAMAGING)
 		pTexture = siika->_textureManager->createTexture("sprite_inkball.png");
-	else
-		pTexture = siika->_textureManager->createTexture("sprite_inkballpink.png");
+	else pTexture = siika->_textureManager->createTexture("sprite_inkballpink.png");
 
 	misc::SpriteComponent *sprtComp = new misc::SpriteComponent(misc::SpriteComponent(siika->_spriteManager->createSprite(
 		glm::vec2(0, 0),
@@ -109,6 +107,9 @@ void Boss::spawnProjectile(core::Siika2D *siika)
 	p->yPos = (-screenSize.y / 20) * ((lrand48() % 16 + 2));
 	go->move(glm::vec2(p->xPos, p->yPos));
 	projectiles.push_back(p);
+
+	if (PT != DAMAGING)
+		sound.playSound(BLEARGH);
 }
 
 bool Boss::isIntersecting(glm::vec2 projectilePosition, glm::vec2 otherPosition)
