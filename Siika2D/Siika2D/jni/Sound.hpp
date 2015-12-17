@@ -42,6 +42,8 @@ public:
 	void playSound(soundName snd);
 	void stopSound(soundName snd);
 
+	bool isPlaying(soundName snd);
+
 private:
 	std::map<soundName, audio::Audio*> sounds;
 	std::vector<audio::Audio*> ushikoHurts;

@@ -140,6 +140,7 @@ void LevelSelect::init(core::Siika2D *siika)
 	bossLevel->move(glm::vec2(screenSize.x / 3 + test, -screenSize.y / 2));
 
 	siika->_graphicsContext->setClearColor(graphics::Color(0, 255, 255, 255));
+	sound.playSound(MENU_THEME);
 }
 
 void LevelSelect::deInit()

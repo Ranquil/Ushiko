@@ -71,12 +71,20 @@ void Sound::loadSounds(core::Siika2D* siika)
 
 void Sound::playSound(soundName snd)
 {
-	if (snd == USHIKO_HURT)
-		ushikoHurts[lrand48() % 11]->play();
-	else sounds[snd]->play();
+	if (snd >= LONKERO) 
+	{
+		if (isPlaying(snd))
+			return;
 
-	if (snd >= LONKERO) // add any looping sounds to this vector
-		currentlyPlaying.push_back(snd);
+		currentlyPlaying.push_back(snd); // add any looping sounds to this vector
+		sounds[snd]->play();
+	}
+	else
+	{
+		if (snd == USHIKO_HURT)
+			ushikoHurts[lrand48() % 11]->play();
+		else sounds[snd]->play();
+	}
 }
 
 void Sound::stopSound(soundName snd)
@@ -94,4 +102,14 @@ void Sound::stopSound(soundName snd)
 			}
 		}
 	}
+}
+
+bool Sound::isPlaying(soundName snd)
+{
+	for (int i = 0; i < currentlyPlaying.size(); i++)
+	{
+		if (currentlyPlaying[i] == snd)
+			return true;
+	}
+	return false;
 }

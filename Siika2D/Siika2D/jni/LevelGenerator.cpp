@@ -349,7 +349,7 @@ void LevelGenerator::updateCollectables(glm::vec2 ushikoPos)
 		c->go->update();
 
 		glm::vec2 ushikoPosition = ushiko.go->getComponent<misc::TransformComponent>()->getPosition();
-		if (distance(c->go->getComponent<misc::TransformComponent>()->getPosition(), ushikoPosition) < 50)
+		if (distance(c->go->getComponent<misc::TransformComponent>()->getPosition(), ushikoPosition) < 60)
 		{
 			if (c->isHeart == false)
 			{

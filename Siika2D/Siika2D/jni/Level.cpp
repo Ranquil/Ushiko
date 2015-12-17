@@ -209,12 +209,14 @@ int Level::update(core::Siika2D *siika)
 
 void Level::pause()
 {
+	sound.pause();
 	genTimer.pause();
 	paused = true;
 }
 
 void Level::resume()
 {
+	sound.resume();
 	genTimer.reset();
 	paused = false;
 }
